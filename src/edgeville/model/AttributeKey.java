@@ -5,6 +5,8 @@ package edgeville.model;
  */
 public enum AttributeKey {
 
+	LAST_ATTACKED_BY,
+	
 	/**
 	 * Key indicating if this player is having debugging enabled.
 	 */

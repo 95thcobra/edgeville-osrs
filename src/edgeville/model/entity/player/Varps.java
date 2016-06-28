@@ -64,13 +64,6 @@ public class Varps {
 
     public void sync(int id) {
         player.write(new SetVarp(id, varps[id]));
-        player.world().getEventHandler().addEvent(player, 1, false, new Event() {
-            @Override
-            public void execute(EventContainer container) {
-                player.interfaces().sendQuestTabTitle(); // First big string
-                container.stop();
-            }
-        });
     }
 
     public int[] getVarps() {

@@ -384,6 +384,10 @@ public class Player extends Entity {
     public PlayerSyncInfo sync() {
         return (PlayerSyncInfo) sync;
     }
+    
+    public void sound(int id) {
+        write(new PlaySound(id, 0));
+    }
 
     public void sound(int id, int delay) {
         write(new PlaySound(id, delay));
@@ -461,6 +465,9 @@ public class Player extends Entity {
             varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
             timers.register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
         }
+        
+        // Players online in questtab
+        interfaces().sendQuestTabTitle();
 
         // Region enter and leave triggers
         int lastregion = attrib(AttributeKey.LAST_REGION, -1);
@@ -569,4 +576,56 @@ public class Player extends Entity {
         }
         world().getEventHandler().addEvent(this, new TeleportEvent(this, tile));
     }
+
+	@Override
+	public int getAttackSound() {
+		Item item = equipment().get(EquipSlot.WEAPON);
+		int soundId = -1;
+		if (item == null) {
+			soundId = 24;
+		} else {
+			switch (item.id()) {
+			case 4151:
+			case 12006:
+				soundId = 2720;
+				break;
+			}
+		}
+		return soundId;
+	}
+
+
+	@Override
+	public int getBlockSound() {
+		Item item = equipment().get(EquipSlot.SHIELD);
+		int soundId = -1;
+		if (item == null) {
+			soundId = 23;
+		} else {
+			switch (item.id()) {
+			case 8850:
+				soundId = 15;
+				break;
+			}
+		}
+		return soundId;
+	}
+
+	@Override
+	public int getBlockAnim() {
+		int animationId = 424;
+		Item shield = ((Player) this).equipment().get(EquipSlot.SHIELD);
+		if (shield != null) {
+			switch (shield.id()) {
+			// shields 1156
+
+			// Defenders
+			case 8850:
+				animationId = 4177;
+				break;
+			}
+		}
+
+		return animationId;
+	}
 }
