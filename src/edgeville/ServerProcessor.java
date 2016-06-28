@@ -48,7 +48,7 @@ public class ServerProcessor extends Thread {
 	/**
 	 * Ticks until we print some information about the server.
 	 */
-	private int infotick = 10;
+	private int infotick = 100;
 
 	/**
 	 * The executor that will nicely execute all our async tasks.
@@ -76,7 +76,7 @@ public class ServerProcessor extends Thread {
 		tasks.add(new PacketProcessingTask());
 		tasks.add(new PlayerProcessingTask());
 		tasks.add(new NpcProcessingTask());
-		//tasks.add(new ScriptProcessingTask());
+		tasks.add(new WorldProcessingTask());
 		tasks.add(new PlayerPreSyncTask());
 		tasks.add(new NpcPreSyncTask());
 		tasks.add(new NpcViewportTask());
@@ -134,7 +134,7 @@ public class ServerProcessor extends Thread {
 		long delay = 600 - (System.currentTimeMillis() - start);
 
 		if (infotick-- == 0) {
-			infotick = 10;
+			infotick = 100;
 
 			long totalMem = Runtime.getRuntime().totalMemory();
 			long freeMem = Runtime.getRuntime().freeMemory();

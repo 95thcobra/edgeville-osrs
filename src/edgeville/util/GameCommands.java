@@ -9,6 +9,8 @@ import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 import edgeville.aquickaccess.dialogue.DialogueHandler;
+import edgeville.event.Event;
+import edgeville.event.EventContainer;
 import edgeville.fs.ItemDefinition;
 import edgeville.model.*;
 import edgeville.model.entity.Npc;
@@ -71,17 +73,17 @@ public final class GameCommands {
                 int rz = Integer.parseInt(params[2]);
                 int lx = Integer.parseInt(params[3]);
                 int lz = Integer.parseInt(params[4]);
-                p.teleport(rx * 64 + lx, rz * 64 + lz, level);
+                p.move(rx * 64 + lx, rz * 64 + lz, level);
             } else {
-                p.teleport(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args.length > 2 ? Integer.parseInt(args[2]) : 0);
+                p.move(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args.length > 2 ? Integer.parseInt(args[2]) : 0);
             }
         });
         put(Privilege.PLAYER, "anim", (p, args) -> p.animate(Integer.parseInt(args[0])));
         put(Privilege.PLAYER, "gfx", (p, args) -> p.graphic(Integer.parseInt(args[0])));
         put(Privilege.PLAYER, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
         put(Privilege.PLAYER, "runscript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
-        put(Privilege.PLAYER, "up", (p, args) -> p.teleport(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
-        put(Privilege.PLAYER, "down", (p, args) -> p.teleport(p.getTile().x, p.getTile().z, Math.max(0, p.getTile().level - 1)));
+        put(Privilege.PLAYER, "up", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
+        put(Privilege.PLAYER, "down", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.max(0, p.getTile().level - 1)));
         /*put(Privilege.PLAYER, "scripts", (p, args) -> {
             new Thread(() -> {
                 long l = System.currentTimeMillis();
@@ -282,7 +284,7 @@ public final class GameCommands {
 
         put(Privilege.ADMIN, "teleregion", (p, args) -> {
             int rid = Integer.parseInt(args[0]);
-            p.teleport((rid >> 8) * 64 + 32, (rid & 0xFF) * 64 + 32);
+            p.move((rid >> 8) * 64 + 32, (rid & 0xFF) * 64 + 32);
         });
         put(Privilege.ADMIN, "addxp", (p, args) -> p.skills().addXp(Integer.valueOf(args[0]), Integer.valueOf(args[1])));
         put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p, Integer.valueOf(args[0]), Hit.Type.REGULAR));
@@ -334,28 +336,28 @@ public final class GameCommands {
                 p.message("You cannot do this while in the wilderness.");
                 return;
             }
-            p.teleport(3288, 3886);
+            p.move(3288, 3886);
         });
         put(Privilege.PLAYER, "chins", (p, args) -> {
             if (inWilderness(p)) {
                 p.message("You cannot do this while in the wilderness.");
                 return;
             }
-            p.teleport(3138, 3784);
+            p.move(3138, 3784);
         });
         put(Privilege.PLAYER, "44s", (p, args) -> {
             if (inWilderness(p)) {
                 p.message("You cannot do this while in the wilderness.");
                 return;
             }
-            p.teleport(2978, 3871);
+            p.move(2978, 3871);
         });
         put(Privilege.PLAYER, "mb", (p, args) -> {
             if (inWilderness(p)) {
                 p.message("You cannot do this while in the wilderness.");
                 return;
             }
-            p.teleport(2539, 4716);
+            p.move(2539, 4716);
         });
 
         put(Privilege.PLAYER, "edge", (p, args) -> {
@@ -363,7 +365,7 @@ public final class GameCommands {
                 p.message("You cannot do this while in the wilderness.");
                 return;
             }
-            p.teleport(3086, 3491);
+            p.move(3086, 3491);
         });
 
         put(Privilege.PLAYER, "commands", (p, args) -> {

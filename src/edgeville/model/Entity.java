@@ -88,14 +88,14 @@ public abstract class Entity implements HitOrigin {
     }
 
     public void move(Tile tile) {
-        teleport(tile.x, tile.z, tile.level);
+        move(tile.x, tile.z, tile.level);
     }
 
-    public void teleport(int x, int z) {
-        teleport(x, z, 0);
+    public void move(int x, int z) {
+        move(x, z, 0);
     }
 
-    public void teleport(int x, int z, int level) {
+    public void move(int x, int z, int level) {
         tile = new Tile(x, z, level);
         sync.teleported(true);
         pathQueue.clear();

@@ -306,13 +306,13 @@ public class ButtonClickAction {
             // Edge teleport
             case 1:
                 player.message("Teleporting to edgeville...");
-                player.teleportWithAnimation(Locations.EDGEVILLE.getTile());
+                player.teleport(Locations.EDGEVILLE.getTile());
                 break;
 
             // Varrock teleport
             case 16:
                 player.message("Teleporting to varrock...");
-                player.teleportWithAnimation(Locations.VARROCK.getTile());
+                player.teleport(Locations.VARROCK.getTile());
                 break;
         }
     }

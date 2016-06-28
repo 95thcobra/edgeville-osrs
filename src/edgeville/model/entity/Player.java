@@ -560,10 +560,10 @@ public class Player extends Entity {
     }
 
     public void teleportWithAnimation(int x, int y, int level) {
-        teleportWithAnimation(new Tile(x, y));
+        teleport(new Tile(x, y));
     }
 
-    public void teleportWithAnimation(Tile tile) {
+    public void teleport(Tile tile) {
         if (locked()) {
             return;
         }

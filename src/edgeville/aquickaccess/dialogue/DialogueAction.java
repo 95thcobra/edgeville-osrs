@@ -37,15 +37,15 @@ public class DialogueAction {
     private void handleTeleportWizard() {
         switch (option) {
             case 1:
-                player.teleportWithAnimation(Locations.EDGEVILLE.getTile());
+                player.teleport(Locations.EDGEVILLE.getTile());
                 player.message("You have teleported to Edgeville.");
                 break;
             case 2:
-                player.teleportWithAnimation(Locations.VARROCK.getTile());
+                player.teleport(Locations.VARROCK.getTile());
                 player.message("You have teleported to Varrock.");
                 break;
             case 3:
-                player.teleportWithAnimation(Locations.FALADOR.getTile());
+                player.teleport(Locations.FALADOR.getTile());
                 player.message("You have teleported to Falador.");
                 break;
         }

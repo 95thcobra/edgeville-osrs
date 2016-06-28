@@ -11,7 +11,7 @@ import java.util.Collection;
 /**
  * Created by Bart on 3-2-2015.
  */
-public class ScriptProcessingTask implements Task {
+public class WorldProcessingTask implements Task {
 
 	private static final Logger logger = LogManager.getLogger(ServerProcessor.class);
 

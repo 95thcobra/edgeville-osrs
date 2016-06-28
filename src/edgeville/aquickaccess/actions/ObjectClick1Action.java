@@ -34,7 +34,7 @@ public class ObjectClick1Action {
             case 23271:
                 boolean below = player.getTile().z <= 3520;
                 int targetY = (below ? 3523 : 3520);
-                player.teleport(player.getTile().x, targetY);
+                player.move(player.getTile().x, targetY);
                 break;
 
             // Unhandled objects
