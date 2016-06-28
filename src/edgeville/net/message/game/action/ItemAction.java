@@ -28,7 +28,7 @@ public abstract class ItemAction implements Action {
 		if (slot == 0xFFFF)
 			item = -1;
 
-		if (player.privilege().eligibleTo(Privilege.ADMIN) && player.<Boolean>attrib(AttributeKey.DEBUG, false))
+		if (player.getPrivilege().eligibleTo(Privilege.ADMIN) && player.<Boolean>attrib(AttributeKey.DEBUG, false))
 			player.message("Item option %d on [%d:%d], item: %d, slot: %d", option() + 1, hash>>16, hash&0xFFFF, item, slot);
 	}
 

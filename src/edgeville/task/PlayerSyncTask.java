@@ -109,14 +109,14 @@ public class PlayerSyncTask implements Task {
 
 					int mapx = player.activeMap().x;
 					int mapz = player.activeMap().z;
-					int dx = player.tile().x - mapx;
-					int dz = player.tile().z - mapz;
+					int dx = player.getTile().x - mapx;
+					int dz = player.getTile().z - mapz;
 
 					buffer.writeBits(7, dz);
 					buffer.writeBits(1, 1); // Reset tile queue
 					buffer.writeBits(7, dx);
 					buffer.writeBits(1, player.sync().calculatedFlag() != 0 ? 1 : 0);
-					buffer.writeBits(2, player.tile().level);
+					buffer.writeBits(2, player.getTile().level);
 
 					if (player.sync().calculatedFlag() != 0) {
 						player.sync().playerUpdateRequests()[player.sync().playerUpdateReqPtr()] = player.index();
@@ -155,7 +155,7 @@ public class PlayerSyncTask implements Task {
 				Player p = player.world().players().get(index);
 
 				// See if the player either logged out, or is out of our viewport
-				if (p == null || player.tile().distance(p.tile()) > 14 || player.tile().level != p.tile().level) {
+				if (p == null || player.getTile().distance(p.getTile()) > 14 || player.getTile().level != p.getTile().level) {
 					buffer.writeBits(1, 1); // Yes, we need an update
 					buffer.writeBits(2, 3); // Type 3: remove
 					continue;
@@ -210,7 +210,7 @@ public class PlayerSyncTask implements Task {
 
 			for (int idx = 0; idx < 2048; idx++) {
 				Player p = player.world().players().get(idx);
-				if (p == null || player.sync().hasInView(p.index()) || p == player || player.tile().distance(p.tile()) > 14 || p.tile().level != player.tile().level)
+				if (p == null || player.sync().hasInView(p.index()) || p == player || player.getTile().distance(p.getTile()) > 14 || p.getTile().level != player.getTile().level)
 					continue;
 
 				// Limit addition to 25 per cycle, and 255 local.
@@ -219,8 +219,8 @@ public class PlayerSyncTask implements Task {
 				}
 
 				buffer.writeBits(11, p.index());
-				buffer.writeBits(5, p.tile().z - player.tile().z);
-				buffer.writeBits(5, p.tile().x - player.tile().x);
+				buffer.writeBits(5, p.getTile().z - player.getTile().z);
+				buffer.writeBits(5, p.getTile().x - player.getTile().x);
 				buffer.writeBits(3, 6); // Direction to face
 				buffer.writeBits(1, 1); // Clear tile queue
 				buffer.writeBits(1, 1); // Update

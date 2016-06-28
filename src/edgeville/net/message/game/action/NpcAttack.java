@@ -1,7 +1,7 @@
 package edgeville.net.message.game.action;
 
-import edgeville.aquickaccess.combat.Combat;
-import edgeville.aquickaccess.combat.PvMCombat;
+import edgeville.combat.Combat;
+import edgeville.combat.PvMCombat;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.World;

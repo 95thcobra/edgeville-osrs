@@ -71,11 +71,11 @@ public abstract class Entity implements HitOrigin {
         world = w;
     }
 
-    public Tile tile() {
+    public Tile getTile() {
         return tile;
     }
 
-    public void tile(Tile tile) {
+    public void setTile(Tile tile) {
         this.tile = tile;
     }
 
@@ -87,7 +87,7 @@ public abstract class Entity implements HitOrigin {
         return timers;
     }
 
-    public void teleport(Tile tile) {
+    public void move(Tile tile) {
         teleport(tile.x, tile.z, tile.level);
     }
 
@@ -189,7 +189,7 @@ public abstract class Entity implements HitOrigin {
     }
 
     public void walkToNpc(Npc npc) {
-        Tile npcTile = npc.tile();
+        Tile npcTile = npc.getTile();
 
         pathQueue.clear();
 
@@ -287,7 +287,7 @@ public abstract class Entity implements HitOrigin {
 
     public boolean touches(Entity e, Tile from) {
         EntityStrategy target = new EntityStrategy(e);
-        int[][] clipAround = world.clipAround(e.tile(), 5); // TODO better algo for determining the size we need..
+        int[][] clipAround = world.clipAround(e.getTile(), 5); // TODO better algo for determining the size we need..
         return target.canExit(from.x, from.z, 1, clipAround, e.tile.x - 5, e.tile.z - 5);
     }
 
@@ -297,9 +297,9 @@ public abstract class Entity implements HitOrigin {
         int steps = pathQueue().running() ? 2 : 1;
         int otherSteps = target.pathQueue().running() ? 2 : 1;
 
-        Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.tile() : target.pathQueue().peekAfter(otherSteps).toTile();
+        Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile() : target.pathQueue().peekAfter(otherSteps).toTile();
         stepTowards(target, otherTile, 25);
-        return pathQueue().peekAfter(steps - 1) == null ? tile() : pathQueue().peekAfter(steps - 1).toTile();
+        return pathQueue().peekAfter(steps - 1) == null ? getTile() : pathQueue().peekAfter(steps - 1).toTile();
     }
 
     public boolean locked() {

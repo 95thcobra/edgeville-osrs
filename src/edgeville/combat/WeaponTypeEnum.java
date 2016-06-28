@@ -1,4 +1,4 @@
-package edgeville.aquickaccess.combat;
+package edgeville.combat;
 
 /**
  * Created by Sky on 26-6-2016.

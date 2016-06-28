@@ -21,7 +21,7 @@ public class DisplayMap implements Command { // Aka dipsleemap
 	private int[][] xteaKeys;
 
 	public DisplayMap(Player player) {
-		this(player, player.tile(), true);
+		this(player, player.getTile(), true);
 	}
 
 	public DisplayMap(Player player, Tile tile, boolean setActive) {

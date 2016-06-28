@@ -1,6 +1,6 @@
 package edgeville.aquickaccess.dialogue;
 
-import edgeville.aquickaccess.Locations;
+import edgeville.model.Locations;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Privilege;
 

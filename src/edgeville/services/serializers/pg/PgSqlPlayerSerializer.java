@@ -99,7 +99,7 @@ public class PgSqlPlayerSerializer extends PlayerSerializer {
 	@Override
 	public boolean loadPlayer(Player player, Object uid, String password, Consumer<PlayerLoadResult> fn) {
 		// Check username prior to processing :)
-		if (!validName(player.username())) {
+		if (!validName(player.getUsername())) {
 			fn.accept(PlayerLoadResult.INVALID_DETAILS);
 			return true;
 		}
@@ -113,7 +113,7 @@ public class PgSqlPlayerSerializer extends PlayerSerializer {
 				}
 
 				PreparedStatement accountStatement = credentialStatement.using(connection);
-				accountStatement.setString(1, player.username().toLowerCase());
+				accountStatement.setString(1, player.getUsername().toLowerCase());
 				ResultSet accountInfo = accountStatement.executeQuery();
 
 				int characterId = 0;
@@ -152,17 +152,17 @@ public class PgSqlPlayerSerializer extends PlayerSerializer {
 						part.decode(player, characterInfo);
 					}
 				} else {
-					if (illegalName(player.username())) {
+					if (illegalName(player.getUsername())) {
 						fn.accept(PlayerLoadResult.INVALID_DETAILS);
 						connection.rollback();
 						return;
 					}
 
 					PreparedStatement accStmt = accountCreationStatement.using(connection);
-					accStmt.setString(1, player.username().toLowerCase());
+					accStmt.setString(1, player.getUsername().toLowerCase());
 					accStmt.setString(2, password);
 					accStmt.setString(3, "no@email.com");
-					accStmt.setString(4, player.username());
+					accStmt.setString(4, player.getUsername());
 					ResultSet set = accStmt.executeQuery(); // Execute the insert
 					set.next();
 
@@ -239,7 +239,7 @@ public class PgSqlPlayerSerializer extends PlayerSerializer {
 						part.encode(player, stmt);
 					}
 
-					stmt.setString(10, player.username().toLowerCase());
+					stmt.setString(10, player.getUsername().toLowerCase());
 					stmt.executeUpdate();
 
 					// Finally, do one more 'check' and remove the player from the players online.

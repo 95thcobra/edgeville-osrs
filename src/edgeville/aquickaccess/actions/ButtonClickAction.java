@@ -1,9 +1,9 @@
 package edgeville.aquickaccess.actions;
 
-import edgeville.aquickaccess.Locations;
-import edgeville.aquickaccess.combat.Combat;
+import edgeville.combat.Combat;
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
+import edgeville.model.Locations;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.item.Item;
@@ -191,16 +191,16 @@ public class ButtonClickAction {
 
             // Attack styles
             case 3:
-                player.varps().varp(Varp.ATTACK_STYLE, 0);
+                player.varps().setVarp(Varp.ATTACK_STYLE, 0);
                 break;
             case 7:
-                player.varps().varp(Varp.ATTACK_STYLE, 1);
+                player.varps().setVarp(Varp.ATTACK_STYLE, 1);
                 break;
             case 11:
-                player.varps().varp(Varp.ATTACK_STYLE, 2);
+                player.varps().setVarp(Varp.ATTACK_STYLE, 2);
                 break;
             case 15:
-                player.varps().varp(Varp.ATTACK_STYLE, 3);
+                player.varps().setVarp(Varp.ATTACK_STYLE, 3);
                 break;
 
             // Special attack

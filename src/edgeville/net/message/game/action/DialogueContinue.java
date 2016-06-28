@@ -30,7 +30,7 @@ public class DialogueContinue implements Action {
 
 	@Override
 	public void process(Player player) {
-		if (player.privilege().eligibleTo(Privilege.ADMIN) && player.<Boolean>attrib(AttributeKey.DEBUG, false))
+		if (player.getPrivilege().eligibleTo(Privilege.ADMIN) && player.<Boolean>attrib(AttributeKey.DEBUG, false))
 			player.message("Dialogue [%d:%d], slot: %d", hash>>16, hash&0xFFFF, slot);
 
 		int id = hash >>16;

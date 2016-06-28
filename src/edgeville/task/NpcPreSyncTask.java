@@ -23,14 +23,14 @@ public class NpcPreSyncTask implements Task {
 		// Process path
 		if (!npc.pathQueue().empty()) {
 			PathQueue.Step walkStep = npc.pathQueue().next();
-			int walkDirection = PathQueue.calculateDirection(npc.tile().x, npc.tile().z, walkStep.x, walkStep.z);
+			int walkDirection = PathQueue.calculateDirection(npc.getTile().x, npc.getTile().z, walkStep.x, walkStep.z);
 			int runDirection = -1;
-			npc.tile(new Tile(walkStep.x, walkStep.z, npc.tile().level));
+			npc.setTile(new Tile(walkStep.x, walkStep.z, npc.getTile().level));
 
 			if ((walkStep.type == PathQueue.StepType.FORCED_RUN || npc.pathQueue().running()) && !npc.pathQueue().empty() && walkStep.type != PathQueue.StepType.FORCED_WALK) {
 				PathQueue.Step runStep = npc.pathQueue().next();
-				runDirection = PathQueue.calculateDirection(npc.tile().x, npc.tile().z, runStep.x, runStep.z);
-				npc.tile(new Tile(walkStep.x, walkStep.z, npc.tile().level));
+				runDirection = PathQueue.calculateDirection(npc.getTile().x, npc.getTile().z, runStep.x, runStep.z);
+				npc.setTile(new Tile(walkStep.x, walkStep.z, npc.getTile().level));
 			}
 
 			npc.sync().step(walkDirection, runDirection);

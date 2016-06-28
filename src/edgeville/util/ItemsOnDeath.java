@@ -48,11 +48,11 @@ public class ItemsOnDeath {
 		killer.message("SIZE:"+items.size());
 
 		items.stream().filter(i -> i != null && !keptItems.contains(i)).forEach(i -> {
-			killer.world().spawnGroundItem(new GroundItem(i, target.tile(), killer));
+			killer.world().spawnGroundItem(new GroundItem(i, target.getTile(), killer));
 			killer.message("ITEM"+i.id());
 		});
 
-		killer.world().spawnGroundItem(new GroundItem(new Item(526), target.tile(), killer));
+		killer.world().spawnGroundItem(new GroundItem(new Item(526), target.getTile(), killer));
 	}
 
 }

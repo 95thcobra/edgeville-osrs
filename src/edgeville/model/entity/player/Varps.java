@@ -3,7 +3,7 @@ package edgeville.model.entity.player;
 import java.util.HashSet;
 import java.util.Set;
 
-import edgeville.aquickaccess.Constants;
+import edgeville.Constants;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.fs.VarbitDefinition;
@@ -34,7 +34,7 @@ public class Varps {
         this.player = player;
     }
 
-    public void varp(int id, int v) {
+    public void setVarp(int id, int v) {
         varps[id] = v;
         sync(id);
     }
@@ -73,7 +73,7 @@ public class Varps {
         });
     }
 
-    public int[] raw() {
+    public int[] getVarps() {
         return varps;
     }
 
@@ -81,7 +81,7 @@ public class Varps {
         // Turn off prayers
         player.skills().disableAllPrayers();
        // Prayers.disableAllPrayers(player);
-        varp(Varp.SPECIAL_ENABLED, 0);
+        setVarp(Varp.SPECIAL_ENABLED, 0);
     }
 
     public void syncNonzero() {

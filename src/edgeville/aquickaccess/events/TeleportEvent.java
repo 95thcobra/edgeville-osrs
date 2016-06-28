@@ -28,7 +28,7 @@ public class TeleportEvent extends Event {
                 player.animate(714);
                 break;
             case 3:
-                player.teleport(targetTile);
+                player.move(targetTile);
                 break;
             case 4:
                 player.animate(715);

@@ -42,6 +42,8 @@ public class Player extends Entity {
      * The name that the player had used to log in with (not always the display name!)
      */
     private String username;
+    
+    private String password;
 
     /**
      * The name of the player, actually seen in-game.
@@ -122,13 +124,14 @@ public class Player extends Entity {
      */
     private int migration;
 
-    public Player(Channel channel, String username, World world, Tile tile, IsaacRand inrand, IsaacRand outrand) {
+    public Player(Channel channel, String username, String password, World world, Tile tile, IsaacRand inrand, IsaacRand outrand) {
         super(world, tile);
 
         this.channel = channel;
         this.inrand = inrand;
         this.outrand = outrand;
         this.username = this.displayName = username;
+        this.password = password;
         this.privilege = privilege;
 
         this.sync = new PlayerSyncInfo(this);
@@ -148,11 +151,11 @@ public class Player extends Entity {
     }
 
     public void resetSpecialEnergy() {
-        varps.varp(Varp.SPECIAL_ENERGY, 1000);
+        varps.setVarp(Varp.SPECIAL_ENERGY, 1000);
     }
 
     public void toggleSpecialAttack() {
-        varps.varp(Varp.SPECIAL_ENABLED, isSpecialAttackEnabled() ? 0 : 1);
+        varps.setVarp(Varp.SPECIAL_ENABLED, isSpecialAttackEnabled() ? 0 : 1);
     }
 
     public boolean isSpecialAttackEnabled() {
@@ -164,7 +167,7 @@ public class Player extends Entity {
     }
 
     public void setSpecialEnergyAmount(int amount) {
-        varps.varp(Varp.SPECIAL_ENERGY, Math.min(1000, amount));
+        varps.setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, amount));
     }
 
     /**
@@ -237,11 +240,19 @@ public class Player extends Entity {
         displayName = n;
     }
 
-    public String username() {
+    public String getUsername() {
         return username;
     }
+    
+    public String getDisplayName() {
+    	return displayName;
+    }
 
-    public void message(String format, Object... params) {
+    public String getPassword() {
+		return password;
+	}
+
+	public void message(String format, Object... params) {
         write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format));
     }
 
@@ -312,7 +323,7 @@ public class Player extends Entity {
         return outrand;
     }
 
-    public Privilege privilege() {
+    public Privilege getPrivilege() {
         //  return privilege;
         return Privilege.ADMIN;
     }
@@ -447,7 +458,7 @@ public class Player extends Entity {
         // Regenerate special energy
         if (!timers().has(TimerKey.SPECIAL_ENERGY_RECHARGE)) {
             int currentEnergy = varps().varp(Varp.SPECIAL_ENERGY);
-            varps().varp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
+            varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
             timers.register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
         }
 
@@ -473,7 +484,7 @@ public class Player extends Entity {
     }
 
     public boolean inWilderness() {
-        Tile tile = tile();
+        Tile tile = getTile();
         return tile.x > 2941 && tile.x < 3329 && tile.z > 3523 && tile.z < 3968;
     }
 
@@ -508,7 +519,7 @@ public class Player extends Entity {
 
         // Set the varp that holds our weapon interface panel type
         int panel = wep == null ? 0 : world.equipmentInfo().weaponType(wep.id());
-        varps.varp(843, panel);
+        varps.setVarp(843, panel);
     }
 
     @Override

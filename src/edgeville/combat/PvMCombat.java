@@ -1,4 +1,4 @@
-package edgeville.aquickaccess.combat;
+package edgeville.combat;
 
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
@@ -52,15 +52,15 @@ public class PvMCombat extends Combat {
     }
 
     private void handleRangeCombat(int weaponId, String ammoName, int weaponType) {
-        Tile currentTile = player.tile();
+        Tile currentTile = player.getTile();
 
         // Are we in range?
-        if (currentTile.distance(target.tile()) > 7 && !player.frozen() && !player.stunned()) {
+        if (currentTile.distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
             currentTile = moveCloser();
         }
 
         // Can we shoot?
-        if (currentTile.distance(target.tile()) <= 7 && !player.timers().has(TimerKey.COMBAT_ATTACK)) {
+        if (currentTile.distance(target.getTile()) <= 7 && !player.timers().has(TimerKey.COMBAT_ATTACK)) {
 
             // Do we have ammo?
             if (ammoName.equals("")) {
@@ -86,7 +86,7 @@ public class PvMCombat extends Combat {
             player.equipment().set(EquipSlot.AMMO, new Item(ammo.id(), ammo.amount() - 1));
 
             player.animate(EquipmentInfo.attackAnimationFor(player));
-            int distance = player.tile().distance(target.tile());
+            int distance = player.getTile().distance(target.getTile());
             int cyclesPerTile = 5;
             int baseDelay = 32;
             int startHeight = 35;
@@ -104,7 +104,7 @@ public class PvMCombat extends Combat {
             }
 
             if (player.varps().varp(Varp.SPECIAL_ENABLED) == 0 || !doRangeSpecial()) {
-                player.world().spawnProjectile(player.tile(), target, graphic, startHeight, endHeight, baseDelay, cyclesPerTile * distance, curve, 105);
+                player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay, cyclesPerTile * distance, curve, 105);
 
                 long delay = Math.round(Math.floor(baseDelay / 30.0) + (distance * (cyclesPerTile * 0.020) / 0.6));
                 boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGE);
@@ -120,7 +120,7 @@ public class PvMCombat extends Combat {
                 player.timers().register(TimerKey.COMBAT_ATTACK, player.world().equipmentInfo().weaponSpeed(weaponId));
 
                 // After every attack, reset special.
-                player.varps().varp(Varp.SPECIAL_ENABLED, 0);
+                player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
             }
         }
     }

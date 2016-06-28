@@ -9,8 +9,8 @@ import io.netty.util.AttributeKey;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.Constants;
 import edgeville.GameServer;
-import edgeville.aquickaccess.Constants;
 import edgeville.crypto.IsaacRand;
 import edgeville.io.RSBuffer;
 import edgeville.model.Tile;

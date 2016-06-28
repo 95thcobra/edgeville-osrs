@@ -1,7 +1,7 @@
 package edgeville.aquickaccess.actions;
 
-import edgeville.aquickaccess.combat.Food;
-import edgeville.aquickaccess.combat.Potions;
+import edgeville.combat.Food;
+import edgeville.combat.Potions;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.AttributeKey;

@@ -1,6 +1,4 @@
-package edgeville.aquickaccess;
-
-import edgeville.model.Tile;
+package edgeville.model;
 
 /**
  * Created by Sky on 25-6-2016.

@@ -1,6 +1,6 @@
 package edgeville.net.message.game.action;
 
-import edgeville.aquickaccess.combat.PvPCombat;
+import edgeville.combat.PvPCombat;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;

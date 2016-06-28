@@ -77,7 +77,7 @@ public class ItemAction2 extends ItemAction {
 
 		// Weapons interrupt special attack
 		if (targetSlot == EquipSlot.WEAPON) {
-			player.varps().varp(Varp.SPECIAL_ENABLED, 0);
+			player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
 		}
 
 		// Finally, equip the item we had in mind.

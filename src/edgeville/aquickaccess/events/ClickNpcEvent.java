@@ -20,7 +20,7 @@ public class ClickNpcEvent extends Event {
 
     @Override
     public void execute(EventContainer container) {
-        if (player.tile().distance(npc.tile()) <= 3) {
+        if (player.getTile().distance(npc.getTile()) <= 3) {
             container.stop();
         }
     }

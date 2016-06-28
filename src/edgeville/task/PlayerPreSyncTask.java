@@ -37,8 +37,8 @@ public class PlayerPreSyncTask implements Task {
 			Area prev = player.activeArea();
 			int mapx = player.activeMap().x;
 			int mapz = player.activeMap().z;
-			int dx = player.tile().x - mapx;
-			int dz = player.tile().z - mapz;
+			int dx = player.getTile().x - mapx;
+			int dz = player.getTile().z - mapz;
 
 			if (dx <= 16 || dz <= 16 || dx >= 88 || dz >= 88) {
 				player.write(new DisplayMap(player));
@@ -50,14 +50,14 @@ public class PlayerPreSyncTask implements Task {
 		// Process path
 		if (!player.pathQueue().empty()) {
 			PathQueue.Step walkStep = player.pathQueue().next();
-			int walkDirection = PathQueue.calculateDirection(player.tile().x, player.tile().z, walkStep.x, walkStep.z);
+			int walkDirection = PathQueue.calculateDirection(player.getTile().x, player.getTile().z, walkStep.x, walkStep.z);
 			int runDirection = -1;
-			player.tile(new Tile(walkStep.x, walkStep.z, player.tile().level));
+			player.setTile(new Tile(walkStep.x, walkStep.z, player.getTile().level));
 
 			if ((walkStep.type == PathQueue.StepType.FORCED_RUN || player.pathQueue().running()) && !player.pathQueue().empty() && walkStep.type != PathQueue.StepType.FORCED_WALK) {
 				PathQueue.Step runStep = player.pathQueue().next();
-				runDirection = PathQueue.calculateDirection(player.tile().x, player.tile().z, runStep.x, runStep.z);
-				player.tile(new Tile(runStep.x, runStep.z, player.tile().level));
+				runDirection = PathQueue.calculateDirection(player.getTile().x, player.getTile().z, runStep.x, runStep.z);
+				player.setTile(new Tile(runStep.x, runStep.z, player.getTile().level));
 			}
 
 			player.sync().step(walkDirection, runDirection);

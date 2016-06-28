@@ -36,8 +36,8 @@ public class EntityStrategy extends RouteStrategy {
 	}
 
 	public EntityStrategy(Entity entity, int accessBlockFlag) {
-		x = entity.tile().x;
-		z = entity.tile().z;
+		x = entity.getTile().x;
+		z = entity.getTile().z;
 		size = 1;//entity instanceof NPC ? ((NPC) entity).getDefinition().size : 1;
 		this.accessBlockFlag = accessBlockFlag;
 	}
@@ -50,8 +50,8 @@ public class EntityStrategy extends RouteStrategy {
 	}
 
 	public EntityStrategy(Entity entity, int accessBlockFlag, boolean combat) {
-		x = entity.tile().x;
-		z = entity.tile().z;
+		x = entity.getTile().x;
+		z = entity.getTile().z;
 		size = 1;//entity instanceof NPC ? ((NPC) entity).getDefinition().size : 1;
 		this.accessBlockFlag = accessBlockFlag;
 		this.combat = combat;

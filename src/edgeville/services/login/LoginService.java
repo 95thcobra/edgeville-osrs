@@ -2,6 +2,7 @@ package edgeville.services.login;
 
 import com.typesafe.config.Config;
 
+import edgeville.Constants;
 import edgeville.GameServer;
 import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
@@ -101,7 +102,7 @@ public class LoginService implements Service {
 
 	public static void complete(Player player, GameServer server, LoginRequestMessage message) {
 		player.interfaces().resizable(message.resizableInterfaces());
-		player.teleport(player.tile());
+		player.move(player.getTile());
 
 		// Attach player to session
 		player.channel().attr(ServerHandler.ATTRIB_PLAYER).set(player);

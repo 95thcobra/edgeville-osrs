@@ -23,7 +23,7 @@ public class ClickObjectEvent extends Event {
 
     @Override
     public void execute(EventContainer container) {
-        if (player.tile().distance(targetTile) <= 3) {
+        if (player.getTile().distance(targetTile) <= 3) {
             container.stop();
         }
     }

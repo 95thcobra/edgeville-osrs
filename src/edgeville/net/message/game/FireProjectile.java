@@ -33,7 +33,7 @@ public class FireProjectile implements Command {
 		this.steepness = steepness;
 
 		if (this.to != null)
-			toTile = to.tile();
+			toTile = to.getTile();
 	}
 
 	public FireProjectile(Tile from, Tile to, int gfx, int startHeight, int endHeight, int delay, int lifetime, int angle, int steepness) {

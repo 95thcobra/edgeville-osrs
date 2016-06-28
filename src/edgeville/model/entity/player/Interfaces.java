@@ -3,7 +3,7 @@ package edgeville.model.entity.player;
 import java.util.HashMap;
 import java.util.Map;
 
-import edgeville.aquickaccess.Constants;
+import edgeville.Constants;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.entity.Player;
@@ -119,9 +119,9 @@ public class Interfaces {
         player.write(new InterfaceSettings(216, 1, 0, 38, new SettingsBuilder().option(0)));
 
         // Hotkeys TODO proper!
-        player.varps().varp(1224, 102793221);
-        player.varps().varp(1225, 379887844);
-        player.varps().varp(1226, 12);
+        player.varps().setVarp(1224, 102793221);
+        player.varps().setVarp(1225, 379887844);
+        player.varps().setVarp(1226, 12);
     }
 
     public void setting(int i, int c, int start, int end, SettingsBuilder b) {

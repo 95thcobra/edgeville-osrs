@@ -51,7 +51,7 @@ public final class GameCommands {
 
 		/* Supervisor commands */
         put(Privilege.ADMIN, "spawnandhit", (p, args) -> {
-            Npc npc = new Npc(Integer.parseInt(args[0]), p.world(), new Tile(p.tile().x + 1, p.tile().z));
+            Npc npc = new Npc(Integer.parseInt(args[0]), p.world(), new Tile(p.getTile().x + 1, p.getTile().z));
             p.world().registerNpc(npc);
             npc.hit(p, 5);// NPC DOESNT  GET HIT
 
@@ -62,7 +62,7 @@ public final class GameCommands {
         put(Privilege.PLAYER, "reload", (p, args) -> commands = setup());
         put(Privilege.PLAYER, "refreshlooks", (p, args) -> p.looks().update());
         put(Privilege.ADMIN, "logout", (p, args) -> p.logout());
-        put(Privilege.PLAYER, "coords", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.tile().x, p.tile().z, p.tile().region()));
+        put(Privilege.PLAYER, "coords", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.getTile().x, p.getTile().z, p.getTile().region()));
         put(Privilege.PLAYER, "tele", (p, args) -> {
             if (args[0].contains(",")) { // Ctrl-shift click
                 String[] params = args[0].split(",");
@@ -80,8 +80,8 @@ public final class GameCommands {
         put(Privilege.PLAYER, "gfx", (p, args) -> p.graphic(Integer.parseInt(args[0])));
         put(Privilege.PLAYER, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
         put(Privilege.PLAYER, "runscript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
-        put(Privilege.PLAYER, "up", (p, args) -> p.teleport(p.tile().x, p.tile().z, Math.min(3, p.tile().level + 1)));
-        put(Privilege.PLAYER, "down", (p, args) -> p.teleport(p.tile().x, p.tile().z, Math.max(0, p.tile().level - 1)));
+        put(Privilege.PLAYER, "up", (p, args) -> p.teleport(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
+        put(Privilege.PLAYER, "down", (p, args) -> p.teleport(p.getTile().x, p.getTile().z, Math.max(0, p.getTile().level - 1)));
         /*put(Privilege.PLAYER, "scripts", (p, args) -> {
             new Thread(() -> {
                 long l = System.currentTimeMillis();
@@ -89,7 +89,7 @@ public final class GameCommands {
                 p.message("Took %d to reload scripts.", System.currentTimeMillis() - l);
             }).start();
         });*/
-        put(Privilege.ADMIN, "clipinfo", (p, args) -> p.message("Current clip: %s", Arrays.deepToString(p.world().clipSquare(p.tile(), 5))));
+        put(Privilege.ADMIN, "clipinfo", (p, args) -> p.message("Current clip: %s", Arrays.deepToString(p.world().clipSquare(p.getTile(), 5))));
         put(Privilege.ADMIN, "interface", (p, args) -> p.interfaces().sendMain(Integer.parseInt(args[0]), false));
         put(Privilege.ADMIN, "cinterface", (p, args) -> {
             p.interfaces().send(Integer.parseInt(args[0]), 162, 546, false);
@@ -128,7 +128,7 @@ public final class GameCommands {
 
         put(Privilege.ADMIN, "loopvarp", (p, args) -> {
             for (int i = 0; i < 5000; i++) {
-                p.varps().varp(i, 1);
+                p.varps().setVarp(i, 1);
             }
         });
 
@@ -179,7 +179,7 @@ public final class GameCommands {
         put(Privilege.PLAYER, "wtest", (p, args) -> {
             p.privilege(Privilege.ADMIN);
             p.putattrib(AttributeKey.DEBUG, true);
-            p.message("Current privileges: " + p.privilege());
+            p.message("Current privileges: " + p.getPrivilege());
         });
         put(Privilege.ADMIN, "rootwindow", (p, args) -> p.interfaces().sendRoot(Integer.parseInt(args[0])));
         put(Privilege.ADMIN, "close", (p, args) -> p.interfaces().close(p.interfaces().activeRoot(), p.interfaces().mainComponent()));
@@ -203,7 +203,7 @@ public final class GameCommands {
         });
         put(Privilege.PLAYER, "item", (p, args) -> {
 
-            if (p.privilege() != Privilege.ADMIN && p.tile().z > 3520 && p.tile().z < 3972) {
+            if (p.getPrivilege() != Privilege.ADMIN && p.getTile().z > 3520 && p.getTile().z < 3972) {
                 p.message("You cannot spawn items while standing in the wilderness.");
                 return;
             }
@@ -233,11 +233,11 @@ public final class GameCommands {
 
             p.inventory().add(new Item(itemId, amount), true);
         });
-        put(Privilege.ADMIN, "varp", (p, args) -> p.varps().varp(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+        put(Privilege.ADMIN, "varp", (p, args) -> p.varps().setVarp(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
         put(Privilege.ADMIN, "varbit", (p, args) -> p.varps().varbit(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
         put(Privilege.ADMIN, "give", (p, args) -> {
 
-            if (p.privilege() != Privilege.ADMIN && p.tile().z > 3520 && p.tile().z < 3972) {
+            if (p.getPrivilege() != Privilege.ADMIN && p.getTile().z > 3520 && p.getTile().z < 3972) {
                 p.message("You cannot spawn items while standing in the wilderness.");
                 return;
             }
@@ -259,7 +259,7 @@ public final class GameCommands {
         });
         put(Privilege.ADMIN, "gc", (p, args) -> System.gc());
         put(Privilege.ADMIN, "npc", (p, args) -> {
-            p.world().registerNpc(new Npc(Integer.parseInt(args[0]), p.world(), p.tile()));
+            p.world().registerNpc(new Npc(Integer.parseInt(args[0]), p.world(), p.getTile()));
         });
         put(Privilege.ADMIN, "musicbyname", (p, args) -> {
             String name = glue(args).toLowerCase();
@@ -287,9 +287,9 @@ public final class GameCommands {
         put(Privilege.ADMIN, "addxp", (p, args) -> p.skills().addXp(Integer.valueOf(args[0]), Integer.valueOf(args[1])));
         put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p, Integer.valueOf(args[0]), Hit.Type.REGULAR));
         put(Privilege.PLAYER, "empty", (p, args) -> p.inventory().empty());
-        put(Privilege.MODERATOR, "teleto", (p, args) -> p.teleport(p.world().playerByName(glue(args)).get().tile()));
-        put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().playerByName(glue(args)).get().teleport(p.tile()));
-        put(Privilege.ADMIN, "maxspec", (p, args) -> p.varps().varp(Varp.SPECIAL_ENERGY, 1000));
+        put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().playerByName(glue(args)).get().getTile()));
+        put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().playerByName(glue(args)).get().move(p.getTile()));
+        put(Privilege.ADMIN, "maxspec", (p, args) -> p.varps().setVarp(Varp.SPECIAL_ENERGY, 1000));
         put(Privilege.ADMIN, "finditem", (p, args) -> {
             String s = glue(args);
             new Thread(() -> {
@@ -414,9 +414,9 @@ public final class GameCommands {
     }
 
     private static boolean inWilderness(Player player) {
-        if (player.privilege().eligibleTo(Privilege.ADMIN))
+        if (player.getPrivilege().eligibleTo(Privilege.ADMIN))
             return false;
-        Tile t = player.tile();
+        Tile t = player.getTile();
         return t.x > 2941 && t.x < 3329 && t.z > 3524 && t.z < 3968;
     }
 
@@ -441,7 +441,7 @@ public final class GameCommands {
             command = parts[0];
         }
 
-        int level = player.privilege().ordinal();
+        int level = player.getPrivilege().ordinal();
         while (level-- >= 0) {
             if (!commands.containsKey(command.toLowerCase())) {
                 continue;
@@ -450,7 +450,7 @@ public final class GameCommands {
             Command c = commands.get(command.toLowerCase());
 
 			/* Verify privilege */
-            if (player.privilege().eligibleTo(c.privilege)) {
+            if (player.getPrivilege().eligibleTo(c.privilege)) {
                 c.handler.accept(player, parameters);
                 return;
             }

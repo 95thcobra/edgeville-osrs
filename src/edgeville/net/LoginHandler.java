@@ -7,8 +7,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.Constants;
 import edgeville.GameServer;
-import edgeville.aquickaccess.Constants;
 import edgeville.crypto.IsaacRand;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
@@ -84,8 +84,8 @@ public class LoginHandler extends ChannelInboundHandlerAdapter {
 			IsaacRand inrand = new IsaacRand(seed);
 			IsaacRand outrand = new IsaacRand(Arrays.stream(seed).map(i -> i + 50).toArray());
 
-			Player player = new Player(message.channel(), message.username(), server.world(), new Tile(3088, 3505), inrand, outrand);
-			player.id(player.username());
+			Player player = new Player(message.channel(), message.username(), message.password(), server.world(), new Tile(3088, 3505), inrand, outrand);
+			player.id(player.getUsername());
 			LoginService.complete(player, server, message);
 		}
 	}

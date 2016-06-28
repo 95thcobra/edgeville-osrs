@@ -85,7 +85,7 @@ public class NpcSyncTask implements Task {
 				Npc npc = player.world().npcs().get(index);
 
 				// See if the player either logged out, or is out of our viewport
-				if (npc == null || player.tile().distance(npc.tile()) > 14 || player.tile().level != npc.tile().level) {
+				if (npc == null || player.getTile().distance(npc.getTile()) > 14 || player.getTile().level != npc.getTile().level) {
 					buffer.writeBits(1, 1); // Yes, we need an update
 					buffer.writeBits(2, 3); // Type 3: remove
 					continue;
@@ -141,7 +141,7 @@ public class NpcSyncTask implements Task {
 
 			for (int idx = 0; idx < 2048; idx++) {
 				Npc npc = player.world().npcs().get(idx);
-				if (npc == null || player.sync().hasNpcInView(npc.index()) || player.tile().distance(npc.tile()) > 14 || player.tile().level != npc.tile().level)
+				if (npc == null || player.sync().hasNpcInView(npc.index()) || player.getTile().distance(npc.getTile()) > 14 || player.getTile().level != npc.getTile().level)
 					continue;
 
 				// Limit addition to 25 per cycle, and 255 local.
@@ -154,8 +154,8 @@ public class NpcSyncTask implements Task {
 				buffer.writeBits(1, 0); // Update
 				buffer.writeBits(14, npc.id()); // npc id
 				buffer.writeBits(1, 1); // Clear tile queue
-				buffer.writeBits(5, npc.tile().x - player.tile().x);
-				buffer.writeBits(5, npc.tile().z - player.tile().z);
+				buffer.writeBits(5, npc.getTile().x - player.getTile().x);
+				buffer.writeBits(5, npc.getTile().z - player.getTile().z);
 
 				ln[lnp[0]++] = npc.index();
 			}

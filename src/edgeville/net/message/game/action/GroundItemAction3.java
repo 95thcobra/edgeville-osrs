@@ -31,7 +31,7 @@ public class GroundItemAction3 implements Action {
 
 	@Override
 	public void process(Player player) {
-		GroundItem item = player.world().getGroundItem(x, z, player.tile().level, id);
+		GroundItem item = player.world().getGroundItem(x, z, player.getTile().level, id);
 
 		if (!player.locked() && !player.dead()) {
 			//player.putattrib(AttributeKey.GROUNDITEM_TARGET, item);
@@ -49,7 +49,7 @@ public class GroundItemAction3 implements Action {
 		player.world().getEventHandler().addEvent(player, new Event() {
 			@Override
 			public void execute(EventContainer container) {
-				if (item.tile().equals(player.tile())) {
+				if (item.tile().equals(player.getTile())) {
 					if (player.world().groundItemValid(item) && (player.inventory().add(item.item(), false).success())) {
 						player.world().removeGroundItem(item);
 						player.sound(2582, 0);

@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import edgeville.aquickaccess.Constants;
+import edgeville.Constants;
 import edgeville.crypto.IsaacRand;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
@@ -46,7 +46,7 @@ public class LoginWorker implements Runnable {
 				IsaacRand outrand = new IsaacRand(Arrays.stream(seed).map(i -> i + 50).toArray());
 
 				Tile startTile = new Tile(3094, 3503);
-				Player player = new Player(message.channel(), message.username(), service.server().world(), startTile, inrand, outrand);
+				Player player = new Player(message.channel(), message.username(), message.password(), service.server().world(), startTile, inrand, outrand);
 
 				boolean success = service.serializer().loadPlayer(player, null, message.password(), result -> {
 					// Convert pipeline
@@ -85,7 +85,7 @@ public class LoginWorker implements Runnable {
 						temp.writeByte(0); // Something trigger bla?
 						temp.writeInt(0); // idk this is 4 bytes of isaac ciphered keys
 
-						temp.writeByte(player.privilege() == null ? 0 : player.privilege().ordinal()); // Rights
+						temp.writeByte(player.getPrivilege() == null ? 0 : player.getPrivilege().ordinal()); // Rights
 						temp.writeBoolean(true); // Member
 						temp.writeShort(player.index()); // Index
 						temp.writeBoolean(true); // Member

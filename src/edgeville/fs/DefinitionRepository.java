@@ -6,8 +6,8 @@ import nl.bartpelle.dawnguard.util.Compression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.Constants;
 import edgeville.GameServer;
-import edgeville.aquickaccess.Constants;
 import edgeville.util.map.MapDecryptionKeys;
 
 import java.io.BufferedWriter;

@@ -37,7 +37,7 @@ public class ObjectAction1 implements Action {
 
     @Override
     public void process(Player player) {
-        MapObj obj = player.world().objById(id, x, z, player.tile().level);
+        MapObj obj = player.world().objById(id, x, z, player.getTile().level);
 
         if (obj == null)
             return;

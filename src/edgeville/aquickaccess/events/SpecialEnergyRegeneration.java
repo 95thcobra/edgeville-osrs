@@ -25,7 +25,7 @@ public class SpecialEnergyRegeneration extends Event {
         // On tick 50 replenish energy.
         if (tick == 50) {
             int currentEnergy = player.varps().varp(Varp.SPECIAL_ENERGY);
-            player.varps().varp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
+            player.varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
             tick = 0;
         }
         tick++;

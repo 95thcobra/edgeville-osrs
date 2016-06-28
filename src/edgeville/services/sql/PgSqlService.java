@@ -3,8 +3,8 @@ package edgeville.services.sql;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.typesafe.config.Config;
 
+import edgeville.Constants;
 import edgeville.GameServer;
-import edgeville.aquickaccess.Constants;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

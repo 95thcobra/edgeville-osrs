@@ -35,7 +35,7 @@ public class ObjectAction2 implements Action {
 
     @Override
     public void process(Player player) {
-        MapObj obj = player.world().objById(id, x, z, player.tile().level);
+        MapObj obj = player.world().objById(id, x, z, player.getTile().level);
 
         if (obj == null)
             return;
@@ -60,7 +60,7 @@ public class ObjectAction2 implements Action {
             player.world().getEventHandler().addEvent(player, new Event() {
                 @Override
                 public void execute(EventContainer container) {
-                    if (player.tile().distance(targetTile) <= 3) {
+                    if (player.getTile().distance(targetTile) <= 3) {
                         new ObjectClick2Action().handleObjectClick(player, obj);
                         container.stop();
                     }

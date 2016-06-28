@@ -1,9 +1,9 @@
 package edgeville.aquickaccess.events;
 
-import edgeville.aquickaccess.Locations;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.Entity;
+import edgeville.model.Locations;
 import edgeville.model.entity.Npc;
 import edgeville.model.entity.Player;
 import edgeville.script.TimerKey;
@@ -48,15 +48,15 @@ public class PlayerDeathEvent extends Event {
                 if (killer instanceof Player) {
                     ItemsOnDeath.dropItems((Player)killer, player);
                 }
-                player.teleport(Locations.RESPAWN_LOCATION.getTile());
+                player.move(Locations.RESPAWN_LOCATION.getTile());
                 break;
 
             case 6:
                 player.skills().resetStats();
                 player.timers().cancel(TimerKey.FROZEN);
                 player.timers().cancel(TimerKey.STUNNED);
-                player.varps().varp(Varp.SPECIAL_ENERGY, 1000);
-                player.varps().varp(Varp.SPECIAL_ENABLED, 0);
+                player.varps().setVarp(Varp.SPECIAL_ENERGY, 1000);
+                player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
                 player.damagers().clear();
                 player.face(null);
 

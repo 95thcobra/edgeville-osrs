@@ -187,7 +187,7 @@ public class PlayerSyncInfo extends SyncInfo {
 		RSBuffer buffer = new RSBuffer(Unpooled.buffer(256));
 		buffer.get().writerIndex(0);
 		buffer.writeLEShortA((message.colors() << 8) | message.effects());
-		buffer.writeByteA(((Player)entity).privilege().ordinal());// icon?
+		buffer.writeByteA(((Player)entity).getPrivilege().ordinal());// icon?
 		buffer.writeByteN(0);// icon?
 
 		byte[] huffmandata = new byte[256];

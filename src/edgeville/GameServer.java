@@ -2,7 +2,6 @@ package edgeville;
 
 import com.typesafe.config.*;
 
-import edgeville.aquickaccess.Constants;
 import edgeville.migration.MigrationRepository;
 import edgeville.model.World;
 import edgeville.model.uid.UIDProvider;
@@ -13,6 +12,7 @@ import edgeville.script.ScriptRepository;
 import edgeville.services.Service;
 import edgeville.services.login.LoginService;
 import edgeville.services.redis.RedisService;
+import edgeville.services.serializers.JSONFileSerializer;
 import edgeville.util.HuffmanCodec;
 import edgeville.util.map.MapDecryptionKeys;
 import io.netty.bootstrap.ServerBootstrap;
@@ -239,6 +239,12 @@ public class GameServer {
 		services.add(loginService);
 		
 		logger.info("Loaded service: {}", loginService.getClass().getName());
+		
+		Service jsonService = new JSONFileSerializer(uidProvider);
+		jsonService.setup(this);
+		services.add(jsonService);
+		
+		logger.info("Loaded service: {}", jsonService.getClass().getName());
 
 		// Start all the services we loaded
 		services.forEach(Service::start);

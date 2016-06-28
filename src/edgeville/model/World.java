@@ -2,8 +2,8 @@ package edgeville.model;
 
 import com.google.gson.Gson;
 
+import edgeville.Constants;
 import edgeville.GameServer;
-import edgeville.aquickaccess.Constants;
 import edgeville.event.EventHandler;
 import edgeville.fs.DefinitionRepository;
 import edgeville.fs.MapDefinition;

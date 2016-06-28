@@ -91,7 +91,7 @@ public class EntityList<T extends Entity> {
 
 	public void forEachWithinDistance(Tile tile, int distance, Consumer<? super T>... actions) {
 		for (Consumer<? super T> a : actions)
-			entriesList.stream().filter(e -> e != null && e.tile().distance(tile) <= distance).forEach((Consumer<? super Entity>) a);
+			entriesList.stream().filter(e -> e != null && e.getTile().distance(tile) <= distance).forEach((Consumer<? super Entity>) a);
 	}
 
 	public Stream<T> stream() {

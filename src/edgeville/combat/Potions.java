@@ -1,4 +1,4 @@
-package edgeville.aquickaccess.combat;
+package edgeville.combat;
 
 import edgeville.model.entity.player.Skills;
 

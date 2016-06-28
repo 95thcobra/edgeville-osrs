@@ -2,8 +2,8 @@ package edgeville.services.redis;
 
 import com.typesafe.config.Config;
 
+import edgeville.Constants;
 import edgeville.GameServer;
-import edgeville.aquickaccess.Constants;
 import edgeville.services.Service;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;

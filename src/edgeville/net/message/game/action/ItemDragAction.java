@@ -30,7 +30,7 @@ public class ItemDragAction implements Action {
 
 	@Override
 	public void process(Player player) {
-		if (player.privilege().eligibleTo(Privilege.ADMIN) && player.<Boolean>attrib(AttributeKey.DEBUG, false))
+		if (player.getPrivilege().eligibleTo(Privilege.ADMIN) && player.<Boolean>attrib(AttributeKey.DEBUG, false))
 			player.message("Drag: from=%d to=%d inter=%d child=%d insert=%b", from, to, hash>>16, hash&0xFFFF, insert);
 
 		int inter = hash >> 16;

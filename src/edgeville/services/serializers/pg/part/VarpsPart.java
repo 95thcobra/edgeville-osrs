@@ -22,7 +22,7 @@ public class VarpsPart implements PgJsonPart {
 		JsonArray varparray = parser.parse(resultSet.getString("varps")).getAsJsonArray();
 		for (JsonElement varp : varparray) {
 			JsonObject item = varp.getAsJsonObject();
-			player.varps().raw()[item.get("id").getAsInt()] = item.get("val").getAsInt();
+			player.varps().getVarps()[item.get("id").getAsInt()] = item.get("val").getAsInt();
 		}
 	}
 
@@ -32,7 +32,7 @@ public class VarpsPart implements PgJsonPart {
 
 		JsonArray varparray = new JsonArray();
 
-		int[] v = player.varps().raw();
+		int[] v = player.varps().getVarps();
 		for (int i = 0; i < 2000; i++) {
 			if (v[i] != 0) {
 				JsonObject obj = new JsonObject();

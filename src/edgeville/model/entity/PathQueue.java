@@ -40,8 +40,8 @@ public class PathQueue {
     }
 
     public int interpolate(int tx, int tz, StepType type, int maxSteps) {
-        int cx = steps.isEmpty() ? entity.tile().x : steps.getLast().x;
-        int cz = steps.isEmpty() ? entity.tile().z : steps.getLast().z;
+        int cx = steps.isEmpty() ? entity.getTile().x : steps.getLast().x;
+        int cz = steps.isEmpty() ? entity.getTile().z : steps.getLast().z;
 
         int taken = 0;
         while (maxSteps-- > 0) {
@@ -69,7 +69,7 @@ public class PathQueue {
     }
 
     public Step next() {
-        lastStep = entity.tile();
+        lastStep = entity.getTile();
         return steps.poll();
     }
 
@@ -133,7 +133,7 @@ public class PathQueue {
         PathQueue.Step step = entity.pathQueue().peekLast();
         Tile lastTile;
         if (step == null)
-            lastTile = entity.tile();
+            lastTile = entity.getTile();
         else
             lastTile = entity.pathQueue().peekLast().toTile();
         return lastTile;
@@ -148,7 +148,7 @@ public class PathQueue {
             return;
         }
         boolean runningEnabled = ((Player) entity).varps().varp(Varp.RUNNING_ENABLED) == 1;
-        ((Player) entity).varps().varp(Varp.RUNNING_ENABLED, (runningEnabled ? 0 : 1));
+        ((Player) entity).varps().setVarp(Varp.RUNNING_ENABLED, (runningEnabled ? 0 : 1));
     }
 
     public boolean running() {

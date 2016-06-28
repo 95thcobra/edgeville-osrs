@@ -1,4 +1,4 @@
-package edgeville.aquickaccess.combat;
+package edgeville.combat;
 
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
@@ -54,13 +54,13 @@ public abstract class Combat {
         int steps = entity.pathQueue().running() ? 2 : 1;
         int otherSteps = target.pathQueue().running() ? 2 : 1;
 
-        Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.tile() : target.pathQueue().peekAfter(otherSteps).toTile();
+        Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile() : target.pathQueue().peekAfter(otherSteps).toTile();
         entity.stepTowards(target, otherTile, 25);
-        return entity.pathQueue().peekAfter(steps - 1) == null ? entity.tile() : entity.pathQueue().peekAfter(steps - 1).toTile();
+        return entity.pathQueue().peekAfter(steps - 1) == null ? entity.getTile() : entity.pathQueue().peekAfter(steps - 1).toTile();
     }
 
     public void handleMeleeCombat(int weaponId) {
-        Tile currentTile = getEntity().tile();
+        Tile currentTile = getEntity().getTile();
 
         // Move closer if out of range.
         if (!entity.touches(getTarget(), currentTile) && !getEntity().frozen() && !getEntity().stunned()) {
@@ -99,7 +99,7 @@ public abstract class Combat {
             return;
         }
 
-        if (!player.touches(target, player.tile())) {
+        if (!player.touches(target, player.getTile())) {
             return;
         }
 
