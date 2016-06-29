@@ -26,7 +26,7 @@ public class InventoryPart implements PgJsonPart {
 
 			// TODO properties
 			Item itemobj = new Item(item.get("id").getAsInt(), item.get("amount").getAsInt());
-			player.inventory().set(item.get("slot").getAsInt(), itemobj);
+			player.getInventory().set(item.get("slot").getAsInt(), itemobj);
 		}
 	}
 
@@ -34,7 +34,7 @@ public class InventoryPart implements PgJsonPart {
 	public void encode(Player player, PreparedStatement characterUpdateStatement) throws SQLException {
 		JsonArray itemarray = new JsonArray();
 		for (int i = 0; i < 28; i++) {
-			Item item = player.inventory().get(i);
+			Item item = player.getInventory().get(i);
 			if (item != null) {
 				JsonObject obj = new JsonObject();
 				obj.add("slot", new JsonPrimitive(i));

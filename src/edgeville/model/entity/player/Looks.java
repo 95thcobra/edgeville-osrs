@@ -29,8 +29,8 @@ public class Looks {
 		calcBuffer.writerIndex(0); // Start at 0
 
 		calcBuffer.writeByte(0); // Gender
-		calcBuffer.writeByte(-1); // Skull
-		calcBuffer.writeByte(-1); // Prayer
+		calcBuffer.writeByte(player.getSkullHeadIcon()); // Skull
+		calcBuffer.writeByte(player.getPrayerHeadIcon()); // Prayer
 
 		if (transmog >= 0) {
 			calcBuffer.writeShort(0xFFFF).writeShort(transmog);
@@ -43,20 +43,20 @@ public class Looks {
 			//11 = beard
 			EquipmentInfo equipInfo = player.world().equipmentInfo();
 			for (int i = 0; i < 12; i++) {
-				if (i == 6 && player.equipment().hasAt(4) && equipInfo.typeFor(player.equipment().get(4).id()) == 6) {
+				if (i == 6 && player.getEquipment().hasAt(4) && equipInfo.typeFor(player.getEquipment().get(4).id()) == 6) {
 					calcBuffer.writeByte(0);
 					continue;
 				}
-				if (i == 8 && player.equipment().hasAt(0) && equipInfo.typeFor(player.equipment().get(0).id()) == 8) {
+				if (i == 8 && player.getEquipment().hasAt(0) && equipInfo.typeFor(player.getEquipment().get(0).id()) == 8) {
 					calcBuffer.writeByte(0);
 					continue;
 				}
-				if (i == 11 && player.equipment().hasAt(0) && equipInfo.typeFor(player.equipment().get(0).id()) == 8) {
+				if (i == 11 && player.getEquipment().hasAt(0) && equipInfo.typeFor(player.getEquipment().get(0).id()) == 8) {
 
 				}
 
-				if (player.equipment().hasAt(i)) {
-					calcBuffer.writeShort(0x200 + player.equipment().get(i).id());
+				if (player.getEquipment().hasAt(i)) {
+					calcBuffer.writeShort(0x200 + player.getEquipment().get(i).id());
 				} else if (looks[i] != 0) {
 					calcBuffer.writeShort(0x100 + looks[i]);
 				} else {
@@ -68,7 +68,7 @@ public class Looks {
 		// Dem colors
 		calcBuffer.writeByte(3).writeByte(16).writeByte(16).writeByte(0).writeByte(0);
 
-		int weapon = player.equipment().hasAt(EquipSlot.WEAPON) ? player.equipment().get(EquipSlot.WEAPON).id() : -1;
+		int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).id() : -1;
 		int[] renderpair = renderpairOverride != null ? renderpairOverride : player.world().equipmentInfo().renderPair(weapon);
 		for (int renderAnim : renderpair)
 			calcBuffer.writeShort(renderAnim); // Renderanim

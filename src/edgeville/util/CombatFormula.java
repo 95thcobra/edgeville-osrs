@@ -102,7 +102,7 @@ public class CombatFormula {
             Player player = (Player) entity;
 
             for (int i = 0; i < 14; i++) {
-                Item equipped = player.equipment().get(i);
+                Item equipped = player.getEquipment().get(i);
                 if (equipped != null) {
                     EquipmentInfo.Bonuses equip = info.bonuses(equipped.id());
 
@@ -132,14 +132,14 @@ public class CombatFormula {
     }
 
     private static boolean fullDharok(Player player) {
-        return player.equipment().hasAny(4718, 4886, 4887, 4888, 4889) && // Axe
-                player.equipment().hasAny(4716, 4880, 4881, 4882, 4883) && // Helm
-                player.equipment().hasAny(4720, 4892, 4893, 4894, 4895) && // Body
-                player.equipment().hasAny(4722, 4898, 4899, 4900, 4901); // Legs
+        return player.getEquipment().hasAny(4718, 4886, 4887, 4888, 4889) && // Axe
+                player.getEquipment().hasAny(4716, 4880, 4881, 4882, 4883) && // Helm
+                player.getEquipment().hasAny(4720, 4892, 4893, 4894, 4895) && // Body
+                player.getEquipment().hasAny(4722, 4898, 4899, 4900, 4901); // Legs
     }
 
     private static boolean hasGodSword(Player player) {
-        return player.equipment().hasAny(11802, 11804, 11806, 11808);
+        return player.getEquipment().hasAny(11802, 11804, 11806, 11808);
     }
 
 }

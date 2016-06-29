@@ -188,11 +188,11 @@ public class EquipmentInfo {
     }
 
     public static int attackAnimationFor(Player player) {
-        int book = player.varps().varp(843); // weapon style
-        int style = player.varps().varp(43);
+        int book = player.varps().getVarp(843); // weapon style
+        int style = player.varps().getVarp(43);
 
         // Handle individual cases first
-        int weapon = player.equipment().hasAt(EquipSlot.WEAPON) ? player.equipment().get(EquipSlot.WEAPON).id() : 0;
+        int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).id() : 0;
         if (weapon != 0) {
             switch (weapon) {
                 case 11802:

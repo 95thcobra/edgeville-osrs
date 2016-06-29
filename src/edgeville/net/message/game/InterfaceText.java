@@ -19,7 +19,7 @@ public class InterfaceText implements Command {
 
 	@Override
 	public RSBuffer encode(Player player) {
-		player.message("interfacetext sent: hash:"+hash+" text:"+text);
+		//player.message("interfacetext sent: hash:"+hash+" text:"+text);
 		RSBuffer buffer = new RSBuffer(player.channel().alloc().buffer(text.length() + 1 + 1 + 4));
 		buffer.packet(20).writeSize(RSBuffer.SizeType.SHORT);
 

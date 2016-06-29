@@ -54,9 +54,9 @@ public class Skills {
     }
 
     public void toggleXPCounter() {
-        boolean enabled = player.varps().varbit(Varbit.XP_DROPS_ORB) == 1;
-        player.varps().varbit(Varbit.XP_DROPS_ORB, enabled ? 0 : 1);
-        player.varps().varbit(Varbit.XP_DROPS_COUNTER, enabled ? 30 : 0);
+        boolean enabled = player.varps().getVarbit(Varbit.XP_DROPS_ORB) == 1;
+        player.varps().setVarbit(Varbit.XP_DROPS_ORB, enabled ? 0 : 1);
+        player.varps().setVarbit(Varbit.XP_DROPS_COUNTER, enabled ? 30 : 0);
     }
 
     public void setXp(int skill, double amt) {
@@ -174,9 +174,9 @@ public class Skills {
     }
 
     public void disableAllPrayers() {
-        player.varps().varbit(Varbit.PROTECT_FROM_MELEE, 0);
-        player.varps().varbit(Varbit.PROTECT_FROM_MISSILES, 0);
-        player.varps().varbit(Varbit.PROTECT_FROM_MAGIC, 0);
+        player.varps().setVarbit(Varbit.PROTECT_FROM_MELEE, 0);
+        player.varps().setVarbit(Varbit.PROTECT_FROM_MISSILES, 0);
+        player.varps().setVarbit(Varbit.PROTECT_FROM_MAGIC, 0);
     }
 
     public int combatLevel() {

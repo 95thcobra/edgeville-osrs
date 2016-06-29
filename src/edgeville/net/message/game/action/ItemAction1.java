@@ -29,7 +29,7 @@ public class ItemAction1 extends ItemAction {
 	public void process(Player player) {
 		super.process(player);
 
-		Item item = player.inventory().get(slot);
+		Item item = player.getInventory().get(slot);
 		if (item != null && item.id() == this.item && !player.locked() && !player.dead()) {
 			player.stopActions(false);
 			//player.world().server().scriptRepository().triggerItemOption1(player, item.id(), slot);

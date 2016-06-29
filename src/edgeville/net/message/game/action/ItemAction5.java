@@ -29,9 +29,9 @@ public class ItemAction5 extends ItemAction {
 	public void process(Player player) {
 		super.process(player);
 
-		Item item = player.inventory().get(slot);
+		Item item = player.getInventory().get(slot);
 		if (item != null && item.id() == this.item && !player.locked() && !player.dead()) {
-			player.inventory().set(slot, null);
+			player.getInventory().set(slot, null);
 			player.world().spawnGroundItem(new GroundItem(item, player.getTile(), player));
 			player.sound(2739, 0);
 		}

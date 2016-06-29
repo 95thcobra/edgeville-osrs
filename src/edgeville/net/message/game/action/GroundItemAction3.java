@@ -50,7 +50,7 @@ public class GroundItemAction3 implements Action {
 			@Override
 			public void execute(EventContainer container) {
 				if (item.tile().equals(player.getTile())) {
-					if (player.world().groundItemValid(item) && (player.inventory().add(item.item(), false).success())) {
+					if (player.world().groundItemValid(item) && (player.getInventory().add(item.item(), false).success())) {
 						player.world().removeGroundItem(item);
 						player.sound(2582, 0);
 					}

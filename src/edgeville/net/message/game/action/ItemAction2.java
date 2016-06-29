@@ -40,7 +40,7 @@ public class ItemAction2 extends ItemAction {
 		// Stop player actions
 		player.stopActions(false);
 
-		Item item = player.inventory().get(slot);
+		Item item = player.getInventory().get(slot);
 		if (item == null || item.id() != this.item) // Avoid reclicking
 			return;
 
@@ -51,27 +51,27 @@ public class ItemAction2 extends ItemAction {
 			return;
 
 		// Begin by setting the used item to null. This is to make it like osrs. Failing is scary but no worries!
-		player.inventory().set(slot, player.equipment().get(targetSlot));
+		player.getInventory().set(slot, player.getEquipment().get(targetSlot));
 
 		// If type is 5 it is a two-handed weapon
-		if (type == 5 && player.equipment().hasAt(EquipSlot.SHIELD)) {
-			if (player.inventory().add(player.equipment().get(EquipSlot.SHIELD), false).failed()) {
+		if (type == 5 && player.getEquipment().hasAt(EquipSlot.SHIELD)) {
+			if (player.getInventory().add(player.getEquipment().get(EquipSlot.SHIELD), false).failed()) {
 				player.message("You don't have enough free space to do that.");
-				player.inventory().set(slot, item);
+				player.getInventory().set(slot, item);
 				return;
 			}
-			player.equipment().set(EquipSlot.SHIELD, null);
+			player.getEquipment().set(EquipSlot.SHIELD, null);
 		}
 
 		// If it is a shield and we have a 2h weapon equipped, unequip it
-		if (targetSlot == EquipSlot.SHIELD && player.equipment().hasAt(EquipSlot.WEAPON)) {
-			if (info.typeFor(player.equipment().get(EquipSlot.WEAPON).id()) == 5) { // Is this indeed a 2h weapon?
-				if (player.inventory().add(player.equipment().get(EquipSlot.WEAPON), false).failed()) {
+		if (targetSlot == EquipSlot.SHIELD && player.getEquipment().hasAt(EquipSlot.WEAPON)) {
+			if (info.typeFor(player.getEquipment().get(EquipSlot.WEAPON).id()) == 5) { // Is this indeed a 2h weapon?
+				if (player.getInventory().add(player.getEquipment().get(EquipSlot.WEAPON), false).failed()) {
 					player.message("You don't have enough free space to do that.");
-					player.inventory().set(slot, item);
+					player.getInventory().set(slot, item);
 					return;
 				}
-				player.equipment().set(EquipSlot.WEAPON, null);
+				player.getEquipment().set(EquipSlot.WEAPON, null);
 			}
 		}
 
@@ -81,7 +81,7 @@ public class ItemAction2 extends ItemAction {
 		}
 
 		// Finally, equip the item we had in mind.
-		player.equipment().set(targetSlot, item);
+		player.getEquipment().set(targetSlot, item);
 		refreshEquipStats(player);
 	}
 

@@ -55,15 +55,15 @@ public class DialogueAction {
         switch (option) {
             case 1:
                 player.message("You have switched to modern magic.");
-                player.varps().varbit(4070, 0); // Modern
+                player.varps().setVarbit(4070, 0); // Modern
                 break;
             case 2:
                 player.message("You have switched to ancient magic.");
-                player.varps().varbit(4070, 1); // Modern
+                player.varps().setVarbit(4070, 1); // Modern
                 break;
             case 3:
                 player.message("You have switched your to lunar magic.");
-                player.varps().varbit(4070, 2); // Modern
+                player.varps().setVarbit(4070, 2); // Modern
                 break;
         }
     }

@@ -58,14 +58,14 @@ public class ItemOption1 {
 
     private void deductPotionDose(Potions potion) {
         if (potion.isLastDose(itemId)) {
-            player.inventory().remove(new Item(itemId));
-            player.inventory().add(new Item(229));
+            player.getInventory().remove(new Item(itemId));
+            player.getInventory().add(new Item(229));
             player.message("You have finished your potion.");
             return;
         }
 
-        player.inventory().remove(itemId);
-        player.inventory().add(potion.getNextDose(itemId));
+        player.getInventory().remove(itemId);
+        player.getInventory().add(potion.getNextDose(itemId));
         player.message("You have " + potion.dosesLeft(itemId) + " doses left.");
 
         // Special cases
@@ -99,9 +99,9 @@ public class ItemOption1 {
             return;
         }
 
-        player.inventory().remove(new Item(food.getId()), true, player.attrib(AttributeKey.ITEM_SLOT, 0));
+        player.getInventory().remove(new Item(food.getId()), true, player.attrib(AttributeKey.ITEM_SLOT, 0));
         if (food.getNextId() != -1) {
-            player.inventory().add(new Item(food.getId()), true);
+            player.getInventory().add(new Item(food.getId()), true);
         }
 
         player.timers().register(TimerKey.FOOD, 3);

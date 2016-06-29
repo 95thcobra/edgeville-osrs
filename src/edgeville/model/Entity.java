@@ -394,6 +394,7 @@ public abstract class Entity implements HitOrigin {
 	public void blockHit() {
 		if (attrib(AttributeKey.LAST_ATTACKED_BY) instanceof Player) {
 			Player target = attrib(AttributeKey.LAST_ATTACKED_BY);
+			target.message("playing sound");
 			target.sound(getBlockSound());
 		}
 		if (this instanceof Player) {
@@ -420,7 +421,7 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void stopActions(boolean cancelMoving) {
-		this.message("stopping actions...");
+		//this.message("stopping actions...");
 		world.getEventHandler().stopCancellableEvents(this);
 		// world.server().scriptExecutor().interruptFor(this);
 		sync.faceEntity(null);
@@ -482,11 +483,11 @@ public abstract class Entity implements HitOrigin {
 					// Protection prayers :)
 					if (isPlayer()) {
 						Player us = (Player) this;
-						if (us.varps().varbit(Varbit.PROTECT_FROM_MELEE) == 1 && hit.style() == CombatStyle.MELEE) {
+						if (us.varps().getVarbit(Varbit.PROTECT_FROM_MELEE) == 1 && hit.style() == CombatStyle.MELEE) {
 							damage -= damage * 0.4;
-						} else if (us.varps().varbit(Varbit.PROTECT_FROM_MAGIC) == 1 && hit.style() == CombatStyle.MAGIC) {
+						} else if (us.varps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1 && hit.style() == CombatStyle.MAGIC) {
 							damage -= damage * 0.4;
-						} else if (us.varps().varbit(Varbit.PROTECT_FROM_MISSILES) == 1 && hit.style() == CombatStyle.RANGE) {
+						} else if (us.varps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1 && hit.style() == CombatStyle.RANGE) {
 							damage -= damage * 0.4;
 						}
 					}

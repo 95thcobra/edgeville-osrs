@@ -98,16 +98,16 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 			/* inventory */
 			JsonArray inventory = rootObject.get("inventory").getAsJsonArray();
-			for (int i = 0; i < player.inventory().size(); i++) {
+			for (int i = 0; i < player.getInventory().size(); i++) {
 				Item item = gson.fromJson(inventory.get(i), Item.class);
-				player.inventory().set(i, item);
+				player.getInventory().set(i, item);
 			}
 
 			/* equipment */
 			JsonArray equipment = rootObject.get("equipment").getAsJsonArray();
-			for (int i = 0; i < player.equipment().size(); i++) {
+			for (int i = 0; i < player.getEquipment().size(); i++) {
 				Item item = gson.fromJson(equipment.get(i), Item.class);
-				player.equipment().set(i, item);
+				player.getEquipment().set(i, item);
 			}
 			
 			/* varps */
@@ -115,6 +115,18 @@ public class JSONFileSerializer extends PlayerSerializer {
 			for (int i = 0 ; i < varps.size(); i++) {
 				JsonObject varp = varps.get(i).getAsJsonObject();
 				player.varps().setVarp(varp.get("id").getAsInt(), varp.get("value").getAsInt());
+			}
+			
+			// Skull head icon
+			JsonElement skullIcon = rootObject.get("skullIcon");
+			if (skullIcon != null ){
+				player.setSkullHeadIcon(skullIcon.getAsInt());
+			}
+			
+			// Prayer head icon
+			JsonElement prayerIcon = rootObject.get("prayerIcon");
+			if (prayerIcon != null) {
+				player.setPrayerHeadIcon(prayerIcon.getAsInt());
 			}
 
 			return PlayerLoadResult.OK;
@@ -132,18 +144,20 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.add("tile", gson.toJsonTree(player.getTile()));
 		jsonObject.add("privilege", gson.toJsonTree(player.getPrivilege()));
 		jsonObject.addProperty("migration", player.migration());
-
+		jsonObject.addProperty("skullIcon", player.getSkullHeadIcon());
+		jsonObject.addProperty("prayerIcon", player.getPrayerHeadIcon());
+		
 		/* Inventory */
 		JsonArray inventory = new JsonArray();
-		for (int i = 0; i < player.inventory().size(); i++) {
-			inventory.add(gson.toJsonTree(player.inventory().get(i)));
+		for (int i = 0; i < player.getInventory().size(); i++) {
+			inventory.add(gson.toJsonTree(player.getInventory().get(i)));
 		}
 		jsonObject.add("inventory", inventory);
 
 		/* equipment */
 		JsonArray equipment = new JsonArray();
-		for (int i = 0; i < player.equipment().size(); i++) {
-			equipment.add(gson.toJsonTree(player.equipment().get(i)));
+		for (int i = 0; i < player.getEquipment().size(); i++) {
+			equipment.add(gson.toJsonTree(player.getEquipment().get(i)));
 		}
 		jsonObject.add("equipment", equipment);
 		

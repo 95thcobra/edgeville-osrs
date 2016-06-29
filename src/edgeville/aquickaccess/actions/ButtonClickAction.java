@@ -1,11 +1,13 @@
 package edgeville.aquickaccess.actions;
 
 import edgeville.combat.Combat;
+import edgeville.combat.PlayerVersusAnyCombat;
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
 import edgeville.model.Locations;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
+import edgeville.model.entity.player.skills.Prayer;
 import edgeville.model.item.Item;
 import edgeville.net.message.game.InvokeScript;
 import edgeville.script.TimerKey;
@@ -18,302 +20,308 @@ import edgeville.util.Varp;
  * Created by Sky on 21-6-2016.
  */
 public class ButtonClickAction {
-    private Player player;
-    private int interfaceId;
-    private int buttonId;
-    private int slot;
-    private int option;
+	private Player player;
+	private int interfaceId;
+	private int buttonId;
+	private int slot;
+	private int option;
 
-    public ButtonClickAction(Player player, int interfaceId, int buttonId, int slot, int option) {
-        this.player = player;
-        this.interfaceId = interfaceId;
-        this.buttonId = buttonId;
-        this.slot = slot;
-        this.option = option;
-    }
+	public ButtonClickAction(Player player, int interfaceId, int buttonId, int slot, int option) {
+		this.player = player;
+		this.interfaceId = interfaceId;
+		this.buttonId = buttonId;
+		this.slot = slot;
+		this.option = option;
+	}
 
-    // Add buttons here
-    public void handleButtonClick() {
-        switch (interfaceId) {
+	// Add buttons here
+	public void handleButtonClick() {
+		switch (interfaceId) {
 
-            // XP Drops settings
-            case 137:
-                XPDropToggles();
-                break;
+		// XP Drops settings
+		case 137:
+			XPDropToggles();
+			break;
 
-            case 160:
-                // XP Drops
-                if (buttonId == 1) {
-                    setupXPDrops();
-                }
+		case 160:
+			// XP Drops
+			if (buttonId == 1) {
+				setupXPDrops();
+			}
 
-                // Toggle running
-                if (buttonId == 22) {
-                    player.pathQueue().toggleRunning();
-                }
-                break;
+			// Toggle running
+			if (buttonId == 22) {
+				player.pathQueue().toggleRunning();
+			}
+			break;
 
-            // Logout
-            case 182:
-                if (buttonId == 6) {
-                    player.logout();
-                }
-                break;
+		// Logout
+		case 182:
+			if (buttonId == 6) {
+				player.logout();
+			}
+			break;
 
-            // Spellbook
-            case 218:
-                handleSpellBook();
-                break;
+		// Spellbook
+		case 218:
+			handleSpellBook();
+			break;
 
-            // Run toggle, in settings
-            case 261:
-                if (buttonId == 66) {
-                    player.pathQueue().toggleRunning();
-                }
-                break;
+		// Run toggle, in settings
+		case 261:
+			if (buttonId == 66) {
+				player.pathQueue().toggleRunning();
+			}
+			break;
 
-            // Quest tab
-            case 274:
-                handleQuestTab();
-                break;
+		// activate prayer
+		case 271:
+			player.getPrayer().togglePrayer(buttonId);
+			break;
 
-            // Options: equipment stats, etc.
-            case 387:
-                handleOptionsTabs();
-                break;
+		// Quest tab
+		case 274:
+			//handleQuestTab();
+			player.getQuestTab().clickButton(buttonId);
+			break;
 
-            // Combat style switching
-            case 593:
-                handleCombatStyleSwitch();
-                break;
-        }
-    }
+		// Options: equipment stats, etc.
+		case 387:
+			handleOptionsTabs();
+			break;
 
-    ////////////////
+		// Combat style switching
+		case 593:
+			handleCombatStyleSwitch();
+			break;
+		}
+	}
 
-    private void handleQuestTab() {
-        switch (buttonId) {
+	////////////////
 
-            // Melee gear
-            case 15:
-                player.message("Spawned melee gear.");
-                break;
+	private void handleQuestTab() {
+		switch (buttonId) {
 
-            // Range gear
-            case 16:
-                player.message("Spawned range gear.");
-                break;
+		// Melee gear
+		case 15:
+			player.message("Spawned melee gear.");
+			break;
 
-            // Hybrid gear
-            case 17:
-                player.message("Spawned hybrid gear.");
-                break;
-        }
-    }
+		// Range gear
+		case 16:
+			player.message("Spawned range gear.");
+			break;
 
-    private void handleOptionsTabs() {
-        switch (buttonId) {
+		// Hybrid gear
+		case 17:
+			player.message("Spawned hybrid gear.");
+			break;
+		}
+	}
 
-            // Equipment stats
-            case 17:
-                player.interfaces().sendMain(84);
-                player.equipment().refreshEquipmentStatsInterface(player);
-                break;
+	private void handleOptionsTabs() {
+		switch (buttonId) {
 
-            // Unequip
-            case 6:
-                unequip(EquipSlot.HEAD);
-                break;
-            case 7:
-                unequip(EquipSlot.CAPE);
-                break;
+		// Equipment stats
+		case 17:
+			player.interfaces().sendMain(84);
+			player.getEquipment().refreshEquipmentStatsInterface(player);
+			break;
 
-            case 8:
-                unequip(EquipSlot.AMULET);
-                break;
+		// Unequip
+		case 6:
+			unequip(EquipSlot.HEAD);
+			break;
+		case 7:
+			unequip(EquipSlot.CAPE);
+			break;
 
-            case 9:
-                unequip(EquipSlot.WEAPON);
-                break;
+		case 8:
+			unequip(EquipSlot.AMULET);
+			break;
 
-            case 10:
-                unequip(EquipSlot.BODY);
-                break;
+		case 9:
+			unequip(EquipSlot.WEAPON);
+			break;
 
-            case 11:
-                unequip(EquipSlot.SHIELD);
-                break;
+		case 10:
+			unequip(EquipSlot.BODY);
+			break;
 
-            case 12:
-                unequip(EquipSlot.LEGS);
-                break;
+		case 11:
+			unequip(EquipSlot.SHIELD);
+			break;
 
-            case 13:
-                unequip(EquipSlot.HANDS);
-                break;
+		case 12:
+			unequip(EquipSlot.LEGS);
+			break;
 
-            case 14:
-                unequip(EquipSlot.FEET);
-                break;
-            case 15:
-                unequip(EquipSlot.RING);
-                break;
-            case 16:
-                unequip(EquipSlot.AMMO);
-                break;
+		case 13:
+			unequip(EquipSlot.HANDS);
+			break;
 
-            // Items on death
-            case 21:
-                player.interfaces().sendMain(102);
-                break;
-        }
-    }
+		case 14:
+			unequip(EquipSlot.FEET);
+			break;
+		case 15:
+			unequip(EquipSlot.RING);
+			break;
+		case 16:
+			unequip(EquipSlot.AMMO);
+			break;
 
-    // REMOVE EQUIPMENT ITEM
-    private void unequip(int slot) {
-        if (option != 0) {
-            return;
-        }
-        if (player.locked()) {
-            return;
-        }
-        Item item = player.equipment().get(slot);
-        if (!player.inventory().add(item).success()) {
-            player.message("You don't have enough inventory space to do that.");
-            return;
-        }
-        player.equipment().set(slot, null);
-        player.equipment().refreshEquipmentStatsInterface(player);
-    }
+		// Items on death
+		case 21:
+			player.interfaces().sendMain(102);
+			break;
+		}
+	}
 
-    private void handleCombatStyleSwitch() {
-        switch (buttonId) {
+	// REMOVE EQUIPMENT ITEM
+	private void unequip(int slot) {
+		if (option != 0) {
+			return;
+		}
+		if (player.locked()) {
+			return;
+		}
+		Item item = player.getEquipment().get(slot);
+		if (!player.getInventory().add(item).success()) {
+			player.message("You don't have enough inventory space to do that.");
+			return;
+		}
+		player.getEquipment().set(slot, null);
+		player.getEquipment().refreshEquipmentStatsInterface(player);
+	}
 
-            // Attack styles
-            case 3:
-                player.varps().setVarp(Varp.ATTACK_STYLE, 0);
-                break;
-            case 7:
-                player.varps().setVarp(Varp.ATTACK_STYLE, 1);
-                break;
-            case 11:
-                player.varps().setVarp(Varp.ATTACK_STYLE, 2);
-                break;
-            case 15:
-                player.varps().setVarp(Varp.ATTACK_STYLE, 3);
-                break;
+	private void handleCombatStyleSwitch() {
+		switch (buttonId) {
 
-            // Special attack
-            case 30:
-                if (isGmaulAttack()) {
-                    return;
-                }
-                player.toggleSpecialAttack();
-                break;
-        }
-    }
+		// Attack styles
+		case 3:
+			player.varps().setVarp(Varp.ATTACK_STYLE, 0);
+			break;
+		case 7:
+			player.varps().setVarp(Varp.ATTACK_STYLE, 1);
+			break;
+		case 11:
+			player.varps().setVarp(Varp.ATTACK_STYLE, 2);
+			break;
+		case 15:
+			player.varps().setVarp(Varp.ATTACK_STYLE, 3);
+			break;
 
-    private boolean isGmaulAttack() {
-        Item weapon = player.equipment().get(EquipSlot.WEAPON);
-        int weaponId = weapon == null ? -1 : weapon.id();
+		// Special attack
+		case 30:
+			if (isGmaulAttack()) {
+				return;
+			}
+			player.toggleSpecialAttack();
+			break;
+		}
+	}
 
-        if (weaponId != 4153) {
-            return false;
-        }
+	private boolean isGmaulAttack() {
+		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+		int weaponId = weapon == null ? -1 : weapon.id();
 
-        Entity target = player.attrib(AttributeKey.TARGET);
-        if (target != null) {
-            Combat.handleGraniteMaul(player, target);
-        }
-        return true;
-    }
+		if (weaponId != 4153) {
+			return false;
+		}
 
-    private void XPDropToggles() {
-        switch (buttonId) {
+		Entity target = player.attrib(AttributeKey.TARGET);
+		if (target != null) {
+			PlayerVersusAnyCombat.handleGraniteMaul(player, target);
+		}
+		return true;
+	}
 
-            // Position
-            case 50:
-                player.varps().varbit(Varbit.XP_DROPS_POSITION, slot);
-                break;
+	private void XPDropToggles() {
+		switch (buttonId) {
 
-            // Size
-            case 51:
-                player.varps().varbit(Varbit.XP_DROPS_SIZE, slot);
-                break;
+		// Position
+		case 50:
+			player.varps().setVarbit(Varbit.XP_DROPS_POSITION, slot);
+			break;
 
-            // Duration
-            case 52:
-                player.varps().varbit(Varbit.XP_DROPS_DURATION, slot);
-                break;
+		// Size
+		case 51:
+			player.varps().setVarbit(Varbit.XP_DROPS_SIZE, slot);
+			break;
 
-            // Counter
-            case 53:
-                player.varps().varbit(Varbit.XP_DROPS_COUNTER, slot);
-                break;
+		// Duration
+		case 52:
+			player.varps().setVarbit(Varbit.XP_DROPS_DURATION, slot);
+			break;
 
-            // Progressbar
-            case 54:
-                player.varps().varbit(Varbit.XP_DROPS_PROGRESSBAR, slot);
-                break;
+		// Counter
+		case 53:
+			player.varps().setVarbit(Varbit.XP_DROPS_COUNTER, slot);
+			break;
 
-            // Color
-            case 55:
-                player.varps().varbit(Varbit.XP_DROPS_COLOR, slot);
-                break;
+		// Progressbar
+		case 54:
+			player.varps().setVarbit(Varbit.XP_DROPS_PROGRESSBAR, slot);
+			break;
 
-            // Group
-            case 56:
-                player.varps().varbit(Varbit.XP_DROPS_GROUP, slot);
-                break;
+		// Color
+		case 55:
+			player.varps().setVarbit(Varbit.XP_DROPS_COLOR, slot);
+			break;
 
-            // Speed
-            case 57:
-                player.varps().varbit(Varbit.XP_DROPS_SPEED, slot);
-                break;
-        }
-    }
+		// Group
+		case 56:
+			player.varps().setVarbit(Varbit.XP_DROPS_GROUP, slot);
+			break;
 
-    private void setupXPDrops() {
-        // Toggle XP drops
-        if (option == 0) {
-            player.skills().toggleXPCounter();
-        }
+		// Speed
+		case 57:
+			player.varps().setVarbit(Varbit.XP_DROPS_SPEED, slot);
+			break;
+		}
+	}
 
-        // Setup XP drops
-        if (option == 1) {
-            player.write(new InvokeScript(917, -1, -1));
-            player.interfaces().sendMain(137);
+	private void setupXPDrops() {
+		// Toggle XP drops
+		if (option == 0) {
+			player.skills().toggleXPCounter();
+		}
 
-            SettingsBuilder settingsBuilder = new SettingsBuilder();
-            player.interfaces().setting(137, 50, 1, 3, settingsBuilder.option(0));
-            player.interfaces().setting(137, 51, 1, 3, settingsBuilder.option(0));
-            player.interfaces().setting(137, 52, 1, 4, settingsBuilder.option(0));
-            player.interfaces().setting(137, 53, 1, 32, settingsBuilder.option(0));
-            player.interfaces().setting(137, 54, 1, 32, settingsBuilder.option(0));
-            player.interfaces().setting(137, 55, 1, 8, settingsBuilder.option(0));
-            player.interfaces().setting(137, 56, 1, 2, settingsBuilder.option(0));
-            player.interfaces().setting(137, 57, 1, 3, settingsBuilder.option(0));
-            player.interfaces().setting(137, 16, 0, 24, settingsBuilder.option(0));
-        }
-    }
+		// Setup XP drops
+		if (option == 1) {
+			player.write(new InvokeScript(917, -1, -1));
+			player.interfaces().sendMain(137);
 
-    private void handleSpellBook() {
-        if (option != 0) {
-            return;
-        }
-        switch (buttonId) {
+			SettingsBuilder settingsBuilder = new SettingsBuilder();
+			player.interfaces().setting(137, 50, 1, 3, settingsBuilder.option(0));
+			player.interfaces().setting(137, 51, 1, 3, settingsBuilder.option(0));
+			player.interfaces().setting(137, 52, 1, 4, settingsBuilder.option(0));
+			player.interfaces().setting(137, 53, 1, 32, settingsBuilder.option(0));
+			player.interfaces().setting(137, 54, 1, 32, settingsBuilder.option(0));
+			player.interfaces().setting(137, 55, 1, 8, settingsBuilder.option(0));
+			player.interfaces().setting(137, 56, 1, 2, settingsBuilder.option(0));
+			player.interfaces().setting(137, 57, 1, 3, settingsBuilder.option(0));
+			player.interfaces().setting(137, 16, 0, 24, settingsBuilder.option(0));
+		}
+	}
 
-            // Edge teleport
-            case 1:
-                player.message("Teleporting to edgeville...");
-                player.teleport(Locations.EDGEVILLE.getTile());
-                break;
+	private void handleSpellBook() {
+		if (option != 0) {
+			return;
+		}
+		switch (buttonId) {
 
-            // Varrock teleport
-            case 16:
-                player.message("Teleporting to varrock...");
-                player.teleport(Locations.VARROCK.getTile());
-                break;
-        }
-    }
+		// Edge teleport
+		case 1:
+			player.message("Teleporting to edgeville...");
+			player.teleport(Locations.EDGEVILLE.getTile());
+			break;
+
+		// Varrock teleport
+		case 16:
+			player.message("Teleporting to varrock...");
+			player.teleport(Locations.VARROCK.getTile());
+			break;
+		}
+	}
 }

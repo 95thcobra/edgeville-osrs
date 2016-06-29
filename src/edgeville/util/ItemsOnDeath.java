@@ -19,8 +19,8 @@ public class ItemsOnDeath {
 		ArrayList<Item> items = new ArrayList<>();
 		ArrayList<Item> keptItems = new ArrayList<>();
 
-		Collections.addAll(items, target.inventory().copy());
-		Collections.addAll(items, target.equipment().copy());
+		Collections.addAll(items, target.getInventory().copy());
+		Collections.addAll(items, target.getEquipment().copy());
 
 		Collections.sort(items, (o1, o2) -> {
 			if (o1 == null || o2 == null)
@@ -35,13 +35,13 @@ public class ItemsOnDeath {
 			return -1;
 		});
 
-		target.inventory().empty();
-		target.equipment().empty();
+		target.getInventory().empty();
+		target.getEquipment().empty();
 
 		for (int i = 0; i < (items.size() < 3 ? items.size() : 3); i++) {
 			if (items.get(i) != null) {
 				keptItems.add(items.get(i));
-				target.inventory().add(items.get(i), true);
+				target.getInventory().add(items.get(i), true);
 			}
 		}
 

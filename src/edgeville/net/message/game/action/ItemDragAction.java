@@ -35,9 +35,9 @@ public class ItemDragAction implements Action {
 
 		int inter = hash >> 16;
 		if (inter == 149) {
-			Item old = player.inventory().get(to);
-			player.inventory().set(to, player.inventory().get(from));
-			player.inventory().set(from, old);
+			Item old = player.getInventory().get(to);
+			player.getInventory().set(to, player.getInventory().get(from));
+			player.getInventory().set(from, old);
 		}
 	}
 

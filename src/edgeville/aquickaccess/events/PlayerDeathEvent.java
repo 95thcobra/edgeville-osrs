@@ -60,9 +60,9 @@ public class PlayerDeathEvent extends Event {
                 player.damagers().clear();
                 player.face(null);
 
-                player.varps().varbit(Varbit.PROTECT_FROM_MAGIC, 0);
-                player.varps().varbit(Varbit.PROTECT_FROM_MELEE, 0);
-                player.varps().varbit(Varbit.PROTECT_FROM_MISSILES, 0);
+                player.varps().setVarbit(Varbit.PROTECT_FROM_MAGIC, 0);
+                player.varps().setVarbit(Varbit.PROTECT_FROM_MELEE, 0);
+                player.varps().setVarbit(Varbit.PROTECT_FROM_MISSILES, 0);
 
                 player.graphic(-1);
                 player.animate(-1);

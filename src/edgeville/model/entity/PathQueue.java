@@ -147,13 +147,13 @@ public class PathQueue {
         if (!entity.isPlayer()) {
             return;
         }
-        boolean runningEnabled = ((Player) entity).varps().varp(Varp.RUNNING_ENABLED) == 1;
+        boolean runningEnabled = ((Player) entity).varps().getVarp(Varp.RUNNING_ENABLED) == 1;
         ((Player) entity).varps().setVarp(Varp.RUNNING_ENABLED, (runningEnabled ? 0 : 1));
     }
 
     public boolean running() {
         if (entity.isPlayer()) {
-            return ((Player) entity).varps().varp(Varp.RUNNING_ENABLED) == 1;
+            return ((Player) entity).varps().getVarp(Varp.RUNNING_ENABLED) == 1;
         }
         return running;
     }

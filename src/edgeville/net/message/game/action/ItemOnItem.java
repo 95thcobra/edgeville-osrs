@@ -44,7 +44,7 @@ public class ItemOnItem implements Action {
     public void process(Player player) {
         logger.info("[ItemOnItem]: interfaceId:{} itemUsedId:{} itemUsedWithId{}", (hash1 >> 16), itemUsedId, itemUsedWithId);
 
-        if (player.inventory().has(itemUsedId) && player.inventory().has(itemUsedWithId)) {
+        if (player.getInventory().has(itemUsedId) && player.getInventory().has(itemUsedWithId)) {
             //player.world().server().scriptRepository().triggerItemOnItem(player, itemUsedId, itemUsedWithId);
         	//TODO item on item
         }

@@ -34,8 +34,8 @@ public class EventContainer {
     }
 
     public boolean needsExecution() {
-        System.out.println("CYCLES PASSED: " + cyclesPassed);
-        System.out.println("TICKL: " + ticks);
+       // System.out.println("CYCLES PASSED: " + cyclesPassed);
+       // System.out.println("TICKL: " + ticks);
         if (cyclesPassed >= ticks) {
             this.cyclesPassed = 0;
             return true;

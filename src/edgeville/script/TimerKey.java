@@ -60,6 +60,10 @@ public enum TimerKey {
 	 */
 	VENGEANCE_COOLDOWN,
 
-	PRAYER_TICK
+	PRAYER_TICK,
+	
+	SKULL
+	
+	
 
 }

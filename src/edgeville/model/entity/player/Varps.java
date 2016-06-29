@@ -39,11 +39,11 @@ public class Varps {
         sync(id);
     }
 
-    public int varp(int id) {
+    public int getVarp(int id) {
         return varps[id];
     }
 
-    public void varbit(int id, int v) {
+    public void setVarbit(int id, int v) {
         VarbitDefinition def = player.world().definitions().get(VarbitDefinition.class, id);
         if (def != null) {
             int area = BIT_SIZES[def.endbit - def.startbit] << def.startbit;
@@ -53,7 +53,7 @@ public class Varps {
         }
     }
 
-    public int varbit(int id) {
+    public int getVarbit(int id) {
         VarbitDefinition def = player.world().definitions().get(VarbitDefinition.class, id);
         if (def != null) {
             return (varps[def.varp] >> def.startbit) & BIT_SIZES[def.endbit - def.startbit];

@@ -197,24 +197,4 @@ public class Interfaces {
 	public void sendInterfaceString(int interfaceId, int stringId, String text) {
 		player.write(new InterfaceText(interfaceId, stringId, text));
 	}
-
-	public void sendQuestTabTitle() {
-		player.interfaces().sendInterfaceString(274, 10, "Players online: " + player.world().getPlayersOnline());
-	}
-
-	public void clearQuestInterface() {
-		final int questTabInterfaceId = 274;
-
-		sendQuestTabTitle();
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 14, "Quick-gear"); // Second big string
-
-		// Small strings start. COLORS <col=00AEDB>
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 15, "Melee gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 16, "Range gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "Hybrid gear");
-
-		for (int child = 18; child < 143; child++) {
-			player.write(new InterfaceText(questTabInterfaceId, child, ""));
-		}
-	}
 }
