@@ -1,5 +1,6 @@
 package edgeville.combat;
 
+import edgeville.event.EventContainer;
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
 import edgeville.model.Tile;
@@ -28,7 +29,7 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	@Override
-	public void cycle() {
+	public void cycle(EventContainer container) {
 		// Get weapon data.
 		Item weapon = ((Player) getEntity()).getEquipment().get(EquipSlot.WEAPON);
 		int weaponId = weapon == null ? -1 : weapon.id();
@@ -47,10 +48,10 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Combat type?
 		if (weaponType == WeaponType.BOW || weaponType == WeaponType.CROSSBOW || weaponType == WeaponType.THROWN) {
-			getEntity().message("ranging...");
-			handleRangeCombat(weaponId, ammoName, weaponType);
+			//getEntity().message("ranging...");
+			handleRangeCombat(weaponId, ammoName, weaponType, container);
 		} else {
-			getEntity().message("meleeeing...");
+			//getEntity().message("meleeeing...");
 			handleMeleeCombat(weaponId);
 		}
 
@@ -63,6 +64,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 	}
 
+	@Override
 	public void handleMeleeCombat(int weaponId) {
 		Tile currentTile = getEntity().getTile();
 
@@ -116,7 +118,8 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 	}
 
-	private void handleRangeCombat(int weaponId, String ammoName, int weaponType) {
+	@Override
+	public void handleRangeCombat(int weaponId, String ammoName, int weaponType, EventContainer container) {
 		Tile currentTile = player.getTile();
 
 		// Are we in range?
@@ -132,19 +135,19 @@ public class PlayerVersusAnyCombat extends Combat {
 		// Do we have ammo?
 		if (ammoName.equals("")) {
 			player.message("There's no ammo left in your quiver.");
-			// container.stop();
+			container.stop();
 			return;
 		}
 
 		// Check if ammo is of right type
 		if (weaponType == WeaponType.CROSSBOW && !ammoName.contains(" bolts")) {
 			player.message("You can't use that ammo with your crossbow.");
-			// container.stop();
+			container.stop();
 			return;
 		}
 		if (weaponType == WeaponType.BOW && !ammoName.contains(" arrow")) {
 			player.message("You can't use that ammo with your bow.");
-			// container.stop();
+			container.stop();
 			return;
 		}
 

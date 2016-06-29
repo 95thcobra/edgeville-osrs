@@ -110,6 +110,17 @@ public class JSONFileSerializer extends PlayerSerializer {
 				player.getEquipment().set(i, item);
 			}
 			
+			/* load out */
+			JsonObject loadout = rootObject.get("loadout").getAsJsonObject();
+			JsonArray inv = loadout.get("inventory").getAsJsonArray();
+			for (int i = 0; i < player.getLoadout().getInventory().length; i++) {
+				player.getLoadout().getInventory()[i] = gson.fromJson(inv.get(i), Item.class);
+			}
+			JsonArray equip = loadout.get("equipment").getAsJsonArray();
+			for (int i = 0; i < player.getLoadout().getEquipment().length; i++) {
+				player.getLoadout().getEquipment()[i] = gson.fromJson(equip.get(i), Item.class);
+			}
+			
 			/* varps */
 			JsonArray varps = rootObject.get("varps").getAsJsonArray();
 			for (int i = 0 ; i < varps.size(); i++) {
@@ -160,6 +171,20 @@ public class JSONFileSerializer extends PlayerSerializer {
 			equipment.add(gson.toJsonTree(player.getEquipment().get(i)));
 		}
 		jsonObject.add("equipment", equipment);
+		
+		/* loadout */
+		JsonObject loadout = new JsonObject();
+		JsonArray inv = new JsonArray();
+		for (int i = 0; i < player.getInventory().size(); i++) {
+			inv.add(gson.toJsonTree(player.getLoadout().getInventory()[i]));
+		}
+		JsonArray equip = new JsonArray();
+		for (int i = 0; i < player.getEquipment().size(); i++) {
+			equip.add(gson.toJsonTree(player.getLoadout().getEquipment()[i]));
+		}
+		loadout.add("inventory", inv);
+		loadout.add("equipment", equip);
+		jsonObject.add("loadout", loadout);
 		
 		/* varps */
 		JsonArray varps = new JsonArray();

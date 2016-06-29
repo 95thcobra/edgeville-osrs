@@ -144,7 +144,7 @@ public class Interfaces {
 	public void send(int id, int target, int targetChild, boolean clickthrough) {
 		player.write(new OpenInterface(id, target, targetChild, clickthrough));
 		visible.put((target << 16) | targetChild, id);
-		player.message("Interface opened - id:" + id + " target:" + target + " targetchild:" + targetChild + " clickthrough:" + clickthrough);
+		//player.message("Interface opened - id:" + id + " target:" + target + " targetchild:" + targetChild + " clickthrough:" + clickthrough);
 	}
 
 	public void closeMain() {

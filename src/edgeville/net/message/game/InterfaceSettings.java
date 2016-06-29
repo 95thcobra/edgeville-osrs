@@ -21,7 +21,7 @@ public class InterfaceSettings implements Command {
 	}
 
 	public InterfaceSettings(int target, int targetChild, int from, int to, int setting) {
-		settingStr = "Interfacesettings sent: target:"+target+" targetchild:"+targetChild+" from:"+from+" to:"+to+" setting:"+setting;
+		//settingStr = "Interfacesettings sent: target:"+target+" targetchild:"+targetChild+" from:"+from+" to:"+to+" setting:"+setting;
 		hash = (target << 16) | targetChild;
 		this.from = from;
 		this.to = to;

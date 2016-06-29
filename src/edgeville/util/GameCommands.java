@@ -37,6 +37,10 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		put(Privilege.ADMIN, "getvarp", (p, args) -> {
+			p.message(""+p.varps().getVarp(Integer.parseInt(args[0])));
+		});
+		
 		put(Privilege.ADMIN, "skull", (p, args) -> {
 			p.setSkullHeadIcon(Integer.parseInt(args[0]));
 		});

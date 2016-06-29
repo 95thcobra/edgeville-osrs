@@ -292,6 +292,7 @@ public abstract class Entity implements HitOrigin {
 																// determining
 																// the size we
 																// need..
+		
 		return target.canExit(from.x, from.z, 1, clipAround, e.tile.x - 5, e.tile.z - 5);
 	}
 
@@ -394,7 +395,7 @@ public abstract class Entity implements HitOrigin {
 	public void blockHit() {
 		if (attrib(AttributeKey.LAST_ATTACKED_BY) instanceof Player) {
 			Player target = attrib(AttributeKey.LAST_ATTACKED_BY);
-			target.message("playing sound");
+			//target.message("playing sound");
 			target.sound(getBlockSound());
 		}
 		if (this instanceof Player) {

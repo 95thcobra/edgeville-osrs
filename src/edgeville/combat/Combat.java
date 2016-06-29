@@ -40,13 +40,16 @@ public abstract class Combat {
                     container.stop();
                     return;
                 }
-                cycle();
+                cycle(container);
             }
         });
     }
 
-    public abstract void cycle();
-
+    public abstract void cycle(EventContainer container);
+    
+    public abstract void handleMeleeCombat(int weaponId);
+    
+    public abstract void handleRangeCombat(int weaponId, String ammoName, int weaponType, EventContainer container);
 
     public Tile moveCloser() {
         entity.pathQueue().clear();

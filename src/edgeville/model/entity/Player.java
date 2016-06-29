@@ -2,6 +2,7 @@ package edgeville.model.entity;
 
 import com.google.common.base.MoreObjects;
 
+import edgeville.Constants;
 import edgeville.Panel;
 import edgeville.aquickaccess.events.PlayerDeathEvent;
 import edgeville.aquickaccess.events.TeleportEvent;
@@ -21,8 +22,10 @@ import edgeville.script.Timer;
 import edgeville.script.TimerKey;
 import edgeville.services.serializers.PlayerSerializer;
 import edgeville.util.StaffData;
+import edgeville.util.TextUtil;
 import edgeville.util.Varbit;
 import edgeville.util.Varp;
+import edgeville.util.TextUtil.Colors;
 import io.netty.channel.Channel;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -259,7 +262,11 @@ public class Player extends Entity {
 		varps.syncNonzero();
 
 		/////////// sj
-
+		
+		//Welcome
+		message("Welcome to %s.", TextUtil.colorString(Constants.SERVER_NAME, Colors.BLUE));
+		message("The server is in development stage.");
+		
 		// Start energy regenerate timer
 		timers().register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
 

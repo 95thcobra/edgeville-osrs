@@ -13,6 +13,22 @@ public class Loadout {
 		equipment = new Item[14];
 	}
 
+	public Item[] getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Item[] inventory) {
+		this.inventory = inventory;
+	}
+
+	public Item[] getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(Item[] equipment) {
+		this.equipment = equipment;
+	}
+
 	public void save(Player player) {
 		ItemContainer inv = player.getInventory();
 		for (int i = 0; i < inv.size(); i++) {
