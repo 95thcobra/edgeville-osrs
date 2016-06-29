@@ -9,7 +9,7 @@ import edgeville.util.L10n;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart Pelle on 8/9/2015.
+ * @author Simon Pelle on 8/9/2015.
  */
 @PacketInfo(size = 2)
 public class ExamineItem implements Action {

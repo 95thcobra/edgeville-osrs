@@ -15,11 +15,11 @@ public class PkpSystem {
 	public static HashMap<Player, List<String>> ips = new HashMap<>();
 
 	public static void addPoints(Player player, int points) {
-		player.putattrib(AttributeKey.PK_POINTS, (int) player.attrib(AttributeKey.PK_POINTS, 0) + points);
+		player.putAttribute(AttributeKey.PK_POINTS, (int) player.attribute(AttributeKey.PK_POINTS, 0) + points);
 	}
 
 	public static int getPoints(Player player) {
-		return player.attrib(AttributeKey.PK_POINTS, 0);
+		return player.attribute(AttributeKey.PK_POINTS, 0);
 	}
 
 

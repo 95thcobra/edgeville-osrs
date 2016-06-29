@@ -10,10 +10,16 @@ import edgeville.model.map.MapObj;
 public class ObjectClick2Action {
 	public void handleObjectClick(Player player, MapObj mapObj) {
 		switch (mapObj.id()) {
+
+		// Bank
+		case 11744:
+			player.getBank().open();
+			break;
+
 		// Unhandled objects
 		default:
-			if ((boolean) player.attrib(AttributeKey.DEBUG)) {
-				player.message("Unhandled object: " + mapObj.id());
+			if (player.isDebug()) {
+				player.message("Unhandled object click 2: " + mapObj.id());
 			}
 			break;
 		}

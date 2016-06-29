@@ -7,7 +7,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 @PacketInfo(size = 4)
 public class KeyType implements Action {

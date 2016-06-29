@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
- * Created by Bart on 7/7/2015.
+ * @author Simon on 7/7/2015.
  */
 public class PregameLoginEncoder extends MessageToByteEncoder<PreloginResponseMessage> {
 

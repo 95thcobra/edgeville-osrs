@@ -1,7 +1,7 @@
 package edgeville.model;
 
 /**
- * Created by Bart on 8/22/2015.
+ * @author Simon on 8/22/2015.
  */
 public class Area {
 

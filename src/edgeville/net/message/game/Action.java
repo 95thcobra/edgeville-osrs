@@ -5,7 +5,7 @@ import edgeville.model.entity.Player;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  *
  * Represents an incoming action sent by the client to the server.
  */

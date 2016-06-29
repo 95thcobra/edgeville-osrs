@@ -14,7 +14,7 @@ import edgeville.net.message.game.SetItems;
 import java.util.Collection;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 public class PlayerPreSyncTask implements Task {
 

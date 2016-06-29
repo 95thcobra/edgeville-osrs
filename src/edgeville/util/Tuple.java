@@ -1,7 +1,7 @@
 package edgeville.util;
 
 /**
- * Created by Bart on 5-3-2015.
+ * @author Simon on 5-3-2015.
  *
  * Simple tuple class which holds two values.
  */

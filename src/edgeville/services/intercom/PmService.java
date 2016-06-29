@@ -4,7 +4,7 @@ import edgeville.model.entity.Player;
 import edgeville.services.Service;
 
 /**
- * Created by Bart on 12-3-2015.
+ * @author Simon on 12-3-2015.
  *
  * A service responsible for providing the private messaging actions as well
  * as online and offline statuses. Defaults to the single world approach.

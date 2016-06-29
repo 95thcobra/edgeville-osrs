@@ -4,7 +4,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 
 @Retention(RetentionPolicy.RUNTIME)

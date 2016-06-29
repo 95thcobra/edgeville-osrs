@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  *
  */
 public class Js5DataEncoder extends MessageToByteEncoder<Js5DataMessage> {

@@ -4,7 +4,7 @@ import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  *
  * Represents a command, or simply a message from the server to the user.
  */

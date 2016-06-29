@@ -1,7 +1,7 @@
 package edgeville.util;
 
 /**
- * Created by Bart on 8/11/2015.
+ * @author Simon on 8/11/2015.
  */
 public class SettingsBuilder {
 

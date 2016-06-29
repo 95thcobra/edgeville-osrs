@@ -18,7 +18,7 @@ import edgeville.net.codec.pregame.PreGameDecoder;
 import edgeville.net.codec.pregame.PregameLoginEncoder;
 
 /**
- * Created by Bart on 8/4/2014.
+ * @author Simon on 8/4/2014.
  */
 public class ClientInitializer extends ChannelInitializer<Channel> {
 

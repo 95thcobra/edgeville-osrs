@@ -10,7 +10,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 8/11/2015.
+ * @author Simon on 8/11/2015.
  */
 @PacketInfo(size = 9)
 public class ItemDragAction implements Action {
@@ -30,7 +30,7 @@ public class ItemDragAction implements Action {
 
 	@Override
 	public void process(Player player) {
-		if (player.getPrivilege().eligibleTo(Privilege.ADMIN) && player.<Boolean>attrib(AttributeKey.DEBUG, false))
+		if (player.getPrivilege().eligibleTo(Privilege.ADMIN) && player.isDebug())
 			player.message("Drag: from=%d to=%d inter=%d child=%d insert=%b", from, to, hash>>16, hash&0xFFFF, insert);
 
 		int inter = hash >> 16;

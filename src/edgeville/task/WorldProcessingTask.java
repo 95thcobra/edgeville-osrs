@@ -9,7 +9,7 @@ import edgeville.model.World;
 import java.util.Collection;
 
 /**
- * Created by Bart on 3-2-2015.
+ * @author Simon on 3-2-2015.
  */
 public class WorldProcessingTask implements Task {
 

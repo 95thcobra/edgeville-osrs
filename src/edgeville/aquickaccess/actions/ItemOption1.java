@@ -99,7 +99,7 @@ public class ItemOption1 {
             return;
         }
 
-        player.getInventory().remove(new Item(food.getId()), true, player.attrib(AttributeKey.ITEM_SLOT, 0));
+        player.getInventory().remove(new Item(food.getId()), true, player.attribute(AttributeKey.ITEM_SLOT, 0));
         if (food.getNextId() != -1) {
             player.getInventory().add(new Item(food.getId()), true);
         }

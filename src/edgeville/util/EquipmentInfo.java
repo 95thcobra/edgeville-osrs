@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Created by Bart on 8/14/2015.
+ * @author Simon on 8/14/2015.
  */
 public class EquipmentInfo {
 

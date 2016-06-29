@@ -9,7 +9,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 5-2-2015.
+ * @author Simon on 5-2-2015.
  */
 @PacketInfo(size = 8)
 public class ItemAction3 extends ItemAction {

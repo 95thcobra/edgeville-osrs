@@ -1,7 +1,7 @@
 package edgeville.model;
 
 /**
- * Created by bart on 7/19/15.
+ * @author Simon on 7/19/15.
  */
 public class ChatMessage {
 

@@ -31,11 +31,11 @@ public class ObjectClick1Action {
 			int targetY = (below ? 3523 : 3520);
 			player.move(player.getTile().x, targetY);
 			break;
-
+			
 		// Unhandled objects
 		default:
-			if ((boolean) player.attrib(AttributeKey.DEBUG)) {
-				player.message("Unhandled object: " + mapObj.id());
+			if (player.isDebug()) {
+				player.message("Unhandled object click 1: " + mapObj.id());
 			}
 			break;
 		}

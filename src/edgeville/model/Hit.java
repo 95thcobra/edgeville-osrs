@@ -3,7 +3,7 @@ package edgeville.model;
 import edgeville.util.CombatStyle;
 
 /**
- * Created by Bart on 8/12/2015.
+ * @author Simon on 8/12/2015.
  */
 public class Hit {
 

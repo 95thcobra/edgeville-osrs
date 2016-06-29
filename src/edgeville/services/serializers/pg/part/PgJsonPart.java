@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 8/10/2015.
+ * @author Simon on 8/10/2015.
  */
 public interface PgJsonPart {
 

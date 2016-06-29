@@ -3,7 +3,7 @@ package edgeville.migration;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 8/1/2015.
+ * @author Simon on 8/1/2015.
  *
  * <p>A migration is a simple change in a player's data that will be applied when the player with this migration still
  * pending logs in. The migration state is kept track of in the player data and should increase by one each time you

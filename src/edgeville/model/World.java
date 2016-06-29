@@ -21,7 +21,7 @@ import java.security.SecureRandom;
 import java.util.*;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  * Modified by Simon Jacobs on 26/2/2016.
  */
 public class World {

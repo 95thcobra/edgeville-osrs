@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  */
 public class Player extends Entity {
 
@@ -71,6 +71,16 @@ public class Player extends Entity {
 	 * Our achieved skill levels
 	 */
 	private Skills skills;
+
+	private boolean debug;
+
+	public boolean isDebug() {
+		return debug;
+	}
+
+	public void setDebug(boolean debug) {
+		this.debug = debug;
+	}
 
 	/**
 	 * Our looks (clothes, colours, gender)
@@ -144,7 +154,16 @@ public class Player extends Entity {
 
 	private ItemContainer inventory;
 	private ItemContainer equipment;
-	private ItemContainer bank;
+
+	private Bank bank;
+
+	public Bank getBank() {
+		return bank;
+	}
+
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
 
 	private Varps varps;
 	private InputHelper inputHelper;
@@ -190,7 +209,8 @@ public class Player extends Entity {
 		this.interfaces = new Interfaces(this);
 		this.inventory = new ItemContainer(world, 28, ItemContainer.Type.REGULAR);
 		this.equipment = new ItemContainer(world, 14, ItemContainer.Type.REGULAR);
-		this.bank = new ItemContainer(world, 800, ItemContainer.Type.FULL_STACKING);
+		// this.bank = new ItemContainer(world, 800,
+		// ItemContainer.Type.FULL_STACKING);
 		this.varps = new Varps(this);
 		this.inputHelper = new InputHelper(this);
 
@@ -201,7 +221,9 @@ public class Player extends Entity {
 		looks().update();
 
 		/////// sj
+		debug = false;
 		resetSpecialEnergy();
+		bank = new Bank(this);
 	}
 
 	public void resetSpecialEnergy() {
@@ -238,7 +260,9 @@ public class Player extends Entity {
 		skills.update();
 
 		// Send simple player options
-		// write(new SetPlayerOption(1, true, "Attack"));
+		if (Constants.ALL_PVP) {
+			write(new SetPlayerOption(1, true, "Attack"));
+		}
 		write(new SetPlayerOption(2, false, "Follow"));
 		write(new SetPlayerOption(3, false, "Trade with"));
 
@@ -256,17 +280,17 @@ public class Player extends Entity {
 		looks.update();
 
 		// By default debug is on for admins
-		putattrib(AttributeKey.DEBUG, false/*privilege == Privilege.ADMIN*/);
+		// putattrib(AttributeKey.DEBUG, false/*privilege == Privilege.ADMIN*/);
 
 		// Sync varps
 		varps.syncNonzero();
 
 		/////////// sj
-		
-		//Welcome
+
+		// Welcome
 		message("Welcome to %s.", TextUtil.colorString(Constants.SERVER_NAME, Colors.BLUE));
 		message("The server is in development stage.");
-		
+
 		// Start energy regenerate timer
 		timers().register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
 
@@ -413,9 +437,9 @@ public class Player extends Entity {
 		this.equipment = equipment;
 	}
 
-	public ItemContainer bank() {
-		return bank;
-	}
+	/*
+	 * public ItemContainer bank() { return bank; }
+	 */
 
 	public Varps varps() {
 		return varps;
@@ -512,8 +536,8 @@ public class Player extends Entity {
 		super.cycle();
 
 		// Are we requested to be logged out?
-		if ((boolean) attrib(AttributeKey.LOGOUT, false)) {
-			putattrib(AttributeKey.LOGOUT, false);
+		if ((boolean) attribute(AttributeKey.LOGOUT, false)) {
+			putAttribute(AttributeKey.LOGOUT, false);
 
 			// Attempt to log us out. In the future, we'd want to do combat
 			// checking and such here.
@@ -548,17 +572,19 @@ public class Player extends Entity {
 		questTab.sendQuestTabTitle();
 
 		// Region enter and leave triggers
-		int lastregion = attrib(AttributeKey.LAST_REGION, -1);
+		int lastregion = attribute(AttributeKey.LAST_REGION, -1);
 
 		// if (lastregion != tile.region()) {
 		// world.server().scriptRepository().triggerRegionEnter(this,
 		// tile.region());
 		// TODO OPTIONAL: Trigger region enter
 		// }
-		putattrib(AttributeKey.LAST_REGION, tile.region());
+		putAttribute(AttributeKey.LAST_REGION, tile.region());
 
 		// Show attack option when player is in wilderness.
-		handlePlayerOptions();
+		if (!Constants.ALL_PVP) {
+			handlePlayerOptions();
+		}
 	}
 
 	private void handlePlayerOptions() {
@@ -592,9 +618,9 @@ public class Player extends Entity {
 		}
 
 		// Sync bank if dirty
-		if (bank.dirty()) {
-			write(new SetItems(95, bank));
-			bank.clean();
+		if (bank.getBankItems().dirty()) {
+			write(new SetItems(95, bank.getBankItems()));
+			bank.getBankItems().clean();
 		}
 	}
 

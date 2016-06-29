@@ -11,7 +11,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 8/23/2015.
+ * @author Simon on 8/23/2015.
  */
 @PacketInfo(size = 7)
 public class GroundItemAction3 implements Action {

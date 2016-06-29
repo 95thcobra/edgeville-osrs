@@ -6,7 +6,7 @@ import edgeville.model.World;
 import edgeville.model.entity.Npc;
 
 /**
- * Created by Bart on 8/26/2015.
+ * @author Simon on 8/26/2015.
  */
 public class NpcProcessingTask implements Task {
 

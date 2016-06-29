@@ -17,7 +17,7 @@ import edgeville.util.UsernameUtilities;
 import java.util.List;
 
 /**
- * Created by Bart on 8/4/2014.
+ * @author Simon on 8/4/2014.
  *
  */
 public class PreGameDecoder extends ByteToMessageDecoder {

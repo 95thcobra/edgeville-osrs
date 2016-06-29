@@ -10,7 +10,7 @@ import edgeville.model.entity.Player;
 import edgeville.net.message.game.DisplayMap;
 
 /**
- * Created by Bart Pelle on 8/10/2015.
+ * @author Simon Pelle on 8/10/2015.
  */
 public class NpcPreSyncTask implements Task {
 

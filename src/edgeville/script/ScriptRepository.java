@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * Created by Bart on 7/9/2015.
+ * @author Simon on 7/9/2015.
  * <p>
  * The man of the triggers.
  */
@@ -158,8 +158,8 @@ public class ScriptRepository {
     }
 
     public void triggerButton(Player player, int i, int c, int s, int action) {
-        player.putattrib(AttributeKey.BUTTON_SLOT, s);
-        player.putattrib(AttributeKey.BUTTON_ACTION, action);
+        player.putAttribute(AttributeKey.BUTTON_SLOT, s);
+        player.putAttribute(AttributeKey.BUTTON_ACTION, action);
         if (buttonTriggers.containsKey((i << 16) | c)) {
             executor.executeScript(player, buttonTriggers.get((i << 16) | c));
         }
@@ -172,8 +172,8 @@ public class ScriptRepository {
     }
 
     public boolean triggerObject(Player player, MapObj obj, int action) {
-        player.putattrib(AttributeKey.INTERACTION_OBJECT, obj);
-        player.putattrib(AttributeKey.INTERACTION_OPTION, action);
+        player.putAttribute(AttributeKey.INTERACTION_OBJECT, obj);
+        player.putAttribute(AttributeKey.INTERACTION_OPTION, action);
         if (objectTriggers.containsKey(obj.id())) {
             executor.executeScript(player, objectTriggers.get(obj.id()));
             return true;
@@ -208,14 +208,14 @@ public class ScriptRepository {
 
     public void triggerItemOption1(Player player, int item, int slot) {
         if (item1Triggers.containsKey(item)) {
-            player.putattrib(AttributeKey.ITEM_SLOT, slot);
+            player.putAttribute(AttributeKey.ITEM_SLOT, slot);
             executor.executeScript(player, item1Triggers.get(item));
         }
     }
 
     public void triggerItemOption4(Player player, int item, int slot) {
         if (item4Triggers.containsKey(item)) {
-            player.putattrib(AttributeKey.ITEM_SLOT, slot);
+            player.putAttribute(AttributeKey.ITEM_SLOT, slot);
             executor.executeScript(player, item4Triggers.get(item));
         }
     }
@@ -241,7 +241,7 @@ public class ScriptRepository {
         }
 
         if (fnc != null) {
-            player.putattrib(AttributeKey.ITEM_SLOT, slot);
+            player.putAttribute(AttributeKey.ITEM_SLOT, slot);
             executor.executeScript(player, fnc);
         }
     }

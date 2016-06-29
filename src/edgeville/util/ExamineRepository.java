@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Created by Bart on 8/9/2015.
+ * @author Simon on 8/9/2015.
  *
  * Holds all the examines we gathered.
  */

@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * Created by Bart on 8/4/2014.
+ * @author Simon on 8/4/2014.
  */
 @ChannelHandler.Sharable
 public class LoginHandler extends ChannelInboundHandlerAdapter {

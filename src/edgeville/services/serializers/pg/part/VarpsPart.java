@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by Bart on 8/25/2015.
+ * @author Simon on 8/25/2015.
  */
 public class VarpsPart implements PgJsonPart {
 

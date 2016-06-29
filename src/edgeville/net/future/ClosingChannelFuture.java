@@ -6,7 +6,7 @@ import io.netty.channel.ChannelFutureListener;
 /**
  * A {@link io.netty.channel.ChannelFutureListener} which automatically closes the channel on completion.
  *
- * @author Bart Pelle
+ * @author Simon
  */
 public class ClosingChannelFuture implements ChannelFutureListener {
 

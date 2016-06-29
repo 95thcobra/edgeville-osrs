@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Bart on 8/1/2015.
+ * @author Simon on 8/1/2015.
  *
  * Manages known migrations and helps in applying migrations to players.
  */
@@ -30,7 +30,7 @@ public class MigrationRepository {
 	public MigrationRepository() {
 		logger.info("Scanning for migrations...");
 
-		Set<Class<? extends Migration>> migrationClasses = new Reflections("nl.bartpelle.veteres",
+		Set<Class<? extends Migration>> migrationClasses = new Reflections("edgeville",
 				new SubTypesScanner(false)).getSubTypesOf(Migration.class);
 
 		// Add all the migrations to the migration list

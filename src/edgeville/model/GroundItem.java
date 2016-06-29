@@ -4,7 +4,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.item.Item;
 
 /**
- * Created by Bart on 8/22/2015.
+ * @author Simon on 8/22/2015.
  */
 public class GroundItem {
 

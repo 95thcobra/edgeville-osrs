@@ -13,7 +13,7 @@ import edgeville.util.EquipmentInfo;
 import edgeville.util.Tuple;
 
 /**
- * Created by Bart on 7/10/2015.
+ * @author Simon on 7/10/2015.
  */
 public class ItemContainer {
 

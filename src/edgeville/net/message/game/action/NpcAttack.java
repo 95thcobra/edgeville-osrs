@@ -36,7 +36,7 @@ public class NpcAttack implements Action {
 		// player.message("npc attack --- npcindex:" + index + " run:" + run);
 		Npc other = player.world().npcs().get(index);
 
-		if ((boolean)player.attrib(AttributeKey.DEBUG)) {
+		if (player.isDebug()) {
 			player.message("npcid:" + other.id() + " run:" + run);
 		}
 
@@ -44,9 +44,9 @@ public class NpcAttack implements Action {
 			// player.stepTowards(other, 20);
 			player.face(other);
 
-			player.putattrib(AttributeKey.TARGET_TYPE, 1);
-			player.putattrib(AttributeKey.TARGET, /* index */ other);
-			other.putattrib(AttributeKey.LAST_ATTACKED_BY, player);
+			player.putAttribute(AttributeKey.TARGET_TYPE, 1);
+			player.putAttribute(AttributeKey.TARGET, /* index */ other);
+			other.putAttribute(AttributeKey.LAST_ATTACKED_BY, player);
 
 			// player.world().server().scriptExecutor().executeScript(player,
 			// PlayerCombat.script);

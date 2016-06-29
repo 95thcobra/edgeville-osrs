@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import edgeville.model.World;
 
 /**
- * Created by Bart on 8/2/2015.
+ * @author Simon on 8/2/2015.
  */
 public abstract class SubTask implements Callable<Object> {
 

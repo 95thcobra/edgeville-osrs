@@ -250,7 +250,7 @@ public class ButtonClickAction {
 			return false;
 		}
 
-		Entity target = player.attrib(AttributeKey.TARGET);
+		Entity target = player.getAttribute(AttributeKey.TARGET);
 		if (target != null) {
 			PlayerVersusAnyCombat.handleGraniteMaul(player, target);
 		}

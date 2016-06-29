@@ -12,6 +12,11 @@ import edgeville.services.serializers.PlayerSerializer;
  * Created by Sky on 28-6-2016.
  */
 public class Constants {
+	
+	// Settings
+	public static final boolean ALL_PVP = true;
+	
+	
 
 	public static final String SERVER_NAME = "Edgeville";
 	public static final int REVISION = 86;
@@ -21,7 +26,12 @@ public class Constants {
 
 	// Netty config
 	public static final int PORT = 43594;
-	public static final String IP_ADDRESS = "localhost";
+	//public static final boolean HOST_LOCAL = false;
+	//public static final String IP_ADDRESS = "77.251.97.234";
+	public static final String IP_ADDRESS = "0.0.0.0";
+	
+	//public static final String IP_ADDRESS_LOCAL = "localhost";
+	//public static final String IP_ADDRESS = HOST_LOCAL ? IP_ADDRESS_LOCAL : "77.251.97.234";
 	public static final int ACCEPT_THREADS = 1;
 	public static final int IO_THREADS = 2;
 

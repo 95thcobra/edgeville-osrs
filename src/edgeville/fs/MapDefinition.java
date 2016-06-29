@@ -9,7 +9,7 @@ import edgeville.model.World;
 import edgeville.model.map.MapObj;
 
 /**
- * Created by Bart on 8/11/2015.
+ * @author Simon on 8/11/2015.
  */
 public class MapDefinition implements Definition {
 

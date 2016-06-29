@@ -3,6 +3,7 @@ package edgeville.services.serializers;
 import com.google.gson.*;
 import com.google.gson.stream.JsonWriter;
 
+import edgeville.model.AttributeKey;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Privilege;
@@ -17,7 +18,7 @@ import java.io.*;
 import java.util.function.Consumer;
 
 /**
- * Created by Bart on 5-3-2015.
+ * @author Simon on 5-3-2015.
  * <p>
  * Simple default serializer to <b>only</b> use in single-server setups because
  * it uses a local file to serialize the player data to by means of GSON.
@@ -78,6 +79,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 			Privilege privilege = Privilege.valueOf(rootObject.get("privilege").getAsString());
 			Tile tile = gson.fromJson(rootObject.get("tile"), Tile.class);
 			int migration = rootObject.get("migration").getAsInt();
+			
+			// Debug
+			player.setDebug(rootObject.get("debug").getAsBoolean());
 
 			/* Construct the player */
 			player.displayName(displayName);
@@ -157,7 +161,8 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("migration", player.migration());
 		jsonObject.addProperty("skullIcon", player.getSkullHeadIcon());
 		jsonObject.addProperty("prayerIcon", player.getPrayerHeadIcon());
-		
+		jsonObject.addProperty("debug", player.isDebug());
+
 		/* Inventory */
 		JsonArray inventory = new JsonArray();
 		for (int i = 0; i < player.getInventory().size(); i++) {
@@ -171,7 +176,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 			equipment.add(gson.toJsonTree(player.getEquipment().get(i)));
 		}
 		jsonObject.add("equipment", equipment);
-		
+
 		/* loadout */
 		JsonObject loadout = new JsonObject();
 		JsonArray inv = new JsonArray();
@@ -185,7 +190,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		loadout.add("inventory", inv);
 		loadout.add("equipment", equip);
 		jsonObject.add("loadout", loadout);
-		
+
 		/* varps */
 		JsonArray varps = new JsonArray();
 		for (int i = 0; i < player.varps().getVarps().length; i++) {

@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * Created by Bart on 8/10/2015.
+ * @author Simon on 8/10/2015.
  */
 public class PgSqlPlayerSerializer extends PlayerSerializer {
 

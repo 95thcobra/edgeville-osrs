@@ -5,7 +5,7 @@ import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 8/18/2015.
+ * @author Simon on 8/18/2015.
  */
 public class SetMapBase implements Command {
 

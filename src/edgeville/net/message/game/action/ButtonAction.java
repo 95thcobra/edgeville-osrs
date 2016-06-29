@@ -9,7 +9,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 5-2-2015.
+ * @author Simon on 5-2-2015.
  */
 @PacketInfo(size = 8)
 public class ButtonAction implements Action {
@@ -40,7 +40,7 @@ public class ButtonAction implements Action {
 
 	@Override
 	public void process(Player player) {
-		if ((boolean) player.attrib(AttributeKey.DEBUG)) {
+		if (player.isDebug()) {
 			player.message("buttonclicked: interface:" + (hash >> 16) + " button:" + (hash & 0xFFFF) + " slot:" + slot + " option:" + option);
 		}
 		final int interfaceId = (hash >> 16);

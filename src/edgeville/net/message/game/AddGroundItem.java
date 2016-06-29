@@ -6,7 +6,7 @@ import edgeville.model.entity.Player;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 8/22/2015.
+ * @author Simon on 8/22/2015.
  */
 public class AddGroundItem implements Command {
 

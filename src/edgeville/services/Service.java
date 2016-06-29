@@ -5,7 +5,7 @@ import com.typesafe.config.Config;
 import edgeville.GameServer;
 
 /**
- * Created by Bart on 4-3-2015.
+ * @author Simon on 4-3-2015.
  *
  * Basic service interface.
  */

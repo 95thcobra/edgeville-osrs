@@ -1,7 +1,7 @@
 package edgeville.model;
 
 /**
- * Created by Bart on 8/13/2015.
+ * @author Simon on 8/13/2015.
  */
 public enum AttributeKey {
 
@@ -10,7 +10,7 @@ public enum AttributeKey {
 	/**
 	 * Key indicating if this player is having debugging enabled.
 	 */
-	DEBUG,
+	//DEBUG,
 
 	/**
 	 * Key indicating if this player is trying to log out.

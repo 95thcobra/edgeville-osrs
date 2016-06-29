@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by Bart on 12-3-2015.
+ * @author Simon on 12-3-2015.
  *
  * Provides inter-world private messaging support.
  */

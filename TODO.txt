@@ -1,0 +1,23 @@
+Make new combat formula AND print it somewhere on screen.
+
+
+papa bellen over onderdelen lijn
+
+
+loop invokescripts+
+
+
+
+
+varbit 4101 thick skin enable
+varbit 4103 prayer orb
+varp 456 sick hp orb
+varp 102 poison hp orb
+varbit 3756 flickering attack styles tab
+varbit 25 run orb
+
+varp 0 - 2000 turn text green
+
+loopvarp 2 turns all spellbook spells on
+
+

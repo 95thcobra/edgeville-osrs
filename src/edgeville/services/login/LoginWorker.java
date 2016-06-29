@@ -16,7 +16,7 @@ import edgeville.services.serializers.PlayerLoadResult;
 import java.util.Arrays;
 
 /**
- * Created by Bart on 8/1/2015.
+ * @author Simon on 8/1/2015.
  */
 public class LoginWorker implements Runnable {
 

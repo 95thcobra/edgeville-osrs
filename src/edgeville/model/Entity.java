@@ -19,7 +19,7 @@ import edgeville.util.Varbit;
 import java.util.*;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  */
 public abstract class Entity implements HitOrigin {
 
@@ -144,11 +144,11 @@ public abstract class Entity implements HitOrigin {
 		sync.graphic(id, height, delay);
 	}
 
-	public <T> T attrib(AttributeKey key) {
+	public <T> T getAttribute(AttributeKey key) {
 		return (T) attribs.get(key);
 	}
 
-	public <T> T attrib(AttributeKey key, Object defaultValue) {
+	public <T> T attribute(AttributeKey key, Object defaultValue) {
 		return (T) attribs.getOrDefault(key, defaultValue);
 	}
 
@@ -156,7 +156,7 @@ public abstract class Entity implements HitOrigin {
 		attribs.remove(key);
 	}
 
-	public void putattrib(AttributeKey key, Object v) {
+	public void putAttribute(AttributeKey key, Object v) {
 		attribs.put(key, v);
 	}
 
@@ -361,7 +361,7 @@ public abstract class Entity implements HitOrigin {
 			damagers.compute(((Player) origin), (key, value) -> value == null ? hit : value + hit);
 		}
 
-		if ((boolean) attrib(AttributeKey.VENGEANCE_ACTIVE, false)) {
+		if ((boolean) attribute(AttributeKey.VENGEANCE_ACTIVE, false)) {
 			if (isPlayer() && origin instanceof Entity) {
 				clearattrib(AttributeKey.VENGEANCE_ACTIVE);
 				((Entity) origin).hit(this, (int) (hit * 0.75), delay).block(false);
@@ -393,8 +393,8 @@ public abstract class Entity implements HitOrigin {
 	public abstract int getBlockAnim();
 
 	public void blockHit() {
-		if (attrib(AttributeKey.LAST_ATTACKED_BY) instanceof Player) {
-			Player target = attrib(AttributeKey.LAST_ATTACKED_BY);
+		if (getAttribute(AttributeKey.LAST_ATTACKED_BY) instanceof Player) {
+			Player target = getAttribute(AttributeKey.LAST_ATTACKED_BY);
 			//target.message("playing sound");
 			target.sound(getBlockSound());
 		}

@@ -5,7 +5,7 @@ import java.util.Collection;
 import edgeville.model.World;
 
 /**
- * Created by Bart on 8/26/2015.
+ * @author Simon on 8/26/2015.
  */
 public class NpcViewportTask implements Task {
 

@@ -16,7 +16,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 8/23/2015.
+ * @author Simon on 8/23/2015.
  * Modified by Simon on 4/3/2016.
  */
 @PacketInfo(size = 7)
@@ -42,14 +42,14 @@ public class ObjectAction1 implements Action {
         if (obj == null)
             return;
 
-        if ((boolean) player.attrib(AttributeKey.DEBUG, false)) {
+        if (player.isDebug()) {
             player.message("Interacting with object %d at [%d, %d]", id, x, z);
         }
 
         if (!player.locked() && !player.dead()) {
             player.stopActions(true);
-            player.putattrib(AttributeKey.INTERACTION_OBJECT, obj);
-            player.putattrib(AttributeKey.INTERACTION_OPTION, 1);
+            player.putAttribute(AttributeKey.INTERACTION_OBJECT, obj);
+            player.putAttribute(AttributeKey.INTERACTION_OPTION, 1);
 
             player.walkTo(obj, PathQueue.StepType.REGULAR);
             player.faceObj(obj);

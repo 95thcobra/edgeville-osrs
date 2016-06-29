@@ -14,7 +14,7 @@ import edgeville.model.entity.player.PlayerSyncInfo;
 import edgeville.net.message.game.UpdatePlayers;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 public class NpcSyncTask implements Task {
 

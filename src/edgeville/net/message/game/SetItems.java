@@ -6,7 +6,7 @@ import edgeville.model.item.Item;
 import edgeville.model.item.ItemContainer;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  */
 public class SetItems implements Command {
 

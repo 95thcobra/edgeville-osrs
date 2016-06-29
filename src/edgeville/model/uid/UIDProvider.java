@@ -4,7 +4,7 @@ import edgeville.GameServer;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 4-3-2015.
+ * @author Simon on 4-3-2015.
  */
 public abstract class UIDProvider {
 

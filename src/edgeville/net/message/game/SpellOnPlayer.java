@@ -10,7 +10,7 @@ import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 8/20/2015.
+ * @author Simon on 8/20/2015.
  */
 @PacketInfo(size = 9)
 public class SpellOnPlayer implements Action {
@@ -44,7 +44,7 @@ public class SpellOnPlayer implements Action {
 		} else {
 			if (!player.locked() && !player.dead() && !other.dead()) {
 				player.face(other);
-				player.putattrib(AttributeKey.TARGET, targetIndex);
+				player.putAttribute(AttributeKey.TARGET, targetIndex);
 				//player.world().server().scriptRepository().triggerSpellOnPlayer(player, interfaceId, child);
 				//TODO: Spell on player
 			}

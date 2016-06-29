@@ -3,7 +3,7 @@ package edgeville.util;
 import edgeville.model.Tile;
 
 /**
- * Created by Bart on 8/25/2015.
+ * @author Simon on 8/25/2015.
  */
 public class NpcSpawn {
 

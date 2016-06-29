@@ -1,7 +1,7 @@
 package edgeville.net.message;
 
 /**
- * Created by Bart on 8/4/2014.
+ * @author Simon on 8/4/2014.
  */
 public class HandshakeMessage {
 

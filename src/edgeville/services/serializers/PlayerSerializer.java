@@ -11,7 +11,7 @@ import edgeville.util.Tuple;
 import java.util.function.Consumer;
 
 /**
- * Created by Bart on 4-3-2015.
+ * @author Simon on 4-3-2015.
  *
  * Abstraction for encoding and decoding different methods of player data.
  */

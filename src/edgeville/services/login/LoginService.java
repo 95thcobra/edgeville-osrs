@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Created by Bart on 8/1/2015.
+ * @author Simon on 8/1/2015.
  *
  * Handles logging in, logging out... and being logged in?
  */

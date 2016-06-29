@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Bart on 8/12/2015.
+ * @author Simon on 8/12/2015.
  */
 public class TimerRepository {
 

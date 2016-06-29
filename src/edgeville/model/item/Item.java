@@ -7,7 +7,7 @@ import edgeville.fs.ItemDefinition;
 import edgeville.model.World;
 
 /**
- * Created by Bart Pelle on 8/31/2014.
+ * @author Simon Pelle on 8/31/2014.
  */
 public final class Item {
 

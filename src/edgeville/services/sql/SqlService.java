@@ -5,7 +5,7 @@ import java.sql.Connection;
 import edgeville.services.Service;
 
 /**
- * Created by Bart on 8/1/2015.
+ * @author Simon on 8/1/2015.
  *
  * <p>Base class for a SQL service, whether it be PgSql, MySql, Sqlite or whatever provider you're in love with.</p>
  *

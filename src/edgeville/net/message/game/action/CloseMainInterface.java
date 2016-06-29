@@ -7,7 +7,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart Pelle on sept 18 2015
+ * @author Simon Pelle on sept 18 2015
  */
 @PacketInfo(size = 0)
 public class CloseMainInterface implements Action {

@@ -6,7 +6,7 @@ import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 8/22/2015.
+ * @author Simon on 8/22/2015.
  */
 public class SendTileGraphic implements Command {
 

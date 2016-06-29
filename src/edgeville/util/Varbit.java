@@ -1,7 +1,7 @@
 package edgeville.util;
 
 /**
- * Created by Bart on 8/16/2015.
+ * @author Simon on 8/16/2015.
  */
 public class Varbit {
 
@@ -22,5 +22,7 @@ public class Varbit {
 	public static final int TRANSPARENT_CHAT_BOX = 4608;
 	public static final int CLICKTHROUGH_CHAT_BOX = 2570;
 	
+	public static final int SIDE_PANEL = 4607;
+	public static final int SIDE_PANEL_CLOSABLE_HOTKEYS = 4611;
 	public static final int IRONMAN = 1777;
 }

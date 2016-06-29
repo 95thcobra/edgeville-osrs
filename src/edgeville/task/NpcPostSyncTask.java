@@ -7,7 +7,7 @@ import edgeville.model.entity.Npc;
 import edgeville.model.entity.PathQueue;
 
 /**
- * Created by Bart Pelle on 8/10/2015.
+ * @author Simon Pelle on 8/10/2015.
  */
 public class NpcPostSyncTask implements Task {
 

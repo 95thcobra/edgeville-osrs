@@ -7,7 +7,7 @@ import edgeville.model.entity.player.NpcSyncInfo;
 import edgeville.net.message.game.PlaySound;
 
 /**
- * Created by Bart on 8/10/2015.
+ * @author Simon on 8/10/2015.
  */
 public class Npc extends Entity {
 
@@ -70,7 +70,7 @@ public class Npc extends Entity {
 	public void cycle() {
 		super.cycle();
 
-		long lastAttackTime = (System.currentTimeMillis() - (long) attrib(AttributeKey.LAST_DAMAGE, (long) 0));
+		long lastAttackTime = (System.currentTimeMillis() - (long) attribute(AttributeKey.LAST_DAMAGE, (long) 0));
 		if (lastAttackTime < 10_000 && !locked() && inViewport && walkRadius > 0 && pathQueue.empty() && world.random(9) == 0) {
 			int rndX = world.random(walkRadius * 2 + 1) - walkRadius;
 			int rndZ = world.random(walkRadius * 2 + 1) - walkRadius;

@@ -4,7 +4,7 @@ import edgeville.io.RSBuffer;
 import io.netty.buffer.Unpooled;
 
 /**
- * Created by bart on 7/18/15.
+ * @author Simon on 7/18/15.
  */
 public class VarbitDefinition implements Definition {
 

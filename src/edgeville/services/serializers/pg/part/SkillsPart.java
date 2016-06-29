@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by Bart on 8/10/2015.
+ * @author Simon on 8/10/2015.
  */
 public class SkillsPart implements PgJsonPart {
 

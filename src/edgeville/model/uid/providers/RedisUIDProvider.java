@@ -9,7 +9,7 @@ import edgeville.model.uid.UIDProvider;
 import edgeville.services.redis.RedisService;
 
 /**
- * Created by Bart on 4-3-2015.
+ * @author Simon on 4-3-2015.
  *
  * Unique ID provider through an atomic Redis key, which gets incremented as requested to have one unique ID
  * generator across multiple servers to avoid handing out a UID which is already used.

@@ -12,7 +12,7 @@ import edgeville.net.message.game.PacketInfo;
 import edgeville.util.GameCommands;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 @PacketInfo(size = -1)
 public class ConsoleAction implements Action {

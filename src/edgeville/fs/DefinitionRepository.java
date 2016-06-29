@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Bart on 7/11/2015.
+ * @author Simon on 7/11/2015.
  */
 @SuppressWarnings("unchecked") public class DefinitionRepository {
 

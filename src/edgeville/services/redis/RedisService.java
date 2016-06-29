@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * Created by Bart on 4-3-2015.
+ * @author Simon on 4-3-2015.
  *
  * Redis service.
  */

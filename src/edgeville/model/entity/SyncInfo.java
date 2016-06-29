@@ -8,7 +8,7 @@ import edgeville.model.entity.Player;
 import io.netty.buffer.Unpooled;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 public abstract class SyncInfo {
 

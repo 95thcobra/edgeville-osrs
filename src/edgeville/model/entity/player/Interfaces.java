@@ -3,15 +3,12 @@ package edgeville.model.entity.player;
 import java.util.HashMap;
 import java.util.Map;
 
-import edgeville.Constants;
-import edgeville.event.Event;
-import edgeville.event.EventContainer;
 import edgeville.model.entity.Player;
 import edgeville.net.message.game.*;
 import edgeville.util.SettingsBuilder;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 public class Interfaces {
 
@@ -20,7 +17,8 @@ public class Interfaces {
 	// 164 horizontal bar
 
 	public static final int MAIN_COMPONENT_FIXED = 18;
-	public static final int MAIN_COMPONENT_RESIZABLE = 7;
+	// public static final int MAIN_COMPONENT_RESIZABLE = 7;
+	public static final int MAIN_COMPONENT_RESIZABLE = 11;
 
 	private Player player;
 	private Map<Integer, Integer> visible = new HashMap<>();
@@ -144,7 +142,8 @@ public class Interfaces {
 	public void send(int id, int target, int targetChild, boolean clickthrough) {
 		player.write(new OpenInterface(id, target, targetChild, clickthrough));
 		visible.put((target << 16) | targetChild, id);
-		//player.message("Interface opened - id:" + id + " target:" + target + " targetchild:" + targetChild + " clickthrough:" + clickthrough);
+		// player.message("Interface opened - id:" + id + " target:" + target +
+		// " targetchild:" + targetChild + " clickthrough:" + clickthrough);
 	}
 
 	public void closeMain() {
@@ -191,7 +190,12 @@ public class Interfaces {
 
 	public int mainComponent() {
 		// return resizable ? 9 : 18;
-		return resizable ? MAIN_COMPONENT_RESIZABLE : MAIN_COMPONENT_FIXED; // interfaces move with resizing on 7
+		return resizable ? MAIN_COMPONENT_RESIZABLE : MAIN_COMPONENT_FIXED; // interfaces
+																			// move
+																			// with
+																			// resizing
+																			// on
+																			// 7
 	}
 
 	public void sendInterfaceString(int interfaceId, int stringId, String text) {

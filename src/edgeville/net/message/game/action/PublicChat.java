@@ -9,7 +9,7 @@ import edgeville.util.HuffmanCodec;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 @PacketInfo(size = -1)
 public class PublicChat implements Action {

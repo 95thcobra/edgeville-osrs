@@ -6,7 +6,7 @@ import edgeville.model.World;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 5-3-2015.
+ * @author Simon on 5-3-2015.
  */
 public class PlayerProcessingTask implements Task {
 

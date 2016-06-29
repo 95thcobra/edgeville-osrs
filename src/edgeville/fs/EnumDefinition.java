@@ -8,7 +8,7 @@ import java.util.Map;
 import edgeville.io.RSBuffer;
 
 /**
- * Created by Bart on 7/20/15.
+ * @author Simon on 7/20/15.
  */
 public class EnumDefinition implements Definition {
 

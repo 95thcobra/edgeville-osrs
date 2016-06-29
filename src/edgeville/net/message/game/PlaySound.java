@@ -4,7 +4,7 @@ import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 8/25/2015.
+ * @author Simon on 8/25/2015.
  */
 public class PlaySound implements Command {
 

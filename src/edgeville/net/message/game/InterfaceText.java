@@ -5,7 +5,7 @@ import edgeville.model.entity.Player;
 import edgeville.util.SettingsBuilder;
 
 /**
- * Created by Bart on 8/11/2015.
+ * @author Simon on 8/11/2015.
  */
 public class InterfaceText implements Command {
 

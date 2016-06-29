@@ -13,7 +13,7 @@ import edgeville.script.TimerKey;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 8/12/2015.
+ * @author Simon on 8/12/2015.
  */
 @PacketInfo(size = 3)
 public class PlayerAction2 implements Action {

@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * Created by Bart on 8/9/2015.
+ * @author Simon on 8/9/2015.
  *
  * Basic localisation features.
  */

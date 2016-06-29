@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Created by Bart on 8/1/2015.
+ * @author Simon on 8/1/2015.
  *
  * Sql service for PostgreSQL. Veteres is built towards PgSql but may or may not provide housing for other database
  * services soon.

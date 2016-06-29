@@ -12,7 +12,7 @@ import edgeville.net.message.game.Action;
 import edgeville.net.message.game.PacketInfo;
 
 /**
- * Created by Bart on 9-7-2015.
+ * @author Simon on 9-7-2015.
  */
 @PacketInfo(size = 5)
 public class ChangeDisplayMode implements Action {

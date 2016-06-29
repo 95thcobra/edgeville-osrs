@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  *
  * Represents the 'heart' of the game server, or the 'main thread' so to speak.
  * The ServerProcessor has a (linked) list of tasks it runs in sequence. If any of
@@ -134,7 +134,7 @@ public class ServerProcessor extends Thread {
 		long delay = 600 - (System.currentTimeMillis() - start);
 
 		if (infotick-- == 0) {
-			infotick = 100;
+			infotick = 1000;
 
 			long totalMem = Runtime.getRuntime().totalMemory();
 			long freeMem = Runtime.getRuntime().freeMemory();

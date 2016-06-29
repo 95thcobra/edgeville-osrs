@@ -5,7 +5,7 @@ import edgeville.model.Tile;
 import edgeville.model.World;
 
 /**
- * Created by Bart on 8/23/2015.
+ * @author Simon on 8/23/2015.
  */
 public class MapObj {
 

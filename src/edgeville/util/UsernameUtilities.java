@@ -1,7 +1,7 @@
 package edgeville.util;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  */
 public class UsernameUtilities {
 

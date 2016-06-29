@@ -1,5 +1,6 @@
 package edgeville.combat;
 
+import edgeville.Constants;
 import edgeville.event.EventContainer;
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
@@ -40,27 +41,31 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Check if players are in wilderness.
 		if (target instanceof Player) {
-			if (!player.inWilderness() || !((Player) target).inWilderness()) {
-				player.message("You or your target are not in wild.");
-				return;
+			if (!Constants.ALL_PVP) {
+				if (!player.inWilderness() || !((Player) target).inWilderness()) {
+					player.message("You or your target are not in wild.");
+					container.stop();
+					return;
+				}
 			}
 		}
 
 		// Combat type?
 		if (weaponType == WeaponType.BOW || weaponType == WeaponType.CROSSBOW || weaponType == WeaponType.THROWN) {
-			//getEntity().message("ranging...");
+			// getEntity().message("ranging...");
 			handleRangeCombat(weaponId, ammoName, weaponType, container);
 		} else {
-			//getEntity().message("meleeeing...");
+			// getEntity().message("meleeeing...");
 			handleMeleeCombat(weaponId);
 		}
 
-		getTarget().putattrib(AttributeKey.LAST_DAMAGER, getEntity());
-		getTarget().putattrib(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
+		getTarget().putAttribute(AttributeKey.LAST_DAMAGER, getEntity());
+		getTarget().putAttribute(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
 
 		if (target instanceof Player) {
 			player.setSkullHeadIcon(Skulls.WHITE_SKUL.getSkullId());
-			player.timers().extendOrRegister(TimerKey.SKULL, 2000); // 20 minutes
+			player.timers().extendOrRegister(TimerKey.SKULL, 2000); // 20
+																	// minutes
 		}
 	}
 
@@ -201,7 +206,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		int weaponId = ((Player) getEntity()).getEquipment().get(EquipSlot.WEAPON).id();
 
 		switch (weaponId) {
-		
+
 		// Magic short bow
 		case 861:
 

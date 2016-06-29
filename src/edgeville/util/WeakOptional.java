@@ -3,7 +3,7 @@ package edgeville.util;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by Bart Pelle on 10/6/2014.
+ * @author Simon Pelle on 10/6/2014.
  */
 public class WeakOptional<T> {
 

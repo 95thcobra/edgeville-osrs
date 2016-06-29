@@ -24,7 +24,7 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 /**
- * Created by Bart on 8/4/2014.
+ * @author Simon on 8/4/2014.
  */
 @ChannelHandler.Sharable
 public class Js5Handler extends ChannelInboundHandlerAdapter {

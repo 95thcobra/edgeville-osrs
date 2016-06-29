@@ -10,7 +10,7 @@ import edgeville.model.uid.UIDProvider;
 import java.io.RandomAccessFile;
 
 /**
- * Created by Bart on 4-3-2015.
+ * @author Simon on 4-3-2015.
  *
  * <p>Simple provider which uses a file as last UID and hands out a UID at incremental rate. This is <b>not</b> a
  * solution in multi-server environments, because the file will not be in sync. If you want a multi-server available

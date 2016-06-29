@@ -14,7 +14,7 @@ import edgeville.util.Varbit;
 import edgeville.util.Varp;
 
 /**
- * Created by bart on 7/18/15.
+ * @author Simon on 7/18/15.
  */
 public class Varps {
 

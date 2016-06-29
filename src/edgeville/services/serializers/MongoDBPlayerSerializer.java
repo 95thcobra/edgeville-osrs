@@ -6,7 +6,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.uid.UIDProvider;
 
 /**
- * Created by Bart on 4-3-2015.
+ * @author Simon on 4-3-2015.
  *
  * Serializer which utilizes a MongoDB to store and load player data.
  */

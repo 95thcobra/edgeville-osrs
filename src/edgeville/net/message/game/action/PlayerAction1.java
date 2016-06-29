@@ -9,7 +9,7 @@ import edgeville.net.message.game.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Bart on 8/12/2015.
+ * @author Simon on 8/12/2015.
  */
 @PacketInfo(size = 3)
 public class PlayerAction1 implements Action {
@@ -42,9 +42,9 @@ public class PlayerAction1 implements Action {
                     return;
                 }
 
-                player.putattrib(AttributeKey.TARGET_TYPE, 0);
-                player.putattrib(AttributeKey.TARGET, /*index*/other);
-                other.putattrib(AttributeKey.LAST_ATTACKED_BY, player);
+                player.putAttribute(AttributeKey.TARGET_TYPE, 0);
+                player.putAttribute(AttributeKey.TARGET, /*index*/other);
+                other.putAttribute(AttributeKey.LAST_ATTACKED_BY, player);
                 
               // player.world().server().scriptExecutor().executeScript(player, PlayerCombat.script);
                 new PvPCombat(player, other).start();

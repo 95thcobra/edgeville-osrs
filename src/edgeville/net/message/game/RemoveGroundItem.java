@@ -5,7 +5,7 @@ import edgeville.model.GroundItem;
 import edgeville.model.entity.Player;
 
 /**
- * Created by Bart on 8/22/2015.
+ * @author Simon on 8/22/2015.
  */
 public class RemoveGroundItem implements Command {
 

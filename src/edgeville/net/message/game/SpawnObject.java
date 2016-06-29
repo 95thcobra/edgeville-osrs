@@ -5,7 +5,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.map.MapObj;
 
 /**
- * Created by Bart on 8/29/2015.
+ * @author Simon on 8/29/2015.
  */
 public class SpawnObject implements Command {
 

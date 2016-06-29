@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 public class PlayerSyncTask implements Task {
 
@@ -57,7 +57,7 @@ public class PlayerSyncTask implements Task {
 				Player p = player.world().players().get(sync.playerUpdateRequests()[i]);
 
 				if (p == null) {
-					logger.warn("THIS SHOULD NOT HAPPEN; CALL BART OR CARL OR DDOS SAVIONS SW");
+					logger.warn("THIS SHOULD NOT HAPPEN!");
 					buffer.writeByte(0);
 					continue;
 				}

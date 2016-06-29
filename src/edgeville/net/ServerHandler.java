@@ -24,7 +24,7 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 /**
- * Created by Bart on 8/4/2014.
+ * @author Simon on 8/4/2014.
  */
 @ChannelHandler.Sharable
 public class ServerHandler extends ChannelInboundHandlerAdapter {
@@ -62,7 +62,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 		logger.trace("A client has disconnected: {}", ctx.channel());
 
 		if (ctx.channel().attr(ATTRIB_PLAYER).get() != null) {
-			ctx.channel().attr(ATTRIB_PLAYER).get().putattrib(edgeville.model.AttributeKey.LOGOUT, true);
+			ctx.channel().attr(ATTRIB_PLAYER).get().putAttribute(edgeville.model.AttributeKey.LOGOUT, true);
 		}
 	}
 

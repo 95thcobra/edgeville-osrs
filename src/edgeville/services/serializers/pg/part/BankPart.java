@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by Bart on 8/10/2015.
+ * @author Simon on 8/10/2015.
  */
 public class BankPart implements PgJsonPart {
 
@@ -26,7 +26,7 @@ public class BankPart implements PgJsonPart {
 
 			// TODO properties
 			Item itemobj = new Item(item.get("id").getAsInt(), item.get("amount").getAsInt());
-			player.bank().set(item.get("slot").getAsInt(), itemobj);
+			player.getBank().getBankItems().set(item.get("slot").getAsInt(), itemobj);
 		}
 	}
 
@@ -34,7 +34,7 @@ public class BankPart implements PgJsonPart {
 	public void encode(Player player, PreparedStatement characterUpdateStatement) throws SQLException {
 		JsonArray itemarray = new JsonArray();
 		for (int i = 0; i < 800; i++) {
-			Item item = player.bank().get(i);
+			Item item = player.getBank().getBankItems().get(i);
 			if (item != null) {
 				JsonObject obj = new JsonObject();
 				obj.add("slot", new JsonPrimitive(i));

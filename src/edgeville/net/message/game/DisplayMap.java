@@ -9,7 +9,7 @@ import edgeville.model.entity.Player;
 import edgeville.util.map.MapDecryptionKeys;
 
 /**
- * Created by Bart Pelle on 8/22/2014.
+ * @author Simon Pelle on 8/22/2014.
  */
 public class DisplayMap implements Command { // Aka dipsleemap
 

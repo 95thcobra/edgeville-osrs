@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Bart on 8/4/2014.
+ * @author Simon on 8/4/2014.
  */
 public class GameServer {
 
@@ -164,7 +164,13 @@ public class GameServer {
 
 		// Bind to the address/port from the configuration
 		logger.info("Binding to {}:{}", /*config.getString("net.address")*/Constants.IP_ADDRESS, /*config.getInt("net.port")*/Constants.PORT);
-		bootstrap.bind(/*config.getString("net.address")*/Constants.IP_ADDRESS, /*config.getInt("net.port")*/Constants.PORT).sync().awaitUninterruptibly();
+		
+		//System.out.println("HELLO1");
+		
+		//bootstrap.bind("127.0.0.1", 43594).sync().awaitUninterruptibly();
+		bootstrap.bind(Constants.IP_ADDRESS, Constants.PORT).sync().awaitUninterruptibly();
+		
+		//System.out.println("HELLO");
 	}
 
 	/**

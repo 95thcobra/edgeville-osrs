@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RunnableFuture;
 
 /**
- * Created by Bart on 9/18/2015.
+ * @author Simon on 9/18/2015.
  *
  * Represents a worker for the queries and transactions.
  */

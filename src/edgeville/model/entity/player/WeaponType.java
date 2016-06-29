@@ -1,7 +1,7 @@
 package edgeville.model.entity.player;
 
 /**
- * Created by Bart on 8/18/2015.
+ * @author Simon on 8/18/2015.
  */
 public class WeaponType {
 

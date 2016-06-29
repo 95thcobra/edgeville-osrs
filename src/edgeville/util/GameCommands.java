@@ -22,7 +22,7 @@ import edgeville.model.item.Item;
 import edgeville.net.message.game.*;
 
 /**
- * Created by Bart Pelle on 8/23/2014.
+ * @author Simon Pelle on 8/23/2014.
  */
 public final class GameCommands {
 
@@ -38,13 +38,15 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
-		put(Privilege.ADMIN, "toggleroof", (p, args) -> {
-			p.write(new ToggleRoof(1));
-			p.message("toggleroof");
-		});
-		
-		put(Privilege.ADMIN, "debugon", (p, args) -> p.putattrib(AttributeKey.DEBUG, true));
-		put(Privilege.ADMIN, "debugoff", (p, args) -> p.putattrib(AttributeKey.DEBUG, false));
+		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
+		/*
+		 * put(Privilege.PLAYER, "invoke", (p, args) -> { p.write(new
+		 * InvokeScript(108, new Object[] { "Enter Amount:" })); });
+		 * put(Privilege.PLAYER, "invoketest", (p, args) -> { p.write(new
+		 * InvokeScript(532, new Object[] { "toggleroof" })); });
+		 */
+		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
+		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
 
 		put(Privilege.ADMIN, "update", (p, args) -> {
 			int ticks = Integer.parseInt(args[0]);
@@ -145,9 +147,20 @@ public final class GameCommands {
 		});
 
 		put(Privilege.PLAYER, "title", (p, args) -> {
-			p.interfaces().sendInterfaceString(274, 10, "Edgeville"); // First
-																		// big
-																		// string
+
+			new Thread(() -> {
+
+				// for (int i = 10; i < 16; i++) {
+				p.interfaces().send(84, 161, 11, false);
+				try {
+					Thread.sleep(300);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// }
+
+			}).start();
 		});
 
 		/* Player commands */
@@ -176,7 +189,6 @@ public final class GameCommands {
 		put(Privilege.PLAYER, "anim", (p, args) -> p.animate(Integer.parseInt(args[0])));
 		put(Privilege.PLAYER, "gfx", (p, args) -> p.graphic(Integer.parseInt(args[0])));
 		put(Privilege.PLAYER, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
-		put(Privilege.PLAYER, "runscript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
 		put(Privilege.PLAYER, "up", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
 		put(Privilege.PLAYER, "down", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.max(0, p.getTile().level - 1)));
 		/*
@@ -188,6 +200,7 @@ public final class GameCommands {
 		 */
 		put(Privilege.ADMIN, "clipinfo", (p, args) -> p.message("Current clip: %s", Arrays.deepToString(p.world().clipSquare(p.getTile(), 5))));
 		put(Privilege.ADMIN, "interface", (p, args) -> p.interfaces().sendMain(Integer.parseInt(args[0]), false));
+
 		put(Privilege.ADMIN, "cinterface", (p, args) -> {
 			p.interfaces().send(Integer.parseInt(args[0]), 162, 546, false);
 		});
@@ -261,11 +274,11 @@ public final class GameCommands {
 			}
 		});
 
-		put(Privilege.PLAYER, "wtest", (p, args) -> {
-			p.privilege(Privilege.ADMIN);
-			p.putattrib(AttributeKey.DEBUG, true);
-			p.message("Current privileges: " + p.getPrivilege());
-		});
+		/*
+		 * put(Privilege.PLAYER, "wtest", (p, args) -> {
+		 * p.privilege(Privilege.ADMIN); p.putAttribute(AttributeKey.DEBUG,
+		 * true); p.message("Current privileges: " + p.getPrivilege()); });
+		 */
 		put(Privilege.ADMIN, "rootwindow", (p, args) -> p.interfaces().sendRoot(Integer.parseInt(args[0])));
 		put(Privilege.ADMIN, "close", (p, args) -> p.interfaces().close(p.interfaces().activeRoot(), p.interfaces().mainComponent()));
 		put(Privilege.ADMIN, "lastchild", (p, args) -> p.message("Last child of %s is %d.", args[0], p.world().server().store().getIndex(3).getDescriptor().getLastFileId(Integer.parseInt(args[0]))));
@@ -282,8 +295,8 @@ public final class GameCommands {
 			}
 
 			p.getInventory().remove(new Item(itemId), true);
-			p.putattrib(AttributeKey.PK_POINTS, (int) p.attrib(AttributeKey.PK_POINTS, 0) + value);
-			p.message("You have sold the " + new Item(itemId).definition(p.world()).name + " for " + value + " points. You now have a total of " + p.attrib(AttributeKey.PK_POINTS, 0) + " points.");
+			p.putAttribute(AttributeKey.PK_POINTS, (int) p.attribute(AttributeKey.PK_POINTS, 0) + value);
+			p.message("You have sold the " + new Item(itemId).definition(p.world()).name + " for " + value + " points. You now have a total of " + p.attribute(AttributeKey.PK_POINTS, 0) + " points.");
 
 		});
 		put(Privilege.PLAYER, "item", (p, args) -> {
@@ -479,12 +492,12 @@ public final class GameCommands {
 			p.world().players().forEach(Player::logout);
 		});
 
-		put(Privilege.PLAYER, "pkp", (p, args) -> p.message("You currently have " + p.attrib(AttributeKey.PK_POINTS, 0) + " PK points."));
-		/*
-		 * put(Privilege.PLAYER, "openbank", (p, args) -> { if (inWilderness(p))
-		 * { p.message("You cannot do this while in the wilderness."); return; }
-		 * Bank.open(p); });
-		 */
+		put(Privilege.PLAYER, "pkp", (p, args) -> p.message("You currently have " + p.attribute(AttributeKey.PK_POINTS, 0) + " PK points."));
+
+		/*put(Privilege.DEVELOPER, "openbank", (p, args) -> {
+			p.getBank().open();
+
+		});*/
 
 		put(Privilege.ADMIN, "sound", (p, args) -> p.write(new PlaySound(Integer.parseInt(args[0]), 0)));
 		put(Privilege.ADMIN, "removenpcs", (p, args) -> p.world().npcs().forEach(n -> p.world().npcs().remove(n)));
