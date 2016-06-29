@@ -327,7 +327,7 @@ public abstract class Entity implements HitOrigin {
 		lock = LockType.NONE;
 	}
 
-	public abstract void hp(int hp, int exceed);
+	public abstract void setHp(int hp, int exceed);
 
 	public abstract int hp();
 
@@ -342,7 +342,7 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void heal(int amount, int exceed) {
-		hp(hp() + amount, exceed);
+		setHp(hp() + amount, exceed);
 	}
 
 	public Hit hit(HitOrigin origin, int hit) {
@@ -496,7 +496,7 @@ public abstract class Entity implements HitOrigin {
 					if (damage > hp())
 						damage = hp();
 
-					hp(hp() - damage, 0);
+					setHp(hp() - damage, 0);
 					sync.hit(hit.type().ordinal(), damage);
 
 					if (hit.graphic() >= 0)

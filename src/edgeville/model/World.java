@@ -108,7 +108,7 @@ public class World {
                     NpcSpawn[] s = gson.fromJson(new FileReader(spawn), NpcSpawn[].class);
                     for (NpcSpawn sp : s) {
                         Tile spawnTile = new Tile(sp.x, sp.z, sp.level);
-                        Npc npc = new Npc(sp.id, this, spawnTile);
+                        Npc npc = new Npc(sp.id, this, spawnTile, true);
                         npc.spawnDirection(sp.dir());
                         npc.walkRadius(sp.radius);
                         registerNpc(npc);

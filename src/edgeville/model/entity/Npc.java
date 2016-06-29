@@ -18,14 +18,16 @@ public class Npc extends Entity {
 	private boolean inViewport = true;
 	private NpcDefinition def;
 	private int hp;
+	private boolean respawn;
 
-	public Npc(int id, World world, Tile tile) {
+	public Npc(int id, World world, Tile tile, boolean respawn) {
 		super(world, tile);
 		this.id = id;
 		sync = new NpcSyncInfo(this);
 		spawnTile = tile;
 		hp = 100;
 		def = world.definitions().get(NpcDefinition.class, id);
+		this.respawn = respawn;
 	}
 
 	public void inViewport(boolean b) {
@@ -89,9 +91,13 @@ public class Npc extends Entity {
 	public int maxHp() {
 		return 100;
 	}
+	
+	public void setHp(int hp) {
+		setHp(hp, 0);
+	}
 
 	@Override
-	public void hp(int hp, int exceed) {
+	public void setHp(int hp, int exceed) {
 		this.hp = Math.min(maxHp() + exceed, hp);
 	}
 
@@ -112,7 +118,7 @@ public class Npc extends Entity {
 
 	@Override
 	protected void die() {
-		world.getEventHandler().addEvent(this, new NpcDeathEvent(this));
+		world.getEventHandler().addEvent(this, new NpcDeathEvent(this, respawn));
 	}
 
 	@Override

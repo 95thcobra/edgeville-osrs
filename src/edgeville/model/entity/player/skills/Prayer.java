@@ -12,7 +12,6 @@ public class Prayer {
 
 	public void togglePrayer(int buttonId) {
 		int varbit = 4100 + buttonId;
-		player.message("varbit: varbit");
 		boolean enabled = isPrayerOn(varbit);
 		
 		if (enabled) {

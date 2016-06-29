@@ -444,7 +444,7 @@ public class Player extends Entity {
 	}
 
 	@Override
-	public void hp(int hp, int exceed) {
+	public void setHp(int hp, int exceed) {
 		skills.levels()[Skills.HITPOINTS] = Math.max(0, Math.min(maxHp() + exceed, hp));
 		skills.update(Skills.HITPOINTS);
 	}

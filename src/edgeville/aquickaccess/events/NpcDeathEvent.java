@@ -11,36 +11,62 @@ import edgeville.model.entity.Player;
  */
 public class NpcDeathEvent extends Event {
 
-    private Npc npc;
-    private int tick = 0;
+	private Npc npc;
+	private boolean respawn;
+	private int tick;
+	Entity killer;
 
-    public NpcDeathEvent(Npc npc) {
-        this.npc = npc;
-    }
+	public NpcDeathEvent(Npc npc, boolean respawn) {
+		this.npc = npc;
+		this.respawn = respawn;
+		tick = 0;
+		killer = npc.killer();
+	}
 
-    @Override
-    public void execute(EventContainer container) {
-        switch(tick) {
-            case 0:
-                npc.lock();
-                break;
+	@Override
+	public void execute(EventContainer container) {
+		switch (tick) {
+		case 0:
+			npc.lock();
+			break;
 
-            case 1:
-                Entity killer = npc.killer();
-                if (killer instanceof Player) {
-                    killer.message("You have killed " + npc.def().name);
-                }
-                break;
+		case 1:
+			if (killer instanceof Player) {
+				killer.message("You have killed " + npc.def().name);
+			}
+			break;
 
-            case 2:
-                npc.animate(2304);
-                break;
+		case 2:
+			npc.animate(2304);
+			if (killer instanceof Player) {
+				((Player) killer).sound(getNpcDeathSound());
+			}
+			break;
 
-            case 5:
-                npc.world().unregisterNpc(npc);
-                stop();
-                break;
-        }
-        tick++;
-    }
+		case 5:
+			npc.world().unregisterNpc(npc);
+			if (!respawn) {
+				container.stop();
+			}
+			break;
+
+		case 30:
+			npc.setHp(100);
+			npc.unlock();
+			npc.world().registerNpc(npc);
+			container.stop();
+			break;
+		}
+		tick++;
+	}
+	
+	private int getNpcDeathSound() {
+		int soundId = -1;
+		switch(npc.id()) {
+		case 2005:
+			soundId = 403;
+			break;
+		}
+		return soundId;
+	}
 }

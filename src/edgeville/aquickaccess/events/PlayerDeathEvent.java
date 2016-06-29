@@ -66,7 +66,7 @@ public class PlayerDeathEvent extends Event {
 
                 player.graphic(-1);
                 player.animate(-1);
-                player.hp(100, 0);
+                player.setHp(100, 0);
                 break;
 
             case 7:
