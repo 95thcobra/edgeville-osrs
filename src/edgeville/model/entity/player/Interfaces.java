@@ -19,8 +19,8 @@ public class Interfaces {
 	public static final int PANE_RESIZABLE = 161;
 	// 164 horizontal bar
 
-	public static final int MAIN_COMPONENT_FIXED = 8;
-	public static final int MAIN_COMPONENT_RESIZABLE = 4;
+	public static final int MAIN_COMPONENT_FIXED = 18;
+	public static final int MAIN_COMPONENT_RESIZABLE = 7;
 
 	private Player player;
 	private Map<Integer, Integer> visible = new HashMap<>();
@@ -191,7 +191,7 @@ public class Interfaces {
 
 	public int mainComponent() {
 		// return resizable ? 9 : 18;
-		return resizable ? 7 : 18; // interfaces move with resizing on 7
+		return resizable ? MAIN_COMPONENT_RESIZABLE : MAIN_COMPONENT_FIXED; // interfaces move with resizing on 7
 	}
 
 	public void sendInterfaceString(int interfaceId, int stringId, String text) {

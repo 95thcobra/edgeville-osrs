@@ -1,10 +1,10 @@
 {
-  "username": "sky",
-  "displayName": "sky",
-  "password": "test",
+  "username": "gewga3423",
+  "displayName": "gewga3423",
+  "password": "g32a23g23g",
   "tile": {
-    "x": 3085,
-    "z": 3490,
+    "x": 3088,
+    "z": 3503,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -45,15 +45,9 @@
     null,
     null,
     null,
-    {
-      "id": 12006,
-      "amount": 1
-    },
     null,
-    {
-      "id": 12954,
-      "amount": 1
-    },
+    null,
+    null,
     null,
     null,
     null,
@@ -98,15 +92,9 @@
       null,
       null,
       null,
-      {
-        "id": 12006,
-        "amount": 1
-      },
       null,
-      {
-        "id": 12954,
-        "amount": 1
-      },
+      null,
+      null,
       null,
       null,
       null,
@@ -119,24 +107,12 @@
   },
   "varps": [
     {
-      "id": 83,
-      "value": 3135
-    },
-    {
-      "id": 173,
-      "value": 1
-    },
-    {
       "id": 300,
       "value": 1000
     },
     {
-      "id": 843,
-      "value": 20
-    },
-    {
       "id": 1055,
-      "value": 2560
+      "value": 2048
     },
     {
       "id": 1224,
@@ -149,108 +125,104 @@
     {
       "id": 1226,
       "value": 12
-    },
-    {
-      "id": 1227,
-      "value": 9
     }
   ],
   "skills": [
     {
-      "level": 99,
-      "xp": 1.3035019E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3035585E7
+      "level": 10,
+      "xp": 1154.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     }
   ]
 }

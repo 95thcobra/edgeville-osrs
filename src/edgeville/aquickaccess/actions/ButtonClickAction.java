@@ -38,6 +38,11 @@ public class ButtonClickAction {
 	public void handleButtonClick() {
 		switch (interfaceId) {
 
+		// Advanced settings.
+		case 60:
+			advancedSettings();
+			break;
+		
 		// XP Drops settings
 		case 137:
 			XPDropToggles();
@@ -72,6 +77,9 @@ public class ButtonClickAction {
 			if (buttonId == 66) {
 				player.pathQueue().toggleRunning();
 			}
+			if (buttonId == 21) {
+				player.interfaces().sendMain(60);
+			}
 			break;
 
 		// activate prayer
@@ -98,6 +106,19 @@ public class ButtonClickAction {
 	}
 
 	////////////////
+
+	private void advancedSettings() {
+		switch(buttonId) {
+		case 12:
+			boolean enabled = player.varps().getVarbit(Varbit.TRANSPARENT_CHAT_BOX) == 1;
+			player.varps().setVarbit(Varbit.TRANSPARENT_CHAT_BOX, enabled ? 0 : 1);
+			break;
+		case 14:
+			boolean clickThroughEnabled = player.varps().getVarbit(Varbit.CLICKTHROUGH_CHAT_BOX) == 1;
+			player.varps().setVarbit(Varbit.CLICKTHROUGH_CHAT_BOX, clickThroughEnabled ? 0 : 1);
+			break;
+		}
+	}
 
 	private void handleQuestTab() {
 		switch (buttonId) {

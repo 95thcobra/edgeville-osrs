@@ -27,6 +27,10 @@ public class EventHandler {
 	public void addEvent(Entity entity, Event event) {
 		addEvent(entity, 0, event);
 	}
+	
+	public void addEvent(Entity entity, boolean cancellable, Event event) {
+		addEvent(entity, 0, cancellable, event);
+	}
 
 	public void addEvent(Entity entity, int ticks, Event event) {
 		addEvent(entity, ticks, true, event);

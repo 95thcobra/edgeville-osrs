@@ -9,6 +9,7 @@ import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 import edgeville.aquickaccess.dialogue.DialogueHandler;
+import edgeville.aquickaccess.events.UpdateGameEvent;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.fs.ItemDefinition;
@@ -37,17 +38,31 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
-		put(Privilege.ADMIN, "getvarp", (p, args) -> {
-			p.message(""+p.varps().getVarp(Integer.parseInt(args[0])));
+		put(Privilege.ADMIN, "toggleroof", (p, args) -> {
+			p.write(new ToggleRoof(1));
+			p.message("toggleroof");
 		});
 		
+		put(Privilege.ADMIN, "debugon", (p, args) -> p.putattrib(AttributeKey.DEBUG, true));
+		put(Privilege.ADMIN, "debugoff", (p, args) -> p.putattrib(AttributeKey.DEBUG, false));
+
+		put(Privilege.ADMIN, "update", (p, args) -> {
+			int ticks = Integer.parseInt(args[0]);
+			p.write(new UpdateGame(ticks));
+			p.world().getEventHandler().addEvent(p, false, new UpdateGameEvent(p, ticks));
+		});
+
+		put(Privilege.ADMIN, "getvarp", (p, args) -> {
+			p.message("" + p.varps().getVarp(Integer.parseInt(args[0])));
+		});
+
 		put(Privilege.ADMIN, "skull", (p, args) -> {
 			p.setSkullHeadIcon(Integer.parseInt(args[0]));
 		});
 		put(Privilege.ADMIN, "prayer", (p, args) -> {
 			p.setPrayerHeadIcon(Integer.parseInt(args[0]));
 		});
-		
+
 		put(Privilege.ADMIN, "loopskulls", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 8; i++) {
@@ -339,8 +354,6 @@ public final class GameCommands {
 			p.message("%s resolves to %d.", name, id);
 			p.write(new PlayMusic(id));
 		});
-		put(Privilege.ADMIN, "debugon", (p, args) -> p.putattrib(AttributeKey.DEBUG, true));
-		put(Privilege.ADMIN, "debugoff", (p, args) -> p.putattrib(AttributeKey.DEBUG, false));
 
 		put(Privilege.PLAYER, "master", (p, args) -> {
 			if (inWilderness(p)) {

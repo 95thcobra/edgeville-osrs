@@ -20,6 +20,7 @@ public class Varbit {
 	public static final int XP_DROPS_ORB = 4702;
 
 	public static final int TRANSPARENT_CHAT_BOX = 4608;
-
+	public static final int CLICKTHROUGH_CHAT_BOX = 2570;
+	
 	public static final int IRONMAN = 1777;
 }

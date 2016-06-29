@@ -256,7 +256,7 @@ public class Player extends Entity {
 		looks.update();
 
 		// By default debug is on for admins
-		putattrib(AttributeKey.DEBUG, privilege == Privilege.ADMIN);
+		putattrib(AttributeKey.DEBUG, false/*privilege == Privilege.ADMIN*/);
 
 		// Sync varps
 		varps.syncNonzero();

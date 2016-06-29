@@ -7,9 +7,9 @@ import edgeville.model.entity.Player;
  */
 public abstract class Event {
 
-    public abstract void execute(EventContainer container);
+	public abstract void execute(EventContainer container);
 
-    public void stop() {
+	public void stop() {
 
-    }
+	}
 }

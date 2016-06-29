@@ -18,7 +18,9 @@ public enum Privilege {
     /**
      * A game administrator, also known as an owner or programmer or whatnot.
      */
-    ADMIN;
+    ADMIN,
+    
+    DEVELOPER;
 
     public boolean eligibleTo(Privilege p) {
         return ordinal() >= p.ordinal();
