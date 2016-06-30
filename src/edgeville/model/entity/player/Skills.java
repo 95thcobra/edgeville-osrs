@@ -12,221 +12,240 @@ import edgeville.util.Varbit;
  */
 public class Skills {
 
-    public static final int SKILL_COUNT = 24;
-    private static final int[] XP_TABLE = new int[100];
+	public static final int SKILL_COUNT = 24;
+	private static final int[] XP_TABLE = new int[100];
 
-    private double[] xps = new double[SKILL_COUNT];
-    private int[] levels = new int[SKILL_COUNT];
-    private Player player;
-    private int combat;
+	private double[] xps = new double[SKILL_COUNT];
+	private int[] levels = new int[SKILL_COUNT];
+	private Player player;
+	private int combat;
 
-    public Skills(Player player) {
-        this.player = player;
+	public Skills(Player player) {
+		this.player = player;
 
-        Arrays.fill(levels, 1);
+		Arrays.fill(levels, 1);
 
 		/* Hitpoints differs :) */
-        xps[3] = levelToXp(10);
-        levels[3] = 10;
-        recalculateCombat();
-    }
+		xps[3] = levelToXp(10);
+		levels[3] = 10;
+		recalculateCombat();
+	}
 
-    public void update() {
-        for (int skill = 0; skill < SKILL_COUNT; skill++) {
-            player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
-        }
-    }
+	public void update() {
+		for (int skill = 0; skill < SKILL_COUNT; skill++) {
+			player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
+		}
+	}
 
-    public int level(int skill) {
-        return levels[skill];
-    }
+	public int level(int skill) {
+		return levels[skill];
+	}
 
-    public int xpLevel(int skill) {
-        return xpToLevel((int) xps[skill]);
-    }
+	public int xpLevel(int skill) {
+		return xpToLevel((int) xps[skill]);
+	}
 
-    public int[] levels() {
-        return levels;
-    }
+	public int[] levels() {
+		return levels;
+	}
 
-    public double[] xp() {
-        return xps;
-    }
+	public double[] xp() {
+		return xps;
+	}
 
-    public void toggleXPCounter() {
-        boolean enabled = player.varps().getVarbit(Varbit.XP_DROPS_ORB) == 1;
-        player.varps().setVarbit(Varbit.XP_DROPS_ORB, enabled ? 0 : 1);
-        player.varps().setVarbit(Varbit.XP_DROPS_COUNTER, enabled ? 30 : 0);
-    }
+	public void toggleXPCounter() {
+		boolean enabled = player.varps().getVarbit(Varbit.XP_DROPS_ORB) == 1;
+		player.varps().setVarbit(Varbit.XP_DROPS_ORB, enabled ? 0 : 1);
+		player.varps().setVarbit(Varbit.XP_DROPS_COUNTER, enabled ? 30 : 0);
+	}
 
-    public void setXp(int skill, double amt) {
-        int oldLevel = xpToLevel((int) xps[skill]);
-        xps[skill] = Math.min(200000000, amt);
-        int newLevel = xpToLevel((int) xps[skill]);
-        recalculateCombat();
-        player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
-    }
+	public void setXp(int skill, double amt) {
+		int oldLevel = xpToLevel((int) xps[skill]);
+		xps[skill] = Math.min(200000000, amt);
+		int newLevel = xpToLevel((int) xps[skill]);
+		recalculateCombat();
+		player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
+	}
 
-    public void setLevel(int skill, int level) {
-        player.write(new UpdateSkill(skill, level, xpToLevel(level)));
-    }
+	public void setLevel(int skill, int level) {
+		player.write(new UpdateSkill(skill, level, xpToLevel(level)));
+	}
 
-    public void addXp(int skill, double amt) {
-        /*if (skill == ATTACK || skill == STRENGTH || skill == DEFENCE || skill == RANGED || skill == MAGIC || skill == HITPOINTS || skill == PRAYER) {
-            amt *= player.world().combatMultiplier();
-        } else {
-            amt *= player.world().skillingMultiplier();
-        }*/
+	public void decreaseLevelByTenPercent(int skill) {
+		int level = player.skills().level(skill);
+		player.skills().setLevel(skill, (int) Math.round(level * 0.9));
+		// player.skills().xpLevel(skill)
+	}
 
-        int oldLevel = xpToLevel((int) xps[skill]);
-        xps[skill] = Math.min(200000000, xps[skill] + amt);
-        int newLevel = xpToLevel((int) xps[skill]);
+	public void increaseLevelByTenPercent(int skill) {
+		int level = player.skills().level(skill);
+		player.skills().setLevel(skill, (int) Math.round(level * 1.1));
+	}
 
-        if (newLevel > oldLevel) {
-            if (levels[skill] < newLevel)
-                levels[skill] += newLevel - oldLevel;
-        }
+	public void addXp(int skill, double amt) {
+		/*
+		 * if (skill == ATTACK || skill == STRENGTH || skill == DEFENCE || skill
+		 * == RANGED || skill == MAGIC || skill == HITPOINTS || skill == PRAYER)
+		 * { amt *= player.world().combatMultiplier(); } else { amt *=
+		 * player.world().skillingMultiplier(); }
+		 */
 
-        recalculateCombat();
-        player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
-    }
+		int oldLevel = xpToLevel((int) xps[skill]);
+		xps[skill] = Math.min(200000000, xps[skill] + amt);
+		int newLevel = xpToLevel((int) xps[skill]);
 
-    public void update(int skill) {
-        player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
-    }
+		if (newLevel > oldLevel) {
+			if (levels[skill] < newLevel)
+				levels[skill] += newLevel - oldLevel;
+		}
 
-    public int internalIdOf(int skillId) {
-        return player.world().definitions().get(EnumDefinition.class, 1482).getInt(skillId);
-    }
+		recalculateCombat();
+		player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
+	}
 
-    public int toSkillId(int internalId) {
-        return player.world().definitions().get(EnumDefinition.class, 681).getInt(internalId);
-    }
+	public void update(int skill) {
+		player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
+	}
 
-    public String levelUpMessage(int skill, int level) {
-        int internal = internalIdOf(skill);
-        String first = player.world().definitions().get(EnumDefinition.class, 1477).getString(internal);
-        return first + " You have reached level " + level + ".";
-    }
+	public int internalIdOf(int skillId) {
+		return player.world().definitions().get(EnumDefinition.class, 1482).getInt(skillId);
+	}
 
-    public void alterSkill(int skill, int change, boolean relative) {
-        if (relative) {
-            levels[skill] += change;
-        } else {
-            if (change > 0 && levels[skill] < xpLevel(skill) + change) {
-                levels[skill] = xpLevel(skill) + change;
-            } else if (change < 0 && levels[skill] > xpLevel(skill) + change) {
-                levels[skill] = xpLevel(skill) + change;
-            }
-        }
-        update(skill);
-    }
+	public int toSkillId(int internalId) {
+		return player.world().definitions().get(EnumDefinition.class, 681).getInt(internalId);
+	}
 
-    public void replenishStats() {
-        for (int i = 0; i < SKILL_COUNT; i++) {
-            if (i == HITPOINTS || i == PRAYER) // Hitpoints does not replenish this way
-                continue;
+	public String levelUpMessage(int skill, int level) {
+		int internal = internalIdOf(skill);
+		String first = player.world().definitions().get(EnumDefinition.class, 1477).getString(internal);
+		return first + " You have reached level " + level + ".";
+	}
 
-            if (levels[i] < xpLevel(i)) {
-                levels[i]++;
-                update(i);
-            } else if (levels[i] > xpLevel(i)) {
-                levels[i]--;
-                update(i);
-            }
-        }
-    }
+	public void alterSkill(int skill, int change, boolean relative) {
+		if (relative) {
+			levels[skill] += change;
+		} else {
+			if (change > 0 && levels[skill] < xpLevel(skill) + change) {
+				levels[skill] = xpLevel(skill) + change;
+			} else if (change < 0 && levels[skill] > xpLevel(skill) + change) {
+				levels[skill] = xpLevel(skill) + change;
+			}
+		}
+		update(skill);
+	}
 
-    public void resetStats() {
-        for (int i = 0; i < SKILL_COUNT; i++) {
-            levels[i] = xpLevel(i);
-        }
-        update();
-    }
+	public void alterSkill(int skill, double changePercentage) {
+		levels[skill] = (int) Math.round(xpLevel(skill) * changePercentage);
+		update(skill);
+	}
 
-    public void restorePrayer() {
-        levels[PRAYER] = xpLevel(PRAYER);
-        player.write(new UpdateSkill(PRAYER, levels[PRAYER], (int) xps[PRAYER]));
-    }
+	public void replenishStats() {
+		for (int i = 0; i < SKILL_COUNT; i++) {
+			if (i == HITPOINTS || i == PRAYER) // Hitpoints does not replenish
+												// this way
+				continue;
 
-    public void recalculateCombat() {
-        int old = combat;
-        double defence = xpLevel(Skills.DEFENCE);
-        double attack = xpLevel(Skills.ATTACK);
-        double strength = xpLevel(Skills.STRENGTH);
-        double prayer = xpLevel(Skills.PRAYER);
-        double ranged = xpLevel(Skills.RANGED);
-        double magic = xpLevel(Skills.MAGIC);
-        double hp = xpLevel(Skills.HITPOINTS);
+			if (levels[i] < xpLevel(i)) {
+				levels[i]++;
+				update(i);
+			} else if (levels[i] > xpLevel(i)) {
+				levels[i]--;
+				update(i);
+			}
+		}
+	}
 
-        int baseMelee = (int) Math.floor(0.25 * (defence + hp + Math.floor(prayer / 2d)) + 0.325 * (attack + strength));
-        int baseRanged = (int) Math.floor(0.25 * (defence + hp + Math.floor(prayer / 2d)) + 0.325 * (Math.floor(ranged / 2) + ranged));
-        int baseMage = (int) Math.floor(0.25 * (defence + hp + Math.floor(prayer / 2d)) + 0.325 * (Math.floor(magic / 2) + magic));
-        combat = Math.max(Math.max(baseMelee, baseMage), baseRanged);
+	public void resetStats() {
+		for (int i = 0; i < SKILL_COUNT; i++) {
+			levels[i] = xpLevel(i);
+		}
+		update();
+	}
 
-        // If our combat changed, we need to update our looks as that contains our cb level too.
-        if (combat != old && player.looks() != null) {
-            player.looks().update();
+	public void restorePrayer() {
+		levels[PRAYER] = xpLevel(PRAYER);
+		player.write(new UpdateSkill(PRAYER, levels[PRAYER], (int) xps[PRAYER]));
+	}
 
-            // Make the player's attack panel up to date
-            player.updateWeaponInterface();
-        }
-    }
+	public void recalculateCombat() {
+		int old = combat;
+		double defence = xpLevel(Skills.DEFENCE);
+		double attack = xpLevel(Skills.ATTACK);
+		double strength = xpLevel(Skills.STRENGTH);
+		double prayer = xpLevel(Skills.PRAYER);
+		double ranged = xpLevel(Skills.RANGED);
+		double magic = xpLevel(Skills.MAGIC);
+		double hp = xpLevel(Skills.HITPOINTS);
 
-    public void disableAllPrayers() {
-        player.varps().setVarbit(Varbit.PROTECT_FROM_MELEE, 0);
-        player.varps().setVarbit(Varbit.PROTECT_FROM_MISSILES, 0);
-        player.varps().setVarbit(Varbit.PROTECT_FROM_MAGIC, 0);
-    }
+		int baseMelee = (int) Math.floor(0.25 * (defence + hp + Math.floor(prayer / 2d)) + 0.325 * (attack + strength));
+		int baseRanged = (int) Math.floor(0.25 * (defence + hp + Math.floor(prayer / 2d)) + 0.325 * (Math.floor(ranged / 2) + ranged));
+		int baseMage = (int) Math.floor(0.25 * (defence + hp + Math.floor(prayer / 2d)) + 0.325 * (Math.floor(magic / 2) + magic));
+		combat = Math.max(Math.max(baseMelee, baseMage), baseRanged);
 
-    public int combatLevel() {
-        return combat;
-    }
+		// If our combat changed, we need to update our looks as that contains
+		// our cb level too.
+		if (combat != old && player.looks() != null) {
+			player.looks().update();
 
-    public static int xpToLevel(int xp) {
-        int lv = 1;
-        for (; lv < 100; lv++) {
-            if (xp < XP_TABLE[lv])
-                break;
-        }
-        return lv > 99 ? 99 : lv;
-    }
+			// Make the player's attack panel up to date
+			player.updateWeaponInterface();
+		}
+	}
 
-    public static int levelToXp(int level) {
-        return XP_TABLE[level - 1];
-    }
+	public void disableAllPrayers() {
+		player.varps().setVarbit(Varbit.PROTECT_FROM_MELEE, 0);
+		player.varps().setVarbit(Varbit.PROTECT_FROM_MISSILES, 0);
+		player.varps().setVarbit(Varbit.PROTECT_FROM_MAGIC, 0);
+	}
 
-    static {
-        // Calculate XP table
-        for (int lv = 1, points = 0; lv < 100; lv++) {
-            points += Math.floor(lv + 300 * Math.pow(2, lv / 7D));
-            XP_TABLE[lv] = points / 4;
-        }
-    }
+	public int combatLevel() {
+		return combat;
+	}
 
-    public static final int ATTACK = 0;
-    public static final int DEFENCE = 1;
-    public static final int STRENGTH = 2;
-    public static final int HITPOINTS = 3;
-    public static final int RANGED = 4;
-    public static final int PRAYER = 5;
-    public static final int MAGIC = 6;
-    public static final int COOKING = 7;
-    public static final int WOODCUTTING = 8;
-    public static final int FLETCHING = 9;
-    public static final int FISHING = 10;
-    public static final int FIREMAKING = 11;
-    public static final int CRAFTING = 12;
-    public static final int SMITHING = 13;
-    public static final int MINING = 14;
-    public static final int HERBLORE = 15;
-    public static final int AGILITY = 16;
-    public static final int THIEVING = 17;
-    public static final int SLAYER = 18;
-    public static final int FARMING = 19;
-    public static final int RUNECRAFTING = 20;
-    public static final int HUNTER = 21;
-    public static final int CONSTRUCTION = 22;
-    public static final int SUMMONING = 23;
+	public static int xpToLevel(int xp) {
+		int lv = 1;
+		for (; lv < 100; lv++) {
+			if (xp < XP_TABLE[lv])
+				break;
+		}
+		return lv > 99 ? 99 : lv;
+	}
+
+	public static int levelToXp(int level) {
+		return XP_TABLE[level - 1];
+	}
+
+	static {
+		// Calculate XP table
+		for (int lv = 1, points = 0; lv < 100; lv++) {
+			points += Math.floor(lv + 300 * Math.pow(2, lv / 7D));
+			XP_TABLE[lv] = points / 4;
+		}
+	}
+
+	public static final int ATTACK = 0;
+	public static final int DEFENCE = 1;
+	public static final int STRENGTH = 2;
+	public static final int HITPOINTS = 3;
+	public static final int RANGED = 4;
+	public static final int PRAYER = 5;
+	public static final int MAGIC = 6;
+	public static final int COOKING = 7;
+	public static final int WOODCUTTING = 8;
+	public static final int FLETCHING = 9;
+	public static final int FISHING = 10;
+	public static final int FIREMAKING = 11;
+	public static final int CRAFTING = 12;
+	public static final int SMITHING = 13;
+	public static final int MINING = 14;
+	public static final int HERBLORE = 15;
+	public static final int AGILITY = 16;
+	public static final int THIEVING = 17;
+	public static final int SLAYER = 18;
+	public static final int FARMING = 19;
+	public static final int RUNECRAFTING = 20;
+	public static final int HUNTER = 21;
+	public static final int CONSTRUCTION = 22;
+	public static final int SUMMONING = 23;
 
 }

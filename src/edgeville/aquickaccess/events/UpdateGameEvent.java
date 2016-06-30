@@ -8,6 +8,7 @@ import edgeville.event.EventContainer;
 import edgeville.model.entity.Player;
 import edgeville.net.message.game.AddGroundItem;
 import edgeville.net.message.game.SetMapBase;
+import edgeville.services.serializers.PlayerSerializer;
 
 public class UpdateGameEvent extends Event {
 
@@ -25,13 +26,16 @@ public class UpdateGameEvent extends Event {
 	public void execute(EventContainer container) {
 		if (tick == ticksForRestart) {
 			player.world().players().forEach(p -> {
-				p.logout();
+				//p.logout();
+				p.savePlayer();
 			});
 
 			try {
-				ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", "Run Server.bat");
-				processBuilder.directory(new File("./"));
-				processBuilder.start();
+				//Runtime.getRuntime().exec("run.bat /C start");
+				Runtime.getRuntime().exec("cmd /c start run.bat");
+				//ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", "run.bat");
+				//processBuilder.directory(new File("./"));
+				//processBuilder.start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

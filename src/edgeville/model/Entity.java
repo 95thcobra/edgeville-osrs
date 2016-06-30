@@ -3,11 +3,13 @@ package edgeville.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.combat.Graphic;
 import edgeville.model.entity.*;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.NpcSyncInfo;
 import edgeville.model.entity.player.PlayerSyncInfo;
 import edgeville.model.entity.player.Skills;
+import edgeville.model.entity.player.Skulls;
 import edgeville.model.item.Item;
 import edgeville.model.map.*;
 import edgeville.net.message.game.PlaySound;
@@ -132,6 +134,7 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void stun(int time) {
+		graphic(254, 100, 0);
 		if (!timers.has(TimerKey.STUNNED)) {
 			timers.extendOrRegister(TimerKey.STUNNED, time);
 			pathQueue.clear();
@@ -142,6 +145,10 @@ public abstract class Entity implements HitOrigin {
 
 	public void graphic(int id, int height, int delay) {
 		sync.graphic(id, height, delay);
+	}
+	
+	public void graphic(Graphic graphic) {
+		graphic(graphic.getId(), graphic.getHeight(), graphic.getDelay());
 	}
 
 	public <T> T getAttribute(AttributeKey key) {
@@ -292,7 +299,7 @@ public abstract class Entity implements HitOrigin {
 																// determining
 																// the size we
 																// need..
-		
+
 		return target.canExit(from.x, from.z, 1, clipAround, e.tile.x - 5, e.tile.z - 5);
 	}
 
@@ -372,20 +379,27 @@ public abstract class Entity implements HitOrigin {
 		// 1.33 on controlled for each skill.
 		if (origin instanceof Player) {
 			((Player) origin).skills().addXp(Skills.ATTACK, hit * 4);
-			((Player) origin).sound(((Entity)origin).getAttackSound());
+			((Player) origin).sound(((Entity) origin).getAttackSound());
+			if (this instanceof Player) {
+				((Player) origin).setSkullHeadIcon(Skulls.WHITE_SKUL.getSkullId());
+				((Player) origin).timers().extendOrRegister(TimerKey.SKULL, 2000); // 20
+			}
 		}
-		
-		if (this instanceof Player) {
-			((Player)this).sound(((Entity)origin).getAttackSound());
+
+		if (this instanceof Player)
+
+		{
+			((Player) this).sound(((Entity) origin).getAttackSound());
 		}
 
 		return h;
+
 	}
 
 	public Hit hit(HitOrigin origin, int hit, Hit.Type type) {
 		return hit(origin, hit, 0, type);
 	}
-	
+
 	public abstract int getAttackSound();
 
 	public abstract int getBlockSound();
@@ -395,7 +409,7 @@ public abstract class Entity implements HitOrigin {
 	public void blockHit() {
 		if (getAttribute(AttributeKey.LAST_ATTACKED_BY) instanceof Player) {
 			Player target = getAttribute(AttributeKey.LAST_ATTACKED_BY);
-			//target.message("playing sound");
+			// target.message("playing sound");
 			target.sound(getBlockSound());
 		}
 		if (this instanceof Player) {
@@ -422,7 +436,7 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void stopActions(boolean cancelMoving) {
-		//this.message("stopping actions...");
+		// this.message("stopping actions...");
 		world.getEventHandler().stopCancellableEvents(this);
 		// world.server().scriptExecutor().interruptFor(this);
 		sync.faceEntity(null);

@@ -7,6 +7,7 @@ import edgeville.model.Entity;
 import edgeville.model.Locations;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
+import edgeville.model.entity.player.Skills;
 import edgeville.model.entity.player.skills.Prayer;
 import edgeville.model.item.Item;
 import edgeville.net.message.game.InvokeScript;
@@ -42,7 +43,7 @@ public class ButtonClickAction {
 		case 60:
 			advancedSettings();
 			break;
-		
+
 		// XP Drops settings
 		case 137:
 			XPDropToggles();
@@ -89,7 +90,7 @@ public class ButtonClickAction {
 
 		// Quest tab
 		case 274:
-			//handleQuestTab();
+			// handleQuestTab();
 			player.getQuestTab().clickButton(buttonId);
 			break;
 
@@ -108,7 +109,7 @@ public class ButtonClickAction {
 	////////////////
 
 	private void advancedSettings() {
-		switch(buttonId) {
+		switch (buttonId) {
 		case 12:
 			boolean enabled = player.varps().getVarbit(Varbit.TRANSPARENT_CHAT_BOX) == 1;
 			player.varps().setVarbit(Varbit.TRANSPARENT_CHAT_BOX, enabled ? 0 : 1);
@@ -237,9 +238,39 @@ public class ButtonClickAction {
 			if (isGmaulAttack()) {
 				return;
 			}
+			if (specialSpecialAttack()) {
+				//varps.setVarp(Varp.SPECIAL_ENABLED, isSpecialAttackEnabled() ? 0 : 1);
+				return;
+			}
 			player.toggleSpecialAttack();
 			break;
 		}
+	}
+
+	private boolean specialSpecialAttack() {
+		//player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
+		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+		if (weapon == null) {
+			return false;
+		}
+		switch (weapon.id()) {
+		// dragon battle axe
+		case 1377:
+			if (!player.drainSpecialEnergy(100)) {
+				return true;
+			}
+			player.skills().alterSkill(Skills.ATTACK, 0.9);
+			player.skills().alterSkill(Skills.DEFENCE, 0.9);
+			player.skills().alterSkill(Skills.RANGED, 0.9);
+			player.skills().alterSkill(Skills.MAGIC, 0.9);
+			player.skills().alterSkill(Skills.STRENGTH, 1.1);
+			player.graphic(246);
+			break;
+		// Not handled
+		default:
+			return false;
+		}
+		return true;
 	}
 
 	private boolean isGmaulAttack() {

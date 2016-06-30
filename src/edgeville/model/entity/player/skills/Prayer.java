@@ -2,12 +2,18 @@ package edgeville.model.entity.player.skills;
 
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Skills;
+import edgeville.util.Varp;
 
 public class Prayer {
 	private Player player;
 
 	public Prayer(Player player) {
 		this.player = player;
+		prepare();
+	}
+	
+	private void prepare() {
+		player.varps().setVarp(Varp.PIETY_AND_CHILVALRY, 16);
 	}
 
 	public void togglePrayer(int buttonId) {

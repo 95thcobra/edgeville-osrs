@@ -20,4 +20,5 @@ varp 0 - 2000 turn text green
 
 loopvarp 2 turns all spellbook spells on
 
+varp 1050 16 = piety/chilvary
 

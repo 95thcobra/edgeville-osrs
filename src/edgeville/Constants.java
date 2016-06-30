@@ -61,4 +61,6 @@ public class Constants {
 	public static final int REDIS_TIMEOUT = 2000;
 
 	public static final boolean MIGRATIONS_ENABLED = false;
+
+	public static final boolean DROP_ITEMS_ON_DEATH = false;
 }

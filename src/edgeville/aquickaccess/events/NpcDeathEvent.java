@@ -37,7 +37,7 @@ public class NpcDeathEvent extends Event {
 			break;
 
 		case 2:
-			npc.animate(2304);
+			npc.animate(getNpcDeathAnim());
 			if (killer instanceof Player) {
 				((Player) killer).sound(getNpcDeathSound());
 			}
@@ -58,6 +58,16 @@ public class NpcDeathEvent extends Event {
 			break;
 		}
 		tick++;
+	}
+	
+	private int getNpcDeathAnim() {
+		int animId = 2304;
+		switch(npc.id()) {
+		case 2005:
+			animId = 92;
+			break;
+		}
+		return animId;
 	}
 	
 	private int getNpcDeathSound() {

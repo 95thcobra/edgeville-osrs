@@ -24,6 +24,7 @@ public class TeleportEvent extends Event {
     public void execute(EventContainer container) {
         switch (tick) {
             case 0:
+            	player.sound(200);
                 player.graphic(111, 92, 0);
                 player.animate(714);
                 break;
@@ -32,6 +33,7 @@ public class TeleportEvent extends Event {
                 break;
             case 4:
                 player.animate(715);
+                player.sound(201);
                 break;
             case 5:
                 stop();

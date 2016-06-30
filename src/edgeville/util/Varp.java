@@ -21,5 +21,7 @@ public class Varp {
 	////
 
 	public static final int PRAYER_ORB = 375;
+	
+	public static final int PIETY_AND_CHILVALRY = 1050;
 
 }

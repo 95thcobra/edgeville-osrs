@@ -38,16 +38,42 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		// REAL COMMANDS
+		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
+		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
+		put(Privilege.ADMIN, "spec", (p, args) -> p.varps().setVarp(300, 100000));
+		
+		put(Privilege.ADMIN, "emote", (p, args) -> p.animate(Integer.parseInt(args[0])));
+		put(Privilege.ADMIN, "anim", (p, args) -> p.animate(Integer.parseInt(args[0])));
+		put(Privilege.ADMIN, "gfx", (p, args) -> p.graphic(Integer.parseInt(args[0])));
+		put(Privilege.ADMIN, "graphic", (p, args) -> p.graphic(Integer.parseInt(args[0])));
+		put(Privilege.ADMIN, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
+		
+		///////////
+		
+		
+		
+		
 		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
-		/*
-		 * put(Privilege.PLAYER, "invoke", (p, args) -> { p.write(new
-		 * InvokeScript(108, new Object[] { "Enter Amount:" })); });
-		 * put(Privilege.PLAYER, "invoketest", (p, args) -> { p.write(new
-		 * InvokeScript(532, new Object[] { "toggleroof" })); });
-		 */
+		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
+
 		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
 		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
 
+		put(Privilege.ADMIN, "scriptloop", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 8; i++) {
+					p.write(new InvokeScript(Integer.parseInt(args[0]), 1));
+					try {
+						Thread.sleep(300);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		});
+		
 		put(Privilege.ADMIN, "update", (p, args) -> {
 			int ticks = Integer.parseInt(args[0]);
 			p.write(new UpdateGame(ticks));
@@ -186,10 +212,7 @@ public final class GameCommands {
 				p.move(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args.length > 2 ? Integer.parseInt(args[2]) : 0);
 			}
 		});
-		put(Privilege.PLAYER, "anim", (p, args) -> p.animate(Integer.parseInt(args[0])));
-		put(Privilege.PLAYER, "gfx", (p, args) -> p.graphic(Integer.parseInt(args[0])));
-		put(Privilege.PLAYER, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
-		put(Privilege.PLAYER, "up", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
+	put(Privilege.PLAYER, "up", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
 		put(Privilege.PLAYER, "down", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.max(0, p.getTile().level - 1)));
 		/*
 		 * put(Privilege.PLAYER, "scripts", (p, args) -> { new Thread(() -> {

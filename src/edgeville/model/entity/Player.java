@@ -95,6 +95,37 @@ public class Player extends Entity {
 		return questTab;
 	}
 
+	private int kills;
+	private int deaths;
+
+	public int getKills() {
+		return kills;
+	}
+
+	public void setKills(int kills) {
+		this.kills = kills;
+		this.getQuestTab().updateKills();
+	}
+
+	public void incrementKills() {
+		this.kills += 1;
+		this.getQuestTab().updateKills();
+	}
+
+	public void incrementDeaths() {
+		this.deaths += 1;
+		this.getQuestTab().updateDeaths();
+	}
+
+	public int getDeaths() {
+		return deaths;
+	}
+
+	public void setDeaths(int deaths) {
+		this.deaths = deaths;
+		this.getQuestTab().updateDeaths();
+	}
+
 	/**
 	 * The map which was recently sent to show
 	 */
@@ -234,6 +265,10 @@ public class Player extends Entity {
 		varps.setVarp(Varp.SPECIAL_ENABLED, isSpecialAttackEnabled() ? 0 : 1);
 	}
 
+	public void turnOffSpecialAttack() {
+		varps.setVarp(Varp.SPECIAL_ENABLED, 0);
+	}
+
 	public boolean isSpecialAttackEnabled() {
 		return varps.getVarp(Varp.SPECIAL_ENABLED) == 1;
 	}
@@ -294,6 +329,9 @@ public class Player extends Entity {
 		// Start energy regenerate timer
 		timers().register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
 
+		// Replenish stats timer
+		timers().register(TimerKey.STAT_REPLENISH, 100);
+		
 		// quest tab
 		questTab.prepareQuestTab();
 
@@ -550,23 +588,43 @@ public class Player extends Entity {
 			Map.Entry<TimerKey, Timer> entry = it.next();
 			if (entry.getValue().ticks() < 1) {
 				TimerKey key = entry.getKey();
-				it.remove();
 
+				switch (key) {
+				case SPECIAL_ENERGY_RECHARGE:
+					int currentEnergy = varps().getVarp(Varp.SPECIAL_ENERGY);
+					varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
+					timers.register(key, 50);
+					break;
+				case SKULL:
+					if (getSkullHeadIcon() == Skulls.WHITE_SKUL.getSkullId()) {
+						setSkullHeadIcon(-1);
+					}
+					break;
+				case STAT_REPLENISH:
+					skills.replenishStats();
+					timers.register(key, 100);
+					break;
+
+				}
+
+				it.remove();
 				// world.server().scriptRepository().triggerTimer(this, key);
 			}
 		}
 
 		// Regenerate special energy
-		if (!timers().has(TimerKey.SPECIAL_ENERGY_RECHARGE)) {
-			int currentEnergy = varps().getVarp(Varp.SPECIAL_ENERGY);
-			varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
-			timers.register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
-		}
+		/*
+		 * if (!timers().has(TimerKey.SPECIAL_ENERGY_RECHARGE)) { int
+		 * currentEnergy = varps().getVarp(Varp.SPECIAL_ENERGY);
+		 * varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy +
+		 * 100)); timers.register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50); }
+		 */
 
 		// If timer runs out and headicon is white skull then remove.
-		if (!timers().has(TimerKey.SKULL) && getSkullHeadIcon() == Skulls.WHITE_SKUL.getSkullId()) {
-			setSkullHeadIcon(-1);
-		}
+		/*
+		 * if (!timers().has(TimerKey.SKULL) && getSkullHeadIcon() ==
+		 * Skulls.WHITE_SKUL.getSkullId()) { setSkullHeadIcon(-1); }
+		 */
 
 		// Players online in questtab
 		questTab.sendQuestTabTitle();
@@ -622,6 +680,16 @@ public class Player extends Entity {
 			write(new SetItems(95, bank.getBankItems()));
 			bank.getBankItems().clean();
 		}
+	}
+
+	public boolean drainSpecialEnergy(int amount) {
+		turnOffSpecialAttack();
+		if (getSpecialEnergyAmount() < amount * 10) {
+			message("You do not have enough special energy.");
+			return false;
+		}
+		setSpecialEnergyAmount(getSpecialEnergyAmount() - (amount * 10));
+		return true;
 	}
 
 	public void updateWeaponInterface() {
@@ -714,6 +782,10 @@ public class Player extends Entity {
 		return soundId;
 	}
 
+	public void savePlayer() {
+		world().server().service(PlayerSerializer.class, true).get().savePlayer(this);
+	}
+
 	@Override
 	public int getBlockAnim() {
 		int animationId = 424;
@@ -742,5 +814,11 @@ public class Player extends Entity {
 		}
 
 		return animationId;
+	}
+
+	public void messageDebug(String text) {
+		if (isDebug()) {
+			message(text);
+		}
 	}
 }

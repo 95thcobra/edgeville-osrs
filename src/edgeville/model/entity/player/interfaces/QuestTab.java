@@ -3,6 +3,7 @@ package edgeville.model.entity.player.interfaces;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Loadout;
 import edgeville.net.message.game.InterfaceText;
+import edgeville.util.CombatFormula;
 
 public class QuestTab {
 	private Player player;
@@ -14,7 +15,19 @@ public class QuestTab {
 	public void sendQuestTabTitle() {
 		player.interfaces().sendInterfaceString(274, 10, "Players online: " + player.world().getPlayersOnline());
 	}
+	
+	public void updateMaxHit(int maxHit) {
+		player.interfaces().sendInterfaceString(274, 25, "Max hit: " + maxHit);
+	}
 
+	public void updateKills() {
+		player.interfaces().sendInterfaceString(274, 22, "Kills: " + player.getKills());
+	}
+	
+	public void updateDeaths() {
+		player.interfaces().sendInterfaceString(274, 23, "Deaths: " + player.getDeaths());
+	}
+	
 	public void prepareQuestTab() {
 		final int questTabInterfaceId = 274;
 
@@ -30,8 +43,13 @@ public class QuestTab {
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 19, "Save loadout");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 20, "Load loadout");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 21, "");
+		updateKills();//22
+		updateDeaths();//23
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "");
+		updateMaxHit(-1);//25
 		
-		for (int child = 21; child < 143; child++) {
+		for (int child = 26; child < 143; child++) {
 			player.write(new InterfaceText(questTabInterfaceId, child, ""));
 		}
 	}

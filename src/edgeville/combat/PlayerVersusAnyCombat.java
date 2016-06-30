@@ -61,12 +61,6 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGER, getEntity());
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
-
-		if (target instanceof Player) {
-			player.setSkullHeadIcon(Skulls.WHITE_SKUL.getSkullId());
-			player.timers().extendOrRegister(TimerKey.SKULL, 2000); // 20
-																	// minutes
-		}
 	}
 
 	@Override
@@ -90,6 +84,9 @@ public class PlayerVersusAnyCombat extends Combat {
 			boolean success = AccuracyFormula.doesHit(((Player) getEntity()), getTarget(), CombatStyle.MELEE);
 
 			int max = CombatFormula.maximumMeleeHit(((Player) getEntity()));
+			// if (player.isDebug()) {
+			player.getQuestTab().updateMaxHit(max);
+			// }
 			int hit = getEntity().world().random(max);
 
 			getTarget().hit(getEntity(), success ? hit : 0);
@@ -100,27 +97,39 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	public void doMeleeSpecial(Player player, int weaponId) {
-		switch (weaponId) {
-
-		// dds
-		case 5698:
-			player.timers().register(TimerKey.COMBAT_ATTACK, 5);
-
-			if (!drainSpecialEnergy(player, 25)) {
-				return;
-			}
-
-			player.animate(1062);
-			player.graphic(252, 92, 0);
-
-			double max = CombatFormula.maximumMeleeHit(player) * 1.15;
-			int hit = player.world().random().nextInt((int) Math.round(max));
-			int hit2 = player.world().random().nextInt((int) Math.round(max));
-
-			target.hit(player, hit);
-			target.hit(player, hit2);
-			break;
+		player.timers().register(TimerKey.COMBAT_ATTACK, 5);
+		SpecialAttacks specialAttack = SpecialAttacks.getSpecialAttack(player, weaponId);
+		if (specialAttack == null) {
+			return;
 		}
+		if (!drainSpecialEnergy(player, specialAttack.getSpecialDrain())) {
+			return;
+		}
+		player.animate(specialAttack.getAnimationId());
+		if (specialAttack.getGfx() != null) {
+			player.graphic(specialAttack.getGfx());
+		}
+		if (specialAttack.getOpponentGfx() != null) {
+			target.graphic(specialAttack.getOpponentGfx());
+		}
+
+		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
+		int hit = player.world().random().nextInt((int) Math.round(max));
+
+		if (specialAttack.isHits()) {
+			// double max = CombatFormula.maximumMeleeHit(player) *
+			// specialAttack.getMaxHitMultiplier();
+			// int hit = player.world().random().nextInt((int) Math.round(max));
+			target.hit(player, hit);
+
+			if (specialAttack.isDoubleHit()) {
+				int hit2 = player.world().random().nextInt((int) Math.round(max));
+				target.hit(player, hit2);
+			}
+		}
+
+		// Do extra action
+		specialAttack.action(player, target, hit);
 	}
 
 	@Override
@@ -238,12 +247,6 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	private boolean drainSpecialEnergy(Player player, int amount) {
-		player.toggleSpecialAttack();
-		if (player.getSpecialEnergyAmount() < amount * 10) {
-			player.message("You do not have enough special energy.");
-			return false;
-		}
-		player.setSpecialEnergyAmount(player.getSpecialEnergyAmount() - (amount * 10));
-		return true;
+		return player.drainSpecialEnergy(amount);
 	}
 }

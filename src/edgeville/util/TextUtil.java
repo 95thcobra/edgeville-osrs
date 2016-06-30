@@ -4,7 +4,7 @@ public class TextUtil {
 	public enum Colors {
 		BLACK("000000"),
 		BLUE("0066ff"),
-		RED("00AEDB");
+		RED("FF0000");
 		
 		private String hex;
 		
