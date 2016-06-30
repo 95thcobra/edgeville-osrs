@@ -588,12 +588,13 @@ public class Player extends Entity {
 			Map.Entry<TimerKey, Timer> entry = it.next();
 			if (entry.getValue().ticks() < 1) {
 				TimerKey key = entry.getKey();
-
+				it.remove();
+				
 				switch (key) {
 				case SPECIAL_ENERGY_RECHARGE:
 					int currentEnergy = varps().getVarp(Varp.SPECIAL_ENERGY);
 					varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
-					timers.register(key, 50);
+					timers.register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
 					break;
 				case SKULL:
 					if (getSkullHeadIcon() == Skulls.WHITE_SKUL.getSkullId()) {
@@ -602,12 +603,10 @@ public class Player extends Entity {
 					break;
 				case STAT_REPLENISH:
 					skills.replenishStats();
-					timers.register(key, 100);
+					timers.register(TimerKey.STAT_REPLENISH, 100);
 					break;
 
 				}
-
-				it.remove();
 				// world.server().scriptRepository().triggerTimer(this, key);
 			}
 		}

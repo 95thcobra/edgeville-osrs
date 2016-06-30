@@ -49,6 +49,21 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "graphic", (p, args) -> p.graphic(Integer.parseInt(args[0])));
 		put(Privilege.ADMIN, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
 		
+		put(Privilege.PLAYER, "empty", (p, args) -> p.getInventory().empty());
+		put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().playerByName(glue(args)).get().getTile()));
+		put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().playerByName(glue(args)).get().move(p.getTile()));
+		
+		
+		put(Privilege.MODERATOR, "projectile", (p, args) -> {
+		int distance = 5;
+		int cyclesPerTile = 5;
+		int baseDelay = 32;
+		int startHeight = 35;
+		int endHeight = 36;
+		int curve = 15;
+		int graphic = 228;
+		p.world().spawnProjectile(p.getTile(), p.getAttribute(AttributeKey.LAST_ATTACKED_BY), Integer.parseInt(args[0]), startHeight, endHeight, baseDelay, 10000, curve, 105);
+		});
 		///////////
 		
 		
@@ -407,9 +422,6 @@ public final class GameCommands {
 		});
 		put(Privilege.ADMIN, "addxp", (p, args) -> p.skills().addXp(Integer.valueOf(args[0]), Integer.valueOf(args[1])));
 		put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p, Integer.valueOf(args[0]), Hit.Type.REGULAR));
-		put(Privilege.PLAYER, "empty", (p, args) -> p.getInventory().empty());
-		put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().playerByName(glue(args)).get().getTile()));
-		put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().playerByName(glue(args)).get().move(p.getTile()));
 		put(Privilege.ADMIN, "maxspec", (p, args) -> p.varps().setVarp(Varp.SPECIAL_ENERGY, 1000));
 		put(Privilege.ADMIN, "finditem", (p, args) -> {
 			String s = glue(args);

@@ -79,6 +79,14 @@ public class JSONFileSerializer extends PlayerSerializer {
 			Privilege privilege = Privilege.valueOf(rootObject.get("privilege").getAsString());
 			Tile tile = gson.fromJson(rootObject.get("tile"), Tile.class);
 			int migration = rootObject.get("migration").getAsInt();
+			JsonElement kills = rootObject.get("kills");
+			JsonElement deaths = rootObject.get("deaths");
+			if (kills != null) {
+				player.setKills(kills.getAsInt());
+			}
+			if (deaths != null) {
+				player.setDeaths(deaths.getAsInt());
+			}
 			
 			// Debug
 			player.setDebug(rootObject.get("debug").getAsBoolean());
@@ -162,7 +170,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("skullIcon", player.getSkullHeadIcon());
 		jsonObject.addProperty("prayerIcon", player.getPrayerHeadIcon());
 		jsonObject.addProperty("debug", player.isDebug());
-
+		jsonObject.addProperty("kills", player.getKills());
+		jsonObject.addProperty("deaths", player.getDeaths());
+		
 		/* Inventory */
 		JsonArray inventory = new JsonArray();
 		for (int i = 0; i < player.getInventory().size(); i++) {

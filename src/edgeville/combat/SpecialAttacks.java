@@ -12,7 +12,7 @@ public enum SpecialAttacks {
 	DRAGON_SCIMITAR(4587, 1872, new Graphic(347, 100, 0), 55, 1, false),
 	DRAGON_SPEAR(1249, 1064, new Graphic(253, 100, 0), null, 25, 1, false, false),
 	DRAGON_HALBERD(3204, 1203, new Graphic(1232, 100, 0), null, 25, 1, false, false),
-	DRAGON_LONGSWORD(1305, 1058, new Graphic(-1, 92, 0), 25, 1.15, false),
+	DRAGON_LONGSWORD(1305, 1058, new Graphic(248, 92, 0), 25, 1.15, false),
 	ABYSSAL_WHIP(4151, 1658, null, new Graphic(341, 100, 0), 25, 1.15, false),
 	TENTACLE_WHIP(12006, 1658, null, new Graphic(341, 100, 0), 25, 1.15, false),
 	DRAGON_MACE(1434, 1060, new Graphic(251, 100, 0), null, 25, 1.15, false),
