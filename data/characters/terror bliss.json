@@ -3,67 +3,160 @@
   "displayName": "terror bliss",
   "password": "coolboy",
   "tile": {
-    "x": 3088,
-    "z": 3490,
+    "x": 3093,
+    "z": 3503,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
-  "skullIcon": -1,
+  "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 0,
-  "deaths": 0,
+  "kills": 5,
+  "deaths": 13,
   "inventory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "equipment": [
-    null,
-    null,
-    null,
     {
       "id": 12006,
       "amount": 1
     },
-    null,
     {
       "id": 12954,
+      "amount": 1
+    },
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 11832,
+      "amount": 1
+    },
+    {
+      "id": 6570,
+      "amount": 1
+    },
+    {
+      "id": 4736,
+      "amount": 1
+    },
+    {
+      "id": 11840,
+      "amount": 1
+    },
+    {
+      "id": 11834,
+      "amount": 1
+    },
+    {
+      "id": 11802,
       "amount": 1
     },
     null,
     null,
     null,
     null,
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
     null,
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 555,
+      "amount": 9999999
+    },
+    {
+      "id": 560,
+      "amount": 99999999
+    },
+    {
+      "id": 565,
+      "amount": 9999999
+    }
+  ],
+  "equipment": [
+    {
+      "id": 6918,
+      "amount": 1
+    },
+    {
+      "id": 2413,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 6914,
+      "amount": 1
+    },
+    {
+      "id": 4712,
+      "amount": 1
+    },
+    {
+      "id": 6889,
+      "amount": 1
+    },
     null,
+    {
+      "id": 4714,
+      "amount": 1
+    },
     null,
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 6920,
+      "amount": 1
+    },
+    null,
+    {
+      "id": 6737,
+      "amount": 1
+    },
     null
   ],
   "loadout": {
@@ -116,12 +209,24 @@
   },
   "varps": [
     {
+      "id": 43,
+      "value": 1
+    },
+    {
+      "id": 173,
+      "value": 1
+    },
+    {
       "id": 300,
       "value": 1000
     },
     {
+      "id": 439,
+      "value": 1
+    },
+    {
       "id": 843,
-      "value": 20
+      "value": 18
     },
     {
       "id": 1050,
@@ -142,100 +247,100 @@
   ],
   "skills": [
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034547E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034491E7
     },
     {
-      "level": 10,
-      "xp": 1154.0
+      "level": 90,
+      "xp": 1.3035585E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3036123E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
-      "level": 1,
-      "xp": 0.0
+      "level": 99,
+      "xp": 1.3034431E7
     }
   ]
 }

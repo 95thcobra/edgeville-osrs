@@ -727,7 +727,7 @@ public class Player extends Entity {
 	@Override
 	protected void die() {
 		// lock();
-		world.getEventHandler().addEvent(this, new PlayerDeathEvent(this));
+		world.getEventHandler().addEvent(this, false, new PlayerDeathEvent(this));
 		// world.server().scriptExecutor().executeScript(this, Death.script);
 	}
 

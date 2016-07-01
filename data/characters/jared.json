@@ -3,8 +3,8 @@
   "displayName": "jared",
   "password": "turtle20^",
   "tile": {
-    "x": 3101,
-    "z": 3488,
+    "x": 3094,
+    "z": 3501,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -12,47 +12,31 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 4,
-  "deaths": 2,
+  "kills": 46,
+  "deaths": 43,
   "inventory": [
     {
-      "id": 5698,
+      "id": 6914,
       "amount": 1
     },
     {
-      "id": 157,
+      "id": 159,
       "amount": 1
     },
     {
-      "id": 2442,
+      "id": 163,
       "amount": 1
     },
     {
-      "id": 2436,
+      "id": 145,
       "amount": 1
     },
     {
-      "id": 1044,
+      "id": 6570,
       "amount": 1
     },
     {
-      "id": 10828,
-      "amount": 1
-    },
-    {
-      "id": 3842,
-      "amount": 1
-    },
-    {
-      "id": 10392,
-      "amount": 1
-    },
-    {
-      "id": 11235,
-      "amount": 1
-    },
-    {
-      "id": 4151,
+      "id": 12006,
       "amount": 1
     },
     {
@@ -64,42 +48,40 @@
       "amount": 1
     },
     {
-      "id": 11234,
-      "amount": 500
+      "id": 4722,
+      "amount": 1
     },
     {
-      "id": 11212,
-      "amount": 433
+      "id": 11840,
+      "amount": 1
     },
     {
       "id": 11773,
       "amount": 1
     },
     {
-      "id": 171,
+      "id": 560,
+      "amount": 10000
+    },
+    {
+      "id": 565,
+      "amount": 10000
+    },
+    {
+      "id": 555,
+      "amount": 10000
+    },
+    {
+      "id": 5698,
       "amount": 1
-    },
-    {
-      "id": 169,
-      "amount": 1
-    },
-    {
-      "id": 10498,
-      "amount": 1
-    },
-    {
-      "id": 868,
-      "amount": 427
-    },
-    {
-      "id": 10034,
-      "amount": 500
     },
     null,
-    {
-      "id": 830,
-      "amount": 500
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     null,
     null,
@@ -109,11 +91,11 @@
   ],
   "equipment": [
     {
-      "id": 11862,
+      "id": 10828,
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 2412,
       "amount": 1
     },
     {
@@ -121,17 +103,20 @@
       "amount": 1
     },
     {
-      "id": 861,
+      "id": 4675,
       "amount": 1
     },
     {
-      "id": 4940,
+      "id": 4712,
+      "amount": 1
+    },
+    {
+      "id": 6889,
       "amount": 1
     },
     null,
-    null,
     {
-      "id": 4751,
+      "id": 4714,
       "amount": 1
     },
     null,
@@ -140,18 +125,15 @@
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 6920,
       "amount": 1
     },
     null,
     {
-      "id": 6733,
+      "id": 6731,
       "amount": 1
     },
-    {
-      "id": 892,
-      "amount": 769
-    }
+    null
   ],
   "loadout": {
     "inventory": [
@@ -337,7 +319,7 @@
     },
     {
       "id": 843,
-      "value": 3
+      "value": 18
     },
     {
       "id": 1050,
@@ -367,15 +349,15 @@
     },
     {
       "level": 99,
-      "xp": 2.607063E7
+      "xp": 2.6071934E7
     },
     {
-      "level": 88,
+      "level": 87,
       "xp": 2.6070016E7
     },
     {
       "level": 99,
-      "xp": 2.607035E7
+      "xp": 2.6087414E7
     },
     {
       "level": 99,
@@ -383,7 +365,7 @@
     },
     {
       "level": 99,
-      "xp": 2.6068862E7
+      "xp": 2.6070962E7
     },
     {
       "level": 99,

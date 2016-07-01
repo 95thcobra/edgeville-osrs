@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.combat.Magic.SpellOnPlayerAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;
@@ -47,6 +48,7 @@ public class SpellOnPlayer implements Action {
 				player.putAttribute(AttributeKey.TARGET, targetIndex);
 				//player.world().server().scriptRepository().triggerSpellOnPlayer(player, interfaceId, child);
 				//TODO: Spell on player
+				new SpellOnPlayerAction(player, other, interfaceId, child).start();
 			}
 		}
 	}

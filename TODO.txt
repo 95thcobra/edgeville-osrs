@@ -2,7 +2,6 @@ Make new combat formula AND print it somewhere on screen.
 
 loop invokescripts+
 
-varbit 4101 thick skin enable
 varbit 4103 prayer orb
 varp 456 sick hp orb
 varp 102 poison hp orb
@@ -11,11 +10,8 @@ varbit 25 run orb
 varp 0 - 2000 turn text green
 loopvarp 2 turns all spellbook spells on
 
-npc spawning breaks server when killed
-make a command with ::commands
-make a command for hp
-toggle for damage taken
-altijd attack xp bij melee combat moet variabel zijn
+
+
 
 add run energy
 
@@ -24,3 +20,12 @@ reset stats command
 copy gear command
 dying bugs sometimes
 
+
+
+
+
+OBFUSCATE PROGUARD ASK STACKOVERFLOW!!!
+DISABLE ALL OPTIONS BUT OBFUSCATE 
+
+
+reply to Mojo! with not doing services anymore.

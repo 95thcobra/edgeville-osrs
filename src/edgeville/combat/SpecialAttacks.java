@@ -2,8 +2,13 @@ package edgeville.combat;
 
 import edgeville.model.Entity;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.EquipSlot;
+import edgeville.model.item.Item;
 
 public enum SpecialAttacks {
+	
+	// ITEMID - ANIMATION - MYGFX - OPPGFX - SPECIALDRAIN - MULTIPLIER - DOUBLEHIT? - HITSATALL?    (projectile, doubleprojectile)
+	
 	DDS(5698, 1062, new Graphic(252, 92, 0), 25, 1.15, true),
 	AGS(11802, 7061, new Graphic(1211), 50, 1.25, false),
 	BGS(11804, 7060, new Graphic(1212), 65, 1.21, false),
@@ -18,7 +23,11 @@ public enum SpecialAttacks {
 	DRAGON_MACE(1434, 1060, new Graphic(251, 100, 0), null, 25, 1.15, false),
 	DRAGON_2H(7158, 3157, null, null, 60, 1, false),
 	
+	MAGIC_SHORTBOW(861, 1074, new Graphic(256, 92, 0), null, 55, 1, true, 249, true),//projectile id, doubleprojectile
 	
+	DARK_BOW(11235, 426, null, new Graphic(1100, 92, 60), 55, 1, true, 1099, true),//projectile id, doubleprojectile
+	
+
 	;
 
 	private int weaponId;
@@ -29,6 +38,9 @@ public enum SpecialAttacks {
 	private double maxHitMultiplier;
 	private boolean doubleHit;
 	private boolean hits;
+	
+	private int projectileId;
+	private boolean doubleProjectile;
 
 	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, boolean doubleHit) {
 		this(weaponId, animationId, gfx, opponentGfx, specialDrain, maxHitMultiplier, doubleHit, true);
@@ -36,6 +48,21 @@ public enum SpecialAttacks {
 	
 	SpecialAttacks(int weaponId, int animationId, Graphic gfx, int specialDrain, double maxHitMultiplier, boolean doubleHit) {
 		this(weaponId, animationId, gfx, null, specialDrain, maxHitMultiplier, doubleHit, true);
+	}
+	
+	// this is for ranged.
+	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, boolean doubleHit, int projectileId, boolean doubleProjectile) {
+		this.weaponId = weaponId;
+		this.animationId = animationId;
+		this.gfx = gfx;
+		this.opponentGfx = opponentGfx;
+		this.specialDrain = specialDrain;
+		this.maxHitMultiplier = maxHitMultiplier;
+		this.doubleHit = doubleHit;
+		this.hits = true;
+		
+		this.projectileId = projectileId;
+		this.doubleProjectile = doubleProjectile;
 	}
 
 	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, boolean doubleHit, boolean hits) {
@@ -48,6 +75,15 @@ public enum SpecialAttacks {
 		this.doubleHit = doubleHit;
 		this.hits = hits;
 	}
+	
+	public int getProjectileId() {
+		return projectileId;
+	}
+
+	public boolean isDoubleProjectile() {
+		return doubleProjectile;
+	}
+
 
 	public boolean isHits() {
 		return hits;
@@ -104,6 +140,31 @@ public enum SpecialAttacks {
 		}
 		if (this == SpecialAttacks.ABYSSAL_WHIP || this == SpecialAttacks.TENTACLE_WHIP) {
 			//TODO drain 10% run
+		}
+		if (this == SpecialAttacks.DARK_BOW) {
+			int tileDist = player.getTile().distance(target.getTile());
+			// d bow spec dragon heads
+			//player.world().spawnProjectile(player.getTile(), target, 1099, 40, 36, 52, 5 * tileDist, 15, 105);
+			
+			
+			// player shoot gfx
+			// double dragon arrow shoot 1113, todo more
+			player.graphic(new Graphic(1113, 92, 0));
+			
+			// arrow projectiles twice
+			Item ammo = player.getEquipment().get(EquipSlot.AMMO);
+			int graphic = Projectile.getProjectileForAmmoId(ammo.id()).getGfx().getId(); // get more, depending on arrow
+			int cyclesPerTile = 3;
+			int startHeight = 40;
+			int endHeight = 30;
+			int curve = 2;
+			//graphic = 27;
+			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, 32, cyclesPerTile * tileDist, curve, 105);
+			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, 52, cyclesPerTile * tileDist, curve, 105);
+			
+			// cool smoke trails - look like poo
+			//player.world().spawnProjectile(player.getTile(), target, 1101, 40, 36, 40, 5 * tileDist, 15, 105);	
+			//player.world().spawnProjectile(player.getTile(), target, 1101, 40, 36, 60, 5 * tileDist, 15, 105);
 		}
 	}
 }

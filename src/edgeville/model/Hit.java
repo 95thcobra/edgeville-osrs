@@ -1,5 +1,6 @@
 package edgeville.model;
 
+import edgeville.combat.Graphic;
 import edgeville.util.CombatStyle;
 
 /**
@@ -11,7 +12,7 @@ public class Hit {
 	private Type type;
 	private int delay; // Ticks
 	private HitOrigin origin;
-	private int graphic = -1;
+	private Graphic graphic = null;
 	private boolean doBlock = true;
 	private CombatStyle style = CombatStyle.MELEE;
 
@@ -77,12 +78,17 @@ public class Hit {
 		return origin;
 	}
 
-	public Hit graphic(int id) {
-		graphic = id;
+	public Hit graphic(Graphic graphic) {
+		this.graphic = graphic;
 		return this;
 	}
 
-	public int graphic() {
+	public Hit graphic(int graphicId) {
+		this.graphic = new Graphic(graphicId, 0, 0);
+		return this;
+	}
+
+	public Graphic graphic() {
 		return graphic;
 	}
 

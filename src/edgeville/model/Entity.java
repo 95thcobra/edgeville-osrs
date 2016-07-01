@@ -160,6 +160,7 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void graphic(Graphic graphic) {
+		((Player)this).messageDebug("GRAPHIC:"+graphic.getId());
 		graphic(graphic.getId(), graphic.getHeight(), graphic.getDelay());
 	}
 
@@ -561,7 +562,7 @@ public abstract class Entity implements HitOrigin {
 						setHp(hp() - damage, 0);
 					sync.hit(hit.type().ordinal(), damage);
 
-					if (hit.graphic() >= 0)
+					if (hit.graphic().getId() >= 0)
 						graphic(hit.graphic());
 
 					if (hit.block())

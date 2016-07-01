@@ -78,7 +78,7 @@ public class PlayerSyncTask implements Task {
 					buffer.get().writeBytes(pSync.faceEntitySet());
 				if (pSync.hasFlag(PlayerSyncInfo.Flag.GRAPHIC.value))
 					buffer.get().writeBytes(pSync.graphicSet());
-				if (pSync.hasFlag(PlayerSyncInfo.Flag.LOOKS.value) || sync.isNewlyAdded(p.index()))
+				if (pSync.hasFlag(PlayerSyncInfo.Flag.LOOKS.value) || sync.isNewlyAdded(p.index()))//this
 					buffer.get().writeBytes(pSync.looksBlock());
 				if (pSync.hasFlag(PlayerSyncInfo.Flag.FORCE_MOVE.value))
 					buffer.get().writeBytes(pSync.forceMoveSet());

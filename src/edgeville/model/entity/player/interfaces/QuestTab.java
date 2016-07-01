@@ -91,7 +91,34 @@ public class QuestTab {
 
 		// Hybrid
 		case 17:
-			player.message("TODO.");
+			player.getInventory().empty();
+			   player.getInventory().add(5698);
+			   player.getInventory().add(157);
+			   player.getInventory().add(163);
+			   player.getInventory().add(145);
+			   player.getInventory().add(6570);
+			   player.getInventory().add(12006);
+			   player.getInventory().add(12954);
+			   player.getInventory().add(10551);
+			   player.getInventory().add(4722);
+			   player.getInventory().add(11840);
+			   player.getInventory().add(11773);
+			   player.getInventory().add(new Item(560, 10000));
+			   player.getInventory().add(new Item(565, 10000));
+			   player.getInventory().add(new Item(555, 10000));
+			   player.getInventory().add(new Item(397, 14 ));
+			   
+			   player.getEquipment().set(EquipSlot.HEAD, new Item(10828));
+			   player.getEquipment().set(EquipSlot.CAPE, new Item(2412));
+			   player.getEquipment().set(EquipSlot.AMULET, new Item(6585));
+			   player.getEquipment().set(EquipSlot.WEAPON, new Item(4675));
+			   player.getEquipment().set(EquipSlot.BODY, new Item(4712));
+			   player.getEquipment().set(EquipSlot.SHIELD, new Item(6889));
+			   player.getEquipment().set(EquipSlot.LEGS, new Item(4714));
+			   player.getEquipment().set(EquipSlot.HANDS, new Item(7462));
+			   player.getEquipment().set(EquipSlot.FEET, new Item(6920));
+			   player.getEquipment().set(EquipSlot.RING, new Item(6731));
+			   //player.getEquipment().set(EquipSlot.AMMO, item);
 			break;
 
 		// Save loadout
