@@ -3,8 +3,8 @@
   "displayName": "terror bliss",
   "password": "coolboy",
   "tile": {
-    "x": 3093,
-    "z": 3503,
+    "x": 3096,
+    "z": 3502,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -12,8 +12,8 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 5,
-  "deaths": 13,
+  "kills": 9,
+  "deaths": 35,
   "inventory": [
     {
       "id": 12006,
@@ -51,38 +51,15 @@
       "id": 11802,
       "amount": 1
     },
+    {
+      "id": 2434,
+      "amount": 1
+    },
+    {
+      "id": 2434,
+      "amount": 1
+    },
     null,
-    null,
-    null,
-    null,
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
     null,
     {
       "id": 385,
@@ -94,6 +71,38 @@
     },
     {
       "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 2436,
+      "amount": 1
+    },
+    {
+      "id": 2440,
+      "amount": 1
+    },
+    {
+      "id": 2442,
       "amount": 1
     },
     {
@@ -222,7 +231,7 @@
     },
     {
       "id": 439,
-      "value": 1
+      "value": 2
     },
     {
       "id": 843,
@@ -256,10 +265,10 @@
     },
     {
       "level": 99,
-      "xp": 1.3034491E7
+      "xp": 1.3035359E7
     },
     {
-      "level": 90,
+      "level": 99,
       "xp": 1.3035585E7
     },
     {
@@ -272,7 +281,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3036123E7
+      "xp": 1.3036167E7
     },
     {
       "level": 99,

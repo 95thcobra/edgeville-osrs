@@ -1,10 +1,10 @@
 {
-  "username": "test",
-  "displayName": "test",
-  "password": "test",
+  "username": "zimbabwe",
+  "displayName": "zimbabwe",
+  "password": "turtle20^",
   "tile": {
-    "x": 3089,
-    "z": 3502,
+    "x": 3095,
+    "z": 3503,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -12,166 +12,55 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 6,
-  "deaths": 28,
+  "kills": 0,
+  "deaths": 0,
   "inventory": [
     {
-      "id": 5698,
+      "id": 2240,
       "amount": 1
     },
-    {
-      "id": 157,
-      "amount": 1
-    },
-    {
-      "id": 163,
-      "amount": 1
-    },
-    {
-      "id": 145,
-      "amount": 1
-    },
-    {
-      "id": 6570,
-      "amount": 1
-    },
-    {
-      "id": 4675,
-      "amount": 1
-    },
-    {
-      "id": 6889,
-      "amount": 1
-    },
-    {
-      "id": 10551,
-      "amount": 1
-    },
-    {
-      "id": 4722,
-      "amount": 1
-    },
-    {
-      "id": 11840,
-      "amount": 1
-    },
-    {
-      "id": 11773,
-      "amount": 1
-    },
-    {
-      "id": 560,
-      "amount": 10000
-    },
-    {
-      "id": 565,
-      "amount": 10000
-    },
-    {
-      "id": 555,
-      "amount": 10000
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   "equipment": [
-    {
-      "id": 10828,
-      "amount": 1
-    },
-    {
-      "id": 2412,
-      "amount": 1
-    },
-    {
-      "id": 6585,
-      "amount": 1
-    },
-    {
-      "id": 12006,
-      "amount": 1
-    },
-    {
-      "id": 4712,
-      "amount": 1
-    },
-    {
-      "id": 12954,
-      "amount": 1
-    },
     null,
-    {
-      "id": 4714,
-      "amount": 1
-    },
     null,
-    {
-      "id": 7462,
-      "amount": 1
-    },
-    {
-      "id": 6920,
-      "amount": 1
-    },
     null,
-    {
-      "id": 6731,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null
   ],
   "loadout": {
@@ -224,24 +113,12 @@
   },
   "varps": [
     {
-      "id": 83,
-      "value": 100663296
-    },
-    {
-      "id": 173,
+      "id": 43,
       "value": 1
     },
     {
       "id": 300,
       "value": 1000
-    },
-    {
-      "id": 439,
-      "value": 2
-    },
-    {
-      "id": 843,
-      "value": 20
     },
     {
       "id": 1050,
@@ -263,10 +140,6 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3037207E7
-    },
-    {
-      "level": 99,
       "xp": 1.3034431E7
     },
     {
@@ -274,7 +147,11 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 25,
+      "level": 99,
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
       "xp": 1.3035585E7
     },
     {

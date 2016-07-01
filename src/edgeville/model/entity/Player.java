@@ -76,15 +76,22 @@ public class Player extends Entity {
 	private Skills skills;
 
 	private boolean debug;
-	
-	private CombatUtil combatUtil;
-	
 
-	
+	private CombatUtil combatUtil;
+
+	private boolean vengOn;
+
+	public boolean isVengOn() {
+		return vengOn;
+	}
+
+	public void setVengOn(boolean vengOn) {
+		this.vengOn = vengOn;
+	}
+
 	public CombatUtil getCombatUtil() {
 		return combatUtil;
 	}
-
 
 	public boolean isDebug() {
 		return debug;

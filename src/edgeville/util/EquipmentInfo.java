@@ -255,6 +255,7 @@ public class EquipmentInfo {
 				return 1665;
 			case 6528: // Obsidian maul
 				return 2661;
+			case 13265:
 			case 5698:// dragon dagger (s)
 				return style == 0 ? 402 : 451;
 			}

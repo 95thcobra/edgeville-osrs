@@ -13,14 +13,8 @@ loopvarp 2 turns all spellbook spells on
 
 
 
-add run energy
 
-reset stats command
-
-copy gear command
-dying bugs sometimes
-
-
+FIX HEY EVERYONE I JUST TRIED SOMETHING VERY SILLY!
 
 
 
@@ -28,4 +22,23 @@ OBFUSCATE PROGUARD ASK STACKOVERFLOW!!!
 DISABLE ALL OPTIONS BUT OBFUSCATE 
 
 
-reply to Mojo! with not doing services anymore.
+
+
+
+
+
+complete prayer
+poisons
+
+add run energy
+copy gear command
+
+
+SPELL ON NPC!!!!!
+abyssal dagger - attack animation & special animation
+
+lesser demon animations: npclist.txt in downloads
+
+
+'
+Prayer & spell requirements

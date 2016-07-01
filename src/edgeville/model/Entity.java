@@ -160,7 +160,6 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void graphic(Graphic graphic) {
-		((Player)this).messageDebug("GRAPHIC:"+graphic.getId());
 		graphic(graphic.getId(), graphic.getHeight(), graphic.getDelay());
 	}
 
@@ -389,13 +388,13 @@ public abstract class Entity implements HitOrigin {
 			damagers.compute(((Player) origin), (key, value) -> value == null ? hit : value + hit);
 		}
 
-		if ((boolean) attribute(AttributeKey.VENGEANCE_ACTIVE, false)) {
+		/*if ((boolean) attribute(AttributeKey.VENGEANCE_ACTIVE, false)) {
 			if (isPlayer() && origin instanceof Entity) {
 				clearattrib(AttributeKey.VENGEANCE_ACTIVE);
 				((Entity) origin).hit(this, (int) (hit * 0.75), delay).block(false);
 				// TODO Taste vengeance
 			}
-		}
+		}*/
 
 		// 1.33 on controlled for each skill.
 		if (origin instanceof Player) {
@@ -438,6 +437,13 @@ public abstract class Entity implements HitOrigin {
 
 		if (this instanceof Player) {
 			((Player) this).sound(((Entity) origin).getAttackSound());
+			/*if (this.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
+				if (origin instanceof Player) {
+					this.timers.cancel(TimerKey.VENGEANCE_COOLDOWN);
+					((Player) origin).hit(this, (int)(0.75 * h.damage()));
+					((Player)this).sync().publicChatMessage(new ChatMessage("Taste vengeance!", 0, 0));
+				}
+			}*/
 		}
 
 		return h;
@@ -562,7 +568,7 @@ public abstract class Entity implements HitOrigin {
 						setHp(hp() - damage, 0);
 					sync.hit(hit.type().ordinal(), damage);
 
-					if (hit.graphic().getId() >= 0)
+					if (hit.graphic() != null)
 						graphic(hit.graphic());
 
 					if (hit.block())

@@ -6,6 +6,7 @@ import edgeville.event.EventContainer;
 import edgeville.model.Entity;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.Skills;
 import edgeville.script.TimerKey;
 import edgeville.util.AccuracyFormula;
 import edgeville.util.CombatStyle;
@@ -33,14 +34,57 @@ public class SpellOnPlayerAction {
 	}
 
 	private void handleAncients() {
+		player.messageDebug("ancientspell:" + child);
 		switch (child) {
 
-		// ice blitz
+		case 74:
+			cycleDoMagicSpell(Spell.SMOKE_RUSH);
+			break;
+		case 78:
+			cycleDoMagicSpell(Spell.SHADOW_RUSH);
+			break;
+		case 70:
+			cycleDoMagicSpell(Spell.BLOOD_RUSH);
+			break;
+		case 66:
+			cycleDoMagicSpell(Spell.ICE_RUSH);
+			break;
+
+		case 76:
+			cycleDoMagicSpell(Spell.SMOKE_BURST);
+			break;
+		case 80:
+			cycleDoMagicSpell(Spell.SHADOW_BURST);
+			break;
+		case 72:
+			cycleDoMagicSpell(Spell.BLOOD_BURST);
+			break;
+		case 68:
+			cycleDoMagicSpell(Spell.ICE_BURST);
+			break;
+
+		case 75:
+			cycleDoMagicSpell(Spell.SMOKE_BLITZ);
+			break;
+		case 79:
+			cycleDoMagicSpell(Spell.SHADOW_BLITZ);
+			break;
+		case 71:
+			cycleDoMagicSpell(Spell.BLOOD_BLITZ);
+			break;
 		case 67:
 			cycleDoMagicSpell(Spell.ICE_BLITZ);
 			break;
 
-		// ice barrage
+		case 77:
+			cycleDoMagicSpell(Spell.SMOKE_BARRAGE);
+			break;
+		case 81:
+			cycleDoMagicSpell(Spell.SHADOW_BARRAGE);
+			break;
+		case 73:
+			cycleDoMagicSpell(Spell.BLOOD_BARRAGE);
+			break;
 		case 69:
 			cycleDoMagicSpell(Spell.ICE_BARRAGE);
 			break;
@@ -59,10 +103,8 @@ public class SpellOnPlayerAction {
 	}
 
 	private void cycleDoMagicSpell(Spell spell) {
-		// if (player.timers().has(TimerKey.COMBAT_ATTACK)) {
 		player.world().getEventHandler().addEvent(player, new Event() {
-			// private int tick = 0;
-			
+
 			@Override
 			public void execute(EventContainer container) {
 				if (target.locked() || target.dead()) {
@@ -76,7 +118,6 @@ public class SpellOnPlayerAction {
 
 	private boolean doMagicSpell(Spell spell, EventContainer container) {
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
-			// moveCloser();
 			player.stepTowards(target, 2);
 			return false;
 		}
@@ -99,24 +140,43 @@ public class SpellOnPlayerAction {
 
 		if (success) {
 			target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(spell.getGfx());
+			if (target instanceof Player) {
+				if (spell.getSoundId() > 0)
+					((Player) target).sound(spell.getSoundId());
+			}
+			player.sound(spell.getSoundId());
 
-			if (spell.getGfx() == 369)
+			// TODO smoke poisons
+			
+			if (spell == Spell.SHADOW_RUSH || spell == Spell.SHADOW_BURST) {
+				if (target instanceof Player)
+					((Player) target).skills().alterSkill(Skills.ATTACK, 0.9);
+			}
+			if (spell == Spell.SHADOW_BLITZ || spell == Spell.SHADOW_BARRAGE) {
+				if (target instanceof Player)
+					((Player) target).skills().alterSkill(Skills.ATTACK, 0.85);
+			}
+
+			if (spell == Spell.BLOOD_RUSH || spell == Spell.BLOOD_BURST || spell == Spell.BLOOD_BLITZ || spell == Spell.BLOOD_BARRAGE) {
+				player.heal(hit / 4);
+			}
+			
+			if (spell == Spell.ICE_RUSH) {
+				target.freeze(8); // 5 second freeze timer
+			}
+			
+			if (spell == Spell.ICE_BARRAGE) {
+				target.freeze(17); // 10 second freeze timer
+			}
+
+			if (spell == Spell.ICE_BLITZ) {
+				target.freeze(25); // 15 second freeze timer
+			}
+
+			if (spell == Spell.ICE_BARRAGE) {
 				target.freeze(33); // 20 second freeze timer
-			else if (spell.getGfx() == 367)
-				target.freeze(25); // 15 second
-			/*
-			 * else if (gfx == 377 || gfx == 373 || gfx == 376 || gfx == 375)
-			 * player.heal(hit / 4) // Heal for 25% with blood barrage else if
-			 * ((gfx == 379 || gfx == 382) && target.isPlayer())
-			 * target.skills().alterSkill(Skills.ATTACK,
-			 * -(target.skills().level(Skills.ATTACK) * 0.1).toInt(), false)
-			 * else if (gfx == 361) target.freeze(8) else if (gfx == 363)
-			 * target.freeze(16) else if ((gfx == 381 || gfx == 383) &&
-			 * target.isPlayer()) target.skills().alterSkill(Skills.ATTACK,
-			 * -(target.skills().level(Skills.ATTACK) * 0.15).toInt(), false)
-			 * else if (gfx == 367) { target.freeze(25) //15 second freeze timer
-			 * player.graphic(366) }
-			 */
+			}
+
 		} else {
 			target.hit(player, 0, delay).graphic(new Graphic(85, 92, 0));
 		}

@@ -219,7 +219,8 @@ public class ButtonClickAction {
 				return;
 			}
 			if (specialSpecialAttack()) {
-				//varps.setVarp(Varp.SPECIAL_ENABLED, isSpecialAttackEnabled() ? 0 : 1);
+				// varps.setVarp(Varp.SPECIAL_ENABLED, isSpecialAttackEnabled()
+				// ? 0 : 1);
 				return;
 			}
 			player.toggleSpecialAttack();
@@ -228,7 +229,7 @@ public class ButtonClickAction {
 	}
 
 	private boolean specialSpecialAttack() {
-		//player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
+		// player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
 		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
 		if (weapon == null) {
 			return false;
@@ -345,6 +346,8 @@ public class ButtonClickAction {
 
 		// Edge teleport
 		case 1:
+		case 91:// ancient
+		case 93:// lunar
 			player.message("Teleporting to edgeville...");
 			player.teleport(Locations.EDGEVILLE.getTile());
 			break;
@@ -354,6 +357,26 @@ public class ButtonClickAction {
 			player.message("Teleporting to varrock...");
 			player.teleport(Locations.VARROCK.getTile());
 			break;
+
+		// veng
+		case 132:
+			castVeng();
+			break;
 		}
+	}
+	
+	private void castVeng() {
+		if (player.isVengOn()) {
+			player.message("Vengeance is already enabled!");
+			return;
+		}
+		if (player.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
+			player.message("Vengeance is on cooldown, wait %i seconds.", (int)(player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).ticks()) / 0.6);
+			return;
+		}
+		player.graphic(726, 92, 0);
+		player.animate(4410);
+		player.timers().register(TimerKey.VENGEANCE_COOLDOWN, 50);
+		player.setVengOn(true);
 	}
 }

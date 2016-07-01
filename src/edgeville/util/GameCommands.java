@@ -39,6 +39,37 @@ public final class GameCommands {
 		commands = new HashMap<>();
 
 		// REAL COMMANDS
+		put(Privilege.ADMIN, "loopgfx", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 1400; i++) {
+					p.graphic(i);
+					p.message(""+i);
+					try {
+						Thread.sleep(300);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		});
+		
+		put(Privilege.ADMIN, "loopanim", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 6200; i < 7000; i++) {
+					p.animate(-1);
+					p.animate(i);
+					p.message(""+i);
+					try {
+						Thread.sleep(300);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		});
+		
 		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
 		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
 		put(Privilege.ADMIN, "spec", (p, args) -> p.varps().setVarp(300, 100000));

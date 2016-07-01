@@ -41,15 +41,18 @@ public class ItemAction2 extends ItemAction {
 		player.stopActions(false);
 
 		Item item = player.getInventory().get(slot);
-		if (item == null || item.id() != this.item) // Avoid reclicking
+		if (item == null || item.id() != this.item) {// Avoid reclicking
+			player.messageDebug("item is null artm");
 			return;
+		}
 
 		EquipmentInfo info = player.world().equipmentInfo();
 		int targetSlot = info.slotFor(item.id());
 		int type = info.typeFor(item.id());
-		if (targetSlot == -1) // Cannot wear :-(
+		if (targetSlot == -1) { // Cannot wear :-(
+			player.messageDebug("cannot wear");
 			return;
-
+		}
 		// Begin by setting the used item to null. This is to make it like osrs. Failing is scary but no worries!
 		player.getInventory().set(slot, player.getEquipment().get(targetSlot));
 
