@@ -1,13 +1,6 @@
 Make new combat formula AND print it somewhere on screen.
 
-
-papa bellen over onderdelen lijn
-
-
 loop invokescripts+
-
-
-
 
 varbit 4101 thick skin enable
 varbit 4103 prayer orb
@@ -15,10 +8,19 @@ varp 456 sick hp orb
 varp 102 poison hp orb
 varbit 3756 flickering attack styles tab
 varbit 25 run orb
-
 varp 0 - 2000 turn text green
-
 loopvarp 2 turns all spellbook spells on
 
-varp 1050 16 = piety/chilvary
+npc spawning breaks server when killed
+make a command with ::commands
+make a command for hp
+toggle for damage taken
+altijd attack xp bij melee combat moet variabel zijn
+
+add run energy
+
+reset stats command
+
+copy gear command
+dying bugs sometimes
 

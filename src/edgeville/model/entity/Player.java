@@ -6,6 +6,7 @@ import edgeville.Constants;
 import edgeville.Panel;
 import edgeville.aquickaccess.events.PlayerDeathEvent;
 import edgeville.aquickaccess.events.TeleportEvent;
+import edgeville.combat.CombatUtil;
 import edgeville.crypto.IsaacRand;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
@@ -21,6 +22,7 @@ import edgeville.net.message.game.*;
 import edgeville.script.Timer;
 import edgeville.script.TimerKey;
 import edgeville.services.serializers.PlayerSerializer;
+import edgeville.util.CombatStyle;
 import edgeville.util.StaffData;
 import edgeville.util.TextUtil;
 import edgeville.util.Varbit;
@@ -28,6 +30,7 @@ import edgeville.util.Varp;
 import edgeville.util.TextUtil.Colors;
 import io.netty.channel.Channel;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.Iterator;
@@ -73,6 +76,15 @@ public class Player extends Entity {
 	private Skills skills;
 
 	private boolean debug;
+	
+	private CombatUtil combatUtil;
+	
+
+	
+	public CombatUtil getCombatUtil() {
+		return combatUtil;
+	}
+
 
 	public boolean isDebug() {
 		return debug;
@@ -255,6 +267,7 @@ public class Player extends Entity {
 		debug = false;
 		resetSpecialEnergy();
 		bank = new Bank(this);
+		combatUtil = new CombatUtil(this);
 	}
 
 	public void resetSpecialEnergy() {
@@ -331,7 +344,7 @@ public class Player extends Entity {
 
 		// Replenish stats timer
 		timers().register(TimerKey.STAT_REPLENISH, 100);
-		
+
 		// quest tab
 		questTab.prepareQuestTab();
 
@@ -589,7 +602,7 @@ public class Player extends Entity {
 			if (entry.getValue().ticks() < 1) {
 				TimerKey key = entry.getKey();
 				it.remove();
-				
+
 				switch (key) {
 				case SPECIAL_ENERGY_RECHARGE:
 					int currentEnergy = varps().getVarp(Varp.SPECIAL_ENERGY);
@@ -751,16 +764,41 @@ public class Player extends Entity {
 	@Override
 	public int getAttackSound() {
 		Item item = getEquipment().get(EquipSlot.WEAPON);
-		int soundId = -1;
+		int soundId = 24;
+
 		if (item == null) {
-			soundId = 24;
-		} else {
-			switch (item.id()) {
-			case 4151:
-			case 12006:
-				soundId = 2720;
-				break;
-			}
+			return soundId;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "shortbow") || StringUtils.containsIgnoreCase(item.definition(world).name, "longbow")) {
+			soundId = 2693;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "crossbow")) {
+			soundId = 2700;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "2h")) {
+			soundId = 2503;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "axe")) {
+			soundId = 2508;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "knife")) {
+			soundId = 2696;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "dagger")) {
+			soundId = varps().getVarp(Varp.ATTACK_STYLE) == 3 ? 2548 : 2547;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "staff")) {
+			soundId = 2555;
+		}
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "staff")) {
+			soundId = 2547;
+		}
+
+		switch (item.id()) {
+		case 4151:
+		case 12006:
+			soundId = 2720;
+			break;
 		}
 		return soundId;
 	}
@@ -768,7 +806,7 @@ public class Player extends Entity {
 	@Override
 	public int getBlockSound() {
 		Item item = getEquipment().get(EquipSlot.SHIELD);
-		int soundId = -1;
+		int soundId = 791;
 		if (item == null) {
 			soundId = 23;
 		} else {

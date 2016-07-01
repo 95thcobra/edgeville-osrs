@@ -34,7 +34,7 @@ public class CombatFormula {
 
 				double roll = A < D ? ((A - 1) / (2 * D)) : (1 - (D + 1) / (2 * A));
 				return Math.random() <= roll;
-			} else if (style == CombatStyle.RANGE) {
+			} else if (style == CombatStyle.RANGED) {
 				double praymod = 1;
 				double voidbonus = 1;
 				double E = Math.floor(((player.skills().level(Skills.RANGED) * praymod) + 8) * voidbonus);
@@ -82,7 +82,7 @@ public class CombatFormula {
 			// Salve amulet: vs undead
 			// Salve amulet (e) : vs undead
 			// void knight melee
-		} else if (combatStyle == CombatStyle.RANGE) {
+		} else if (combatStyle == CombatStyle.RANGED) {
 			base *= prayerRangedMultiplier(player);
 			// void knight ranged
 		}
@@ -91,7 +91,7 @@ public class CombatFormula {
 
 		if (combatStyle == CombatStyle.MELEE) {
 			effectiveStrength += extraDamageBasedOnAttackStyleMelee(player);
-		} else if (combatStyle == CombatStyle.RANGE) {
+		} else if (combatStyle == CombatStyle.RANGED) {
 			effectiveStrength += extraDamageBasedOnAttackStyleRanged(player);
 		}
 		

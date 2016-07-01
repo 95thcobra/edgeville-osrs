@@ -1,7 +1,9 @@
 package edgeville.model.entity.player.interfaces;
 
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.Loadout;
+import edgeville.model.item.Item;
 import edgeville.net.message.game.InterfaceText;
 import edgeville.util.CombatFormula;
 
@@ -59,8 +61,26 @@ public class QuestTab {
 
 		// Melee
 		case 15:
-			player.getInventory().add(12006);
-			player.getInventory().add(12954);
+			player.getInventory().empty();
+			player.getInventory().add(5698);
+			player.getInventory().add(145);
+			player.getInventory().add(157);
+			player.getInventory().add(163);
+			player.getInventory().add(4153);
+			player.getInventory().add(new Item(385, 23));
+			
+			player.getEquipment().set(EquipSlot.HEAD, new Item(10828));
+			player.getEquipment().set(EquipSlot.CAPE, new Item(6570));
+			player.getEquipment().set(EquipSlot.AMULET, new Item(6585));
+			player.getEquipment().set(EquipSlot.WEAPON, new Item(12006));
+			player.getEquipment().set(EquipSlot.BODY, new Item(10551));
+			player.getEquipment().set(EquipSlot.SHIELD, new Item(12954));
+			player.getEquipment().set(EquipSlot.LEGS, new Item(4722));
+			player.getEquipment().set(EquipSlot.HANDS, new Item(7462));
+			player.getEquipment().set(EquipSlot.FEET, new Item(11840));
+			player.getEquipment().set(EquipSlot.RING, new Item(11773));
+			//player.getEquipment().set(EquipSlot.AMMO, item);
+			
 			player.message("Spawned some melee gear.");
 			break;
 

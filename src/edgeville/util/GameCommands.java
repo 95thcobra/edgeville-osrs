@@ -42,33 +42,38 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
 		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
 		put(Privilege.ADMIN, "spec", (p, args) -> p.varps().setVarp(300, 100000));
-		
+
 		put(Privilege.ADMIN, "emote", (p, args) -> p.animate(Integer.parseInt(args[0])));
 		put(Privilege.ADMIN, "anim", (p, args) -> p.animate(Integer.parseInt(args[0])));
 		put(Privilege.ADMIN, "gfx", (p, args) -> p.graphic(Integer.parseInt(args[0])));
 		put(Privilege.ADMIN, "graphic", (p, args) -> p.graphic(Integer.parseInt(args[0])));
 		put(Privilege.ADMIN, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
-		
+
 		put(Privilege.PLAYER, "empty", (p, args) -> p.getInventory().empty());
 		put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().playerByName(glue(args)).get().getTile()));
 		put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().playerByName(glue(args)).get().move(p.getTile()));
-		
-		
+
+		put(Privilege.ADMIN, "resetstats", (p, args) -> p.skills().resetStats());
+		put(Privilege.ADMIN, "damageon", (p, args) -> {
+			p.setDamageOn(true);
+			p.message("Damage is on.");
+		});
+		put(Privilege.ADMIN, "damageoff", (p, args) -> {
+			p.setDamageOn(false);
+			p.message("Damage is off.");
+		});
 		put(Privilege.MODERATOR, "projectile", (p, args) -> {
-		int distance = 5;
-		int cyclesPerTile = 5;
-		int baseDelay = 32;
-		int startHeight = 35;
-		int endHeight = 36;
-		int curve = 15;
-		int graphic = 228;
-		p.world().spawnProjectile(p.getTile(), p.getAttribute(AttributeKey.LAST_ATTACKED_BY), Integer.parseInt(args[0]), startHeight, endHeight, baseDelay, 10000, curve, 105);
+			int distance = 5;
+			int cyclesPerTile = 5;
+			int baseDelay = 32;
+			int startHeight = 35;
+			int endHeight = 36;
+			int curve = 15;
+			int graphic = 228;
+			p.world().spawnProjectile(p.getTile(), p.getAttribute(AttributeKey.LAST_ATTACKED_BY), Integer.parseInt(args[0]), startHeight, endHeight, baseDelay, 10000, curve, 105);
 		});
 		///////////
-		
-		
-		
-		
+
 		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
 		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
 
@@ -88,7 +93,7 @@ public final class GameCommands {
 				}
 			}).start();
 		});
-		
+
 		put(Privilege.ADMIN, "update", (p, args) -> {
 			int ticks = Integer.parseInt(args[0]);
 			p.write(new UpdateGame(ticks));
@@ -227,7 +232,7 @@ public final class GameCommands {
 				p.move(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args.length > 2 ? Integer.parseInt(args[2]) : 0);
 			}
 		});
-	put(Privilege.PLAYER, "up", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
+		put(Privilege.PLAYER, "up", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.min(3, p.getTile().level + 1)));
 		put(Privilege.PLAYER, "down", (p, args) -> p.move(p.getTile().x, p.getTile().z, Math.max(0, p.getTile().level - 1)));
 		/*
 		 * put(Privilege.PLAYER, "scripts", (p, args) -> { new Thread(() -> {
@@ -421,7 +426,7 @@ public final class GameCommands {
 			p.move((rid >> 8) * 64 + 32, (rid & 0xFF) * 64 + 32);
 		});
 		put(Privilege.ADMIN, "addxp", (p, args) -> p.skills().addXp(Integer.valueOf(args[0]), Integer.valueOf(args[1])));
-		put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p, Integer.valueOf(args[0]), Hit.Type.REGULAR));
+		//put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p, Integer.valueOf(args[0]), Hit.Type.REGULAR));
 		put(Privilege.ADMIN, "maxspec", (p, args) -> p.varps().setVarp(Varp.SPECIAL_ENERGY, 1000));
 		put(Privilege.ADMIN, "finditem", (p, args) -> {
 			String s = glue(args);
@@ -529,10 +534,12 @@ public final class GameCommands {
 
 		put(Privilege.PLAYER, "pkp", (p, args) -> p.message("You currently have " + p.attribute(AttributeKey.PK_POINTS, 0) + " PK points."));
 
-		/*put(Privilege.DEVELOPER, "openbank", (p, args) -> {
-			p.getBank().open();
-
-		});*/
+		/*
+		 * put(Privilege.DEVELOPER, "openbank", (p, args) -> {
+		 * p.getBank().open();
+		 * 
+		 * });
+		 */
 
 		put(Privilege.ADMIN, "sound", (p, args) -> p.write(new PlaySound(Integer.parseInt(args[0]), 0)));
 		put(Privilege.ADMIN, "removenpcs", (p, args) -> p.world().npcs().forEach(n -> p.world().npcs().remove(n)));

@@ -121,26 +121,6 @@ public class ButtonClickAction {
 		}
 	}
 
-	private void handleQuestTab() {
-		switch (buttonId) {
-
-		// Melee gear
-		case 15:
-			player.message("Spawned melee gear.");
-			break;
-
-		// Range gear
-		case 16:
-			player.message("Spawned range gear.");
-			break;
-
-		// Hybrid gear
-		case 17:
-			player.message("Spawned hybrid gear.");
-			break;
-		}
-	}
-
 	private void handleOptionsTabs() {
 		switch (buttonId) {
 

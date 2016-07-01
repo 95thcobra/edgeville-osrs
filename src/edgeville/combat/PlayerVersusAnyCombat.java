@@ -25,7 +25,6 @@ public class PlayerVersusAnyCombat extends Combat {
 
 	public PlayerVersusAnyCombat(Entity entity, Entity target) {
 		super(entity, target);
-		// TODO Auto-generated constructor stub
 		player = (Player) entity;
 		this.target = target;
 	}
@@ -90,7 +89,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			// }
 			int hit = getEntity().world().random(max);
 
-			getTarget().hit(getEntity(), success ? hit : 0);
+			getTarget().hit(getEntity(), success ? hit : 0, CombatStyle.MELEE);
 
 			getEntity().animate(EquipmentInfo.attackAnimationFor(((Player) getEntity())));
 			getEntity().timers().register(TimerKey.COMBAT_ATTACK, getEntity().world().equipmentInfo().weaponSpeed(weaponId));
@@ -144,6 +143,10 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		if (currentTile.distance(target.getTile()) <= 7) {
+			if (player.getTile().equals(target.getTile())) {
+				currentTile = moveCloser();
+				return;
+			}
 			// player.pathQueue().clear();
 
 			// Can we shoot?
@@ -174,10 +177,23 @@ public class PlayerVersusAnyCombat extends Combat {
 			Projectile projectile = null;
 			if (weaponType != WeaponType.THROWN) {
 				Item ammo = player.getEquipment().get(EquipSlot.AMMO);
-				projectile =  Projectile.getProjectileForAmmoName(ammo.definition(player.world()).name);
+				projectile = Projectile.getProjectileForAmmoName(ammo.definition(player.world()).name);
 				player.getEquipment().set(EquipSlot.AMMO, new Item(ammo.id(), ammo.amount() - 1));
+
+				// If it is thrown
+			} else if (weaponType == WeaponType.THROWN) {
+				Item item = player.getEquipment().get(EquipSlot.WEAPON);
+				if (item != null && item.definition(player.world()).name.contains("knife")) {
+					projectile = Projectile.getProjectileForAmmoName(item.definition(player.world()).name);
+					player.getEquipment().set(EquipSlot.WEAPON, new Item(item.id(), item.amount() - 1));
+					//player.graphic(new Graphic(225, 92, 0));
+				}
 			}
 			
+			if (projectile.getGfx() != null) {
+				player.graphic(projectile.getGfx());
+			}
+
 			player.animate(EquipmentInfo.attackAnimationFor(player));
 			int distance = player.getTile().distance(target.getTile());
 			int cyclesPerTile = 5;
@@ -206,7 +222,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			}
 
 			if (projectile != null) {
-				graphic = projectile.getGfx();
+				graphic = projectile.getProjectileId();
 				startHeight = 50;
 				endHeight = 50;
 			}
@@ -214,7 +230,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay, cyclesPerTile * distance, curve, 105);
 
 			long delay = Math.round(Math.floor(baseDelay / 30.0) + (distance * (cyclesPerTile * 0.020) / 0.6));
-			boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGE);
+			boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
 
 			int maxHit = CombatFormula.maximumRangedHit(player);
 			int hit = player.world().random(maxHit);
@@ -222,7 +238,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			// target.hit(player, success ? hit : 0,
 			// delay).combatStyle(CombatStyle.RANGE);
 
-			target.hit(player, success ? hit : 0, (int) delay).combatStyle(CombatStyle.RANGE);
+			target.hit(player, success ? hit : 0, (int) delay, CombatStyle.RANGED);
 
 			// Timer is downtime.
 			int weaponSpeed = player.world().equipmentInfo().weaponSpeed(weaponId);
@@ -236,7 +252,11 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	private boolean doRangeSpecial() {
-		int weaponId = ((Player) getEntity()).getEquipment().get(EquipSlot.WEAPON).id();
+		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+		if (weapon == null) {
+			return false;
+		}
+		int weaponId = weapon.id();
 
 		switch (weaponId) {
 

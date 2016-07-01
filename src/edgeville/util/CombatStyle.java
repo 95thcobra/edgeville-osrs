@@ -5,6 +5,6 @@ package edgeville.util;
  */
 public enum CombatStyle {
 
-	MELEE, RANGE, MAGIC
+	MELEE, RANGED, MAGIC
 
 }

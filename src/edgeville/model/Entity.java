@@ -41,6 +41,16 @@ public abstract class Entity implements HitOrigin {
 	////// sj
 	// private CombatBuilder combatBuilder = new CombatBuilder();
 
+	private boolean damageOn;
+
+	public boolean isDamageOn() {
+		return damageOn;
+	}
+
+	public void setDamageOn(boolean damageOn) {
+		this.damageOn = damageOn;
+	}
+
 	/**
 	 * Information on our synchronization
 	 */
@@ -49,12 +59,14 @@ public abstract class Entity implements HitOrigin {
 	public Entity() {
 		this.tile = new Tile(0, 0, 0);
 		this.pathQueue = new PathQueue(this);
+		this.damageOn = true;
 	}
 
 	public Entity(World world, Tile tile) {
 		this.world = world;
 		this.tile = new Tile(tile);
 		this.pathQueue = new PathQueue(this);
+		this.damageOn = true;
 	}
 
 	public int index() {
@@ -146,7 +158,7 @@ public abstract class Entity implements HitOrigin {
 	public void graphic(int id, int height, int delay) {
 		sync.graphic(id, height, delay);
 	}
-	
+
 	public void graphic(Graphic graphic) {
 		graphic(graphic.getId(), graphic.getHeight(), graphic.getDelay());
 	}
@@ -353,14 +365,22 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public Hit hit(HitOrigin origin, int hit) {
-		return hit(origin, hit, 0);
+		return hit(origin, hit, 0, null);
 	}
-
+	
 	public Hit hit(HitOrigin origin, int hit, int delay) {
 		return hit(origin, hit, delay, null);
 	}
+	
+	public Hit hit(HitOrigin origin, int hit, CombatStyle combatStyle) {
+		return hit(origin, hit, 0, combatStyle);
+	}
 
-	public Hit hit(HitOrigin origin, int hit, int delay, Hit.Type type) {
+	public Hit hit(HitOrigin origin, int hit, int delay, CombatStyle combatStyle) {
+		return hit(origin, hit, delay, null, combatStyle);
+	}
+
+	public Hit hit(HitOrigin origin, int hit, int delay, Hit.Type type, CombatStyle combatStyle) {
 		Hit h = new Hit(hit, type != null ? type : hit > 0 ? Hit.Type.REGULAR : Hit.Type.MISS, delay).origin(origin);
 		hits.add(h);
 
@@ -378,7 +398,36 @@ public abstract class Entity implements HitOrigin {
 
 		// 1.33 on controlled for each skill.
 		if (origin instanceof Player) {
-			((Player) origin).skills().addXp(Skills.ATTACK, hit * 4);
+			Player player = (Player) origin;
+
+			player.messageDebug("style:"+h.style().toString());
+			
+			if (combatStyle == CombatStyle.MELEE) {
+				player.messageDebug("Melee hit");
+				switch (((Player) origin).getCombatUtil().getAttackStyle()) {
+				case ACCURATE:
+					((Player) origin).skills().addXp(Skills.ATTACK, hit * 4);
+					break;
+				case AGGRESSIVE:
+					((Player) origin).skills().addXp(Skills.STRENGTH, hit * 4);
+					break;
+				case CONTROLLED:
+					((Player) origin).skills().addXp(Skills.ATTACK, hit * 1.33);
+					((Player) origin).skills().addXp(Skills.STRENGTH, hit * 1.33);
+					((Player) origin).skills().addXp(Skills.DEFENCE, hit * 1.33);
+					break;
+				case DEFENSIVE:
+					((Player) origin).skills().addXp(Skills.DEFENCE, hit * 4);
+					break;
+				}
+			} else if (combatStyle == CombatStyle.RANGED) {
+				player.messageDebug("Range hit");
+				((Player) origin).skills().addXp(Skills.RANGED, hit * 4);
+			} else if (combatStyle == CombatStyle.MAGIC) {
+				player.messageDebug("Mage hit");
+				((Player) origin).skills().addXp(Skills.MAGIC, hit * 4);
+			}
+
 			((Player) origin).sound(((Entity) origin).getAttackSound());
 			if (this instanceof Player) {
 				((Player) origin).setSkullHeadIcon(Skulls.WHITE_SKUL.getSkullId());
@@ -386,9 +435,7 @@ public abstract class Entity implements HitOrigin {
 			}
 		}
 
-		if (this instanceof Player)
-
-		{
+		if (this instanceof Player) {
 			((Player) this).sound(((Entity) origin).getAttackSound());
 		}
 
@@ -396,8 +443,8 @@ public abstract class Entity implements HitOrigin {
 
 	}
 
-	public Hit hit(HitOrigin origin, int hit, Hit.Type type) {
-		return hit(origin, hit, 0, type);
+	public Hit hit(HitOrigin origin, int hit, Hit.Type type, CombatStyle combatStyle) {
+		return hit(origin, hit, 0, type, combatStyle);
 	}
 
 	public abstract int getAttackSound();
@@ -502,7 +549,7 @@ public abstract class Entity implements HitOrigin {
 							damage -= damage * 0.4;
 						} else if (us.varps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1 && hit.style() == CombatStyle.MAGIC) {
 							damage -= damage * 0.4;
-						} else if (us.varps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1 && hit.style() == CombatStyle.RANGE) {
+						} else if (us.varps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1 && hit.style() == CombatStyle.RANGED) {
 							damage -= damage * 0.4;
 						}
 					}
@@ -510,7 +557,8 @@ public abstract class Entity implements HitOrigin {
 					if (damage > hp())
 						damage = hp();
 
-					setHp(hp() - damage, 0);
+					if (damageOn)
+						setHp(hp() - damage, 0);
 					sync.hit(hit.type().ordinal(), damage);
 
 					if (hit.graphic() >= 0)

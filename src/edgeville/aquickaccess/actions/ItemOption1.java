@@ -6,6 +6,7 @@ import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.Sounds;
 import edgeville.model.item.Item;
 import edgeville.script.TimerKey;
 
@@ -52,6 +53,7 @@ public class ItemOption1 {
 
         player.timers().register(TimerKey.POTION, 3);
         player.animate(829);
+        player.sound(Sounds.DRINKING);
         player.message("You drink the " + potion.getName());
         deductPotionDose(potion);
     }
@@ -103,6 +105,8 @@ public class ItemOption1 {
         if (food.getNextId() != -1) {
             player.getInventory().add(new Item(food.getId()), true);
         }
+        
+        player.sound(Sounds.EATING);
 
         player.timers().register(TimerKey.FOOD, 3);
         player.timers().extendOrRegister(TimerKey.COMBAT_ATTACK, 3);

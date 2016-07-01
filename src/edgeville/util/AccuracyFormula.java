@@ -156,7 +156,7 @@ public class AccuracyFormula {
                 off_equipment_bonus = Math.max(Math.max(off_equipment_stab_attack, off_equipment_slash_attack), off_equipment_crush_attack);
                 def_equipment_bonus = Math.max(Math.max(def_equipment_stab_defence, def_equipment_slash_defence), def_equipment_crush_defence);
                 break;
-            case RANGE:
+            case RANGED:
                 if (off_base_ranged_level > off_weapon_requirement) {
                     off_weapon_bonus = (off_base_ranged_level - off_weapon_requirement) * .3;
                 }
@@ -199,7 +199,7 @@ public class AccuracyFormula {
                     def_block_chance = Math.floor(101 - (((hit_chance * off_special_attack_bonus) * off_void_bonus) * 100.));
                 }
                 break;
-            case RANGE:
+            case RANGED:
                 if (def_protect_from_ranged) {
                     off_hit_chance = Math.floor((((hit_chance * off_special_attack_bonus) * off_void_bonus) * .6) * 100.);
                     def_block_chance = Math.floor(101 - ((((hit_chance * off_special_attack_bonus) * off_void_bonus) * .6) * 100.));
