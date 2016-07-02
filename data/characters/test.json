@@ -3,8 +3,8 @@
   "displayName": "test",
   "password": "test",
   "tile": {
-    "x": 3096,
-    "z": 3502,
+    "x": 3093,
+    "z": 3503,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -13,7 +13,7 @@
   "prayerIcon": -1,
   "debug": false,
   "kills": 9,
-  "deaths": 32,
+  "deaths": 37,
   "inventory": [
     {
       "id": 5698,
@@ -75,18 +75,9 @@
     null,
     null,
     null,
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
     {
       "id": 397,
       "amount": 1
