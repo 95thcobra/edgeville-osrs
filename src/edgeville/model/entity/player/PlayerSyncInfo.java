@@ -109,11 +109,11 @@ public class PlayerSyncInfo extends SyncInfo {
 	}
 	
 	public void shout(String text) {
-		shoutSet = text.getBytes();
-	        RSBuffer buffer = new RSBuffer(Unpooled.wrappedBuffer(shoutSet));
-	        buffer.get().writerIndex(0);
-	       // addFlag(Flag.SHOUT.value);
-	        //TODO
+    	shoutSet = new byte[text.length() + 1];
+        RSBuffer buffer = new RSBuffer(Unpooled.wrappedBuffer(shoutSet));
+        buffer.get().writerIndex(0);
+        buffer.writeString(text);
+        addFlag(Flag.SHOUT.value);
 	}
 
 	public void animation(int id, int delay) {
@@ -268,7 +268,8 @@ public class PlayerSyncInfo extends SyncInfo {
 		FACE_ENTITY(0x1),
 		FACE_TILE(0x4),
 		CHAT(0x20),
-		FORCE_MOVE(0x400);
+		FORCE_MOVE(0x400),
+		SHOUT(2);
 
 		public int value;
 

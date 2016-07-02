@@ -1,6 +1,7 @@
 package edgeville.combat;
 
 import edgeville.Constants;
+import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.AttributeKey;
 import edgeville.model.ChatMessage;
@@ -97,19 +98,21 @@ public class PlayerVersusAnyCombat extends Combat {
 			int hit = getEntity().world().random(max);
 
 			getTarget().hit(getEntity(), success ? hit : 0, CombatStyle.MELEE);
-			triggerVeng( success ? hit : 0);
+			triggerVeng(success ? hit : 0);
 
 			getEntity().animate(EquipmentInfo.attackAnimationFor(((Player) getEntity())));
 			getEntity().timers().register(TimerKey.COMBAT_ATTACK, getEntity().world().equipmentInfo().weaponSpeed(weaponId));
 		}
 	}
-	
+
 	private void triggerVeng(int hit) {
 		if (target instanceof Player) {
-			if (target.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {		
-				//target.timers().cancel(TimerKey.VENGEANCE_COOLDOWN);
+			if (target.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
+				// target.timers().cancel(TimerKey.VENGEANCE_COOLDOWN);
 				player.hit(target, (int) (0.75 * hit));
-				((Player)target).sync().publicChatMessage(new ChatMessage("Taste vengeance!", 0, 0));		
+
+				Player targetPlayer = (Player) target;
+				targetPlayer.shout("Taste Vengeance!");
 			}
 		}
 	}
@@ -309,7 +312,7 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		int maxHit = CombatFormula.maximumRangedHit(player);
 		int hit = player.world().random(maxHit);
-		
+
 		triggerVeng(success ? hit : 0);
 
 		// target.hit(player, success ? hit : 0,
@@ -367,7 +370,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
 		int hit = player.world().random().nextInt((int) Math.round(max));
 		triggerVeng(hit);
-		
+
 		if (specialAttack.isHits()) {
 			int delay = (int) Math.round(Math.floor(32 / 30.0) + (tileDist * (5 * 0.020) / 0.6));
 			target.hit(player, hit, delay, CombatStyle.RANGED);

@@ -19,7 +19,6 @@ public class NpcSyncInfo extends SyncInfo {
     }
     
     public void shout(String text) {
-    	System.out.println("SHOUTING: " + text);
     	shoutSet = new byte[text.length() + 1];
         RSBuffer buffer = new RSBuffer(Unpooled.wrappedBuffer(shoutSet));
         buffer.get().writerIndex(0);

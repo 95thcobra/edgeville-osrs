@@ -6,6 +6,12 @@
 - All other ancient magics added.
 - Vengeance added.
 
+[02-07-2016]:
+
 - SpellOnNpc packet added.
+- Npc shout flag found and added.
+- Player shout flag found and added.
+- Vengeance uses player shout for "Taste vengeance!" now.
+
 
 

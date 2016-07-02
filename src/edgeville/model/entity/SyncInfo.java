@@ -14,7 +14,10 @@ public abstract class SyncInfo {
 
 	protected byte[] animationSet = new byte[3];
 	protected byte[] graphicSet = new byte[6];
-	protected byte[] shoutSet = new byte[5];
+	protected byte[] shoutSet;
+    public byte[] shoutSet() {
+        return shoutSet;
+    }
 	protected byte[] faceEntitySet = new byte[2];
 	protected byte[] hitSet = new byte[5];
 	protected byte[] hitSet2 = new byte[5];

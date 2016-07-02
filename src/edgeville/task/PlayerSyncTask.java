@@ -71,13 +71,15 @@ public class PlayerSyncTask implements Task {
 				buffer.writeByte(mask);
 				if (mask >> 8 != 0)
 					buffer.writeByte(mask >> 8);
-
+				
 				if (pSync.hasFlag(PlayerSyncInfo.Flag.HIT.value))
 					buffer.get().writeBytes(pSync.hitSet());
 				if (pSync.hasFlag(PlayerSyncInfo.Flag.FACE_ENTITY.value))
 					buffer.get().writeBytes(pSync.faceEntitySet());
 				if (pSync.hasFlag(PlayerSyncInfo.Flag.GRAPHIC.value))
 					buffer.get().writeBytes(pSync.graphicSet());
+				if (pSync.hasFlag(PlayerSyncInfo.Flag.SHOUT.value))
+					buffer.get().writeBytes(pSync.shoutSet());
 				if (pSync.hasFlag(PlayerSyncInfo.Flag.LOOKS.value) || sync.isNewlyAdded(p.index()))//this
 					buffer.get().writeBytes(pSync.looksBlock());
 				if (pSync.hasFlag(PlayerSyncInfo.Flag.FORCE_MOVE.value))
