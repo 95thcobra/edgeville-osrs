@@ -23,7 +23,7 @@ public class NpcSyncInfo extends SyncInfo {
         buffer.get().writerIndex(0);
         buffer.writeShort(id);
         buffer.writeByteN(delay);
-
+        
         addFlag(Flag.ANIMATION.value);
     }
 

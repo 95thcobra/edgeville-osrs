@@ -8,7 +8,7 @@ import edgeville.net.message.game.UpdateSkill;
 import edgeville.util.Varbit;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public class Skills {
 

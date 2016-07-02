@@ -1,4 +1,4 @@
-package edgeville.net.message.game;
+package edgeville.net.message.game.action;
 
 import io.netty.channel.ChannelHandlerContext;
 
@@ -9,6 +9,8 @@ import edgeville.combat.Magic.SpellOnPlayerAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;
+import edgeville.net.message.game.Action;
+import edgeville.net.message.game.PacketInfo;
 
 /**
  * @author Simon on 8/20/2015.
@@ -28,6 +30,7 @@ public class SpellOnPlayer implements Action {
 		slot = buf.readUShort();
 		targetIndex = buf.readULEShort();
 		int hash = buf.readIntV1();
+		
 		interfaceId = hash >> 16;
 		child = hash & 0xFFFF;
 		boolean run = buf.readByte() == 1;
@@ -35,8 +38,9 @@ public class SpellOnPlayer implements Action {
 
 	@Override
 	public void process(Player player) {
-		logger.info("Spell on player ({}); spell from [{}:{}] slot {}.", targetIndex, interfaceId, child, slot);
-
+		//logger.info("Spell on player ({}); spell from [{}:{}] slot {}.", targetIndex, interfaceId, child, slot);
+		player.messageDebug(slot+","+targetIndex+","+interfaceId+","+child);
+		
 		player.stopActions(false);
 
 		Player other = player.world().players().get(targetIndex);

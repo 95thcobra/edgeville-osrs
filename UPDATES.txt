@@ -1,7 +1,11 @@
 [01-07-2016]: 
 
+- SpellOnPlayer packet added.
 - Abyssal dagger animations and special added
 - Ice barrage and ice blitz & freezing added.
 - All other ancient magics added.
 - Vengeance added.
+
+- SpellOnNpc packet added.
+
 

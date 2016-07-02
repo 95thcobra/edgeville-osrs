@@ -3,8 +3,8 @@
   "displayName": "sky",
   "password": "test",
   "tile": {
-    "x": 3092,
-    "z": 3502,
+    "x": 3087,
+    "z": 3493,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -12,7 +12,7 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": true,
-  "kills": 105,
+  "kills": 107,
   "deaths": 100,
   "inventory": [
     {
@@ -83,8 +83,14 @@
       "id": 5698,
       "amount": 1
     },
-    null,
-    null,
+    {
+      "id": 9075,
+      "amount": 1111
+    },
+    {
+      "id": 557,
+      "amount": 11245125
+    },
     null,
     null,
     null,
@@ -345,7 +351,7 @@
     },
     {
       "id": 439,
-      "value": 2
+      "value": 1
     },
     {
       "id": 588,
@@ -394,7 +400,7 @@
       "xp": 5.214276E7
     },
     {
-      "level": 24,
+      "level": 4,
       "xp": 5.2138878E7
     },
     {
@@ -407,7 +413,7 @@
     },
     {
       "level": 99,
-      "xp": 5.2150964E7
+      "xp": 5.2151768E7
     },
     {
       "level": 99,

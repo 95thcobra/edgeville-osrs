@@ -12,7 +12,6 @@ import edgeville.model.entity.Player;
 import edgeville.net.ServerHandler;
 import edgeville.net.message.game.Action;
 import edgeville.net.message.game.PacketInfo;
-import edgeville.net.message.game.SpellOnPlayer;
 import edgeville.net.message.game.action.*;
 
 import java.util.Arrays;
@@ -39,6 +38,8 @@ public class ActionDecoder extends ByteToMessageDecoder {
 
 	public ActionDecoder() {
 		/* Fill repo, maybe through xml/json? */
+		actionRepository[40] = SpellOnNpc.class;
+		
 		actionRepository[202] = WalkMap.class;
 		actionRepository[70] = WalkMap.class;
 		actionRepository[210] = PublicChat.class;

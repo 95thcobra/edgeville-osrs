@@ -39,11 +39,46 @@ public final class GameCommands {
 		commands = new HashMap<>();
 
 		// REAL COMMANDS
+
+		put(Privilege.ADMIN, "1", (p, args) -> {
+			for (int i = 0; i < p.world().npcs().size(); i++) {
+				Npc npc = p.world().npcs().get(i);
+				if (npc == null) {
+					//p.message("npc is null?");
+					continue;
+				}
+				//p.message("NpcName: %s", p.world().npcs().get(i).def().name);
+				if (npc.def().name.contains("esser")) {
+					//npc.graphic(5);
+					npc.graphic(5);
+					npc.animate(424);
+					
+					p.message("NpcName: %s", p.world().npcs().get(i).def().name);
+				}
+			}
+		});
+		
+		put(Privilege.ADMIN, "2", (p, args) -> {
+			for (int i = 0; i < p.world().npcs().size(); i++) {
+				Npc npc = p.world().npcs().get(i);
+				if (npc == null) {
+					//p.message("npc is null?");
+					continue;
+				}
+				//p.message("NpcName: %s", p.world().npcs().get(i).def().name);
+				if (npc.def().name.contains("esser")) {
+					p.world().npcs().get(i).graphic(500);
+					//p.world().npcs().get(i).animate(424);
+					p.message("NpcName: %s", p.world().npcs().get(i).def().name);
+				}
+			}
+		});
+
 		put(Privilege.ADMIN, "loopgfx", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 1400; i++) {
 					p.graphic(i);
-					p.message(""+i);
+					p.message("" + i);
 					try {
 						Thread.sleep(300);
 					} catch (Exception e) {
@@ -53,13 +88,13 @@ public final class GameCommands {
 				}
 			}).start();
 		});
-		
+
 		put(Privilege.ADMIN, "loopanim", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 6200; i < 7000; i++) {
 					p.animate(-1);
 					p.animate(i);
-					p.message(""+i);
+					p.message("" + i);
 					try {
 						Thread.sleep(300);
 					} catch (Exception e) {
@@ -69,7 +104,7 @@ public final class GameCommands {
 				}
 			}).start();
 		});
-		
+
 		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
 		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
 		put(Privilege.ADMIN, "spec", (p, args) -> p.varps().setVarp(300, 100000));
@@ -457,7 +492,8 @@ public final class GameCommands {
 			p.move((rid >> 8) * 64 + 32, (rid & 0xFF) * 64 + 32);
 		});
 		put(Privilege.ADMIN, "addxp", (p, args) -> p.skills().addXp(Integer.valueOf(args[0]), Integer.valueOf(args[1])));
-		//put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p, Integer.valueOf(args[0]), Hit.Type.REGULAR));
+		// put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p,
+		// Integer.valueOf(args[0]), Hit.Type.REGULAR));
 		put(Privilege.ADMIN, "maxspec", (p, args) -> p.varps().setVarp(Varp.SPECIAL_ENERGY, 1000));
 		put(Privilege.ADMIN, "finditem", (p, args) -> {
 			String s = glue(args);

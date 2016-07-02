@@ -66,11 +66,11 @@ public class NpcSyncTask implements Task {
 				if (npcSync.hasFlag(NpcSyncInfo.Flag.HIT2.value)) {
 					buffer.get().writeBytes(npcSync.getHitSet2NPC());
 				}
-
-				if (npcSync.hasFlag(NpcSyncInfo.Flag.GRAPHIC.value))
-					buffer.get().writeBytes(npcSync.graphicSet());
 				if (npcSync.hasFlag(NpcSyncInfo.Flag.ANIMATION.value))
 					buffer.get().writeBytes(npcSync.animationSet());
+				if (npcSync.hasFlag(NpcSyncInfo.Flag.GRAPHIC.value))
+					buffer.get().writeBytes(npcSync.graphicSet());
+
 			}
 
 			player.write(new UpdatePlayers(buffer));

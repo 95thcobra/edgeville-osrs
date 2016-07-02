@@ -19,15 +19,16 @@ public class ExamineObject implements Action {
 
 	private int id;
 
-	@Override public void process(Player player) {
+	@Override
+	public void process(Player player) {
 		if (player.isDebug())
-			player.message("%s, (%d) %s", player.world().examineRepository().object(id), id,
-					Arrays.toString(player.world().definitions().get(ObjectDefinition.class, id).models));
+			player.message("%s, (%d) %s", player.world().examineRepository().object(id), id, Arrays.toString(player.world().definitions().get(ObjectDefinition.class, id).models));
 		else
 			player.message(player.world().examineRepository().object(id));
 	}
 
-	@Override public void decode(RSBuffer buf, ChannelHandlerContext ctx, int opcode, int size) {
+	@Override
+	public void decode(RSBuffer buf, ChannelHandlerContext ctx, int opcode, int size) {
 		id = buf.readULEShort();
 	}
 

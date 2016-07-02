@@ -3,8 +3,8 @@
   "displayName": "test",
   "password": "test",
   "tile": {
-    "x": 3089,
-    "z": 3502,
+    "x": 3093,
+    "z": 3503,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -13,7 +13,7 @@
   "prayerIcon": -1,
   "debug": false,
   "kills": 6,
-  "deaths": 28,
+  "deaths": 29,
   "inventory": [
     {
       "id": 5698,
@@ -237,7 +237,7 @@
     },
     {
       "id": 439,
-      "value": 2
+      "value": 1
     },
     {
       "id": 843,
@@ -274,7 +274,7 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 25,
+      "level": 79,
       "xp": 1.3035585E7
     },
     {
@@ -287,7 +287,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3034455E7
     },
     {
       "level": 99,
