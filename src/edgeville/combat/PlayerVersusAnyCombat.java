@@ -107,12 +107,10 @@ public class PlayerVersusAnyCombat extends Combat {
 
 	private void triggerVeng(int hit) {
 		if (target instanceof Player) {
-			if (target.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
-				// target.timers().cancel(TimerKey.VENGEANCE_COOLDOWN);
+			if (((Player) target).isVengOn()) {
 				player.hit(target, (int) (0.75 * hit));
-
-				Player targetPlayer = (Player) target;
-				targetPlayer.shout("Taste Vengeance!");
+				((Player) target).shout("Taste Vengeance!");
+				((Player) target).setVengOn(false);
 			}
 		}
 	}
