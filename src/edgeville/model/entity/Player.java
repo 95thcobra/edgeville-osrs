@@ -10,15 +10,15 @@ import edgeville.combat.CombatUtil;
 import edgeville.crypto.IsaacRand;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
-import edgeville.handlers.InputHelper;
 import edgeville.model.*;
 import edgeville.model.entity.player.*;
+import edgeville.model.entity.player.interfaces.InputDialog;
 import edgeville.model.entity.player.interfaces.QuestTab;
 import edgeville.model.entity.player.skills.Prayer;
 import edgeville.model.item.Item;
 import edgeville.model.item.ItemContainer;
 import edgeville.net.future.ClosingChannelFuture;
-import edgeville.net.message.game.*;
+import edgeville.net.message.game.encoders.*;
 import edgeville.script.Timer;
 import edgeville.script.TimerKey;
 import edgeville.services.serializers.PlayerSerializer;
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  */
 public class Player extends Entity {
 
@@ -218,8 +218,10 @@ public class Player extends Entity {
 	//private void lastButtonClicked
 	
 	private Varps varps;
-	private InputHelper inputHelper;
+	//private InputHelper inputHelper;
 
+	private InputDialog lastInputDialog;
+	
 	private int dialogueAction = -1;
 
 	public int getDialogueAction() {
@@ -264,7 +266,7 @@ public class Player extends Entity {
 		// this.bank = new ItemContainer(world, 800,
 		// ItemContainer.Type.FULL_STACKING);
 		this.varps = new Varps(this);
-		this.inputHelper = new InputHelper(this);
+		//this.lastInputDialog = new InputDialog(this);
 
 		prayer = new Prayer(this);
 		loadout = new Loadout();
@@ -513,8 +515,12 @@ public class Player extends Entity {
 		return migration;
 	}
 
-	public InputHelper inputHelper() {
-		return inputHelper;
+	public InputDialog getLastInputDialog() {
+		return lastInputDialog;
+	}
+	
+	public void setInputDialog(InputDialog inputDialog) {
+		this.lastInputDialog = inputDialog;
 	}
 
 	@Override

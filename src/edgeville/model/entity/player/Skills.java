@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import edgeville.fs.EnumDefinition;
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.UpdateSkill;
+import edgeville.net.message.game.encoders.UpdateSkill;
 import edgeville.util.Varbit;
 
 /**

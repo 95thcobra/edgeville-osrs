@@ -1,8 +1,8 @@
 package edgeville.aquickaccess.dialogue;
 
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.InterfaceSettings;
-import edgeville.net.message.game.InvokeScript;
+import edgeville.net.message.game.encoders.InterfaceSettings;
+import edgeville.net.message.game.encoders.InvokeScript;
 
 /**
  * Created by Sky on 21-6-2016.

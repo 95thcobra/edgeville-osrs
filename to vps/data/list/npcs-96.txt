@@ -3522,7 +3522,7 @@ Sir Gawain: 3520
 Sir Kay: 3521
 Sir Bedivere: 3522
 Sir Tristram: 3523
-Sir Pelleas: 3524
+Sir as: 3524
 Sir Lucan: 3525
 Sir Palomedes: 3526
 Sir Mordred: 3527
@@ -4345,10 +4345,10 @@ Sir Palomedes: 4343
 Sir Lancelot: 4344
 Sir Bedivere: 4345
 Sir Tristram: 4346
-Sir Pelleas: 4347
+Sir as: 4347
 Sir Gawain: 4348
 Sir Kay: 4349
-Sir Pelleas: 4350
+Sir as: 4350
 Sir Gawain: 4351
 Sir Kay: 4352
 Squire: 4353
@@ -4358,7 +4358,7 @@ Sir Gawain: 4356
 Sir Lucan: 4357
 Sir Palomedes: 4358
 Sir Tristram: 4359
-Sir Pelleas: 4360
+Sir as: 4360
 Sir Bedivere: 4361
 Ogre chieftain: 4362
 Ogre chieftain: 4363

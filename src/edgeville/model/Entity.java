@@ -12,7 +12,7 @@ import edgeville.model.entity.player.Skills;
 import edgeville.model.entity.player.Skulls;
 import edgeville.model.item.Item;
 import edgeville.model.map.*;
-import edgeville.net.message.game.PlaySound;
+import edgeville.net.message.game.encoders.PlaySound;
 import edgeville.script.TimerKey;
 import edgeville.script.TimerRepository;
 import edgeville.util.CombatStyle;
@@ -21,7 +21,7 @@ import edgeville.util.Varbit;
 import java.util.*;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  */
 public abstract class Entity implements HitOrigin {
 

@@ -6,7 +6,7 @@ import edgeville.model.World;
 import edgeville.model.entity.Player;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public class PlayerPostSyncTask implements Task {
 

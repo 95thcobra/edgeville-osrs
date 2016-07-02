@@ -2,10 +2,12 @@ package edgeville.model.entity.player;
 
 import edgeville.model.World;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.interfaces.inputdialog.NumberInputDialog;
 import edgeville.model.item.Item;
 import edgeville.model.item.ItemContainer;
-import edgeville.net.message.game.InterfaceSettings;
-import edgeville.net.message.game.InvokeScript;
+import edgeville.net.message.game.encoders.InterfaceSettings;
+import edgeville.net.message.game.encoders.InvokeScript;
+import edgeville.util.Varbit;
 
 public class Bank {
 	private Player player;
@@ -41,7 +43,7 @@ public class Bank {
 		player.getBank().getBankItems().makeDirty();
 	}
 
-	public int determineAmountToDeposit(int option, int totalAmount) {
+	public int determineAmountToDeposit(int option, int totalAmount, int id) {
 		int amount = 1;
 
 		switch (option) {
@@ -54,15 +56,43 @@ public class Bank {
 		case 3:
 			amount = 10;
 			break;
-		case 5:
-			// x TODO
-			break;
 		case 6:
 			amount = totalAmount;
 			break;
 		}
 
 		return amount;
+	}
+
+	public void moveItemsToBank(int id, int amount) {
+		int unnotedId = new Item(id).definition(player.world()).unnotedID;
+
+		if (bankItems.occupiedSlots() >= bankItems.size() && !bankItems.has(id)) {
+			player.message("Bank is full!");
+			return;
+		}
+		if (player.getInventory().remove(id, amount).success()) {
+			if (unnotedId > 0 && unnotedId < id) {
+				bankItems.add(unnotedId, amount);
+				return;
+			}
+			bankItems.add(id, amount);
+		}
+	}
+
+	public void moveItemsToInventory(int id, int amount) {
+		int unnotedId = new Item(id).definition(player.world()).unnotedID;
+
+		int idToAdd;
+		if (player.varps().getVarbit(Varbit.BANK_WITHDRAW_NOTE) == 1 && unnotedId > 0 && unnotedId > id) {
+			idToAdd = unnotedId;
+		} else {
+			idToAdd = id;
+		}
+		
+		if (player.getInventory().add(idToAdd, amount).success()) {
+			bankItems.remove(id, amount);
+		}
 	}
 
 	public int determineAmountToWithdraw(int option, int totalAmount) {
@@ -96,53 +126,43 @@ public class Bank {
 		slot++;
 		Item item = bankItems.get(slot);
 		int id = item.getId();
-		int amount = determineAmountToWithdraw(option, item.getAmount());
 
-		if (!player.getInventory().add(id, amount).success()) {
+		// X
+		if (option == 4) {
+			NumberInputDialog var = new NumberInputDialog(player) {
+				@Override
+				public void doAction(int value) {
+					moveItemsToInventory(id, value);
+				}
+			};
+			var.send();
 			return;
 		}
 
-		bankItems.remove(id, amount);
-	}
-
-	public boolean hasSpace(int itemId) {
-		// If bank contains item, it can always be added.
-		if (bankItems.has(itemId)) {
-			return true;
-		}
-
-		// If item count equals total possible items, return false.
-		if (bankItems.occupiedSlots() == bankItems.size()) {
-			return false;
-		}
-
-		// Bank has space.
-		return true;
+		int amount = determineAmountToWithdraw(option, item.getAmount());
+		moveItemsToInventory(id, amount);
 	}
 
 	public void deposit(int buttonId, int slot, int option) {
 		slot++;
-		player.message("Button %d, Slot %d, option %d", buttonId, slot, option);
 
 		// The selected item.
 		Item item = player.getInventory().get(slot);
 		int id = item.getId();
-		int amount;
 
-		// Determine amount for option. 1,5,10,x,all. Option 6 is all.
-		amount = determineAmountToDeposit(option, item.getAmount());
-
-		if (!hasSpace(id)) {
+		// X
+		if (option == 5) {
+			NumberInputDialog var = new NumberInputDialog(player) {
+				@Override
+				public void doAction(int value) {
+					moveItemsToBank(id, value);
+				}
+			};
+			var.send();
 			return;
 		}
-
-		// Remove the item from inventory
-		if (player.getInventory().remove(id, amount).failed()) {
-			return;
-		}
-
-		player.message("item " + item);
-		bankItems.add(id, amount);
+		int amount = determineAmountToDeposit(option, item.getAmount(), id);
+		moveItemsToBank(id, amount);
 	}
 
 	public void handleClick(int buttonId, int slot, int option) {
@@ -150,6 +170,56 @@ public class Bank {
 		case 12:
 			withdraw(buttonId, slot, option);
 			break;
+		case 16:
+			player.varps().setVarbit(Varbit.BANK_INSERT, 0);
+			break;
+		case 18:
+			player.varps().setVarbit(Varbit.BANK_INSERT, 1);
+			break;
+		case 21:
+			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 0);
+			break;
+		case 23:
+			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 1);
+			break;
 		}
+	}
+
+	public boolean isInsertEnabled() {
+		return player.varps().getVarbit(Varbit.BANK_INSERT) == 1;
+	}
+
+	public void shiftItems(int slotFrom, int slotTo) {
+		int to = slotTo;
+		int tempFrom = slotFrom;
+
+		for (int tempTo = to; tempFrom != tempTo;)
+			if (tempFrom > tempTo) {
+				switchItem(tempFrom, tempFrom - 1);
+				tempFrom--;
+			} else if (tempFrom < tempTo) {
+				switchItem(tempFrom, tempFrom + 1);
+				tempFrom++;
+			}
+	}
+
+	public void switchItem(int slotFrom, int slotTo) {
+		Item from = bankItems.get(slotFrom);
+		Item to = bankItems.get(slotTo);
+
+		bankItems.set(slotFrom, to);
+		bankItems.set(slotTo, from);
+	}
+
+	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther) {
+		if (isInsertEnabled()) {
+			shiftItems(slot, slotOther);
+			return;
+		}
+		Item original = bankItems.get(slot);
+		Item other = bankItems.get(slotOther);
+
+		bankItems.set(slotOther, original);
+		bankItems.set(slot, other);
 	}
 }

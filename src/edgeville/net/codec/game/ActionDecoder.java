@@ -10,9 +10,9 @@ import org.apache.logging.log4j.Logger;
 import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 import edgeville.net.ServerHandler;
-import edgeville.net.message.game.Action;
-import edgeville.net.message.game.PacketInfo;
-import edgeville.net.message.game.action.*;
+import edgeville.net.message.game.decoders.*;
+import edgeville.net.message.game.encoders.Action;
+import edgeville.net.message.game.encoders.PacketInfo;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  *
  */
 public class ActionDecoder extends ByteToMessageDecoder {
@@ -39,6 +39,7 @@ public class ActionDecoder extends ByteToMessageDecoder {
 	public ActionDecoder() {
 		/* Fill repo, maybe through xml/json? */
 		actionRepository[40] = SpellOnNpc.class;
+		actionRepository[50] = ItemDragBank.class;
 		
 		actionRepository[202] = WalkMap.class;
 		actionRepository[70] = WalkMap.class;

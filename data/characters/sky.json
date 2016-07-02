@@ -3,8 +3,8 @@
   "displayName": "sky",
   "password": "test",
   "tile": {
-    "x": 3086,
-    "z": 3492,
+    "x": 3094,
+    "z": 3491,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -17,71 +17,38 @@
   "inventory": [
     {
       "id": 565,
-      "amount": 10000
+      "amount": 9981
     },
     {
       "id": 9075,
-      "amount": 12352434
+      "amount": 12351918
     },
     {
       "id": 557,
-      "amount": 11245125
+      "amount": 11245106
     },
+    {
+      "id": 4151,
+      "amount": 1
+    },
+    null,
+    null,
     {
       "id": 555,
-      "amount": 10000
-    },
-    {
-      "id": 560,
-      "amount": 10000
-    },
-    {
-      "id": 554,
-      "amount": 13512
-    },
-    {
-      "id": 566,
-      "amount": 123531253
+      "amount": 9881
     },
     {
       "id": 556,
-      "amount": 23563256
-    },
-    {
-      "id": 562,
-      "amount": 153
-    },
-    {
-      "id": 4675,
-      "amount": 1
-    },
-    {
-      "id": 6889,
-      "amount": 1
+      "amount": 23563249
     },
     null,
     {
-      "id": 5698,
-      "amount": 1
+      "id": 554,
+      "amount": 13504
     },
     {
-      "id": 12006,
-      "amount": 1
-    },
-    null,
-    null,
-    null,
-    {
-      "id": 157,
-      "amount": 1
-    },
-    {
-      "id": 163,
-      "amount": 1
-    },
-    {
-      "id": 145,
-      "amount": 1
+      "id": 566,
+      "amount": 123531245
     },
     null,
     null,
@@ -90,10 +57,16 @@
     null,
     null,
     null,
-    {
-      "id": 397,
-      "amount": 1
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   "equipment": [
     {
@@ -323,7 +296,11 @@
     },
     {
       "id": 300,
-      "value": 600
+      "value": 1000
+    },
+    {
+      "id": 304,
+      "value": 1
     },
     {
       "id": 388,

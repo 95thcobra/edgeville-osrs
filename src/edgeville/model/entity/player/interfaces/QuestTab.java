@@ -4,7 +4,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.Loadout;
 import edgeville.model.item.Item;
-import edgeville.net.message.game.InterfaceText;
+import edgeville.net.message.game.encoders.InterfaceText;
 import edgeville.util.CombatFormula;
 
 public class QuestTab {

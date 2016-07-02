@@ -10,7 +10,7 @@ import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.Skills;
 import edgeville.model.entity.player.skills.Prayer;
 import edgeville.model.item.Item;
-import edgeville.net.message.game.InvokeScript;
+import edgeville.net.message.game.encoders.InvokeScript;
 import edgeville.script.TimerKey;
 import edgeville.util.CombatFormula;
 import edgeville.util.SettingsBuilder;

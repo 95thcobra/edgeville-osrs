@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.*;
+import edgeville.net.message.game.encoders.*;
 import edgeville.util.SettingsBuilder;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public class Interfaces {
 

@@ -4,7 +4,7 @@ import edgeville.aquickaccess.events.NpcDeathEvent;
 import edgeville.fs.NpcDefinition;
 import edgeville.model.*;
 import edgeville.model.entity.player.NpcSyncInfo;
-import edgeville.net.message.game.PlaySound;
+import edgeville.net.message.game.encoders.PlaySound;
 
 /**
  * @author Simon on 8/10/2015.

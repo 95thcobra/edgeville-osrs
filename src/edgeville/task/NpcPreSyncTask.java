@@ -7,10 +7,10 @@ import edgeville.model.World;
 import edgeville.model.entity.Npc;
 import edgeville.model.entity.PathQueue;
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.DisplayMap;
+import edgeville.net.message.game.encoders.DisplayMap;
 
 /**
- * @author Simon Pelle on 8/10/2015.
+ * @author Simon on 8/10/2015.
  */
 public class NpcPreSyncTask implements Task {
 

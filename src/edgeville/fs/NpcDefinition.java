@@ -4,7 +4,7 @@ import edgeville.io.RSBuffer;
 import io.netty.buffer.Unpooled;
 
 /**
- * @author Simon Pelle on 10/4/2014.
+ * @author Simon on 10/4/2014.
  */
 public class NpcDefinition implements Definition {
 

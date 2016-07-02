@@ -1,7 +1,7 @@
 package edgeville.net.message;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  */
 public class Js5DataRequest {
 

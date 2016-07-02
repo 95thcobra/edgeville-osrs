@@ -2,7 +2,7 @@ package edgeville.model.entity.player;
 
 import edgeville.model.entity.Player;
 import edgeville.model.item.Item;
-import edgeville.net.message.game.InterfaceText;
+import edgeville.net.message.game.encoders.InterfaceText;
 import edgeville.util.EquipmentInfo;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

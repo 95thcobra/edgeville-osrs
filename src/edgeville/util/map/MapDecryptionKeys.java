@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  *
  */
 public class MapDecryptionKeys {

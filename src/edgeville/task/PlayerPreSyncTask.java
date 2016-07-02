@@ -8,13 +8,13 @@ import edgeville.model.Tile;
 import edgeville.model.World;
 import edgeville.model.entity.PathQueue;
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.DisplayMap;
-import edgeville.net.message.game.SetItems;
+import edgeville.net.message.game.encoders.DisplayMap;
+import edgeville.net.message.game.encoders.SetItems;
 
 import java.util.Collection;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public class PlayerPreSyncTask implements Task {
 

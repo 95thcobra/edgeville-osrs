@@ -6,8 +6,8 @@ import java.io.IOException;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.AddGroundItem;
-import edgeville.net.message.game.SetMapBase;
+import edgeville.net.message.game.encoders.AddGroundItem;
+import edgeville.net.message.game.encoders.SetMapBase;
 import edgeville.services.serializers.PlayerSerializer;
 
 public class UpdateGameEvent extends Event {

@@ -9,14 +9,14 @@ import edgeville.model.World;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.SyncInfo;
 import edgeville.model.entity.player.PlayerSyncInfo;
-import edgeville.net.message.game.UpdatePlayers;
+import edgeville.net.message.game.encoders.UpdatePlayers;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public class PlayerSyncTask implements Task {
 

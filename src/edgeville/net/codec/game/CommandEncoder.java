@@ -11,10 +11,10 @@ import org.apache.logging.log4j.Logger;
 import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 import edgeville.net.ServerHandler;
-import edgeville.net.message.game.Command;
+import edgeville.net.message.game.encoders.Command;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  */
 @ChannelHandler.Sharable
 public class CommandEncoder extends MessageToByteEncoder<Command> {

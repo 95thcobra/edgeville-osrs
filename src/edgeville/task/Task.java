@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 import edgeville.model.World;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public interface Task {
 

@@ -1,7 +1,5 @@
 package edgeville.util;
 
-import static edgeville.handlers.InputHelper.*;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +17,10 @@ import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Privilege;
 import edgeville.model.entity.player.Skills;
 import edgeville.model.item.Item;
-import edgeville.net.message.game.*;
+import edgeville.net.message.game.encoders.*;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public final class GameCommands {
 
@@ -39,7 +37,9 @@ public final class GameCommands {
 		commands = new HashMap<>();
 
 		// REAL COMMANDS
-
+		/*put(Privilege.ADMIN, "input", (p, args) -> {
+		StringInput
+		});*/
 		put(Privilege.ADMIN, "shout", (p, args) -> {
 			p.shout("Taste vengeance!");
 		});
@@ -497,14 +497,9 @@ public final class GameCommands {
 			p.looks().update();
 			p.sync().publicChatMessage(new ChatMessage("Hi", 0, 0));
 		});
-		put(Privilege.ADMIN, "input", (p, args) -> {
-			p.inputHelper().provideAlphaNumerical("Is William Gay?", new AlphaNumericalInput() {
-				@Override
-				public void execute(Player player, String value) {
-					System.out.println("The value is: " + value);
-				}
-			});
-		});
+		/*put(Privilege.ADMIN, "input", (p, args) -> {
+			new InputDialog(p).sendNumberInput();
+		});*/
 		put(Privilege.PLAYER, "ancients", (p, args) -> p.varps().setVarbit(4070, 1));
 		put(Privilege.PLAYER, "modern", (p, args) -> p.varps().setVarbit(4070, 0));
 		put(Privilege.PLAYER, "lunar", (p, args) -> p.varps().setVarbit(4070, 2));

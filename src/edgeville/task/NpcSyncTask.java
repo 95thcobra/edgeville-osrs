@@ -11,10 +11,10 @@ import edgeville.model.entity.Npc;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.NpcSyncInfo;
 import edgeville.model.entity.player.PlayerSyncInfo;
-import edgeville.net.message.game.UpdatePlayers;
+import edgeville.net.message.game.encoders.UpdatePlayers;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public class NpcSyncTask implements Task {
 

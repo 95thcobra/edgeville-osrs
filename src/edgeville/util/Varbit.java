@@ -25,4 +25,7 @@ public class Varbit {
 	public static final int SIDE_PANEL = 4607;
 	public static final int SIDE_PANEL_CLOSABLE_HOTKEYS = 4611;
 	public static final int IRONMAN = 1777;
+	
+	public static final int BANK_INSERT = 3959;
+	public static final int BANK_WITHDRAW_NOTE = 3958;
 }

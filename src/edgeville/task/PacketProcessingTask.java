@@ -8,7 +8,7 @@ import edgeville.model.World;
 import java.util.Collection;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  *
  * Processes the scheduled actions for the players.
  */

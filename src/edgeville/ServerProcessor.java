@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  *
  * Represents the 'heart' of the game server, or the 'main thread' so to speak.
  * The ServerProcessor has a (linked) list of tasks it runs in sequence. If any of

@@ -3,7 +3,7 @@ package edgeville.net.message;
 import io.netty.channel.Channel;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  */
 public class LoginRequestMessage {
 

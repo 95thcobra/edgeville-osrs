@@ -8,8 +8,8 @@ import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.fs.VarbitDefinition;
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.SetVarp;
-import edgeville.net.message.game.action.IntegerInput;
+import edgeville.net.message.game.decoders.IntegerInput;
+import edgeville.net.message.game.encoders.SetVarp;
 import edgeville.util.Varbit;
 import edgeville.util.Varp;
 

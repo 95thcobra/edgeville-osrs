@@ -5,7 +5,7 @@ import com.typesafe.config.Config;
 
 import edgeville.GameServer;
 import edgeville.model.entity.Player;
-import edgeville.net.message.game.AddClanChatMessage;
+import edgeville.net.message.game.encoders.AddClanChatMessage;
 import edgeville.services.intercom.ClanChatService;
 import edgeville.services.intercom.PmService;
 import edgeville.services.redis.RedisService;

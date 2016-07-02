@@ -2,8 +2,8 @@ package edgeville.handlers;
 
 import edgeville.model.entity.Player;
 import edgeville.model.item.Item;
-import edgeville.net.message.game.InterfaceItem;
-import edgeville.net.message.game.InterfaceText;
+import edgeville.net.message.game.encoders.InterfaceItem;
+import edgeville.net.message.game.encoders.InterfaceText;
 
 /**
  * @author William Talleur <talleurw@gmail.com>

@@ -17,8 +17,8 @@ import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 import edgeville.net.future.ClosingChannelFuture;
 import edgeville.net.message.*;
-import edgeville.net.message.game.Action;
-import edgeville.net.message.game.DisplayMap;
+import edgeville.net.message.game.encoders.Action;
+import edgeville.net.message.game.encoders.DisplayMap;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;

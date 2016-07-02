@@ -10,7 +10,7 @@ import edgeville.fs.MapDefinition;
 import edgeville.model.entity.Npc;
 import edgeville.model.entity.Player;
 import edgeville.model.map.MapObj;
-import edgeville.net.message.game.*;
+import edgeville.net.message.game.encoders.*;
 import edgeville.plugin.PluginHandler;
 import edgeville.util.*;
 
@@ -21,7 +21,7 @@ import java.security.SecureRandom;
 import java.util.*;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  * Modified by Simon Jacobs on 26/2/2016.
  */
 public class World {

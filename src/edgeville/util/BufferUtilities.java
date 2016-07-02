@@ -3,7 +3,7 @@ package edgeville.util;
 import io.netty.buffer.ByteBuf;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  */
 public class BufferUtilities {
 

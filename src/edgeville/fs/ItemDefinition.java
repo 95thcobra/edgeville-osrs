@@ -9,7 +9,7 @@ import java.util.Map;
 import edgeville.io.RSBuffer;
 
 /**
- * @author Simon Pelle on 10/4/2014.
+ * @author Simon on 10/4/2014.
  */
 public class ItemDefinition implements Definition {
 

@@ -3,7 +3,7 @@ package edgeville.model;
 import com.google.common.base.MoreObjects;
 
 /**
- * @author Simon Pelle on 8/22/2014.
+ * @author Simon on 8/22/2014.
  */
 public class Tile {
 
