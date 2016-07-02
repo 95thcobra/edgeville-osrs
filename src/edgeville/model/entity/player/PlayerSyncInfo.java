@@ -7,6 +7,7 @@ import edgeville.model.ForceMovement;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.SyncInfo;
+import edgeville.model.entity.player.NpcSyncInfo.Flag;
 import io.netty.buffer.Unpooled;
 
 /**
@@ -105,6 +106,14 @@ public class PlayerSyncInfo extends SyncInfo {
 		}
 		looksBlock[0] = (byte) l.length;
 		addFlag(Flag.LOOKS.value);
+	}
+	
+	public void shout(String text) {
+		shoutSet = text.getBytes();
+	        RSBuffer buffer = new RSBuffer(Unpooled.wrappedBuffer(shoutSet));
+	        buffer.get().writerIndex(0);
+	       // addFlag(Flag.SHOUT.value);
+	        //TODO
 	}
 
 	public void animation(int id, int delay) {

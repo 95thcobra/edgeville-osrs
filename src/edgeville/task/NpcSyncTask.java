@@ -60,6 +60,11 @@ public class NpcSyncTask implements Task {
 				int mask = npcSync.calculatedFlag();
 				buffer.writeByte(mask);
 
+				
+				if (npcSync.hasFlag(NpcSyncInfo.Flag.SHOUT.value))
+					buffer.get().writeBytes(npcSync.shoutSet());
+				
+				
 				if (npcSync.hasFlag(NpcSyncInfo.Flag.HIT.value)) {
 					buffer.get().writeBytes(npcSync.getHitSetNPC());
 				}
@@ -71,6 +76,7 @@ public class NpcSyncTask implements Task {
 				if (npcSync.hasFlag(NpcSyncInfo.Flag.GRAPHIC.value))
 					buffer.get().writeBytes(npcSync.graphicSet());
 
+				
 			}
 
 			player.write(new UpdatePlayers(buffer));

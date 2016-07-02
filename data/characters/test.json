@@ -3,8 +3,8 @@
   "displayName": "test",
   "password": "test",
   "tile": {
-    "x": 3093,
-    "z": 3503,
+    "x": 3087,
+    "z": 3497,
     "level": 0
   },
   "privilege": "ADMIN",

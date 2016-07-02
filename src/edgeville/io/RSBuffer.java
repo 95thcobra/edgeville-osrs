@@ -241,6 +241,14 @@ public class RSBuffer {
 		return this;
 	}
 
+	public RSBuffer writeStringNew(String str) {
+		if (str == null)
+			str = "";
+
+		backing.writeBytes(str.getBytes());
+		return this;
+	}
+
 	public String readString() {
 		return BufferUtilities.readString(backing);
 	}

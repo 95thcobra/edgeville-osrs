@@ -123,6 +123,10 @@ public abstract class Entity implements HitOrigin {
 		if (!sync.hasFlag(isPlayer() ? PlayerSyncInfo.Flag.ANIMATION.value : NpcSyncInfo.Flag.ANIMATION.value))
 			animate(id); // TODO all the block animations QQ
 	}
+	
+	public void shout(String text) {
+		sync.shout(text);
+	}
 
 	public void animate(int id) {
 		sync.animation(id, 0);

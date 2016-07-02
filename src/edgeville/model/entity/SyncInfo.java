@@ -14,6 +14,7 @@ public abstract class SyncInfo {
 
 	protected byte[] animationSet = new byte[3];
 	protected byte[] graphicSet = new byte[6];
+	protected byte[] shoutSet = new byte[5];
 	protected byte[] faceEntitySet = new byte[2];
 	protected byte[] hitSet = new byte[5];
 	protected byte[] hitSet2 = new byte[5];
@@ -69,6 +70,8 @@ public abstract class SyncInfo {
 	public boolean teleported() {
 		return teleported;
 	}
+	
+	public abstract void shout(String text);
 
 	public abstract void animation(int id, int delay);
 

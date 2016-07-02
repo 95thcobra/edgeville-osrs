@@ -4,7 +4,7 @@ import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 
 /**
- * @author Simon Pelle on 8/23/2014.
+ * @author Simon on 8/23/2014.
  */
 public class AddMessage implements Command {
 

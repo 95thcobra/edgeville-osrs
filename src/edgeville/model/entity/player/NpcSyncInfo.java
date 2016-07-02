@@ -17,6 +17,15 @@ public class NpcSyncInfo extends SyncInfo {
     public NpcSyncInfo(Npc npc) {
         super(npc);
     }
+    
+    public void shout(String text) {
+    	System.out.println("SHOUTING: " + text);
+    	shoutSet = new byte[text.length() + 1];
+        RSBuffer buffer = new RSBuffer(Unpooled.wrappedBuffer(shoutSet));
+        buffer.get().writerIndex(0);
+        buffer.writeString(text);
+        addFlag(Flag.SHOUT.value);
+    }
 
     public void animation(int id, int delay) {
         RSBuffer buffer = new RSBuffer(Unpooled.wrappedBuffer(animationSet));
@@ -74,12 +83,17 @@ public class NpcSyncInfo extends SyncInfo {
     public byte[] graphicSet() {
         return graphicSet;
     }
+    
+    public byte[] shoutSet() {
+        return shoutSet;
+    }
 
     public static enum Flag {
         ANIMATION(0x10),
         GRAPHIC(0x40),
         HIT(0x1),
-        HIT2(0x2);
+        HIT2(0x2),
+        SHOUT(128);
 
         public int value;
 

@@ -40,22 +40,8 @@ public final class GameCommands {
 
 		// REAL COMMANDS
 
-		put(Privilege.ADMIN, "1", (p, args) -> {
-			for (int i = 0; i < p.world().npcs().size(); i++) {
-				Npc npc = p.world().npcs().get(i);
-				if (npc == null) {
-					//p.message("npc is null?");
-					continue;
-				}
-				//p.message("NpcName: %s", p.world().npcs().get(i).def().name);
-				if (npc.def().name.contains("esser")) {
-					//npc.graphic(5);
-					npc.graphic(5);
-					npc.animate(424);
-					
-					p.message("NpcName: %s", p.world().npcs().get(i).def().name);
-				}
-			}
+		put(Privilege.ADMIN, "shout", (p, args) -> {
+			p.world().npcs().get(4).shout(args[0]);
 		});
 		
 		put(Privilege.ADMIN, "2", (p, args) -> {
