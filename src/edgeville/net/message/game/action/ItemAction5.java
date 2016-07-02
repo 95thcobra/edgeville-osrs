@@ -30,7 +30,7 @@ public class ItemAction5 extends ItemAction {
 		super.process(player);
 
 		Item item = player.getInventory().get(slot);
-		if (item != null && item.id() == this.item && !player.locked() && !player.dead()) {
+		if (item != null && item.getId() == this.item && !player.locked() && !player.dead()) {
 			player.getInventory().set(slot, null);
 			player.world().spawnGroundItem(new GroundItem(item, player.getTile(), player));
 			player.sound(2739, 0);

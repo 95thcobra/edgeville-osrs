@@ -48,11 +48,11 @@ public class SetItems implements Command {
 				buffer.writeShort(0);
 				buffer.writeByte(0);
 			} else {
-				buffer.writeShort(item.id() + 1);
-				buffer.writeByte(Math.min(255, item.amount()));
+				buffer.writeShort(item.getId() + 1);
+				buffer.writeByte(Math.min(255, item.getAmount()));
 
-				if (item.amount() >= 255)
-					buffer.writeLEInt(item.amount());
+				if (item.getAmount() >= 255)
+					buffer.writeLEInt(item.getAmount());
 			}
 		}
 

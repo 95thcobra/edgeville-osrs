@@ -20,7 +20,7 @@ public class RemoveGroundItem implements Command {
 		RSBuffer packet = new RSBuffer(player.channel().alloc().buffer(6)).packet(244);
 
 		packet.writeByteN(((item.tile().x % 8) << 4) | (item.tile().z % 8));
-		packet.writeShortA(item.item().id());
+		packet.writeShortA(item.item().getId());
 
 		return packet;
 	}

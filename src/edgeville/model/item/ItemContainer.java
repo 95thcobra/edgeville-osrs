@@ -92,6 +92,10 @@ public class ItemContainer {
 		return dirty;
 	}
 
+	public Result add(int itemId, int amount) {
+		return add(new Item(itemId, amount), true);
+	}
+
 	public Result add(int itemId) {
 		return add(new Item(itemId), true);
 	}
@@ -101,44 +105,44 @@ public class ItemContainer {
 	}
 
 	public Result add(Item item, boolean force) {
-		if (item.amount() < 0)
-			return new Result(item.amount(), 0);
+		if (item.getAmount() < 0)
+			return new Result(item.getAmount(), 0);
 
 		ItemDefinition def = item.definition(world);
 		boolean stackable = !item.hasProperties() && (def.stackable() || type == Type.FULL_STACKING);
-		int amt = count(item.id());
+		int amt = count(item.getId());
 
 		// Determine if this is going to work in advance
 		if (!force) {
-			if (stackable && item.amount() > Integer.MAX_VALUE - amt) {
-				return new Result(item.amount(), 0);
-			} else if (!stackable && item.amount() > size() - amt) {
-				return new Result(item.amount(), 0);
+			if (stackable && item.getAmount() > Integer.MAX_VALUE - amt) {
+				return new Result(item.getAmount(), 0);
+			} else if (!stackable && item.getAmount() > size() - amt) {
+				return new Result(item.getAmount(), 0);
 			}
 		}
 
 		// And complete the actual operation =)
 		if (stackable) {
-			int index = findFirst(item.id()).first();
+			int index = findFirst(item.getId()).first();
 
 			if (index == -1) {
 				if (nextFreeSlot() == -1)
-					return new Result(item.amount(), 0);
+					return new Result(item.getAmount(), 0);
 
-				items[nextFreeSlot()] = new Item(item.id(), item.amount());
+				items[nextFreeSlot()] = new Item(item.getId(), item.getAmount());
 				makeDirty();
-				return new Result(item.amount(), item.amount());
+				return new Result(item.getAmount(), item.getAmount());
 			} else {
 				long cur = amt;
-				long target = cur + item.amount();
-				int add = (int) (target > Integer.MAX_VALUE ? Integer.MAX_VALUE - cur : item.amount());
+				long target = cur + item.getAmount();
+				int add = (int) (target > Integer.MAX_VALUE ? Integer.MAX_VALUE - cur : item.getAmount());
 
-				items[index] = new Item(item.id(), amt + add);
+				items[index] = new Item(item.getId(), amt + add);
 				makeDirty();
-				return new Result(item.amount(), add);
+				return new Result(item.getAmount(), add);
 			}
 		} else {
-			int left = item.amount();
+			int left = item.getAmount();
 			for (int i = 0; i < size(); i++) {
 				if (items[i] == null) {
 					items[i] = new Item(item, 1);
@@ -150,12 +154,16 @@ public class ItemContainer {
 			}
 
 			makeDirty();
-			return new Result(item.amount(), item.amount() - left);
+			return new Result(item.getAmount(), item.getAmount() - left);
 		}
 	}
 
 	public Result remove(int itemId) {
 		return remove(new Item(itemId), true);
+	}
+
+	public Result remove(int itemId, int amount) {
+		return remove(new Item(itemId, amount), true);
 	}
 
 	public Result remove(Item item) {
@@ -167,42 +175,42 @@ public class ItemContainer {
 	}
 
 	public Result remove(Item item, boolean force, int start) {
-		if (item.amount() < 0)
-			return new Result(item.amount(), 0);
+		if (item.getAmount() < 0)
+			return new Result(item.getAmount(), 0);
 
 		ItemDefinition def = item.definition(world);
 		boolean stackable = !item.hasProperties() && (def.stackable() || type == Type.FULL_STACKING);
-		int amt = count(item.id());
+		int amt = count(item.getId());
 
 		// Do we even have this item?
 		if (amt < 1) {
-			return new Result(item.amount(), 0);
+			return new Result(item.getAmount(), 0);
 		}
 
 		// Determine if this is going to work in advance
 		if (!force) {
-			if (item.amount() > amt) {
-				return new Result(item.amount(), 0);
+			if (item.getAmount() > amt) {
+				return new Result(item.getAmount(), 0);
 			}
 		}
 
 		// And complete the actual operation =)
 		if (stackable) {
-			int index = findFirst(item.id()).first();
-			int remove = Math.min(item.amount(), items[index].amount());
-			items[index] = new Item(items[index], items[index].amount() - remove);
+			int index = findFirst(item.getId()).first();
+			int remove = Math.min(item.getAmount(), items[index].getAmount());
+			items[index] = new Item(items[index], items[index].getAmount() - remove);
 
-			if (items[index].amount() == 0)
+			if (items[index].getAmount() == 0)
 				items[index] = null;
 
 			makeDirty();
-			return new Result(item.amount(), remove);
+			return new Result(item.getAmount(), remove);
 		} else {
-			int left = item.amount();
+			int left = item.getAmount();
 
 			for (int x = 0; x < size(); x++) {
 				int i = (x + start) % size();
-				if (items[i] != null && items[i].id() == item.id()) {
+				if (items[i] != null && items[i].getId() == item.getId()) {
 					items[i] = null;
 
 					if (--left == 0) {
@@ -212,12 +220,12 @@ public class ItemContainer {
 			}
 
 			makeDirty();
-			return new Result(item.amount(), item.amount() - left);
+			return new Result(item.getAmount(), item.getAmount() - left);
 		}
 	}
 
 	public void set(int slot, Item item) {
-		if (item != null && item.amount() < 1)
+		if (item != null && item.getAmount() < 1)
 			item = null;
 		items[slot] = item;
 		makeDirty();
@@ -227,8 +235,8 @@ public class ItemContainer {
 		long count = 0;
 
 		for (Item i : items) {
-			if (i != null && i.id() == item)
-				count += i.amount();
+			if (i != null && i.getId() == item)
+				count += i.getAmount();
 		}
 
 		return (int) Math.min(Integer.MAX_VALUE, count);
@@ -240,8 +248,8 @@ public class ItemContainer {
 		long count = 0;
 
 		for (Item i : items) {
-			if (i != null && list.contains(i.id()))
-				count += i.amount();
+			if (i != null && list.contains(i.getId()))
+				count += i.getAmount();
 		}
 
 		return (int) Math.min(Integer.MAX_VALUE, count);
@@ -268,7 +276,7 @@ public class ItemContainer {
 
 	public Tuple<Integer, Item> findFirst(int item) {
 		for (int i = 0; i < size(); i++) {
-			if (items[i] != null && items[i].id() == item)
+			if (items[i] != null && items[i].getId() == item)
 				return new Tuple<>(i, items[i]);
 		}
 
@@ -279,7 +287,7 @@ public class ItemContainer {
 		List<Tuple<Integer, Item>> results = new LinkedList<>();
 
 		for (int i = 0; i < size(); i++) {
-			if (items[i] != null && items[i].id() == item)
+			if (items[i] != null && items[i].getId() == item)
 				results.add(new Tuple<>(i, items[i]));
 		}
 

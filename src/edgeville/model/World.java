@@ -257,7 +257,7 @@ public class World {
     }
 
     public GroundItem getGroundItem(int x, int z, int level, int id) {
-        return groundItems.stream().filter(g -> g.item().id() == id && g.tile().x == x && g.tile().z == z && g.tile().level == level).findAny().orElse(null);
+        return groundItems.stream().filter(g -> g.item().getId() == id && g.tile().x == x && g.tile().z == z && g.tile().level == level).findAny().orElse(null);
     }
 
     public boolean groundItemValid(GroundItem item) {

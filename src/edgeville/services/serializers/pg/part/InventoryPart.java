@@ -38,8 +38,8 @@ public class InventoryPart implements PgJsonPart {
 			if (item != null) {
 				JsonObject obj = new JsonObject();
 				obj.add("slot", new JsonPrimitive(i));
-				obj.add("id", new JsonPrimitive(item.id()));
-				obj.add("amount", new JsonPrimitive(item.amount()));
+				obj.add("id", new JsonPrimitive(item.getId()));
+				obj.add("amount", new JsonPrimitive(item.getAmount()));
 				itemarray.add(obj);
 			}
 		}

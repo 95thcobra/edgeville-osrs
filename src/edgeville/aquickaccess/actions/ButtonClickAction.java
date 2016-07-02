@@ -39,7 +39,18 @@ public class ButtonClickAction {
 	public void handleButtonClick() {
 		switch (interfaceId) {
 
-		// Advanced settings.
+		// Bank: used for withdrawing.
+		case 12:
+			player.getBank().handleClick(buttonId, slot, option);
+			break;
+		
+		// Inventory: used for banking & more
+		case 15:
+			if (option <= 6) {
+				player.getBank().deposit(buttonId, slot, option);
+			}
+
+			// Advanced settings.
 		case 60:
 			advancedSettings();
 			break;
@@ -234,7 +245,7 @@ public class ButtonClickAction {
 		if (weapon == null) {
 			return false;
 		}
-		switch (weapon.id()) {
+		switch (weapon.getId()) {
 		// dragon battle axe
 		case 1377:
 			if (!player.drainSpecialEnergy(100)) {
@@ -256,7 +267,7 @@ public class ButtonClickAction {
 
 	private boolean isGmaulAttack() {
 		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
-		int weaponId = weapon == null ? -1 : weapon.id();
+		int weaponId = weapon == null ? -1 : weapon.getId();
 
 		if (weaponId != 4153) {
 			return false;
@@ -364,14 +375,14 @@ public class ButtonClickAction {
 			break;
 		}
 	}
-	
+
 	private void castVeng() {
 		if (player.isVengOn()) {
 			player.message("Vengeance is already enabled!");
 			return;
 		}
 		if (player.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
-			player.message("Vengeance is on cooldown, wait %i seconds.", (int)(player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).ticks()) / 0.6);
+			player.message("Vengeance is on cooldown, wait %i seconds.", (int) (player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).ticks()) / 0.6);
 			return;
 		}
 		player.graphic(726, 92, 0);

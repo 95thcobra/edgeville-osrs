@@ -30,7 +30,7 @@ public class ItemAction4 extends ItemAction {
 		super.process(player);
 
 		Item item = player.getInventory().get(slot);
-		if (item != null && item.id() == this.item && !player.locked() && !player.dead()) {
+		if (item != null && item.getId() == this.item && !player.locked() && !player.dead()) {
 			player.stopActions(false);
 			//player.world().server().scriptRepository().triggerItemOption4(player, item.id(), slot);
 			//TODO Triggeritemoption4

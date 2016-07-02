@@ -35,10 +35,10 @@ public class PlayerVersusAnyCombat extends Combat {
 	public void cycle(EventContainer container) {
 		// Get weapon data.
 		Item weapon = ((Player) getEntity()).getEquipment().get(EquipSlot.WEAPON);
-		int weaponId = weapon == null ? -1 : weapon.id();
+		int weaponId = weapon == null ? -1 : weapon.getId();
 		int weaponType = getEntity().world().equipmentInfo().weaponType(weaponId);
 		Item ammo = ((Player) getEntity()).getEquipment().get(EquipSlot.AMMO);
-		int ammoId = ammo == null ? -1 : ammo.id();
+		int ammoId = ammo == null ? -1 : ammo.getId();
 		String ammoName = ammo == null ? "" : ammo.definition(getEntity().world()).name;
 
 		// Check if players are in wilderness.
@@ -207,7 +207,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA) {
 				Item ammo = player.getEquipment().get(EquipSlot.AMMO);
 				projectile = Projectile.getProjectileForAmmoName(ammo.definition(player.world()).name);
-				player.getEquipment().set(EquipSlot.AMMO, new Item(ammo.id(), ammo.amount() - 1));
+				player.getEquipment().set(EquipSlot.AMMO, new Item(ammo.getId(), ammo.getAmount() - 1));
 
 				// If it is thrown
 			} else if (weaponType == WeaponType.THROWN || weaponType == WeaponType.CHINCHOMPA) {
@@ -218,7 +218,7 @@ public class PlayerVersusAnyCombat extends Combat {
 					// || item.definition(player.world()).name.contains("dart"))
 					// {
 					projectile = Projectile.getProjectileForAmmoName(item.definition(player.world()).name);
-					player.getEquipment().set(EquipSlot.WEAPON, new Item(item.id(), item.amount() - 1));
+					player.getEquipment().set(EquipSlot.WEAPON, new Item(item.getId(), item.getAmount() - 1));
 					// player.graphic(new Graphic(225, 92, 0));
 					// }
 				}

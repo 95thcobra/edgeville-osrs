@@ -201,7 +201,7 @@ public class EquipmentInfo {
 		int style = player.varps().getVarp(43);
 
 		// Handle individual cases first
-		int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).id() : 0;
+		int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).getId() : 0;
 		if (weapon != 0) {
 			switch (weapon) {
 			case 11802:

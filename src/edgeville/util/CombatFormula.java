@@ -225,7 +225,7 @@ public class CombatFormula {
 			for (int i = 0; i < 14; i++) {
 				Item equipped = player.getEquipment().get(i);
 				if (equipped != null) {
-					EquipmentInfo.Bonuses equip = info.bonuses(equipped.id());
+					EquipmentInfo.Bonuses equip = info.bonuses(equipped.getId());
 
 					bonuses.stab += equip.stab;
 					bonuses.slash += equip.slash;

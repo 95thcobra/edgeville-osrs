@@ -55,7 +55,7 @@ public class SkillDialogueHandler {
                 final Item item = (Item) handler.getData()[0];
                 player.interfaces().send(309, 162, 546, false);
                 player.write(new InterfaceText(309, 6, "<br><br><br><br>" + item.definition(player.world()).name));
-                player.write(new InterfaceItem(309, 2, 160, item.id()));
+                player.write(new InterfaceItem(309, 2, 160, item.getId()));
             }
 
             @Override
@@ -79,7 +79,7 @@ public class SkillDialogueHandler {
                 player.interfaces().send(304, 162, 546, false);
                 for (int i = 0; i < 3; i++) {
                     item = (Item) handler.getData()[i];
-                    player.write(new InterfaceItem(304, 2 + i, 135, item.id()));
+                    player.write(new InterfaceItem(304, 2 + i, 135, item.getId()));
                     player.write(new InterfaceText(304, (304 - 296) + (i * 4), "<br><br><br><br>" + item.definition(player.world()).name));
                 }
             }
@@ -94,7 +94,7 @@ public class SkillDialogueHandler {
                 for (int i = 0; i < handler.getData().length; i++) {
                     item = (Item) handler.getData()[i];
                     player.write(new InterfaceText(306, 10 + (4 * i), "<br><br><br><br>" + handler.getName(item)));
-                    player.write(new InterfaceItem(306, 2 + i, 160, item.id()));
+                    player.write(new InterfaceItem(306, 2 + i, 160, item.getId()));
                 }
             }
         };

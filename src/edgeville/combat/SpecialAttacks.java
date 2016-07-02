@@ -154,7 +154,7 @@ public enum SpecialAttacks {
 			
 			// arrow projectiles twice
 			Item ammo = player.getEquipment().get(EquipSlot.AMMO);
-			int graphic = Projectile.getProjectileForAmmoId(ammo.id()).getGfx().getId(); // get more, depending on arrow
+			int graphic = Projectile.getProjectileForAmmoId(ammo.getId()).getGfx().getId(); // get more, depending on arrow
 			int cyclesPerTile = 3;
 			int startHeight = 40;
 			int endHeight = 30;

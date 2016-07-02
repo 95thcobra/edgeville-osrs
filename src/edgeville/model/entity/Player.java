@@ -214,7 +214,9 @@ public class Player extends Entity {
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
-
+	
+	//private void lastButtonClicked
+	
 	private Varps varps;
 	private InputHelper inputHelper;
 
@@ -717,7 +719,7 @@ public class Player extends Entity {
 		write(new InterfaceText(593, 2, "Combat Lvl: " + skills.combatLevel()));
 
 		// Set the varp that holds our weapon interface panel type
-		int panel = wep == null ? 0 : world.equipmentInfo().weaponType(wep.id());
+		int panel = wep == null ? 0 : world.equipmentInfo().weaponType(wep.getId());
 		varps.setVarp(843, panel);
 	}
 
@@ -801,7 +803,7 @@ public class Player extends Entity {
 			soundId = 2547;
 		}
 
-		switch (item.id()) {
+		switch (item.getId()) {
 		case 4151:
 		case 12006:
 			soundId = 2720;
@@ -817,7 +819,7 @@ public class Player extends Entity {
 		if (item == null) {
 			soundId = 23;
 		} else {
-			switch (item.id()) {
+			switch (item.getId()) {
 			case 8850:
 				soundId = 15;
 				break;
@@ -836,7 +838,7 @@ public class Player extends Entity {
 		Item shield = ((Player) this).getEquipment().get(EquipSlot.SHIELD);
 		Item weapon = ((Player) this).getEquipment().get(EquipSlot.WEAPON);
 		if (shield != null) {
-			switch (shield.id()) {
+			switch (shield.getId()) {
 			// shields 1156
 
 			// Defenders
@@ -847,7 +849,7 @@ public class Player extends Entity {
 		}
 
 		else if (weapon != null) {
-			switch (weapon.id()) {
+			switch (weapon.getId()) {
 
 			// Gmaul
 			case 4153:

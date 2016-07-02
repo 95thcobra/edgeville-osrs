@@ -353,7 +353,7 @@ public final class GameCommands {
 			for (Item equipment : p.getEquipment().copy()) {
 				if (equipment == null)
 					continue;
-				p.message("Name: " + equipment.definition(p.world()).name + ", ID: " + equipment.id());
+				p.message("Name: " + equipment.definition(p.world()).name + ", ID: " + equipment.getId());
 			}
 		});
 

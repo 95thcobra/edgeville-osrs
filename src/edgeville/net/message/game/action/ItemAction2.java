@@ -41,14 +41,14 @@ public class ItemAction2 extends ItemAction {
 		player.stopActions(false);
 
 		Item item = player.getInventory().get(slot);
-		if (item == null || item.id() != this.item) {// Avoid reclicking
+		if (item == null || item.getId() != this.item) {// Avoid reclicking
 			player.messageDebug("item is null artm");
 			return;
 		}
 
 		EquipmentInfo info = player.world().equipmentInfo();
-		int targetSlot = info.slotFor(item.id());
-		int type = info.typeFor(item.id());
+		int targetSlot = info.slotFor(item.getId());
+		int type = info.typeFor(item.getId());
 		if (targetSlot == -1) { // Cannot wear :-(
 			player.messageDebug("cannot wear");
 			return;
@@ -68,7 +68,7 @@ public class ItemAction2 extends ItemAction {
 
 		// If it is a shield and we have a 2h weapon equipped, unequip it
 		if (targetSlot == EquipSlot.SHIELD && player.getEquipment().hasAt(EquipSlot.WEAPON)) {
-			if (info.typeFor(player.getEquipment().get(EquipSlot.WEAPON).id()) == 5) { // Is this indeed a 2h weapon?
+			if (info.typeFor(player.getEquipment().get(EquipSlot.WEAPON).getId()) == 5) { // Is this indeed a 2h weapon?
 				if (player.getInventory().add(player.getEquipment().get(EquipSlot.WEAPON), false).failed()) {
 					player.message("You don't have enough free space to do that.");
 					player.getInventory().set(slot, item);

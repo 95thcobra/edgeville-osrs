@@ -16,7 +16,7 @@ public final class Item {
 	private Map<String, Object> properties;
 
 	public Item(Item item) {
-		this(item, item.amount());
+		this(item, item.getAmount());
 	}
 
 	public Item(Item item, int amount) {
@@ -37,11 +37,11 @@ public final class Item {
 		this.amount = amount;
 	}
 
-	public int id() {
+	public int getId() {
 		return id;
 	}
 
-	public int amount() {
+	public int getAmount() {
 		return amount;
 	}
 
@@ -66,6 +66,10 @@ public final class Item {
 	 */
 	public ItemDefinition definition(World world) {
 		return world.definitions().get(ItemDefinition.class, id);
+	}
+	
+	public String toString() {
+		return String.format("Item id: %d, amount: %d", id, amount);
 	}
 
 }

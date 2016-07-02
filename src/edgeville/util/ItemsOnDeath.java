@@ -30,7 +30,7 @@ public class ItemsOnDeath {
 			ItemDefinition def2 = o2.definition(killer.world());
 			if (def == null || def2 == null)
 				return -1;
-			if (def.cost * o1.amount() < def2.cost * o2.amount())
+			if (def.cost * o1.getAmount() < def2.cost * o2.getAmount())
 				return 1;
 			return -1;
 		});
