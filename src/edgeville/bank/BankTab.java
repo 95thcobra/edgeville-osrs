@@ -28,12 +28,26 @@ public class BankTab {
 		}
 	}
 	
-	public void remove(int itemId) {
+	public boolean contains(int itemId) {
 		for(int i = 0; i < items.size();i++) {
 			if (items.get(i).getId() == itemId) {
-				items.remove(i);
+				return true;
 			}
 		}
+		return false;	
+	}
+	
+	// Returns how many removed.
+	public int remove(int itemId) {
+		int amount = - 1;
+		for(int i = 0; i < items.size();i++) {
+			if (items.get(i).getId() == itemId) {
+				amount = items.get(i).getAmount();
+				items.remove(i);
+				break;
+			}
+		}
+		return amount;
 	}
 
 	public int getId() {
