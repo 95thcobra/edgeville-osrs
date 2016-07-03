@@ -100,6 +100,11 @@ public class BankNew {
 	public void handleClick(int buttonId, int slot, int option) {
 		switch (buttonId) {
 		case 12:
+			if (option == 9) {
+				Item item = getAllItems().get(slot + 1);
+				player.message(player.world().examineRepository().item(item.getId()));
+				return;
+			}
 			withdraw(buttonId, slot, option);
 			break;
 		case 16:
