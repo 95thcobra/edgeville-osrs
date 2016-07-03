@@ -1,7 +1,7 @@
 {
-  "username": "sky",
-  "displayName": "sky",
-  "password": "test",
+  "username": "gewagaweg",
+  "displayName": "gewagaweg",
+  "password": "awegaweaweg",
   "tile": {
     "x": 3096,
     "z": 3494,
@@ -15,98 +15,20 @@
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
     {
-      "id": 385,
+      "id": 5698,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 157,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 163,
       "amount": 1
     },
     {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    }
-  ],
-  "equipment": [
-    {
-      "id": 10828,
+      "id": 145,
       "amount": 1
     },
     {
@@ -114,15 +36,7 @@
       "amount": 1
     },
     {
-      "id": 6585,
-      "amount": 1
-    },
-    {
       "id": 12006,
-      "amount": 1
-    },
-    {
-      "id": 10551,
       "amount": 1
     },
     {
@@ -134,18 +48,125 @@
       "id": 4722,
       "amount": 1
     },
+    {
+      "id": 11840,
+      "amount": 1
+    },
+    {
+      "id": 11773,
+      "amount": 1
+    },
+    {
+      "id": 560,
+      "amount": 10000
+    },
+    {
+      "id": 565,
+      "amount": 10000
+    },
+    {
+      "id": 555,
+      "amount": 10000
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    }
+  ],
+  "equipment": [
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 2412,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 4675,
+      "amount": 1
+    },
+    {
+      "id": 4712,
+      "amount": 1
+    },
+    {
+      "id": 6889,
+      "amount": 1
+    },
+    null,
+    {
+      "id": 4714,
+      "amount": 1
+    },
     null,
     {
       "id": 7462,
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 6920,
       "amount": 1
     },
     null,
     {
-      "id": 11773,
+      "id": 6731,
       "amount": 1
     },
     null
@@ -209,15 +230,19 @@
     },
     {
       "id": 843,
-      "value": 20
+      "value": 18
     },
     {
       "id": 867,
-      "value": 4
+      "value": 1049601
     },
     {
       "id": 1050,
       "value": 16
+    },
+    {
+      "id": 1052,
+      "value": 1049601
     },
     {
       "id": 1224,

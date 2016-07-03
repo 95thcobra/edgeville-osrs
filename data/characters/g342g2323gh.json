@@ -1,7 +1,7 @@
 {
-  "username": "sky",
-  "displayName": "sky",
-  "password": "test",
+  "username": "g342g2323gh",
+  "displayName": "g342g2323gh",
+  "password": "233g232",
   "tile": {
     "x": 3096,
     "z": 3494,
@@ -17,12 +17,24 @@
   "inventory": [
     null,
     null,
+    {
+      "id": 157,
+      "amount": 1
+    },
+    {
+      "id": 163,
+      "amount": 1
+    },
     null,
     null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
     {
       "id": 385,
       "amount": 1
@@ -213,7 +225,7 @@
     },
     {
       "id": 867,
-      "value": 4
+      "value": 3
     },
     {
       "id": 1050,

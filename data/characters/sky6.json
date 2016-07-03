@@ -1,6 +1,6 @@
 {
-  "username": "sky",
-  "displayName": "sky",
+  "username": "sky6",
+  "displayName": "sky6",
   "password": "test",
   "tile": {
     "x": 3096,
@@ -17,16 +17,19 @@
   "inventory": [
     null,
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
     {
-      "id": 385,
+      "id": 157,
       "amount": 1
     },
+    {
+      "id": 163,
+      "amount": 1
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "id": 385,
       "amount": 1
@@ -213,7 +216,7 @@
     },
     {
       "id": 867,
-      "value": 4
+      "value": 1
     },
     {
       "id": 1050,

@@ -105,7 +105,7 @@ public class ItemContainer {
 	}
 
 	public Result add(Item item, boolean force) {
-		if (item.getAmount() < 0)
+		if (item == null || item.getAmount() < 0)
 			return new Result(item.getAmount(), 0);
 
 		ItemDefinition def = item.definition(world);
@@ -257,6 +257,15 @@ public class ItemContainer {
 
 	public boolean has(int item) {
 		return findFirst(item).first() != -1;
+	}
+
+	public int getSlot(int itemId) {
+		for (int i = 0; i < occupiedSlots(); i++) {
+			if (items[i].getId() == itemId) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public boolean hasAny(int... items) {

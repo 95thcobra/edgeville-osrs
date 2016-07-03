@@ -6,6 +6,7 @@ import edgeville.Constants;
 import edgeville.Panel;
 import edgeville.aquickaccess.events.PlayerDeathEvent;
 import edgeville.aquickaccess.events.TeleportEvent;
+import edgeville.bank.BankTab;
 import edgeville.combat.CombatUtil;
 import edgeville.crypto.IsaacRand;
 import edgeville.event.Event;
@@ -17,6 +18,7 @@ import edgeville.model.entity.player.interfaces.QuestTab;
 import edgeville.model.entity.player.skills.Prayer;
 import edgeville.model.item.Item;
 import edgeville.model.item.ItemContainer;
+import edgeville.model.item.ItemContainer.Type;
 import edgeville.net.future.ClosingChannelFuture;
 import edgeville.net.message.game.encoders.*;
 import edgeville.script.Timer;
@@ -214,14 +216,14 @@ public class Player extends Entity {
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
-	
-	//private void lastButtonClicked
-	
+
+	// private void lastButtonClicked
+
 	private Varps varps;
-	//private InputHelper inputHelper;
+	// private InputHelper inputHelper;
 
 	private InputDialog lastInputDialog;
-	
+
 	private int dialogueAction = -1;
 
 	public int getDialogueAction() {
@@ -266,7 +268,7 @@ public class Player extends Entity {
 		// this.bank = new ItemContainer(world, 800,
 		// ItemContainer.Type.FULL_STACKING);
 		this.varps = new Varps(this);
-		//this.lastInputDialog = new InputDialog(this);
+		// this.lastInputDialog = new InputDialog(this);
 
 		prayer = new Prayer(this);
 		loadout = new Loadout();
@@ -518,7 +520,7 @@ public class Player extends Entity {
 	public InputDialog getLastInputDialog() {
 		return lastInputDialog;
 	}
-	
+
 	public void setInputDialog(InputDialog inputDialog) {
 		this.lastInputDialog = inputDialog;
 	}
@@ -704,8 +706,29 @@ public class Player extends Entity {
 
 		// Sync bank if dirty
 		if (bank.getBankItems().dirty()) {
-			write(new SetItems(95, bank.getBankItems()));
-			bank.getBankItems().clean();
+			/*ItemContainer container = new ItemContainer(world, 800, Type.FULL_STACKING);
+			for (ItemContainer itemcontainer : bank.bankNewwww.bankTabItems) {
+				if (itemcontainer == null)
+					continue;
+				for  (int i = 0 ; i < itemcontainer.occupiedSlots(); i++){
+					Item item = itemcontainer.getItems()[i];
+					if (item == null)
+						continue;
+					container.add(item);
+				}
+			}
+			for(int i = 0 ; i < container.occupiedSlots();i++){
+				container.getItems()[i] = new Item(container.getItems()[i].getId(), i);
+			}*/
+			// container.add(itemId)
+			
+			 write(new SetItems(95, bank.bankNewwww.getAllItems()));
+			 bank.getBankItems().clean();
+			
+			
+			// container.add(itemId)
+			// write(new SetItems(95, bank.getBankItems()));
+			// bank.getBankItems().clean();
 		}
 	}
 

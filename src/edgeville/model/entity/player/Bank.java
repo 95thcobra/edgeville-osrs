@@ -13,12 +13,60 @@ public class Bank {
 	private Player player;
 	private ItemContainer bankItems;
 
+	private int currentBankTab;
+	public ItemContainer[] bankTabItems;
+	private int[] bankTabCounts = new int[9];
+
+	public BankNew bankNewwww;
+
 	public Bank(Player player) {
 		this.player = player;
 		bankItems = new ItemContainer(player.world(), 800, ItemContainer.Type.FULL_STACKING);
+
+		bankTabItems = new ItemContainer[9];
+		// (player.world(), 200, ItemContainer.Type.FULL_STACKING)//kanker
+
+		currentBankTab = 0;
+		/*
+		 * for(int i = 0 ; i < bankItems.size(); i++) { bankTabItems[0][i] =
+		 * bankItems.get(i).getId(); }
+		 */
+		
+		bankNewwww = new BankNew(player);
+	}
+
+	public void handleClick(int buttonId, int slot, int option) {
+		if (!player.dead()) {
+			bankNewwww.handleClick(buttonId, slot, option);
+			return;
+		}
+		switch (buttonId) {
+		case 10:
+			currentBankTab = slot - 9;
+			player.message("Currentbanktab: %d", currentBankTab);
+			break;
+		case 12:
+			withdraw(buttonId, slot, option);
+			break;
+		case 16:
+			player.varps().setVarbit(Varbit.BANK_INSERT, 0);
+			break;
+		case 18:
+			player.varps().setVarbit(Varbit.BANK_INSERT, 1);
+			break;
+		case 21:
+			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 0);
+			break;
+		case 23:
+			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 1);
+			break;
+		}
 	}
 
 	public ItemContainer getBankItems() {
+/*if (!player.dead()) {
+	return bankNewwww.getBankItems();
+}*/
 		return bankItems;
 	}
 
@@ -76,8 +124,29 @@ public class Bank {
 				bankItems.add(unnotedId, amount);
 				return;
 			}
+
 			bankItems.add(id, amount);
+			if (currentBankTab > 0) {
+				int slot = getSlot(id);
+				shiftItems(slot, 0);
+				moveFirstItemOfBankToBankTab();
+			}
 		}
+	}
+
+	public int getSlot(int itemId) {
+		for (int i = 0; i < bankItems.size(); i++) {
+			if (bankItems.get(i).getId() == itemId) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public void moveFirstItemOfBankToBankTab() {
+		// if currentbank tab ==0, TODO rest
+		bankTabCounts[currentBankTab]++;
+		player.varps().setVarbit(Varbit.BANK_TAB + currentBankTab + 1, bankTabCounts[currentBankTab]);
 	}
 
 	public void moveItemsToInventory(int id, int amount) {
@@ -89,7 +158,7 @@ public class Bank {
 		} else {
 			idToAdd = id;
 		}
-		
+
 		if (player.getInventory().add(idToAdd, amount).success()) {
 			bankItems.remove(id, amount);
 		}
@@ -123,6 +192,10 @@ public class Bank {
 	}
 
 	public void withdraw(int buttonId, int slot, int option) {
+		/*if (!player.dead()) {
+			bankNewwww.withdraw(buttonId, slot, option);
+			return;
+		}*/
 		slot++;
 		Item item = bankItems.get(slot);
 		int id = item.getId();
@@ -144,6 +217,10 @@ public class Bank {
 	}
 
 	public void deposit(int buttonId, int slot, int option) {
+		if (!player.dead()) {
+			bankNewwww.deposit(buttonId, slot, option);
+			return;
+		}
 		slot++;
 
 		// The selected item.
@@ -165,26 +242,6 @@ public class Bank {
 		moveItemsToBank(id, amount);
 	}
 
-	public void handleClick(int buttonId, int slot, int option) {
-		switch (buttonId) {
-		case 12:
-			withdraw(buttonId, slot, option);
-			break;
-		case 16:
-			player.varps().setVarbit(Varbit.BANK_INSERT, 0);
-			break;
-		case 18:
-			player.varps().setVarbit(Varbit.BANK_INSERT, 1);
-			break;
-		case 21:
-			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 0);
-			break;
-		case 23:
-			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 1);
-			break;
-		}
-	}
-
 	public boolean isInsertEnabled() {
 		return player.varps().getVarbit(Varbit.BANK_INSERT) == 1;
 	}
@@ -193,7 +250,7 @@ public class Bank {
 		int to = slotTo;
 		int tempFrom = slotFrom;
 
-		for (int tempTo = to; tempFrom != tempTo;)
+		for (int tempTo = to; tempFrom != tempTo;) {
 			if (tempFrom > tempTo) {
 				switchItem(tempFrom, tempFrom - 1);
 				tempFrom--;
@@ -201,6 +258,7 @@ public class Bank {
 				switchItem(tempFrom, tempFrom + 1);
 				tempFrom++;
 			}
+		}
 	}
 
 	public void switchItem(int slotFrom, int slotTo) {
@@ -212,6 +270,16 @@ public class Bank {
 	}
 
 	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther) {
+		if (!player.dead()) {
+			bankNewwww.moveItemOnItem(itemId, slot, itemOther, slotOther);
+			return;
+		}
+		if (!player.dead() || (itemId == 65535 && slotOther == 11)) {// 10 is
+			// TODO REMOVE THIS // first
+			handleDraggingToBankTabs(slot, slotOther, itemId, itemOther);
+			return;
+		}
+
 		if (isInsertEnabled()) {
 			shiftItems(slot, slotOther);
 			return;
@@ -221,5 +289,17 @@ public class Bank {
 
 		bankItems.set(slotOther, original);
 		bankItems.set(slot, other);
+	}
+
+	private void handleDraggingToBankTabs(int slotFrom, int slotOther, int itemId, int itemOther) {
+		if (slotOther > 10) {
+			int bankTabTo = slotOther - 11;
+			player.message("Dragged into bank tab " + currentBankTab);
+			bankTabCounts[bankTabTo]++;
+			player.varps().setVarbit(Varbit.BANK_TAB + bankTabTo, bankTabCounts[bankTabTo]);
+			player.message("Current bank tab count: %d", bankTabCounts[bankTabTo]);
+
+			bankTabItems[bankTabTo].add(itemId);
+		}
 	}
 }

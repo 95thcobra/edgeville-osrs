@@ -1,7 +1,7 @@
 {
-  "username": "sky",
-  "displayName": "sky",
-  "password": "test",
+  "username": "g2323g23g",
+  "displayName": "g2323g23g",
+  "password": "23g23g23g",
   "tile": {
     "x": 3096,
     "z": 3494,
@@ -21,8 +21,14 @@
     null,
     null,
     null,
-    null,
-    null,
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
     {
       "id": 385,
       "amount": 1
@@ -213,11 +219,15 @@
     },
     {
       "id": 867,
-      "value": 4
+      "value": 1049602
     },
     {
       "id": 1050,
       "value": 16
+    },
+    {
+      "id": 1052,
+      "value": 1
     },
     {
       "id": 1224,

@@ -1,10 +1,10 @@
 {
-  "username": "12421424",
-  "displayName": "12421424",
-  "password": "12421412",
+  "username": "b5b67nb65b67",
+  "displayName": "b5b67nb65b67",
+  "password": "5b67",
   "tile": {
-    "x": 3088,
-    "z": 3500,
+    "x": 3096,
+    "z": 3494,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -26,38 +26,119 @@
     null,
     null,
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    {
+      "id": 560,
+      "amount": 9999
+    },
+    {
+      "id": 565,
+      "amount": 9999
+    },
+    {
+      "id": 555,
+      "amount": 9999
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    }
   ],
   "equipment": [
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 2412,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 4675,
+      "amount": 1
+    },
+    {
+      "id": 4712,
+      "amount": 1
+    },
+    {
+      "id": 6889,
+      "amount": 1
+    },
     null,
+    {
+      "id": 4714,
+      "amount": 1
+    },
     null,
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 6920,
+      "amount": 1
+    },
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "id": 6731,
+      "amount": 1
+    },
     null
   ],
   "loadout": {
@@ -116,6 +197,14 @@
     {
       "id": 300,
       "value": 1000
+    },
+    {
+      "id": 843,
+      "value": 18
+    },
+    {
+      "id": 867,
+      "value": 3149831
     },
     {
       "id": 1050,

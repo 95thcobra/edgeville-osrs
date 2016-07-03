@@ -3,8 +3,8 @@
   "displayName": "sky1",
   "password": "test",
   "tile": {
-    "x": 3093,
-    "z": 3503,
+    "x": 3096,
+    "z": 3494,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -12,50 +12,151 @@
   "skullIcon": -1,
   "prayerIcon": -1,
   "debug": false,
+  "kills": 0,
+  "deaths": 0,
   "inventory": [
     null,
     null,
+    {
+      "id": 163,
+      "amount": 1
+    },
+    {
+      "id": 145,
+      "amount": 1
+    },
     null,
     null,
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    {
+      "id": 10551,
+      "amount": 1
+    },
+    {
+      "id": 4722,
+      "amount": 1
+    },
+    {
+      "id": 11840,
+      "amount": 1
+    },
+    {
+      "id": 11773,
+      "amount": 1
+    },
+    {
+      "id": 560,
+      "amount": 10000
+    },
+    {
+      "id": 565,
+      "amount": 10000
+    },
+    {
+      "id": 555,
+      "amount": 10000
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    }
   ],
   "equipment": [
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 2412,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 4675,
+      "amount": 1
+    },
+    {
+      "id": 4712,
+      "amount": 1
+    },
+    {
+      "id": 6889,
+      "amount": 1
+    },
     null,
+    {
+      "id": 4714,
+      "amount": 1
+    },
     null,
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 6920,
+      "amount": 1
+    },
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "id": 6731,
+      "amount": 1
+    },
     null
   ],
   "loadout": {
@@ -108,8 +209,20 @@
   },
   "varps": [
     {
+      "id": 173,
+      "value": 1
+    },
+    {
       "id": 300,
       "value": 1000
+    },
+    {
+      "id": 843,
+      "value": 18
+    },
+    {
+      "id": 867,
+      "value": 209920200
     },
     {
       "id": 1050,

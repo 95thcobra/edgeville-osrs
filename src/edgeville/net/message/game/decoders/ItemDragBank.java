@@ -32,7 +32,7 @@ public class ItemDragBank implements Action {
 
 	@Override
 	public void process(Player player) {
-		player.message("%d,%d,%d,%d,%d,%d", itemId, itemOther, slotOther, slot, hash1, hash2);
+		player.message("id:%d, itemother:%d, slotother:%d, slot:%d", itemId, itemOther, slotOther, slot);
 		
 		int hashthing1 = hash1>>16;
 		int hashthing12 = hash1&0xFFFF;
