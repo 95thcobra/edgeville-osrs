@@ -3,9 +3,11 @@ package edgeville.services.serializers;
 import com.google.gson.*;
 import com.google.gson.stream.JsonWriter;
 
+import edgeville.bank.BankTab;
 import edgeville.model.AttributeKey;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.Bank;
 import edgeville.model.entity.player.Privilege;
 import edgeville.model.entity.player.Skills;
 import edgeville.model.item.Item;
@@ -19,9 +21,10 @@ import java.util.function.Consumer;
 
 /**
  * @author Simon on 5-3-2015.
- * <p>
- * Simple default serializer to <b>only</b> use in single-server setups because
- * it uses a local file to serialize the player data to by means of GSON.
+ *         <p>
+ *         Simple default serializer to <b>only</b> use in single-server setups
+ *         because it uses a local file to serialize the player data to by means
+ *         of GSON.
  */
 public class JSONFileSerializer extends PlayerSerializer {
 
@@ -81,13 +84,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 			int migration = rootObject.get("migration").getAsInt();
 			JsonElement kills = rootObject.get("kills");
 			JsonElement deaths = rootObject.get("deaths");
-			if (kills != null) {
-				player.setKills(kills.getAsInt());
-			}
-			if (deaths != null) {
-				player.setDeaths(deaths.getAsInt());
-			}
-			
+			player.setKills(kills.getAsInt());
+			player.setDeaths(deaths.getAsInt());
+
 			// Debug
 			player.setDebug(rootObject.get("debug").getAsBoolean());
 
@@ -101,7 +100,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 			/* Skill information */
 			JsonArray skills = rootObject.get("skills").getAsJsonArray();
-			for (int i = 0 ; i < skills.size(); i++) {
+			for (int i = 0; i < skills.size(); i++) {
 				JsonObject skill = skills.get(i).getAsJsonObject();
 				player.skills().levels()[i] = skill.get("level").getAsInt();
 				player.skills().xp()[i] = skill.get("xp").getAsInt();
@@ -121,7 +120,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 				Item item = gson.fromJson(equipment.get(i), Item.class);
 				player.getEquipment().set(i, item);
 			}
-			
+
 			/* load out */
 			JsonObject loadout = rootObject.get("loadout").getAsJsonObject();
 			JsonArray inv = loadout.get("inventory").getAsJsonArray();
@@ -132,20 +131,35 @@ public class JSONFileSerializer extends PlayerSerializer {
 			for (int i = 0; i < player.getLoadout().getEquipment().length; i++) {
 				player.getLoadout().getEquipment()[i] = gson.fromJson(equip.get(i), Item.class);
 			}
+
+			// Bank
+			JsonObject bank = rootObject.get("bank").getAsJsonObject();
+			for (int i = 0; i < player.getBank().getBankTabs().length; i++) {
+				JsonElement ele = bank.get(""+i);
+				if (ele == null) {
+					continue;
+				}
+				JsonArray bankTabItems = ele.getAsJsonArray();
+				BankTab bankTab = player.getBank().getBankTabs()[i];
+				for (int j = 0; j < bankTabItems.size(); j++) {
+					Item item = gson.fromJson(bankTabItems.get(j), Item.class);
+					bankTab.add(item);
+				}
+			}
 			
 			/* varps */
 			JsonArray varps = rootObject.get("varps").getAsJsonArray();
-			for (int i = 0 ; i < varps.size(); i++) {
+			for (int i = 0; i < varps.size(); i++) {
 				JsonObject varp = varps.get(i).getAsJsonObject();
 				player.varps().setVarp(varp.get("id").getAsInt(), varp.get("value").getAsInt());
 			}
-			
+
 			// Skull head icon
 			JsonElement skullIcon = rootObject.get("skullIcon");
-			if (skullIcon != null ){
+			if (skullIcon != null) {
 				player.setSkullHeadIcon(skullIcon.getAsInt());
 			}
-			
+
 			// Prayer head icon
 			JsonElement prayerIcon = rootObject.get("prayerIcon");
 			if (prayerIcon != null) {
@@ -172,7 +186,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("debug", player.isDebug());
 		jsonObject.addProperty("kills", player.getKills());
 		jsonObject.addProperty("deaths", player.getDeaths());
-		
+
 		/* Inventory */
 		JsonArray inventory = new JsonArray();
 		for (int i = 0; i < player.getInventory().size(); i++) {
@@ -200,6 +214,28 @@ public class JSONFileSerializer extends PlayerSerializer {
 		loadout.add("inventory", inv);
 		loadout.add("equipment", equip);
 		jsonObject.add("loadout", loadout);
+
+		// Bank
+		JsonObject bank = new JsonObject();
+		// Iterate over every bank tab.
+		for (int i = 0; i < player.getBank().getBankTabs().length; i++) {
+			BankTab bankTab = player.getBank().getBankTabs()[i];
+			
+			// If bank tab empty, skip.
+			if (bankTab.getItems().isEmpty()) {
+				continue;
+			}
+			
+			// Array of items in bank tab.
+			JsonArray items = new JsonArray();
+			for (Item item : bankTab.getItems()) {
+				items.add(gson.toJsonTree(item));
+			}
+			
+			//jsonBankTab.add(""+i, items);	
+			bank.add("" + i, items);
+		}
+		jsonObject.add("bank", bank);
 
 		/* varps */
 		JsonArray varps = new JsonArray();

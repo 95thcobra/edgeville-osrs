@@ -12,8 +12,12 @@ import edgeville.util.Varbit;
 
 public class Bank {
 	private Player player;
+	private BankTab[] bankTabs = new BankTab[10];
+	public BankTab[] getBankTabs() {
+		return bankTabs;
+	}
 
-	public BankTab[] bankTabs = new BankTab[10];
+
 	private int currentBankTab = 0;
 
 	public Bank(Player player) {
@@ -120,17 +124,17 @@ public class Bank {
 			break;
 		}
 	}
-	
+
 	private boolean dirty;
-	
+
 	public void clean() {
 		dirty = false;
 	}
-	
+
 	public void makeDirty() {
 		dirty = true;
 	}
-	
+
 	// dont touch below
 
 	public boolean isDirty() {

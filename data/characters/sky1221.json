@@ -1,6 +1,6 @@
 {
-  "username": "sky",
-  "displayName": "sky",
+  "username": "sky1221",
+  "displayName": "sky1221",
   "password": "test",
   "tile": {
     "x": 3096,
@@ -198,44 +198,42 @@
       null
     ]
   },
-  "bank": {
-    "0": [
-      [
-        {
-          "id": 5698,
-          "amount": 1
-        },
-        {
-          "id": 6570,
-          "amount": 1
-        },
-        {
-          "id": 157,
-          "amount": 1
-        },
-        {
-          "id": 12006,
-          "amount": 1
-        },
-        {
-          "id": 163,
-          "amount": 1
-        },
-        {
-          "id": 12954,
-          "amount": 1
-        },
-        {
-          "id": 145,
-          "amount": 1
-        },
-        {
-          "id": 10551,
-          "amount": 1
-        }
-      ]
+  "bank": [
+    [
+      {
+        "id": 5698,
+        "amount": 1
+      },
+      {
+        "id": 6570,
+        "amount": 1
+      },
+      {
+        "id": 12006,
+        "amount": 1
+      },
+      {
+        "id": 157,
+        "amount": 1
+      },
+      {
+        "id": 163,
+        "amount": 1
+      },
+      {
+        "id": 12954,
+        "amount": 1
+      },
+      {
+        "id": 10551,
+        "amount": 1
+      },
+      {
+        "id": 145,
+        "amount": 1
+      }
     ]
-  },
+  ],
   "varps": [
     {
       "id": 173,
@@ -244,10 +242,6 @@
     {
       "id": 300,
       "value": 1000
-    },
-    {
-      "id": 304,
-      "value": 1
     },
     {
       "id": 843,
