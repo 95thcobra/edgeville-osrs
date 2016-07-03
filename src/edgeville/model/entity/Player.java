@@ -871,10 +871,10 @@ public class Player extends Entity {
 
 		return animationId;
 	}
-
-	public void messageDebug(String text) {
+	
+	public void messageDebug(String format, Object... params) {
 		if (isDebug()) {
-			message(text);
+			message(format, params);
 		}
 	}
 }

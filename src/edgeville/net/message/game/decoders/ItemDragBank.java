@@ -32,14 +32,14 @@ public class ItemDragBank implements Action {
 
 	@Override
 	public void process(Player player) {
-		player.message("id:%d, itemother:%d, slotother:%d, slot:%d", itemId, itemOther, slotOther, slot);
+		player.messageDebug("id:%d, itemother:%d, slotother:%d, slot:%d", itemId, itemOther, slotOther, slot);
 		
 		int hashthing1 = hash1>>16;
 		int hashthing12 = hash1&0xFFFF;
 		
 		int hashthing2 = hash2>>16;
 		int hashthing22 = hash2&0xFFFF; // 10 if tab, 12 if item
-		player.message("%d,%d,%d,%d", hashthing1, hashthing12, hashthing2, hashthing22);
+		player.messageDebug("%d,%d,%d,%d", hashthing1, hashthing12, hashthing2, hashthing22);
 		
 		player.getBank().moveItemOnItem( itemId,  slot,  itemOther, slotOther, hashthing22);
 	}

@@ -30,5 +30,5 @@ public class Varbit {
 	public static final int BANK_WITHDRAW_NOTE = 3958;
 	
 	public static final int BANK_TAB = 4171;
-	public static final int BANK_TAB_1 = 4172;
+	public static final int BANK_OPTIONS = 4170;
 }

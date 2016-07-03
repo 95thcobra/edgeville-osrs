@@ -1,3 +1,33 @@
+[03-07-2016]:
+
+- Item examines dumped and implemented.
+- Object examines dumped and implemented.
+- Bank tabs
+- Bank saving added.
+- Bank all inventory button & bank all equipment button added.
+- Add bank config options (Digit/roman numbers/hide tabs)
+- Cross tab swapping & inserting added.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [01-07-2016]: 
 
 - SpellOnPlayer packet added.
