@@ -3,7 +3,7 @@
   "displayName": "sky4",
   "password": "test",
   "tile": {
-    "x": 3098,
+    "x": 3096,
     "z": 3494,
     "level": 0
   },
@@ -15,12 +15,30 @@
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
     null,
     null,
     null,
@@ -28,63 +46,30 @@
     null,
     {
       "id": 560,
-      "amount": 9994
+      "amount": 9992
     },
     {
       "id": 565,
-      "amount": 9995
+      "amount": 9992
     },
     {
       "id": 555,
-      "amount": 9994
+      "amount": 9989
     },
     null,
     null,
     null,
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   "equipment": [
     {
@@ -190,12 +175,16 @@
       "value": 1000
     },
     {
+      "id": 304,
+      "value": 1
+    },
+    {
       "id": 843,
       "value": 18
     },
     {
       "id": 867,
-      "value": 1026
+      "value": 1
     },
     {
       "id": 1050,

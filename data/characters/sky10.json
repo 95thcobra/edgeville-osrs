@@ -15,65 +15,44 @@
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    null,
-    null,
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
     {
       "id": 157,
       "amount": 1
     },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
     null,
     null,
     null,
     null,
     null,
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "id": 385,
       "amount": 1

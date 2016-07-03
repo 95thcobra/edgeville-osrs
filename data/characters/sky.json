@@ -15,7 +15,10 @@
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    null,
+    {
+      "id": 565,
+      "amount": 30
+    },
     null,
     null,
     null,
@@ -30,10 +33,7 @@
       "id": 560,
       "amount": 9999
     },
-    {
-      "id": 565,
-      "amount": 9999
-    },
+    null,
     {
       "id": 555,
       "amount": 9999
@@ -202,10 +202,6 @@
     {
       "id": 843,
       "value": 18
-    },
-    {
-      "id": 867,
-      "value": 5125
     },
     {
       "id": 1050,

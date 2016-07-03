@@ -37,7 +37,16 @@ public class BankTab {
 		return false;	
 	}
 	
-	// Returns how many removed.
+	public boolean contains(int itemId, int amount) {
+		for(int i = 0; i < items.size();i++) {
+			if (items.get(i).getId() == itemId && items.get(i).getAmount() >= amount) {
+				return true;
+			}
+		}
+		return false;	
+	}
+	
+	// Removes all and returns how many removed.
 	public int remove(int itemId) {
 		int amount = - 1;
 		for(int i = 0; i < items.size();i++) {
@@ -48,6 +57,16 @@ public class BankTab {
 			}
 		}
 		return amount;
+	}
+	
+	public void remove(int id, int amount) {
+		for(int i = 0; i < items.size();i++) {
+			Item item = items.get(i);
+			if (item.getId() == id) {
+				items.set(i, new Item(id, item.getAmount() - amount));
+				break;
+			}
+		}
 	}
 
 	public int getId() {
