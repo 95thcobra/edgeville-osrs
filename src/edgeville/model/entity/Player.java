@@ -279,6 +279,7 @@ public class Player extends Entity {
 		/////// sj
 		debug = false;
 		resetSpecialEnergy();
+		// bank = new Bank(this);
 		bank = new Bank(this);
 		combatUtil = new CombatUtil(this);
 	}
@@ -705,30 +706,10 @@ public class Player extends Entity {
 		}
 
 		// Sync bank if dirty
-		if (bank.getBankItems().dirty()) {
-			/*ItemContainer container = new ItemContainer(world, 800, Type.FULL_STACKING);
-			for (ItemContainer itemcontainer : bank.bankNewwww.bankTabItems) {
-				if (itemcontainer == null)
-					continue;
-				for  (int i = 0 ; i < itemcontainer.occupiedSlots(); i++){
-					Item item = itemcontainer.getItems()[i];
-					if (item == null)
-						continue;
-					container.add(item);
-				}
-			}
-			for(int i = 0 ; i < container.occupiedSlots();i++){
-				container.getItems()[i] = new Item(container.getItems()[i].getId(), i);
-			}*/
-			// container.add(itemId)
-			
-			 write(new SetItems(95, bank.bankNewwww.getAllItems()));
-			 bank.getBankItems().clean();
-			
-			
-			// container.add(itemId)
-			// write(new SetItems(95, bank.getBankItems()));
-			// bank.getBankItems().clean();
+		if (bank.isDirty()) {
+			ItemContainer allItems = bank.getAllItems();
+			write(new SetItems(95, allItems));
+			allItems.clean();
 		}
 	}
 

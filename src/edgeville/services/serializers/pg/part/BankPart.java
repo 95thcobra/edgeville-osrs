@@ -26,13 +26,13 @@ public class BankPart implements PgJsonPart {
 
 			// TODO properties
 			Item itemobj = new Item(item.get("id").getAsInt(), item.get("amount").getAsInt());
-			player.getBank().getBankItems().set(item.get("slot").getAsInt(), itemobj);
+			//player.getBank().getBankItems().set(item.get("slot").getAsInt(), itemobj);
 		}
 	}
 
 	@Override
 	public void encode(Player player, PreparedStatement characterUpdateStatement) throws SQLException {
-		JsonArray itemarray = new JsonArray();
+		/*JsonArray itemarray = new JsonArray();
 		for (int i = 0; i < 800; i++) {
 			Item item = player.getBank().getBankItems().get(i);
 			if (item != null) {
@@ -47,7 +47,7 @@ public class BankPart implements PgJsonPart {
 		JsonObject itemobj = new JsonObject();
 		itemobj.add("items", itemarray);
 
-		characterUpdateStatement.setString(7, gson.toJson(itemobj));
+		characterUpdateStatement.setString(7, gson.toJson(itemobj));*/
 	}
 
 }

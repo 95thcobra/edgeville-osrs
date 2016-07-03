@@ -38,9 +38,7 @@ public final class GameCommands {
 		/*put(Privilege.ADMIN, "input", (p, args) -> {
 		StringInput
 		});*/
-		put(Privilege.ADMIN, "dirty", (p, args) -> {
-			p.getBank().getBankItems().makeDirty();
-		});
+	
 		put(Privilege.ADMIN, "moveitemtofirst", (p, args) -> {
 			//p.getBank().bankNewwww.moveItemToFirstPlaceInTab(5698);
 		});
@@ -48,14 +46,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "setitems", (p, args) -> {
 			p.write(new SetItems(Integer.parseInt(args[0]), Integer.parseInt(args[1]), p.getInventory()));
 		});
-		put(Privilege.ADMIN, "setitem", (p, args) -> {
-			p.getBank().getBankItems().set(821, new Item(4151));
-		});
-		put(Privilege.ADMIN, "fillbank", (p, args) -> {
-			for(int i = 0; i < p.getBank().getBankItems().size();i++) {
-				p.getBank().getBankItems().set(i, new Item(i+1));
-			}
-		});
+
 		
 		put(Privilege.ADMIN, "shout", (p, args) -> {
 			p.shout("Taste vengeance!");
