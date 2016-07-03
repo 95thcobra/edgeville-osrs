@@ -38,10 +38,10 @@ public class ItemDragBank implements Action {
 		int hashthing12 = hash1&0xFFFF;
 		
 		int hashthing2 = hash2>>16;
-		int hashthing22 = hash2&0xFFFF;
+		int hashthing22 = hash2&0xFFFF; // 10 if tab, 12 if item
 		player.message("%d,%d,%d,%d", hashthing1, hashthing12, hashthing2, hashthing22);
 		
-		player.getBank().moveItemOnItem( itemId,  slot,  itemOther, slotOther);
+		player.getBank().moveItemOnItem( itemId,  slot,  itemOther, slotOther, hashthing22);
 	}
 
 }

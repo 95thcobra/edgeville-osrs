@@ -192,10 +192,10 @@ public class Bank {
 	}
 
 	public void withdraw(int buttonId, int slot, int option) {
-		/*if (!player.dead()) {
+		if (!player.dead()) {
 			bankNewwww.withdraw(buttonId, slot, option);
 			return;
-		}*/
+		}
 		slot++;
 		Item item = bankItems.get(slot);
 		int id = item.getId();
@@ -269,9 +269,9 @@ public class Bank {
 		bankItems.set(slotTo, from);
 	}
 
-	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther) {
+	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther, int hasthing) {
 		if (!player.dead()) {
-			bankNewwww.moveItemOnItem(itemId, slot, itemOther, slotOther);
+			bankNewwww.moveItemOnItem(itemId, slot, itemOther, slotOther, hasthing);
 			return;
 		}
 		if (!player.dead() || (itemId == 65535 && slotOther == 11)) {// 10 is

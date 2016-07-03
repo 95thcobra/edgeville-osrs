@@ -14,6 +14,7 @@ public class BankNew {
 	private Player player;
 
 	public BankTab[] bankTabs = new BankTab[10];
+	private int currentBankTab = 0;
 
 	public BankNew(Player player) {
 		this.player = player;
@@ -21,9 +22,9 @@ public class BankNew {
 			bankTabs[i] = new BankTab(i, Varbit.BANK_TAB - 1 + i);
 		}
 	}
-	
+
 	private BankTab getBankTabForItem(int itemId) {
-		for(int i = 0 ; i < bankTabs.length; i++) {
+		for (int i = 0; i < bankTabs.length; i++) {
 			BankTab tab = bankTabs[i];
 			if (tab.contains(itemId)) {
 				return tab;
@@ -32,7 +33,43 @@ public class BankNew {
 		return null;
 	}
 
-	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther) {
+	public boolean isInsertEnabled() {
+		return player.varps().getVarbit(Varbit.BANK_INSERT) == 1;
+	}
+
+	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther, int hashthing) {
+		if (hashthing == 10/* itemId == 65535 */ && slotOther >= 10 && slotOther <= 20) {// 10
+																							// is
+			handleBankTabs(itemOther, slotOther);
+			return;
+		}
+
+		if (isInsertEnabled()) {
+			shiftItems(itemId, itemOther, slot, slotOther/* itemId, itemOther */);
+			return;
+		}
+
+		swapItem(itemId, itemOther);
+	}
+
+	// DO NOT TOUCH THIS IS GD
+	private void swapItem(int itemId, int itemOther) {
+		BankTab myTab = this.getBankTabForItem(itemId);
+		BankTab otherTab = this.getBankTabForItem(itemOther);
+		int slot1 = myTab.getSlot(itemId);
+		int slot2 = otherTab.getSlot(itemOther);
+		player.message("Tab[%d](%d) to Tab[%d](%d)", myTab.getId(), slot1, otherTab.getId(), slot2);
+
+		Item item1 = myTab.getItems().get(slot1);
+		Item item2 = otherTab.getItems().get(slot2);
+
+		myTab.getItems().set(slot1, item2);
+		otherTab.getItems().set(slot2, item1);
+
+		player.getBank().getBankItems().makeDirty();
+	}
+
+	private void handleBankTabs(int itemOther, int slotOther) {
 		BankTab fromTab = getBankTabForItem(itemOther);
 		BankTab targetBankTab = bankTabs[slotOther - 10];
 		player.message("Target bank tab : %d", targetBankTab.getId());
@@ -51,9 +88,8 @@ public class BankNew {
 				container.add(item);
 			}
 			player.varps().setVarbit(tab.getVarbit(), tab.getItems().size());
-			System.out.println();
 		}
-		
+
 		// Add the main tab items.
 		for (Item item : bankTabs[0].getItems())
 			container.add(item);
@@ -62,10 +98,24 @@ public class BankNew {
 	}
 
 	public void handleClick(int buttonId, int slot, int option) {
-		// TODO Auto-generated method stub
-
+		switch (buttonId) {
+		case 12:
+			withdraw(buttonId, slot, option);
+			break;
+		case 16:
+			player.varps().setVarbit(Varbit.BANK_INSERT, 0);
+			break;
+		case 18:
+			player.varps().setVarbit(Varbit.BANK_INSERT, 1);
+			break;
+		case 21:
+			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 0);
+			break;
+		case 23:
+			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 1);
+			break;
+		}
 	}
-
 	// dont touch below
 
 	public void open() {
@@ -103,11 +153,49 @@ public class BankNew {
 			amount = 10;
 			break;
 		case 6:
-			amount = totalAmount;
+			amount = player.getInventory().count(id);
 			break;
 		}
 
 		return amount;
+	}
+
+	public void withdraw(int buttonId, int slot, int option) {
+		player.message("Removing");
+		slot++;
+		Item item = getAllItems().get(slot);
+		int id = item.getId();
+
+		// X
+		if (option == 4) {
+			NumberInputDialog var = new NumberInputDialog(player) {
+				@Override
+				public void doAction(int value) {
+					moveItemsToInventory(id, value);
+				}
+			};
+			var.send();
+			return;
+		}
+
+		int amount = determineAmountToWithdraw(option, item.getAmount());
+		moveItemsToInventory(id, amount);
+	}
+
+	public void moveItemsToInventory(int id, int amount) {
+		int unnotedId = new Item(id).definition(player.world()).unnotedID;
+
+		int idToAdd;
+		if (player.varps().getVarbit(Varbit.BANK_WITHDRAW_NOTE) == 1 && unnotedId > 0 && unnotedId > id) {
+			idToAdd = unnotedId;
+		} else {
+			idToAdd = id;
+		}
+
+		if (player.getInventory().add(idToAdd, amount).success()) {
+			getBankTabForItem(id).remove(id);
+		}
+		player.getBank().getBankItems().makeDirty();
 	}
 
 	public int determineAmountToWithdraw(int option, int totalAmount) {
@@ -164,37 +252,66 @@ public class BankNew {
 	}
 
 	private void moveItemsToBank(int id, int amount) {
+
+		player.message("amount:%d", amount);
+
 		int unnotedId = new Item(id).definition(player.world()).unnotedID;
 		if (player.getInventory().remove(id, amount).success()) {
+
+			int idToAdd;
 			if (unnotedId > 0 && unnotedId < id) {
-				bankTabs[0].add(new Item(unnotedId, amount));
-				return;
+				idToAdd = unnotedId;
+			} else {
+				idToAdd = id;
 			}
-			bankTabs[0].add(new Item(id, amount));
+			if (bankTabs[currentBankTab].contains(idToAdd)) {
+				int slot = bankTabs[currentBankTab].getSlot(idToAdd);
+				bankTabs[currentBankTab].getItems().set(slot, new Item(idToAdd, bankTabs[currentBankTab].getItems().get(slot).getAmount() + amount));
+			}
+			else {
+				bankTabs[currentBankTab].add(new Item(idToAdd, amount));
+			}
+
 			player.getBank().getBankItems().makeDirty();
 		}
 	}
 
-	public void shiftItems(int slotFrom, int slotTo) {
-		int to = slotTo;
-		int tempFrom = slotFrom;
 
-		for (int tempTo = to; tempFrom != tempTo;) {
-			if (tempFrom > tempTo) {
-				switchItem(tempFrom, tempFrom - 1);
-				tempFrom--;
-			} else if (tempFrom < tempTo) {
-				switchItem(tempFrom, tempFrom + 1);
-				tempFrom++;
-			}
+	public void shiftItems(int itemId, int itemOther, int slot, int slotOther) {
+		BankTab myTab = this.getBankTabForItem(itemId);
+		BankTab otherTab = this.getBankTabForItem(itemOther);
+		
+		Item itemToInsert =  this.getAllItems().get(slot);
+		Item itemoToRemove =     this.getAllItems().get(slotOther);
+		
+		if (myTab == otherTab) {
+
+			player.message("ItemToInsert:"+itemToInsert);
+			player.message("ItemToInsertAt:"+itemoToRemove);
+			
+			int insertAtSlot = myTab.getSlot(itemoToRemove.getId());
+			
+			myTab.remove(itemToInsert);
+			myTab.getItems().add(insertAtSlot, itemToInsert);
+			//(y)
+		} else {
+			player.message("Tab:%d -> Tab:%d", myTab.getId(), otherTab.getId());
+			player.message("ItemToInsert:"+itemToInsert);
+			int insertAtSlot = myTab.getSlot(itemoToRemove.getId());
+			
+			otherTab.remove(itemToInsert);
+			myTab.getItems().add(insertAtSlot, itemToInsert);
+			
+	
+		
+						/*int slawt=	otherTab.getSlot(itemOther);
+						Item itemToInsert = otherTab.getItems().get(slawt);
+						otherTab.remove(itemOther);
+			
+						int destIndex = myTab.getSlot(itemId);
+						myTab.getItems().add(destIndex,itemToInsert);*/
 		}
-	}
+		player.getBank().getBankItems().makeDirty();
 
-	public void switchItem(int slotFrom, int slotTo) {
-		Item from = bankTabs[0].getItems().get(slotFrom);
-		Item to = bankTabs[0].getItems().get(slotTo);
-
-		bankTabs[0].getItems().set(slotFrom, to);
-		bankTabs[0].getItems().set(slotTo, from);
 	}
 }

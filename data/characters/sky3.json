@@ -3,7 +3,7 @@
   "displayName": "sky3",
   "password": "test",
   "tile": {
-    "x": 3096,
+    "x": 3098,
     "z": 3494,
     "level": 0
   },
@@ -15,66 +15,30 @@
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    {
-      "id": 5698,
-      "amount": 1
-    },
-    {
-      "id": 157,
-      "amount": 1
-    },
-    {
-      "id": 163,
-      "amount": 1
-    },
-    {
-      "id": 145,
-      "amount": 1
-    },
-    {
-      "id": 6570,
-      "amount": 1
-    },
-    {
-      "id": 12006,
-      "amount": 1
-    },
-    {
-      "id": 12954,
-      "amount": 1
-    },
-    {
-      "id": 10551,
-      "amount": 1
-    },
-    {
-      "id": 4722,
-      "amount": 1
-    },
-    {
-      "id": 11840,
-      "amount": 1
-    },
-    {
-      "id": 11773,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "id": 560,
-      "amount": 10000
+      "amount": 9999
     },
     {
       "id": 565,
-      "amount": 10000
+      "amount": 9999
     },
     {
       "id": 555,
-      "amount": 10000
+      "amount": 9999
     },
-    {
-      "id": 397,
-      "amount": 1
-    },
+    null,
     {
       "id": 397,
       "amount": 1
@@ -224,6 +188,10 @@
   },
   "varps": [
     {
+      "id": 115,
+      "value": 1
+    },
+    {
       "id": 173,
       "value": 1
     },
@@ -232,8 +200,16 @@
       "value": 1000
     },
     {
+      "id": 304,
+      "value": 1
+    },
+    {
       "id": 843,
       "value": 18
+    },
+    {
+      "id": 867,
+      "value": 2
     },
     {
       "id": 1050,

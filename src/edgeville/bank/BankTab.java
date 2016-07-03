@@ -74,5 +74,15 @@ public class BankTab {
 		this.items = items;
 	}
 	
+	public int getSlot(int itemId) {
+		System.out.println("----");
+		for(int i = 0; i < items.size();i++) {
+			System.out.println("Item: " + items.get(i) + " slot:"+i);
+			if (items.get(i).getId() == itemId) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	
 }

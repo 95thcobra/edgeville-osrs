@@ -1,9 +1,9 @@
 {
-  "username": "sky",
-  "displayName": "sky",
+  "username": "sky4",
+  "displayName": "sky4",
   "password": "test",
   "tile": {
-    "x": 3096,
+    "x": 3098,
     "z": 3494,
     "level": 0
   },
@@ -28,25 +28,19 @@
     null,
     {
       "id": 560,
-      "amount": 9999
+      "amount": 9994
     },
     {
       "id": 565,
-      "amount": 9999
+      "amount": 9995
     },
     {
       "id": 555,
-      "amount": 9999
+      "amount": 9994
     },
     null,
-    {
-      "id": 397,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 1
-    },
+    null,
+    null,
     {
       "id": 397,
       "amount": 1
@@ -196,16 +190,12 @@
       "value": 1000
     },
     {
-      "id": 304,
-      "value": 1
-    },
-    {
       "id": 843,
       "value": 18
     },
     {
       "id": 867,
-      "value": 5125
+      "value": 1026
     },
     {
       "id": 1050,
