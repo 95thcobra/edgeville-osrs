@@ -13,10 +13,10 @@ import edgeville.util.Varbit;
 public class Bank {
 	private Player player;
 	private BankTab[] bankTabs = new BankTab[10];
+
 	public BankTab[] getBankTabs() {
 		return bankTabs;
 	}
-
 
 	private int currentBankTab = 0;
 
@@ -102,6 +102,10 @@ public class Bank {
 
 	public void handleClick(int buttonId, int slot, int option) {
 		switch (buttonId) {
+		case 10:
+			currentBankTab = slot - 9;
+			player.message("currentbanktab:%d", currentBankTab);
+			break;
 		case 12:
 			if (option == 9) {
 				Item item = getAllItems().get(slot + 1);
@@ -121,6 +125,30 @@ public class Bank {
 			break;
 		case 23:
 			player.varps().setVarbit(Varbit.BANK_WITHDRAW_NOTE, 1);
+			break;
+
+		// bank all inv
+		case 27:
+			Item[] inv = player.getInventory().getItems();
+			for (int i = 0; i < inv.length; i++) {
+				Item item = inv[i];
+				if (item == null)
+					continue;
+				player.getInventory().remove(item);
+				bankTabs[currentBankTab].add(item);
+			}
+			break;
+
+		// bank all equip
+		case 29:
+			Item[] equip = player.getEquipment().getItems();
+			for (int i = 0; i < equip.length; i++) {
+				Item item = equip[i];
+				if (item == null)
+					continue;
+				player.getEquipment().remove(item);
+				bankTabs[currentBankTab].add(item);
+			}
 			break;
 		}
 	}
