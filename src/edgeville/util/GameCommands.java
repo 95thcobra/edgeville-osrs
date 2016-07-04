@@ -38,6 +38,13 @@ public final class GameCommands {
 		/*put(Privilege.ADMIN, "input", (p, args) -> {
 		StringInput
 		});*/
+		
+		put(Privilege.ADMIN, "loopf", (p, args) -> {
+		
+					p.interfaces().send(163, 161, Integer.parseInt(args[0]), true); // XP DROPPPPP BOX!!!!!!
+
+					
+		});
 	
 		put(Privilege.ADMIN, "moveitemtofirst", (p, args) -> {
 			//p.getBank().bankNewwww.moveItemToFirstPlaceInTab(5698);
