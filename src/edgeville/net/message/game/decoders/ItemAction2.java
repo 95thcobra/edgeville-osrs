@@ -1,5 +1,8 @@
 package edgeville.net.message.game.decoders;
 
+import java.util.List;
+
+import edgeville.aquickaccess.actions.EquipmentRequirement;
 import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
@@ -47,13 +50,32 @@ public class ItemAction2 extends ItemAction {
 		}
 
 		EquipmentInfo info = player.world().equipmentInfo();
+
+		// Check the item requirements
+		List<EquipmentRequirement> equipmentRequirements = info.getEquipmentRequirements(item.getId());
+		boolean meetsRequirements = true;
+		for (EquipmentRequirement equipmentRequirement : equipmentRequirements) {
+			int level = equipmentRequirement.getLevel();
+			int skill = equipmentRequirement.getSkill();
+
+			if (player.skills().level(skill) < level) {
+				player.message("Your BLABALBALLA."); kanker
+				meetsRequirements = false;
+				return;
+			}
+		}
+		// This way we can show all the requirements not met.
+		if (!meetsRequirements)
+			return;
+		
 		int targetSlot = info.slotFor(item.getId());
 		int type = info.typeFor(item.getId());
 		if (targetSlot == -1) { // Cannot wear :-(
 			player.messageDebug("cannot wear");
 			return;
 		}
-		// Begin by setting the used item to null. This is to make it like osrs. Failing is scary but no worries!
+		// Begin by setting the used item to null. This is to make it like osrs.
+		// Failing is scary but no worries!
 		player.getInventory().set(slot, player.getEquipment().get(targetSlot));
 
 		// If type is 5 it is a two-handed weapon
@@ -68,7 +90,12 @@ public class ItemAction2 extends ItemAction {
 
 		// If it is a shield and we have a 2h weapon equipped, unequip it
 		if (targetSlot == EquipSlot.SHIELD && player.getEquipment().hasAt(EquipSlot.WEAPON)) {
-			if (info.typeFor(player.getEquipment().get(EquipSlot.WEAPON).getId()) == 5) { // Is this indeed a 2h weapon?
+			if (info.typeFor(player.getEquipment().get(EquipSlot.WEAPON).getId()) == 5) { // Is
+																							// this
+																							// indeed
+																							// a
+																							// 2h
+																							// weapon?
 				if (player.getInventory().add(player.getEquipment().get(EquipSlot.WEAPON), false).failed()) {
 					player.message("You don't have enough free space to do that.");
 					player.getInventory().set(slot, item);

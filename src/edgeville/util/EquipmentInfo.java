@@ -3,16 +3,30 @@ package edgeville.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import edgeville.aquickaccess.actions.EquipmentRequirement;
 import edgeville.fs.DefinitionRepository;
 import edgeville.fs.ItemDefinition;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
+import edgeville.model.entity.player.Skills;
 import edgeville.model.entity.player.WeaponType;
 import edgeville.model.item.Item;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -34,7 +48,9 @@ public class EquipmentInfo {
 	private Map<Integer, Integer> weaponTypes = new HashMap<>();
 	private Map<Integer, Integer> weaponSpeeds = new HashMap<>();
 
-	public EquipmentInfo(DefinitionRepository repo, File typeSlotFile, File renderPairs, File bonuses, File weaponTypes, File weaponSpeeds) {
+	private Map<Integer, List<EquipmentRequirement>> equipmentRequirements = new HashMap<>();
+
+	public EquipmentInfo(DefinitionRepository repo, File typeSlotFile, File renderPairs, File bonuses, File weaponTypes, File weaponSpeeds, File equipmentRequirements) {
 		int numItems = repo.total(ItemDefinition.class);
 		slots = new byte[numItems];
 		types = new byte[numItems];
@@ -48,6 +64,8 @@ public class EquipmentInfo {
 		loadBonuses(bonuses);
 		loadWeaponTypes(weaponTypes);
 		loadWeaponSpeeds(weaponSpeeds);
+
+		loadEquipmentRequirements(equipmentRequirements);
 	}
 
 	private void loadSlotsAndTypes(File file) {
@@ -165,6 +183,47 @@ public class EquipmentInfo {
 		}
 	}
 
+	private void loadEquipmentRequirements(File file) {
+
+		String[] skills = { "ATTACK", "DEFENCE ", "STRENGTH ", "HITPOINTS ", "RANGED ", "PRAYER ", "MAGIC ", "COOKING ", "WOODCUTTING ", "FLETCHING ", "FISHING ", "FIREMAKING ", "CRAFTING", "SMITHING ", "MINING", "HERBLORE", "AGILITY", "THIEVING ", "SLAYER", "FARMING ", "RUNECRAFTING ", "HUNTER ",
+				"CONSTRUCTION ", "SUMMONING" };
+
+		try (InputStream inputStream = new FileInputStream(file)) {
+			JsonElement element = new JsonParser().parse(new InputStreamReader(inputStream));
+
+			int amt = 0;
+
+			JsonArray jsonArray = element.getAsJsonArray();
+			for (JsonElement ele : jsonArray) {
+				JsonObject jObject = ele.getAsJsonObject();
+				int id = jObject.get("id").getAsInt();
+				JsonArray reqs = jObject.get("requirements").getAsJsonArray();
+				
+				List<EquipmentRequirement> eqReqs = new ArrayList<>();
+				
+				for (JsonElement elemen : reqs) {
+					JsonObject object1 = elemen.getAsJsonObject();
+					int level = object1.get("level").getAsInt();
+					String skill = object1.get("skill").getAsString();
+					//System.out.println(level + " " + skill);
+
+					int skillIndex = Arrays.asList(skills).indexOf(skill);
+					if (skillIndex == -1) {
+						continue;
+					}
+						
+					eqReqs.add(new EquipmentRequirement(level, skillIndex));
+					amt++;
+				}
+				
+				equipmentRequirements.put(id, eqReqs);
+			}
+			logger.info("Loaded {} equipment requirements.", amt);
+		} catch (IOException e) {
+			logger.info("Could not load equipment requirements.", e);
+		}
+	}
+
 	public boolean wearable(int id) {
 		return id > 0 && id < slots.length && slots[id] != -1;
 	}
@@ -185,6 +244,10 @@ public class EquipmentInfo {
 
 	public int weaponType(int id) {
 		return weaponTypes.getOrDefault(id, 0);
+	}
+	
+	public List<EquipmentRequirement> getEquipmentRequirements(int id) {
+		return equipmentRequirements.get(id);
 	}
 
 	public boolean rapid(Player player) {
@@ -222,7 +285,7 @@ public class EquipmentInfo {
 				// karil cbow
 			case 4734:
 				return 2075;
-				// obby ring
+			// obby ring
 			case 6522:
 				return 1060;
 

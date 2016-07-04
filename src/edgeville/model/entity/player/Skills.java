@@ -55,18 +55,15 @@ public class Skills {
 
 	public void toggleXPCounter() {
 		boolean enabled = player.varps().getVarbit(Varbit.XP_DROPS_ORB) == 1;
-		/*
-		 * player.varps().setVarbit(Varbit.XP_DROPS_ORB, enabled ? 0 : 1);
-		 * player.varps().setVarbit(Varbit.XP_DROPS_COUNTER, enabled ? 30 : 0);
-		 */
-		player.message("got here?%d", enabled?1:0);
-		if (enabled){
+
+		if (enabled) {
 			player.interfaces().disableXPDrops();
-			player.varps().setVarbit(Varbit.XP_DROPS_ORB,0);
-		}else{
+			player.varps().setVarbit(Varbit.XP_DROPS_ORB, 0);
+		} else {
 			player.interfaces().enableXPDrops();
-			player.varps().setVarbit(Varbit.XP_DROPS_ORB,1);
-	}}
+			player.varps().setVarbit(Varbit.XP_DROPS_ORB, 1);
+		}
+	}
 
 	public void setXp(int skill, double amt) {
 		int oldLevel = xpToLevel((int) xps[skill]);

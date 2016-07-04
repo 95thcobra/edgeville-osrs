@@ -59,7 +59,7 @@ public class World {
         this.server = server;
         definitionRepository = new DefinitionRepository(server);
         examineRepository = new ExamineRepository(definitionRepository);
-        equipmentInfo = new EquipmentInfo(definitionRepository, new File("data/list/equipment_info.txt"), new File("data/list/renderpairs.txt"), new File("data/list/bonuses.txt"), new File("data/list/weapon_types.txt"), new File("data/list/weapon_speeds.txt"));
+        equipmentInfo = new EquipmentInfo(definitionRepository, new File("data/list/equipment_info.txt"), new File("data/list/renderpairs.txt"), new File("data/list/bonuses.txt"), new File("data/list/weapon_types.txt"), new File("data/list/weapon_speeds.txt"), new File("data/list/equipment_requirements.json"));
 
         // Acquire some info from config
         /*name = server.config().getString("world.name");
