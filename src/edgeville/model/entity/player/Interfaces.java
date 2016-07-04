@@ -61,17 +61,19 @@ public class Interfaces {
 		sendRoot(PANE_FIXED);
 
 		// Send the interfaces
-		
+
 		send(149, PANE_FIXED, 65, true); // unidentified
 		send(50, PANE_FIXED, 27, false); // unidentified
-		
+
 		send(162, PANE_FIXED, 20, true); // chatbox
 		send(160, PANE_FIXED, 9, true); // orbs
 		send(122, PANE_FIXED, 15, true); // XP DROPPPPP BOX!!!!!!
 		send(378, PANE_FIXED, 28, false); // prelogin interface
+		send(163, PANE_FIXED, 16, true); // Update count down
+
+		// Tabs
 		send(320, PANE_FIXED, 63, true); // skills
-		send(274, PANE_FIXED, 64, true); // quest		
-		send(163, PANE_FIXED, 16, true); // Update count down	
+		send(274, PANE_FIXED, 64, true); // quest
 		send(387, PANE_FIXED, 66, true); // equipment
 		send(271, PANE_FIXED, 67, true); // prayer
 		send(218, PANE_FIXED, 68, true); // spellbook
@@ -87,19 +89,28 @@ public class Interfaces {
 		setInterfaceSettings();
 	}
 
+	public void enableXPDrops() {
+		if (activeRoot == PANE_RESIZABLE)
+			send(122, activeRoot, 10, true);
+		else
+			send(122, activeRoot, 15, true);
+	}
+
+	public void disableXPDrops() {
+		if (activeRoot == PANE_RESIZABLE)
+			close(activeRoot, 10);
+		else
+			close(activeRoot, 15);
+	}
+
 	public void sendResizable() {
 		sendRoot(PANE_RESIZABLE);
 
 		send(162, PANE_RESIZABLE, 21, true); // chatbox
 		send(160, PANE_RESIZABLE, 20, true); // orbs
-		
-		
 		send(122, PANE_RESIZABLE, 10, true); // XP drop
-		
-		
-		
-		send(163, PANE_RESIZABLE, 8, true); // Update count down	
-		
+		send(163, PANE_RESIZABLE, 8, true); // Update count down
+
 		// tabs
 		send(320, PANE_RESIZABLE, 61, true); // skills
 		send(274, PANE_RESIZABLE, 62, true); // quest

@@ -331,6 +331,7 @@ public class ButtonClickAction {
 		// Toggle XP drops
 		if (option == 0) {
 			player.skills().toggleXPCounter();
+			return;
 		}
 
 		// Setup XP drops
@@ -348,6 +349,7 @@ public class ButtonClickAction {
 			player.interfaces().setting(137, 56, 1, 2, settingsBuilder.option(0));
 			player.interfaces().setting(137, 57, 1, 3, settingsBuilder.option(0));
 			player.interfaces().setting(137, 16, 0, 24, settingsBuilder.option(0));
+			return;
 		}
 	}
 

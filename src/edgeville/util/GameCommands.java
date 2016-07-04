@@ -41,9 +41,11 @@ public final class GameCommands {
 		
 		put(Privilege.ADMIN, "loopf", (p, args) -> {
 		
-					p.interfaces().send(163, 161, Integer.parseInt(args[0]), true); // XP DROPPPPP BOX!!!!!!
+				///p.interfaces().send(163, 161, Integer.parseInt(args[0]), true); // XP DROPPPPP BOX!!!!!!
 
-					
+			
+			p.interfaces().close(161, 10);
+
 		});
 	
 		put(Privilege.ADMIN, "moveitemtofirst", (p, args) -> {
