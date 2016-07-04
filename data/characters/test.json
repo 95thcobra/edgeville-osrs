@@ -1,10 +1,10 @@
 {
-  "username": "sky",
-  "displayName": "sky",
+  "username": "test",
+  "displayName": "test",
   "password": "test",
   "tile": {
-    "x": 3094,
-    "z": 3491,
+    "x": 3092,
+    "z": 3497,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -15,7 +15,10 @@
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    null,
+    {
+      "id": 5698,
+      "amount": 1
+    },
     {
       "id": 157,
       "amount": 1
@@ -29,15 +32,15 @@
       "amount": 1
     },
     {
-      "id": 2412,
+      "id": 6570,
       "amount": 1
     },
     {
-      "id": 4675,
+      "id": 12006,
       "amount": 1
     },
     {
-      "id": 6889,
+      "id": 12954,
       "amount": 1
     },
     {
@@ -45,7 +48,7 @@
       "amount": 1
     },
     {
-      "id": 4714,
+      "id": 4722,
       "amount": 1
     },
     {
@@ -69,18 +72,21 @@
       "amount": 10000
     },
     {
-      "id": 558,
-      "amount": 351231
-    },
-    {
-      "id": 556,
-      "amount": 325
-    },
-    {
-      "id": 5698,
+      "id": 397,
       "amount": 1
     },
-    null,
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
     {
       "id": 397,
       "amount": 1
@@ -128,7 +134,7 @@
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 2412,
       "amount": 1
     },
     {
@@ -136,7 +142,7 @@
       "amount": 1
     },
     {
-      "id": 12006,
+      "id": 4675,
       "amount": 1
     },
     {
@@ -144,12 +150,12 @@
       "amount": 1
     },
     {
-      "id": 12954,
+      "id": 6889,
       "amount": 1
     },
     null,
     {
-      "id": 4722,
+      "id": 4714,
       "amount": 1
     },
     null,
@@ -228,7 +234,7 @@
     },
     {
       "id": 843,
-      "value": 20
+      "value": 18
     },
     {
       "id": 1050,
@@ -245,108 +251,104 @@
     {
       "id": 1226,
       "value": 12
-    },
-    {
-      "id": 1227,
-      "value": 10
     }
   ],
   "skills": [
     {
-      "level": 99,
-      "xp": 1.3034959E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3035585E7
+      "level": 10,
+      "xp": 1154.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034687E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 1,
+      "xp": 0.0
     }
   ]
 }

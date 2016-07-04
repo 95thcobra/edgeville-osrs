@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import edgeville.combat.Magic.SpellOnPlayerAction;
+import edgeville.combat.magic.SpellOnPlayerAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;

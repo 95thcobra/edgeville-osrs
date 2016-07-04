@@ -1,4 +1,4 @@
-package edgeville.combat.Magic;
+package edgeville.combat.magic;
 
 public class Runes {
 	public static int FIRE_RUNE = 554;

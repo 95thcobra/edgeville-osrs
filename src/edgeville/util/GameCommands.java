@@ -35,36 +35,45 @@ public final class GameCommands {
 		commands = new HashMap<>();
 
 		// REAL COMMANDS
-		/*put(Privilege.ADMIN, "input", (p, args) -> {
-		StringInput
-		});*/
-		
+		/*
+		 * put(Privilege.ADMIN, "input", (p, args) -> { StringInput });
+		 */
+
+		put(Privilege.ADMIN, "testf", (p, args) -> {
+			p.interfaces().send(15, p.interfaces().activeRoot(), Integer.parseInt(args[0]), false);
+		});
 		put(Privilege.ADMIN, "loopf", (p, args) -> {
-		
-				///p.interfaces().send(163, 161, Integer.parseInt(args[0]), true); // XP DROPPPPP BOX!!!!!!
+			new Thread(() -> {
+				for (int i = 0; i < 60; i++) {
 
-			
-			p.interfaces().close(161, 10);
-
+					try {
+						Thread.sleep(300);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					p.interfaces().send(15, p.interfaces().activeRoot(), i, false);
+					System.out.println(i +" - ");
+				}
+			}).start();
 		});
-	
+
 		put(Privilege.ADMIN, "moveitemtofirst", (p, args) -> {
-			//p.getBank().bankNewwww.moveItemToFirstPlaceInTab(5698);
+			// p.getBank().bankNewwww.moveItemToFirstPlaceInTab(5698);
 		});
-		
+
 		put(Privilege.ADMIN, "setitems", (p, args) -> {
 			p.write(new SetItems(Integer.parseInt(args[0]), Integer.parseInt(args[1]), p.getInventory()));
 		});
 
-		
 		put(Privilege.ADMIN, "shout", (p, args) -> {
 			p.shout("Taste vengeance!");
 		});
-		
+
 		put(Privilege.ADMIN, "npcshout", (p, args) -> {
 			p.world().npcs().get(4).shout(args[0]);
 		});
-		
+
 		put(Privilege.ADMIN, "loopgfx", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 1400; i++) {
@@ -514,9 +523,10 @@ public final class GameCommands {
 			p.looks().update();
 			p.sync().publicChatMessage(new ChatMessage("Hi", 0, 0));
 		});
-		/*put(Privilege.ADMIN, "input", (p, args) -> {
-			new InputDialog(p).sendNumberInput();
-		});*/
+		/*
+		 * put(Privilege.ADMIN, "input", (p, args) -> { new
+		 * InputDialog(p).sendNumberInput(); });
+		 */
 		put(Privilege.PLAYER, "ancients", (p, args) -> p.varps().setVarbit(4070, 1));
 		put(Privilege.PLAYER, "modern", (p, args) -> p.varps().setVarbit(4070, 0));
 		put(Privilege.PLAYER, "lunar", (p, args) -> p.varps().setVarbit(4070, 2));

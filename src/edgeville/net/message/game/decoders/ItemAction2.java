@@ -3,6 +3,7 @@ package edgeville.net.message.game.decoders;
 import java.util.List;
 
 import edgeville.aquickaccess.actions.EquipmentRequirement;
+import edgeville.aquickaccess.actions.EquipmentRequirement.Skill;
 import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
@@ -52,22 +53,24 @@ public class ItemAction2 extends ItemAction {
 		EquipmentInfo info = player.world().equipmentInfo();
 
 		// Check the item requirements
-		List<EquipmentRequirement> equipmentRequirements = info.getEquipmentRequirements(item.getId());
-		boolean meetsRequirements = true;
-		for (EquipmentRequirement equipmentRequirement : equipmentRequirements) {
-			int level = equipmentRequirement.getLevel();
-			int skill = equipmentRequirement.getSkill();
+		List<EquipmentRequirement> equipmentRequirements = info.getEquipmentRequirements(player, item);
+		if (equipmentRequirements != null) {
+			boolean meetsRequirements = true;
+			for (EquipmentRequirement equipmentRequirement : equipmentRequirements) {
+				int level = equipmentRequirement.getLevel();
+				Skill skill = equipmentRequirement.getSkill();
 
-			if (player.skills().level(skill) < level) {
-				player.message("Your BLABALBALLA."); kanker
-				meetsRequirements = false;
-				return;
+				if (player.skills().level(skill.getId()) < level) {
+					player.message("You need a %s level of %d to equip %s.", skill.toString(), level, item.definition(player.world()).name);
+					meetsRequirements = false;
+					return;
+				}
 			}
+			// This way we can show all the requirements not met.
+			if (!meetsRequirements)
+				return;
 		}
-		// This way we can show all the requirements not met.
-		if (!meetsRequirements)
-			return;
-		
+
 		int targetSlot = info.slotFor(item.getId());
 		int type = info.typeFor(item.getId());
 		if (targetSlot == -1) { // Cannot wear :-(

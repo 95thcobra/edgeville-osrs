@@ -7,10 +7,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.intellij.openapi.util.text.StringUtil;
 
 import edgeville.aquickaccess.actions.EquipmentRequirement;
+import edgeville.aquickaccess.actions.EquipmentRequirement.Skill;
 import edgeville.fs.DefinitionRepository;
 import edgeville.fs.ItemDefinition;
+import edgeville.model.World;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.Skills;
@@ -48,7 +51,7 @@ public class EquipmentInfo {
 	private Map<Integer, Integer> weaponTypes = new HashMap<>();
 	private Map<Integer, Integer> weaponSpeeds = new HashMap<>();
 
-	private Map<Integer, List<EquipmentRequirement>> equipmentRequirements = new HashMap<>();
+	//private Map<Integer, List<EquipmentRequirement>> equipmentRequirements = new HashMap<>();
 
 	public EquipmentInfo(DefinitionRepository repo, File typeSlotFile, File renderPairs, File bonuses, File weaponTypes, File weaponSpeeds, File equipmentRequirements) {
 		int numItems = repo.total(ItemDefinition.class);
@@ -65,7 +68,7 @@ public class EquipmentInfo {
 		loadWeaponTypes(weaponTypes);
 		loadWeaponSpeeds(weaponSpeeds);
 
-		loadEquipmentRequirements(equipmentRequirements);
+		//loadEquipmentRequirements();
 	}
 
 	private void loadSlotsAndTypes(File file) {
@@ -183,6 +186,11 @@ public class EquipmentInfo {
 		}
 	}
 
+	/**
+	 * Not used, since equip requirements are done with strings.
+	 * 
+	 * @param file
+	 */
 	private void loadEquipmentRequirements(File file) {
 
 		String[] skills = { "ATTACK", "DEFENCE ", "STRENGTH ", "HITPOINTS ", "RANGED ", "PRAYER ", "MAGIC ", "COOKING ", "WOODCUTTING ", "FLETCHING ", "FISHING ", "FIREMAKING ", "CRAFTING", "SMITHING ", "MINING", "HERBLORE", "AGILITY", "THIEVING ", "SLAYER", "FARMING ", "RUNECRAFTING ", "HUNTER ",
@@ -198,25 +206,27 @@ public class EquipmentInfo {
 				JsonObject jObject = ele.getAsJsonObject();
 				int id = jObject.get("id").getAsInt();
 				JsonArray reqs = jObject.get("requirements").getAsJsonArray();
-				
+
 				List<EquipmentRequirement> eqReqs = new ArrayList<>();
-				
+
 				for (JsonElement elemen : reqs) {
 					JsonObject object1 = elemen.getAsJsonObject();
 					int level = object1.get("level").getAsInt();
 					String skill = object1.get("skill").getAsString();
-					//System.out.println(level + " " + skill);
+					// System.out.println(level + " " + skill);
 
 					int skillIndex = Arrays.asList(skills).indexOf(skill);
 					if (skillIndex == -1) {
 						continue;
 					}
-						
-					eqReqs.add(new EquipmentRequirement(level, skillIndex));
+
+					System.out.println(Skill.valueOf(skill).toString());
+
+					eqReqs.add(new EquipmentRequirement(Skill.valueOf(skill), level));
 					amt++;
 				}
-				
-				equipmentRequirements.put(id, eqReqs);
+
+			//	equipmentRequirements.put(id, eqReqs);
 			}
 			logger.info("Loaded {} equipment requirements.", amt);
 		} catch (IOException e) {
@@ -245,9 +255,32 @@ public class EquipmentInfo {
 	public int weaponType(int id) {
 		return weaponTypes.getOrDefault(id, 0);
 	}
-	
-	public List<EquipmentRequirement> getEquipmentRequirements(int id) {
-		return equipmentRequirements.get(id);
+
+	public List<EquipmentRequirement> getEquipmentRequirements(Player player, Item item) {
+		String itemName = item.definition(player.world()).name;
+		List<EquipmentRequirement> reqs = new ArrayList<EquipmentRequirement>();
+
+		boolean attackRequirementFound = false;
+
+		// All items that require 70 attack.
+		String[] require70Attack = { "abyssal whip" };
+		for (String name : require70Attack) {
+			if (StringUtil.containsIgnoreCase(itemName, name)) {
+				reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
+				attackRequirementFound = true;
+			}
+		}
+
+		if (!attackRequirementFound) {
+			// All items that require 75 attack.
+			String[] require75Attack = { "godsword", "abyssal tentacle" };
+			for (String name : require75Attack) {
+				if (StringUtil.containsIgnoreCase(itemName, name)) {
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 75));
+				}
+			}
+		}
+		return reqs;
 	}
 
 	public boolean rapid(Player player) {

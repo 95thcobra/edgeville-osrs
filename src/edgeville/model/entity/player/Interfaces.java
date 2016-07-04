@@ -62,7 +62,6 @@ public class Interfaces {
 
 		// Send the interfaces
 
-		send(149, PANE_FIXED, 65, true); // unidentified
 		send(50, PANE_FIXED, 27, false); // unidentified
 
 		send(162, PANE_FIXED, 20, true); // chatbox
@@ -72,6 +71,7 @@ public class Interfaces {
 		send(163, PANE_FIXED, 16, true); // Update count down
 
 		// Tabs
+		send(149, PANE_FIXED, 65, true); // inventory
 		send(320, PANE_FIXED, 63, true); // skills
 		send(274, PANE_FIXED, 64, true); // quest
 		send(387, PANE_FIXED, 66, true); // equipment
@@ -114,7 +114,7 @@ public class Interfaces {
 		// tabs
 		send(320, PANE_RESIZABLE, 61, true); // skills
 		send(274, PANE_RESIZABLE, 62, true); // quest
-		send(149, PANE_RESIZABLE, 63, true);
+		send(149, PANE_RESIZABLE, 63, true); // inventory
 		send(387, PANE_RESIZABLE, 64, true); // equipment
 		send(271, PANE_RESIZABLE, 65, true); // prayer
 		send(218, PANE_RESIZABLE, 66, true); // spellbook

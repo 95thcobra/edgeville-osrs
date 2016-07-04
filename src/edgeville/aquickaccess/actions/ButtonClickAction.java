@@ -2,7 +2,7 @@ package edgeville.aquickaccess.actions;
 
 import edgeville.combat.Combat;
 import edgeville.combat.PlayerVersusAnyCombat;
-import edgeville.combat.Magic.Runes;
+import edgeville.combat.magic.Runes;
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
 import edgeville.model.Locations;

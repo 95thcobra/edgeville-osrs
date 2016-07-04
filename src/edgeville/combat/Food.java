@@ -1,5 +1,7 @@
 package edgeville.combat;
 
+import edgeville.util.TextUtil;
+
 /**
  * Created by Sky on 28-6-2016.
  */
@@ -72,5 +74,10 @@ public enum Food {
 
     public int getNextId() {
         return nextId;
+    }
+    
+    @Override
+    public String toString() {
+    	return TextUtil.formatEnum(name());
     }
 }

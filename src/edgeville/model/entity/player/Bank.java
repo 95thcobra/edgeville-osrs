@@ -179,17 +179,22 @@ public class Bank {
 			player.message("You cannot do this while in the wilderness.");
 			return;
 		}
-		player.write(new InvokeScript(917, -1, -2147483648));
+		player.write(new InvokeScript(917, -1, -2147483648)); // big screen
 		player.interfaces().sendMain(12, false);
-		player.interfaces().send(15, player.interfaces().activeRoot(), (player.interfaces().resizable() ? 56 : 60), false);
+		player.interfaces().send(15, player.interfaces().activeRoot(), (player.interfaces().resizable() ? 58 : 60), false);
 
 		player.write(new InterfaceSettings(12, 12, 0, 799, 1311998));
 		player.write(new InterfaceSettings(12, 12, 809, 817, 2));
 		player.write(new InterfaceSettings(12, 12, 818, 827, 1048576));
 		player.write(new InterfaceSettings(12, 10, 10, 10, 1048578));
 		player.write(new InterfaceSettings(12, 10, 11, 19, 1179714));
+		
+		
 		player.write(new InterfaceSettings(15, 3, 0, 27, 1181438));
 		player.write(new InterfaceSettings(15, 12, 0, 27, 1054));
+		
+		
+		
 		player.write(new InterfaceSettings(12, 32, 0, 3, 2));
 
 		makeDirty();

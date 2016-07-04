@@ -1,4 +1,4 @@
-package edgeville.combat.Magic;
+package edgeville.combat.magic;
 
 import org.apache.commons.lang3.StringUtils;
 

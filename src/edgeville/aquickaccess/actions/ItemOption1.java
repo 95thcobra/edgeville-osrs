@@ -119,7 +119,7 @@ public class ItemOption1 {
             return;
         }
 
-        player.message("You eat the " + food.name());
+        player.message("You eat the " + food.toString());
 
         if (food.getHeal() > 0) {
             player.world().getEventHandler().addEvent(player, 2, false, new Event() {

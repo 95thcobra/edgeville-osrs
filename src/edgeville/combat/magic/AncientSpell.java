@@ -1,4 +1,4 @@
-package edgeville.combat.Magic;
+package edgeville.combat.magic;
 
 import edgeville.model.entity.Player;
 import edgeville.model.item.Item;
