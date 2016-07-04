@@ -2,6 +2,7 @@ package edgeville.aquickaccess.actions;
 
 import edgeville.combat.Combat;
 import edgeville.combat.PlayerVersusAnyCombat;
+import edgeville.combat.Magic.Runes;
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
 import edgeville.model.Locations;
@@ -14,6 +15,7 @@ import edgeville.net.message.game.encoders.InvokeScript;
 import edgeville.script.TimerKey;
 import edgeville.util.CombatFormula;
 import edgeville.util.SettingsBuilder;
+import edgeville.util.TextUtil;
 import edgeville.util.Varbit;
 import edgeville.util.Varp;
 
@@ -43,7 +45,7 @@ public class ButtonClickAction {
 		case 12:
 			player.getBank().handleClick(buttonId, slot, option);
 			break;
-		
+
 		// Inventory: used for banking & more
 		case 15:
 			if (option <= 6) {
@@ -377,6 +379,18 @@ public class ButtonClickAction {
 	}
 
 	private void castVeng() {
+		int levelReq = 94;
+		if (levelReq > player.skills().level(Skills.MAGIC)) {
+			player.message("You need a magic level of %d to cast %s.", levelReq, "Vengeance");
+			return;
+		}
+		Item[] requiredRunes = new Item[] { new Item(Runes.ASTRAL_RUNE, 4), new Item(Runes.DEATH_RUNE, 2), new Item(Runes.EARTH_RUNE, 10) };
+		for (Item item : requiredRunes) {
+			if (player.getInventory().contains(item.getId(), item.getAmount())) {
+				player.message("You do not have the required runes to cast Vengeance!");
+				return;
+			}
+		}
 		if (player.isVengOn()) {
 			player.message("Vengeance is already enabled!");
 			return;

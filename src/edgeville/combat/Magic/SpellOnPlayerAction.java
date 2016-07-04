@@ -1,5 +1,7 @@
 package edgeville.combat.Magic;
 
+import org.apache.commons.lang3.StringUtils;
+
 import edgeville.combat.Graphic;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
@@ -7,9 +9,11 @@ import edgeville.model.Entity;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Skills;
+import edgeville.model.item.Item;
 import edgeville.script.TimerKey;
 import edgeville.util.AccuracyFormula;
 import edgeville.util.CombatStyle;
+import edgeville.util.TextUtil;
 
 public class SpellOnPlayerAction {
 
@@ -38,55 +42,55 @@ public class SpellOnPlayerAction {
 		switch (child) {
 
 		case 74:
-			cycleDoMagicSpell(Spell.SMOKE_RUSH);
+			cycleDoMagicSpell(DamageSpell.SMOKE_RUSH);
 			break;
 		case 78:
-			cycleDoMagicSpell(Spell.SHADOW_RUSH);
+			cycleDoMagicSpell(DamageSpell.SHADOW_RUSH);
 			break;
 		case 70:
-			cycleDoMagicSpell(Spell.BLOOD_RUSH);
+			cycleDoMagicSpell(DamageSpell.BLOOD_RUSH);
 			break;
 		case 66:
-			cycleDoMagicSpell(Spell.ICE_RUSH);
+			cycleDoMagicSpell(DamageSpell.ICE_RUSH);
 			break;
 
 		case 76:
-			cycleDoMagicSpell(Spell.SMOKE_BURST);
+			cycleDoMagicSpell(DamageSpell.SMOKE_BURST);
 			break;
 		case 80:
-			cycleDoMagicSpell(Spell.SHADOW_BURST);
+			cycleDoMagicSpell(DamageSpell.SHADOW_BURST);
 			break;
 		case 72:
-			cycleDoMagicSpell(Spell.BLOOD_BURST);
+			cycleDoMagicSpell(DamageSpell.BLOOD_BURST);
 			break;
 		case 68:
-			cycleDoMagicSpell(Spell.ICE_BURST);
+			cycleDoMagicSpell(DamageSpell.ICE_BURST);
 			break;
 
 		case 75:
-			cycleDoMagicSpell(Spell.SMOKE_BLITZ);
+			cycleDoMagicSpell(DamageSpell.SMOKE_BLITZ);
 			break;
 		case 79:
-			cycleDoMagicSpell(Spell.SHADOW_BLITZ);
+			cycleDoMagicSpell(DamageSpell.SHADOW_BLITZ);
 			break;
 		case 71:
-			cycleDoMagicSpell(Spell.BLOOD_BLITZ);
+			cycleDoMagicSpell(DamageSpell.BLOOD_BLITZ);
 			break;
 		case 67:
-			cycleDoMagicSpell(Spell.ICE_BLITZ);
+			cycleDoMagicSpell(DamageSpell.ICE_BLITZ);
 			break;
 
 		case 77:
-			cycleDoMagicSpell(Spell.SMOKE_BARRAGE);
+			cycleDoMagicSpell(DamageSpell.SMOKE_BARRAGE);
 			break;
 		case 81:
-			cycleDoMagicSpell(Spell.SHADOW_BARRAGE);
+			cycleDoMagicSpell(DamageSpell.SHADOW_BARRAGE);
 			break;
 		case 73:
-			cycleDoMagicSpell(Spell.BLOOD_BARRAGE);
+			cycleDoMagicSpell(DamageSpell.BLOOD_BARRAGE);
 			break;
 		case 69:
-			cycleDoMagicSpell(Spell.ICE_BARRAGE);
+			cycleDoMagicSpell(DamageSpell.ICE_BARRAGE);
 			break;
 		}
 	}
@@ -102,7 +106,18 @@ public class SpellOnPlayerAction {
 		return player.pathQueue().peekAfter(steps - 1) == null ? player.getTile() : player.pathQueue().peekAfter(steps - 1).toTile();
 	}
 
-	private void cycleDoMagicSpell(Spell spell) {
+	private void cycleDoMagicSpell(DamageSpell spell) {
+		int levelReq = spell.getLevelReq();
+		if (levelReq > player.skills().level(Skills.MAGIC)) {
+			player.message("You need a magic level of %d to cast %s.", levelReq,spell.toString());
+			return;
+		}
+		
+		if (!spell.hasRunes(player)) {
+			player.message("You do not have the required runes to cast %s.",spell.toString());
+			return;
+		}
+		
 		player.world().getEventHandler().addEvent(player, new Event() {
 
 			@Override
@@ -116,7 +131,7 @@ public class SpellOnPlayerAction {
 		});
 	}
 
-	private boolean doMagicSpell(Spell spell, EventContainer container) {
+	private boolean doMagicSpell(DamageSpell spell, EventContainer container) {
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
@@ -148,32 +163,32 @@ public class SpellOnPlayerAction {
 
 			// TODO smoke poisons
 			
-			if (spell == Spell.SHADOW_RUSH || spell == Spell.SHADOW_BURST) {
+			if (spell == DamageSpell.SHADOW_RUSH || spell == DamageSpell.SHADOW_BURST) {
 				if (target instanceof Player)
 					((Player) target).skills().alterSkill(Skills.ATTACK, 0.9);
 			}
-			if (spell == Spell.SHADOW_BLITZ || spell == Spell.SHADOW_BARRAGE) {
+			if (spell == DamageSpell.SHADOW_BLITZ || spell == DamageSpell.SHADOW_BARRAGE) {
 				if (target instanceof Player)
 					((Player) target).skills().alterSkill(Skills.ATTACK, 0.85);
 			}
 
-			if (spell == Spell.BLOOD_RUSH || spell == Spell.BLOOD_BURST || spell == Spell.BLOOD_BLITZ || spell == Spell.BLOOD_BARRAGE) {
+			if (spell == DamageSpell.BLOOD_RUSH || spell == DamageSpell.BLOOD_BURST || spell == DamageSpell.BLOOD_BLITZ || spell == DamageSpell.BLOOD_BARRAGE) {
 				player.heal(hit / 4);
 			}
 			
-			if (spell == Spell.ICE_RUSH) {
+			if (spell == DamageSpell.ICE_RUSH) {
 				target.freeze(8); // 5 second freeze timer
 			}
 			
-			if (spell == Spell.ICE_BARRAGE) {
+			if (spell == DamageSpell.ICE_BARRAGE) {
 				target.freeze(17); // 10 second freeze timer
 			}
 
-			if (spell == Spell.ICE_BLITZ) {
+			if (spell == DamageSpell.ICE_BLITZ) {
 				target.freeze(25); // 15 second freeze timer
 			}
 
-			if (spell == Spell.ICE_BARRAGE) {
+			if (spell == DamageSpell.ICE_BARRAGE) {
 				target.freeze(33); // 20 second freeze timer
 			}
 

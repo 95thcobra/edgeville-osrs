@@ -1,15 +1,33 @@
+[04-07-2016]:
+- Magic level requirements ancients added.
+- Rune requirements ancients added.
+- Vengeance level requirement added.
+- Rune requirements vengeance added.
+
+
+
+
+
+
+
 [03-07-2016]:
 
-- Item examines dumped and implemented.
-- Object examines dumped and implemented.
-- Bank tabs
-- Bank saving added.
-- Bank all inventory button & bank all equipment button added.
-- Add bank config options (Digit/roman numbers/hide tabs)
-- Cross tab swapping & inserting added.
+[03-07-2016]: Item examines dumped and implemented.
+[03-07-2016]: Object examines dumped and implemented.
+[03-07-2016]: Bank tabs
+[03-07-2016]: Bank saving added.
+[03-07-2016]: Bank all inventory button & bank all equipment button added.
+[03-07-2016]: Add bank config options (Digit/roman numbers/hide tabs)
+[03-07-2016]: Cross tab swapping & inserting added.
 
+[B]Bank all inventory & bank all equipment[/B]
+[IMG]https://i.gyazo.com/326770cff76b01c3fb3ea8a17c027ba2.gif[/IMG]
 
+[B]Cross tab swapping & inserting[/B]
+[IMG]https://i.gyazo.com/49263c6c22b955038f111de813aaf7cf.gif[/IMG]
 
+[B]Digits & roman numerals[/B]
+[IMG]https://i.gyazo.com/995bf8bce11ca679ec11a2a1c2b89a94.gif[/IMG]
 
 
 

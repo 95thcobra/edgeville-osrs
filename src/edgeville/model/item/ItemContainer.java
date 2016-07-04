@@ -258,6 +258,24 @@ public class ItemContainer {
 	public boolean has(int item) {
 		return findFirst(item).first() != -1;
 	}
+	
+	/**
+	 * Checks if inventory contains an item with specified amount.
+	 * @param id
+	 * @param amount
+	 * @return
+	 */
+	public boolean contains(int id, int amount) {
+		for (int i = 0; i < occupiedSlots(); i++) {
+			Item item = items[i];
+			if (item.getId() == id) {
+				if (item.getAmount() >= amount) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	public int getSlot(int itemId) {
 		for (int i = 0; i < occupiedSlots(); i++) {
