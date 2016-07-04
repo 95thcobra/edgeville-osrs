@@ -40,19 +40,20 @@ public final class GameCommands {
 		 */
 
 		put(Privilege.ADMIN, "testf", (p, args) -> {
-			p.interfaces().send(15, p.interfaces().activeRoot(), Integer.parseInt(args[0]), false);
+			p.interfaces().send(90, p.interfaces().activeRoot(), Integer.parseInt(args[0]), true);
 		});
+		
 		put(Privilege.ADMIN, "loopf", (p, args) -> {
 			new Thread(() -> {
-				for (int i = 0; i < 60; i++) {
+				for (int i = 0; i < 20; i++) {
 
 					try {
-						Thread.sleep(300);
+						Thread.sleep(1000);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					p.interfaces().send(15, p.interfaces().activeRoot(), i, false);
+					p.interfaces().send(90, p.interfaces().activeRoot(), i, true);
 					System.out.println(i +" - ");
 				}
 			}).start();

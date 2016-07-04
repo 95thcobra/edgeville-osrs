@@ -14,6 +14,11 @@ public enum TimerKey {
 	 * Key used when delaying hits with combat.
 	 */
 	COMBAT_ATTACK,
+	
+	/**
+	 * Key used when player is in combat.
+	 */
+	IN_COMBAT,
 
 	/**
 	 * Key used when burying bones in the ground.

@@ -62,6 +62,8 @@ public class Interfaces {
 
 		// Send the interfaces
 
+		//send(90, PANE_FIXED, 12, true); // bounty combat
+
 		send(50, PANE_FIXED, 27, false); // unidentified
 
 		send(162, PANE_FIXED, 20, true); // chatbox
@@ -103,8 +105,20 @@ public class Interfaces {
 			close(activeRoot, 15);
 	}
 
+	public void setBountyInterface(boolean enabled) {
+		int child = activeRoot == PANE_RESIZABLE ? 11 : 12;
+
+		if (enabled) {
+			send(90, activeRoot, child, true);
+		} else {
+			close(activeRoot, child);
+		}
+	}
+
 	public void sendResizable() {
 		sendRoot(PANE_RESIZABLE);
+
+		//send(90, PANE_RESIZABLE, 11, true); // bounty combat
 
 		send(162, PANE_RESIZABLE, 21, true); // chatbox
 		send(160, PANE_RESIZABLE, 20, true); // orbs

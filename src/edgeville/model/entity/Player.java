@@ -282,6 +282,7 @@ public class Player extends Entity {
 		// bank = new Bank(this);
 		bank = new Bank(this);
 		combatUtil = new CombatUtil(this);
+		varps().setVarbit(Varbit.XP_DROPS_ORB, 1);
 	}
 
 	public void resetSpecialEnergy() {
@@ -636,7 +637,9 @@ public class Player extends Entity {
 					skills.replenishStats();
 					timers.register(TimerKey.STAT_REPLENISH, 100);
 					break;
-
+				case IN_COMBAT:
+					interfaces().setBountyInterface(false);
+					break;
 				}
 				// world.server().scriptRepository().triggerTimer(this, key);
 			}
