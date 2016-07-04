@@ -7,6 +7,7 @@ import edgeville.GameServer;
 import edgeville.event.EventHandler;
 import edgeville.fs.DefinitionRepository;
 import edgeville.fs.MapDefinition;
+import edgeville.model.clanchat.ClanChatHandler;
 import edgeville.model.entity.Npc;
 import edgeville.model.entity.Player;
 import edgeville.model.map.MapObj;
@@ -45,6 +46,8 @@ public class World {
     private String name;
     private Random random = new SecureRandom();
     private final boolean emulation;
+    
+    private ClanChatHandler clanChatHandler;
 
     private static PluginHandler pluginHandler = new PluginHandler();
 
@@ -78,9 +81,19 @@ public class World {
 
         // Load object spawns
         loadObjectSpawns();
+        
+        this.clanChatHandler = new ClanChatHandler();
     }
+    
+    
 
-    private void loadObjectSpawns() {
+    public ClanChatHandler getClanChatHandler() {
+		return clanChatHandler;
+	}
+
+
+
+	private void loadObjectSpawns() {
         Gson gson = new Gson();
         File spawns = new File("data/map/objects");
         for (File spawn : spawns.listFiles()) {
@@ -216,7 +229,7 @@ public class World {
         return Optional.ofNullable(playerLookupMap.get(id));
     }
 
-    public Optional<Player> playerByName(String glue) {
+    public Optional<Player> getPlayerByName(String glue) {
         return Optional.ofNullable(playerNameLookupMap.get(glue.toLowerCase()));
     }
 

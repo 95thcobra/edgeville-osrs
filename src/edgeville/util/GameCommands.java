@@ -38,6 +38,10 @@ public final class GameCommands {
 		/*
 		 * put(Privilege.ADMIN, "input", (p, args) -> { StringInput });
 		 */
+		
+		put(Privilege.ADMIN, "loopinter", (p, args) -> {
+			p.interfaces().send(90, p.interfaces().activeRoot(), Integer.parseInt(args[0]), true);
+		});
 
 		put(Privilege.ADMIN, "testf", (p, args) -> {
 			p.interfaces().send(90, p.interfaces().activeRoot(), Integer.parseInt(args[0]), true);
@@ -117,8 +121,8 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "yell", (p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
 
 		put(Privilege.PLAYER, "empty", (p, args) -> p.getInventory().empty());
-		put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().playerByName(glue(args)).get().getTile()));
-		put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().playerByName(glue(args)).get().move(p.getTile()));
+		put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().getPlayerByName(glue(args)).get().getTile()));
+		put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().getPlayerByName(glue(args)).get().move(p.getTile()));
 
 		put(Privilege.ADMIN, "resetstats", (p, args) -> p.skills().resetStats());
 		put(Privilege.ADMIN, "damageon", (p, args) -> {
@@ -479,13 +483,7 @@ public final class GameCommands {
 		});
 
 		put(Privilege.PLAYER, "master", (p, args) -> {
-			if (inWilderness(p)) {
-				p.message("You cannot do this while in the wilderness.");
-				return;
-			}
-			for (int i = 0; i < Skills.SKILL_COUNT; i++) {
-				p.skills().addXp(i, 13034431);
-			}
+			p.setMaster();
 		});
 
 		put(Privilege.ADMIN, "teleregion", (p, args) -> {

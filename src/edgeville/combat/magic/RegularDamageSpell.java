@@ -5,7 +5,14 @@ import edgeville.model.item.Item;
 import edgeville.util.TextUtil;
 
 public enum RegularDamageSpell {
-	WIND_STRIKE(1, 711, 91, 12, 90, 92, 2, 4, new Item[] { new Item(Runes.AIR_RUNE), new Item(Runes.MIND_RUNE) });
+	WIND_STRIKE(1, 711, 91, 12, 90, 92, 2, 4, new Item[] { new Item(Runes.AIR_RUNE), new Item(Runes.MIND_RUNE) }),
+	WATER_STRIKE(5, 711, 94, 12, 93, 95, 4, 4, new Item[] { new Item(Runes.WATER_RUNE),new Item(Runes.AIR_RUNE), new Item(Runes.MIND_RUNE) }),
+	EARTH_STRIKE(5, 711, 97, 12, 96, 98, 6, 4, new Item[] { new Item(Runes.EARTH_RUNE,2),new Item(Runes.AIR_RUNE), new Item(Runes.MIND_RUNE) }),
+	FIRE_STRIKE(5, 711, 100, 12, 99, 101, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
+	
+	
+	
+	;
 
 	private int levelReq;
 	private int animation;

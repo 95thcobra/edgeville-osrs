@@ -1,3 +1,13 @@
+fix banking
+regular spellbook
+drain prayer
+
+quickprayers
+test combat
+
+
+
+
 Make new combat formula AND print it somewhere on screen.
 
 loop invokescripts+
@@ -12,14 +22,6 @@ loopvarp 2 turns all spellbook spells on
 
 
 
-
-
-FIX HEY EVERYONE I JUST TRIED SOMETHING VERY SILLY!
-
-
-
-OBFUSCATE PROGUARD ASK STACKOVERFLOW!!!
-DISABLE ALL OPTIONS BUT OBFUSCATE 
 
 
 

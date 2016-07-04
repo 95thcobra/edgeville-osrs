@@ -32,6 +32,18 @@ public class SpellOnPlayerAction {
 	public void start() {
 		switch (interfaceId) {
 		case 218:
+			if (target instanceof Player) {
+				if (!player.timers().has(TimerKey.IN_COMBAT)) {
+					player.interfaces().setBountyInterface(true);
+				}
+				player.timers().register(TimerKey.IN_COMBAT, 10);
+				
+				if (!target.timers().has(TimerKey.IN_COMBAT)) {
+					((Player)target).interfaces().setBountyInterface(true);
+				}
+				target.timers().register(TimerKey.IN_COMBAT, 10);
+			}
+
 			handleDamageSpells();
 			break;
 		}
@@ -45,7 +57,7 @@ public class SpellOnPlayerAction {
 		case 2:
 			cycleRegularDamageSpell(RegularDamageSpell.WIND_STRIKE);
 			break;
-		
+
 		// Ancients
 		case 74:
 			cycleAncientSpell(AncientSpell.SMOKE_RUSH);
@@ -111,19 +123,19 @@ public class SpellOnPlayerAction {
 		player.stepTowards(target, otherTile, 25);
 		return player.pathQueue().peekAfter(steps - 1) == null ? player.getTile() : player.pathQueue().peekAfter(steps - 1).toTile();
 	}
-	
+
 	private void cycleRegularDamageSpell(RegularDamageSpell spell) {
 		int levelReq = spell.getLevelReq();
 		if (levelReq > player.skills().level(Skills.MAGIC)) {
-			player.message("You need a magic level of %d to cast %s.", levelReq,spell.toString());
+			player.message("You need a magic level of %d to cast %s.", levelReq, spell.toString());
 			return;
 		}
-		
+
 		if (!spell.hasRunes(player)) {
-			player.message("You do not have the required runes to cast %s.",spell.toString());
+			player.message("You do not have the required runes to cast %s.", spell.toString());
 			return;
 		}
-		
+
 		player.world().getEventHandler().addEvent(player, new Event() {
 
 			@Override
@@ -140,15 +152,15 @@ public class SpellOnPlayerAction {
 	private void cycleAncientSpell(AncientSpell spell) {
 		int levelReq = spell.getLevelReq();
 		if (levelReq > player.skills().level(Skills.MAGIC)) {
-			player.message("You need a magic level of %d to cast %s.", levelReq,spell.toString());
+			player.message("You need a magic level of %d to cast %s.", levelReq, spell.toString());
 			return;
 		}
-		
+
 		if (!spell.hasRunes(player)) {
-			player.message("You do not have the required runes to cast %s.",spell.toString());
+			player.message("You do not have the required runes to cast %s.", spell.toString());
 			return;
 		}
-		
+
 		player.world().getEventHandler().addEvent(player, new Event() {
 
 			@Override
@@ -161,7 +173,7 @@ public class SpellOnPlayerAction {
 			}
 		});
 	}
-	
+
 	private boolean doRegularDamageSpell(RegularDamageSpell spell, EventContainer container) {
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
@@ -188,10 +200,10 @@ public class SpellOnPlayerAction {
 		if (success) {
 			target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(new Graphic(spell.getGfxOther(), 92, 0));
 			if (target instanceof Player) {
-				//if (spell.getSoundId() > 0)
-					//((Player) target).sound(spell.getSoundId());
+				// if (spell.getSoundId() > 0)
+				// ((Player) target).sound(spell.getSoundId());
 			}
-			//player.sound(spell.getSoundId());
+			// player.sound(spell.getSoundId());
 		} else {
 			target.hit(player, 0, delay).graphic(new Graphic(85, 92, 0));
 		}
@@ -230,7 +242,7 @@ public class SpellOnPlayerAction {
 			player.sound(spell.getSoundId());
 
 			// TODO smoke poisons
-			
+
 			if (spell == AncientSpell.SHADOW_RUSH || spell == AncientSpell.SHADOW_BURST) {
 				if (target instanceof Player)
 					((Player) target).skills().alterSkill(Skills.ATTACK, 0.9);
@@ -243,11 +255,11 @@ public class SpellOnPlayerAction {
 			if (spell == AncientSpell.BLOOD_RUSH || spell == AncientSpell.BLOOD_BURST || spell == AncientSpell.BLOOD_BLITZ || spell == AncientSpell.BLOOD_BARRAGE) {
 				player.heal(hit / 4);
 			}
-			
+
 			if (spell == AncientSpell.ICE_RUSH) {
 				target.freeze(8); // 5 second freeze timer
 			}
-			
+
 			if (spell == AncientSpell.ICE_BARRAGE) {
 				target.freeze(17); // 10 second freeze timer
 			}

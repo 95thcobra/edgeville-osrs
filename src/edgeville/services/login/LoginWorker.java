@@ -66,7 +66,7 @@ public class LoginWorker implements Runnable {
 					// Pass this bit of logic to the server processor
 					service.server().processor().submitLogic(() -> {
 						// Check if we aren't logged in yet :doge:
-						if (service.server().world().playerByName(player.name()).isPresent()) {
+						if (service.server().world().getPlayerByName(player.name()).isPresent()) {
 							ByteBuf resp = message.channel().alloc().buffer(1).writeByte(PlayerLoadResult.ALREADY_ONLINE.code());
 							message.channel().writeAndFlush(resp).addListener(new ClosingChannelFuture());
 							return;

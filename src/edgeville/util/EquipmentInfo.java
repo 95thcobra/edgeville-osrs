@@ -1,5 +1,6 @@
 package edgeville.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,7 +52,8 @@ public class EquipmentInfo {
 	private Map<Integer, Integer> weaponTypes = new HashMap<>();
 	private Map<Integer, Integer> weaponSpeeds = new HashMap<>();
 
-	//private Map<Integer, List<EquipmentRequirement>> equipmentRequirements = new HashMap<>();
+	// private Map<Integer, List<EquipmentRequirement>> equipmentRequirements =
+	// new HashMap<>();
 
 	public EquipmentInfo(DefinitionRepository repo, File typeSlotFile, File renderPairs, File bonuses, File weaponTypes, File weaponSpeeds, File equipmentRequirements) {
 		int numItems = repo.total(ItemDefinition.class);
@@ -68,7 +70,7 @@ public class EquipmentInfo {
 		loadWeaponTypes(weaponTypes);
 		loadWeaponSpeeds(weaponSpeeds);
 
-		//loadEquipmentRequirements();
+		// loadEquipmentRequirements();
 	}
 
 	private void loadSlotsAndTypes(File file) {
@@ -226,7 +228,7 @@ public class EquipmentInfo {
 					amt++;
 				}
 
-			//	equipmentRequirements.put(id, eqReqs);
+				// equipmentRequirements.put(id, eqReqs);
 			}
 			logger.info("Loaded {} equipment requirements.", amt);
 		} catch (IOException e) {
@@ -256,23 +258,36 @@ public class EquipmentInfo {
 		return weaponTypes.getOrDefault(id, 0);
 	}
 
-	public List<EquipmentRequirement> getEquipmentRequirements(Player player, Item item) {
+	public List<EquipmentRequirement> getEquipmentRequirements(Player player, Item item, int targetSlot) {
 		String itemName = item.definition(player.world()).name;
 		List<EquipmentRequirement> reqs = new ArrayList<EquipmentRequirement>();
 
 		boolean attackRequirementFound = false;
 
-		// All items that require 70 attack.
-		String[] require70Attack = { "abyssal whip" };
-		for (String name : require70Attack) {
-			if (StringUtil.containsIgnoreCase(itemName, name)) {
-				reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
+		// Dragon
+		if (!attackRequirementFound) {
+			if (StringUtils.containsIgnoreCase(itemName, "dragon")) {
+				if (targetSlot == EquipSlot.WEAPON)
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 60));
+				else
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 60));
 				attackRequirementFound = true;
 			}
 		}
 
+		// All items that require 70 attack.
 		if (!attackRequirementFound) {
-			// All items that require 75 attack.
+			String[] require70Attack = { "abyssal whip" };
+			for (String name : require70Attack) {
+				if (StringUtil.containsIgnoreCase(itemName, name)) {
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
+					attackRequirementFound = true;
+				}
+			}
+		}
+
+		// All items that require 75 attack.
+		if (!attackRequirementFound) {
 			String[] require75Attack = { "godsword", "abyssal tentacle" };
 			for (String name : require75Attack) {
 				if (StringUtil.containsIgnoreCase(itemName, name)) {

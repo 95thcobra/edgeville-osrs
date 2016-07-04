@@ -6,10 +6,15 @@
 - XP counter toggle & more.
 - Update counter packet found and implemented.
 - Auto-restart when update counter runs out.
-- Dump and implement item requirements.
+- Add item requirements.
+- Start implemening clan chat.
+- Add filterable messages.
 
 [B]Positioning the XP counter in fullscreen.[/B]
 [IMG]https://i.gyazo.com/8aa6bcf60b2bb6ab2cae73691644601f.gif[/IMG]
+
+[B]Message filter[/B]
+[IMG]https://i.gyazo.com/f3c202fb4a3cd7bf5aa7f0d89edbb500.gif[/IMG]
 
 [B][/B]
 [IMG][/IMG]

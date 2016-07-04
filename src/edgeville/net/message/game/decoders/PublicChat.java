@@ -25,8 +25,14 @@ public class PublicChat implements Action {
 		HuffmanCodec codec = player.world().server().huffman();
 		codec.decode(data, stringData, 0, 0, len);
 		String message = new String(stringData, 0, len);
-
 		ChatMessage chatMessage = new ChatMessage(message, effect, color);
+		
+		// Check if message is clan message.
+		if (chatMessage.text().startsWith("/")) {
+			player.getClanChat().message(player, message.substring(1));
+			return;
+		}
+		
 		player.sync().publicChatMessage(chatMessage);
 	}
 

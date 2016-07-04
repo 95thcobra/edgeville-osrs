@@ -1,19 +1,19 @@
 {
-  "username": "test",
-  "displayName": "test",
+  "username": "sky10",
+  "displayName": "sky10",
   "password": "test",
   "tile": {
-    "x": 3093,
-    "z": 3495,
+    "x": 3092,
+    "z": 3491,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
   "skullIcon": -1,
   "prayerIcon": -1,
-  "debug": true,
-  "kills": 0,
-  "deaths": 1,
+  "debug": false,
+  "kills": 5,
+  "deaths": 6,
   "inventory": [
     {
       "id": 5698,
@@ -72,17 +72,14 @@
       "amount": 10000
     },
     {
-      "id": 397,
+      "id": 4675,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 6889,
       "amount": 1
     },
-    {
-      "id": 397,
-      "amount": 1
-    },
+    null,
     {
       "id": 397,
       "amount": 1
@@ -142,17 +139,14 @@
       "amount": 1
     },
     {
-      "id": 4675,
+      "id": 11802,
       "amount": 1
     },
     {
       "id": 4712,
       "amount": 1
     },
-    {
-      "id": 6889,
-      "amount": 1
-    },
+    null,
     null,
     {
       "id": 4714,
@@ -225,15 +219,15 @@
   "bank": {
     "0": [
       {
-        "id": 5698,
+        "id": 565,
+        "amount": 300
+      },
+      {
+        "id": 157,
         "amount": 1
       },
       {
-        "id": 145,
-        "amount": 1
-      },
-      {
-        "id": 6570,
+        "id": 163,
         "amount": 1
       },
       {
@@ -245,7 +239,15 @@
         "amount": 1
       },
       {
-        "id": 4722,
+        "id": 145,
+        "amount": 1
+      },
+      {
+        "id": 560,
+        "amount": 10000
+      },
+      {
+        "id": 4736,
         "amount": 1
       },
       {
@@ -253,101 +255,27 @@
         "amount": 1
       },
       {
-        "id": 4736,
+        "id": 4722,
         "amount": 1
       },
       {
-        "id": 157,
+        "id": 6570,
         "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 10828,
-        "amount": 1
-      },
-      {
-        "id": 2412,
-        "amount": 1
-      },
-      {
-        "id": 6585,
-        "amount": 1
-      },
-      {
-        "id": 4675,
-        "amount": 1
-      },
-      {
-        "id": 4712,
-        "amount": 1
-      },
-      {
-        "id": 4714,
-        "amount": 1
-      },
-      {
-        "id": 6889,
-        "amount": 1
-      },
-      {
-        "id": 6920,
-        "amount": 1
-      },
-      {
-        "id": 11773,
-        "amount": 1
-      },
-      {
-        "id": 555,
-        "amount": 10000
       }
     ],
     "1": [
       {
-        "id": 560,
+        "id": 12006,
         "amount": 1
       },
       {
-        "id": 163,
+        "id": 555,
+        "amount": 1
+      }
+    ],
+    "2": [
+      {
+        "id": 565,
         "amount": 1
       }
     ]
@@ -367,11 +295,11 @@
     },
     {
       "id": 843,
-      "value": 18
+      "value": 10
     },
     {
       "id": 867,
-      "value": 2
+      "value": 1026
     },
     {
       "id": 1050,
@@ -397,19 +325,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 75,
-      "xp": 1.3034431E7
+      "xp": 1.3035095E7
     },
     {
       "level": 99,
@@ -422,6 +338,18 @@
     {
       "level": 99,
       "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034735E7
     },
     {
       "level": 99,

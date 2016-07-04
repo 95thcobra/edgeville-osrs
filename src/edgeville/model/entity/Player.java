@@ -12,6 +12,7 @@ import edgeville.crypto.IsaacRand;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.*;
+import edgeville.model.clanchat.ClanChat;
 import edgeville.model.entity.player.*;
 import edgeville.model.entity.player.interfaces.InputDialog;
 import edgeville.model.entity.player.interfaces.QuestTab;
@@ -35,6 +36,7 @@ import io.netty.channel.Channel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -101,6 +103,17 @@ public class Player extends Entity {
 
 	public void setDebug(boolean debug) {
 		this.debug = debug;
+	}
+
+	// for now init it right away, TODO remove
+	private ClanChat clanChat;
+
+	public ClanChat getClanChat() {
+		return clanChat;
+	}
+
+	public void setClanChat(ClanChat clanChat) {
+		this.clanChat = clanChat;
 	}
 
 	/**
@@ -283,6 +296,9 @@ public class Player extends Entity {
 		bank = new Bank(this);
 		combatUtil = new CombatUtil(this);
 		varps().setVarbit(Varbit.XP_DROPS_ORB, 1);
+		
+		//remove this TODO
+		clanChat = new ClanChat(this, username + "'s clanchat", new ArrayList<Player>());
 	}
 
 	public void resetSpecialEnergy() {
@@ -352,7 +368,7 @@ public class Player extends Entity {
 
 		// Welcome
 		message("Welcome to %s.", TextUtil.colorString(Constants.SERVER_NAME, Colors.BLUE));
-		message("The server is in development stage.");
+		messageFilterable("The server is in development stage.");
 
 		// Start energy regenerate timer
 		timers().register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
@@ -601,6 +617,21 @@ public class Player extends Entity {
 		unregister();
 	}
 
+	public void setMaster() {
+		if (inWilderness()) {
+			message("You cannot do this while in the wilderness.");
+			return;
+		}
+		if (inCombat()) {
+			message("You cannot do this in combat!.");
+			return;
+		}
+		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
+			skills.setXp(i, 13034431);
+			skills.resetStats();
+		}
+	}
+
 	@Override
 	public void cycle() {
 		super.cycle();
@@ -761,6 +792,10 @@ public class Player extends Entity {
 		}
 	}
 
+	public boolean inCombat() {
+		return timers.has(TimerKey.IN_COMBAT);
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("id", id).add("username", username).add("displayName", displayName).add("tile", tile).add("privilege", privilege).toString();
@@ -874,10 +909,15 @@ public class Player extends Entity {
 
 		return animationId;
 	}
-	
+
+	public void messageFilterable(String format, Object... params) {
+		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format, AddMessage.Type.GAME_FILTER));
+	}
+
 	public void messageDebug(String format, Object... params) {
 		if (isDebug()) {
-			message(format, params);
+			// message(format, params);
+			messageFilterable(format, params);
 		}
 	}
 }

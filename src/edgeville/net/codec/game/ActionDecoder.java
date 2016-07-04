@@ -40,6 +40,7 @@ public class ActionDecoder extends ByteToMessageDecoder {
 		/* Fill repo, maybe through xml/json? */
 		actionRepository[40] = SpellOnNpc.class;
 		actionRepository[50] = ItemDragBank.class;
+		actionRepository[13] = JoinClanChatDialog.class;
 		
 		actionRepository[202] = WalkMap.class;
 		actionRepository[70] = WalkMap.class;

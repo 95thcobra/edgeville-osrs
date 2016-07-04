@@ -40,7 +40,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		Item ammo = ((Player) getEntity()).getEquipment().get(EquipSlot.AMMO);
 		int ammoId = ammo == null ? -1 : ammo.getId();
 		String ammoName = ammo == null ? "" : ammo.definition(getEntity().world()).name;
-
+		
 		// Check if players are in wilderness.
 		if (target instanceof Player) {
 			if (!Constants.ALL_PVP) {
@@ -50,10 +50,18 @@ public class PlayerVersusAnyCombat extends Combat {
 					return;
 				}
 			}
+
+			// bounty interface for player.
 			if (!player.timers().has(TimerKey.IN_COMBAT)) {
 				player.interfaces().setBountyInterface(true);
 			}
 			player.timers().register(TimerKey.IN_COMBAT, 10);
+
+			// bounty interface for target.
+			if (!target.timers().has(TimerKey.IN_COMBAT)) {
+				((Player)target).interfaces().setBountyInterface(true);
+			}
+			target.timers().register(TimerKey.IN_COMBAT, 10);
 		}
 
 		// Combat type?

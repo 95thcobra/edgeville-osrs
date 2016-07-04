@@ -42,6 +42,7 @@ public class Bank {
 	}
 
 	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther, int hashthing) {
+		
 		if (hashthing == 10/* itemId == 65535 */ && slotOther >= 10 && slotOther <= 20) {// 10
 																							// is
 			handleBankTabs(itemOther, slotOther);
@@ -53,19 +54,26 @@ public class Bank {
 			return;
 		}
 
+		player.message("thisItem %d, otherItem %d", itemId, itemOther);
 		swapItem(itemId, itemOther);
 	}
 
 	private void swapItem(int itemId, int itemOther) {
+		
+		
 		BankTab myTab = this.getBankTabForItem(itemId);
 		BankTab otherTab = this.getBankTabForItem(itemOther);
+		
+		
 		int slot1 = myTab.getSlot(itemId);
 		int slot2 = otherTab.getSlot(itemOther);
-		//player.message("Tab[%d](%d) to Tab[%d](%d)", myTab.getId(), slot1, otherTab.getId(), slot2);
+		player.message("Tab[%d](%d) to Tab[%d](%d)", myTab.getId(), slot1, otherTab.getId(), slot2);
 
 		Item item1 = myTab.getItems().get(slot1);
+		player.message("item1: %s", item1);
 		Item item2 = otherTab.getItems().get(slot2);
-
+		player.message("item2: %s", item2);
+		
 		myTab.getItems().set(slot1, item2);
 		otherTab.getItems().set(slot2, item1);
 
@@ -239,6 +247,7 @@ public class Bank {
 		}
 
 		int amount = determineAmountToWithdraw(option, item.getAmount());
+		player.messageDebug("Amount to withdraw: %d", amount);
 		moveItemsToInventory(id, amount);
 	}
 
@@ -275,9 +284,6 @@ public class Bank {
 			break;
 		case 2:
 			amount = 10;
-			break;
-		case 4:
-			// TODO:x
 			break;
 		case 5:
 			amount = totalAmount;

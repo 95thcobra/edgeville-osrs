@@ -40,9 +40,7 @@ public class ButtonAction implements Action {
 
 	@Override
 	public void process(Player player) {
-		if (player.isDebug()) {
-			player.message("buttonclicked: interface:" + (hash >> 16) + " button:" + (hash & 0xFFFF) + " slot:" + slot + " option:" + option);
-		}
+		player.messageDebug("buttonclicked: interface:" + (hash >> 16) + " button:" + (hash & 0xFFFF) + " slot:" + slot + " option:" + option);
 		final int interfaceId = (hash >> 16);
 		final int buttonId = (hash & 0xFFFF);
 

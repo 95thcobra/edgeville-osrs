@@ -9,6 +9,8 @@ import edgeville.model.Locations;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.Skills;
+import edgeville.model.entity.player.interfaces.inputdialog.NumberInputDialog;
+import edgeville.model.entity.player.interfaces.inputdialog.StringInputDialog;
 import edgeville.model.entity.player.skills.Prayer;
 import edgeville.model.item.Item;
 import edgeville.net.message.game.encoders.InvokeScript;
@@ -116,10 +118,27 @@ public class ButtonClickAction {
 		case 593:
 			handleCombatStyleSwitch();
 			break;
+
+		// Clanchat join chat
+		case 589:
+			handleClanChat();
+			break;
 		}
 	}
 
 	////////////////
+
+	private void handleClanChat() {
+		StringInputDialog inputDialog = new StringInputDialog(player) {
+			@Override
+			public void doAction(String value) {
+				Player ccOwner = player.world().getPlayerByName(value).get();
+				ccOwner.getClanChat().addPlayer(player);
+			}
+		};
+		player.setInputDialog(inputDialog);
+		return;
+	}
 
 	private void advancedSettings() {
 		switch (buttonId) {

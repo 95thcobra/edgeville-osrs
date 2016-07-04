@@ -29,6 +29,6 @@ public class StringInput implements Action {
 	@Override
 	public void process(Player player) {
 		if (player.getLastInputDialog() != null)
-			((StringInputDialog)player.getLastInputDialog()).doAction(value);;
+			((StringInputDialog)player.getLastInputDialog()).doAction(value);
 	}
 }

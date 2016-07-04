@@ -51,9 +51,11 @@ public class ItemAction2 extends ItemAction {
 		}
 
 		EquipmentInfo info = player.world().equipmentInfo();
-
+		int targetSlot = info.slotFor(item.getId());
+		
+		
 		// Check the item requirements
-		List<EquipmentRequirement> equipmentRequirements = info.getEquipmentRequirements(player, item);
+		List<EquipmentRequirement> equipmentRequirements = info.getEquipmentRequirements(player, item, targetSlot);
 		if (equipmentRequirements != null) {
 			boolean meetsRequirements = true;
 			for (EquipmentRequirement equipmentRequirement : equipmentRequirements) {
@@ -71,7 +73,6 @@ public class ItemAction2 extends ItemAction {
 				return;
 		}
 
-		int targetSlot = info.slotFor(item.getId());
 		int type = info.typeFor(item.getId());
 		if (targetSlot == -1) { // Cannot wear :-(
 			player.messageDebug("cannot wear");

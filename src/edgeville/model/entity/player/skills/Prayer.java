@@ -28,6 +28,7 @@ public class Prayer {
 	}
 
 	public void activatePrayer(int buttonId) {
+		//TODO IF OVERHEADICON
 		int varbit = 4100 + buttonId;
 		
 		Prayers prayer = Prayers.getPrayerForVarbit(varbit);
@@ -43,6 +44,9 @@ public class Prayer {
 		
 		prayer.deactivatePrayers(player);
 		player.varps().setVarbit(varbit, 1);
+		if (prayer.getHeadIcon() > -1) {
+			player.setPrayerHeadIcon(prayer.getHeadIcon());
+		}
 	}
 	
 	private boolean hasRequirements(Prayers prayer) {
@@ -52,11 +56,21 @@ public class Prayer {
 	
 	public void deactivatePrayer(Prayers prayer) {
 		player.varps().setVarbit(prayer.getVarbit(), 0);
+		if (prayer.getHeadIcon() > -1) {
+			player.setPrayerHeadIcon(-1);
+		}
 	}
 
 	public void deactivatePrayer(int buttonId) {
 		int varbit = 4100 + buttonId;
+		Prayers prayer = Prayers.getPrayerForVarbit(varbit);
+		if (prayer == null) {
+			return;
+		}	
 		player.varps().setVarbit(varbit, 0);
+		if (prayer.getHeadIcon() > -1) {
+			player.setPrayerHeadIcon(-1);
+		}
 	}
 	
 	public boolean isPrayerOn(Prayers prayer) {
