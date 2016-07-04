@@ -3,6 +3,24 @@
 - Rune requirements ancients added.
 - Vengeance level requirement added.
 - Rune requirements vengeance added.
+- XP counter toggle & more.
+- Update counter packet found and implemented.
+- Auto-restart when update counter runs out.
+- Dump and implement item requirements.
+
+[B]Positioning the XP counter in fullscreen.[/B]
+[IMG]https://i.gyazo.com/8aa6bcf60b2bb6ab2cae73691644601f.gif[/IMG]
+
+[B][/B]
+[IMG][/IMG]
+
+B][/B]
+[IMG][/IMG]
+
+
+
+
+
 
 
 
