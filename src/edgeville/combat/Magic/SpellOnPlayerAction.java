@@ -32,65 +32,71 @@ public class SpellOnPlayerAction {
 	public void start() {
 		switch (interfaceId) {
 		case 218:
-			handleAncients();
+			handleDamageSpells();
 			break;
 		}
 	}
 
-	private void handleAncients() {
+	private void handleDamageSpells() {
 		player.messageDebug("ancientspell:" + child);
 		switch (child) {
 
+		// Regular
+		case 2:
+			cycleRegularDamageSpell(RegularDamageSpell.WIND_STRIKE);
+			break;
+		
+		// Ancients
 		case 74:
-			cycleDoMagicSpell(DamageSpell.SMOKE_RUSH);
+			cycleAncientSpell(AncientSpell.SMOKE_RUSH);
 			break;
 		case 78:
-			cycleDoMagicSpell(DamageSpell.SHADOW_RUSH);
+			cycleAncientSpell(AncientSpell.SHADOW_RUSH);
 			break;
 		case 70:
-			cycleDoMagicSpell(DamageSpell.BLOOD_RUSH);
+			cycleAncientSpell(AncientSpell.BLOOD_RUSH);
 			break;
 		case 66:
-			cycleDoMagicSpell(DamageSpell.ICE_RUSH);
+			cycleAncientSpell(AncientSpell.ICE_RUSH);
 			break;
 
 		case 76:
-			cycleDoMagicSpell(DamageSpell.SMOKE_BURST);
+			cycleAncientSpell(AncientSpell.SMOKE_BURST);
 			break;
 		case 80:
-			cycleDoMagicSpell(DamageSpell.SHADOW_BURST);
+			cycleAncientSpell(AncientSpell.SHADOW_BURST);
 			break;
 		case 72:
-			cycleDoMagicSpell(DamageSpell.BLOOD_BURST);
+			cycleAncientSpell(AncientSpell.BLOOD_BURST);
 			break;
 		case 68:
-			cycleDoMagicSpell(DamageSpell.ICE_BURST);
+			cycleAncientSpell(AncientSpell.ICE_BURST);
 			break;
 
 		case 75:
-			cycleDoMagicSpell(DamageSpell.SMOKE_BLITZ);
+			cycleAncientSpell(AncientSpell.SMOKE_BLITZ);
 			break;
 		case 79:
-			cycleDoMagicSpell(DamageSpell.SHADOW_BLITZ);
+			cycleAncientSpell(AncientSpell.SHADOW_BLITZ);
 			break;
 		case 71:
-			cycleDoMagicSpell(DamageSpell.BLOOD_BLITZ);
+			cycleAncientSpell(AncientSpell.BLOOD_BLITZ);
 			break;
 		case 67:
-			cycleDoMagicSpell(DamageSpell.ICE_BLITZ);
+			cycleAncientSpell(AncientSpell.ICE_BLITZ);
 			break;
 
 		case 77:
-			cycleDoMagicSpell(DamageSpell.SMOKE_BARRAGE);
+			cycleAncientSpell(AncientSpell.SMOKE_BARRAGE);
 			break;
 		case 81:
-			cycleDoMagicSpell(DamageSpell.SHADOW_BARRAGE);
+			cycleAncientSpell(AncientSpell.SHADOW_BARRAGE);
 			break;
 		case 73:
-			cycleDoMagicSpell(DamageSpell.BLOOD_BARRAGE);
+			cycleAncientSpell(AncientSpell.BLOOD_BARRAGE);
 			break;
 		case 69:
-			cycleDoMagicSpell(DamageSpell.ICE_BARRAGE);
+			cycleAncientSpell(AncientSpell.ICE_BARRAGE);
 			break;
 		}
 	}
@@ -105,8 +111,8 @@ public class SpellOnPlayerAction {
 		player.stepTowards(target, otherTile, 25);
 		return player.pathQueue().peekAfter(steps - 1) == null ? player.getTile() : player.pathQueue().peekAfter(steps - 1).toTile();
 	}
-
-	private void cycleDoMagicSpell(DamageSpell spell) {
+	
+	private void cycleRegularDamageSpell(RegularDamageSpell spell) {
 		int levelReq = spell.getLevelReq();
 		if (levelReq > player.skills().level(Skills.MAGIC)) {
 			player.message("You need a magic level of %d to cast %s.", levelReq,spell.toString());
@@ -126,12 +132,74 @@ public class SpellOnPlayerAction {
 					container.stop();
 					return;
 				}
-				doMagicSpell(spell, container);
+				doRegularDamageSpell(spell, container);
 			}
 		});
 	}
 
-	private boolean doMagicSpell(DamageSpell spell, EventContainer container) {
+	private void cycleAncientSpell(AncientSpell spell) {
+		int levelReq = spell.getLevelReq();
+		if (levelReq > player.skills().level(Skills.MAGIC)) {
+			player.message("You need a magic level of %d to cast %s.", levelReq,spell.toString());
+			return;
+		}
+		
+		if (!spell.hasRunes(player)) {
+			player.message("You do not have the required runes to cast %s.",spell.toString());
+			return;
+		}
+		
+		player.world().getEventHandler().addEvent(player, new Event() {
+
+			@Override
+			public void execute(EventContainer container) {
+				if (target.locked() || target.dead()) {
+					container.stop();
+					return;
+				}
+				doAncientSpell(spell, container);
+			}
+		});
+	}
+	
+	private boolean doRegularDamageSpell(RegularDamageSpell spell, EventContainer container) {
+		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
+			player.stepTowards(target, 2);
+			return false;
+		}
+		if (player.timers().has(TimerKey.COMBAT_ATTACK)) {
+			return false;
+		}
+
+		int tileDist = player.getTile().distance(target.getTile());
+		player.animate(spell.getAnimation());
+		player.graphic(spell.getGfx(), 92, 0);
+
+		if (spell.getProjectileId() > 0) {
+			player.world().spawnProjectile(player.getTile(), target, spell.getProjectileId(), 40, 33, 55, spell.getProjectileSpeed() * tileDist, 15, 50);
+		}
+
+		int delay = (int) (1 + Math.floor(tileDist) / 2.0);
+		player.timers().register(TimerKey.COMBAT_ATTACK, spell.getCombatDelayTicks());
+		boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.MAGIC);
+
+		int hit = player.world().random(spell.getMaxHit());
+
+		if (success) {
+			target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(new Graphic(spell.getGfxOther(), 92, 0));
+			if (target instanceof Player) {
+				//if (spell.getSoundId() > 0)
+					//((Player) target).sound(spell.getSoundId());
+			}
+			//player.sound(spell.getSoundId());
+		} else {
+			target.hit(player, 0, delay).graphic(new Graphic(85, 92, 0));
+		}
+		container.stop();
+		return true;
+	}
+
+	private boolean doAncientSpell(AncientSpell spell, EventContainer container) {
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
@@ -163,32 +231,32 @@ public class SpellOnPlayerAction {
 
 			// TODO smoke poisons
 			
-			if (spell == DamageSpell.SHADOW_RUSH || spell == DamageSpell.SHADOW_BURST) {
+			if (spell == AncientSpell.SHADOW_RUSH || spell == AncientSpell.SHADOW_BURST) {
 				if (target instanceof Player)
 					((Player) target).skills().alterSkill(Skills.ATTACK, 0.9);
 			}
-			if (spell == DamageSpell.SHADOW_BLITZ || spell == DamageSpell.SHADOW_BARRAGE) {
+			if (spell == AncientSpell.SHADOW_BLITZ || spell == AncientSpell.SHADOW_BARRAGE) {
 				if (target instanceof Player)
 					((Player) target).skills().alterSkill(Skills.ATTACK, 0.85);
 			}
 
-			if (spell == DamageSpell.BLOOD_RUSH || spell == DamageSpell.BLOOD_BURST || spell == DamageSpell.BLOOD_BLITZ || spell == DamageSpell.BLOOD_BARRAGE) {
+			if (spell == AncientSpell.BLOOD_RUSH || spell == AncientSpell.BLOOD_BURST || spell == AncientSpell.BLOOD_BLITZ || spell == AncientSpell.BLOOD_BARRAGE) {
 				player.heal(hit / 4);
 			}
 			
-			if (spell == DamageSpell.ICE_RUSH) {
+			if (spell == AncientSpell.ICE_RUSH) {
 				target.freeze(8); // 5 second freeze timer
 			}
 			
-			if (spell == DamageSpell.ICE_BARRAGE) {
+			if (spell == AncientSpell.ICE_BARRAGE) {
 				target.freeze(17); // 10 second freeze timer
 			}
 
-			if (spell == DamageSpell.ICE_BLITZ) {
+			if (spell == AncientSpell.ICE_BLITZ) {
 				target.freeze(25); // 15 second freeze timer
 			}
 
-			if (spell == DamageSpell.ICE_BARRAGE) {
+			if (spell == AncientSpell.ICE_BARRAGE) {
 				target.freeze(33); // 20 second freeze timer
 			}
 

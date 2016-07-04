@@ -4,10 +4,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.item.Item;
 import edgeville.util.TextUtil;
 
-public enum DamageSpell {
-	// Regular
-	//TODO
-	
+public enum AncientSpell {
 	// Ancients
 	SMOKE_RUSH(50, 1978, -1, 12, 385, 14, 4, new Item[] { new Item(Runes.CHAOS_RUNE, 2), new Item(Runes.DEATH_RUNE, 2), new Item(Runes.FIRE_RUNE, 1), new Item(Runes.AIR_RUNE, 1) }),
 	SHADOW_RUSH(52, 1978, -1, 12, 379, 15, 4, new Item[] { new Item(Runes.CHAOS_RUNE, 2), new Item(Runes.DEATH_RUNE, 2), new Item(Runes.AIR_RUNE, 1), new Item(Runes.SOUL_RUNE, 1) }),
@@ -34,12 +31,13 @@ public enum DamageSpell {
 	private int projectileId;
 	private int speed;
 	private int gfx;
+	private int gfxOther;
 	private int maxHit;
 	private int combatDelayTicks;
 	private int soundIdOnImpact;
 	private Item[] runesRequired;
 
-	DamageSpell(int levelReq, int animation, int projectileId, int speed, int gfx, int maxHit, int combatDelayTicks, Item[] runesRequired) {
+	AncientSpell(int levelReq, int animation, int projectileId, int speed, int gfx, int maxHit, int combatDelayTicks, Item[] runesRequired) {
 		this.levelReq = levelReq;
 		this.animation = animation;
 		this.projectileId = projectileId;
@@ -49,8 +47,8 @@ public enum DamageSpell {
 		this.combatDelayTicks = combatDelayTicks;
 		this.runesRequired = runesRequired;
 	}
-
-	DamageSpell(int levelReq, int animation, int projectileId, int speed, int gfx, int maxHit, int combatDelayTicks, int soundIdOnImpact, Item[] runesRequired) {
+	
+	AncientSpell(int levelReq, int animation, int projectileId, int speed, int gfx, int maxHit, int combatDelayTicks, int soundIdOnImpact, Item[] runesRequired) {
 		this.levelReq = levelReq;
 		this.animation = animation;
 		this.projectileId = projectileId;

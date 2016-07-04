@@ -3,8 +3,8 @@
   "displayName": "sky",
   "password": "test",
   "tile": {
-    "x": 3090,
-    "z": 3500,
+    "x": 3088,
+    "z": 3501,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -72,12 +72,12 @@
       "amount": 10000
     },
     {
-      "id": 397,
-      "amount": 1
+      "id": 558,
+      "amount": 351231
     },
     {
-      "id": 397,
-      "amount": 1
+      "id": 556,
+      "amount": 325
     },
     {
       "id": 397,
@@ -225,12 +225,12 @@
   "bank": {},
   "varps": [
     {
-      "id": 300,
-      "value": 1000
+      "id": 173,
+      "value": 1
     },
     {
-      "id": 439,
-      "value": 1
+      "id": 300,
+      "value": 1000
     },
     {
       "id": 843,
@@ -280,7 +280,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3034523E7
+      "xp": 1.3034643E7
     },
     {
       "level": 99,
