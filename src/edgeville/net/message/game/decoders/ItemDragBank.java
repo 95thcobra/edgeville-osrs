@@ -41,7 +41,7 @@ public class ItemDragBank implements Action {
 		int hashthing22 = hash2&0xFFFF; // 10 if tab, 12 if item
 		player.messageDebug("%d,%d,%d,%d", hashthing1, hashthing12, hashthing2, hashthing22);
 		
-		player.getBank().moveItemOnItem( itemId,  slot,  itemOther, slotOther, hashthing22);
+		player.getBank().moveItemOnItem( itemId,  slot,  itemOther, slotOther, hashthing22, hashthing12);
 	}
 
 }

@@ -96,8 +96,12 @@ public class Bank {
 	 * @param slot
 	 * @param itemId
 	 */
-	private void moveItemOnItemNew(int itemId, int slot, int itemOther, int slotOther, int hashthing) {
+	private void moveItemOnItemNew(int itemId, int slot, int itemOther, int slotOther, int hashthing, int hasthing2) {
 		if (hashthing == 10 && slotOther >= 10 && slotOther <= 20) {
+			// dragging a tab into a tab.
+			if (hasthing2 == 10) {
+				return;
+			}
 			draggingToTabs(slot, slotOther);
 			return;
 		}
@@ -284,9 +288,9 @@ public class Bank {
 		return player.varps().getVarbit(Varbit.BANK_INSERT) == 1;
 	}
 
-	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther, int hashthing) {
+	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther, int hashthing, int hashthing2) {
 		if (!player.dead()) {
-			moveItemOnItemNew(itemId, slot, itemOther, slotOther, hashthing);
+			moveItemOnItemNew(itemId, slot, itemOther, slotOther, hashthing,hashthing2);
 			return;
 		}
 
