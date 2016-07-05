@@ -10,6 +10,7 @@ import edgeville.model.entity.player.NpcSyncInfo;
 import edgeville.model.entity.player.PlayerSyncInfo;
 import edgeville.model.entity.player.Skills;
 import edgeville.model.entity.player.Skulls;
+import edgeville.model.entity.player.skills.Prayers;
 import edgeville.model.item.Item;
 import edgeville.model.map.*;
 import edgeville.net.message.game.encoders.PlaySound;
@@ -123,7 +124,7 @@ public abstract class Entity implements HitOrigin {
 		if (!sync.hasFlag(isPlayer() ? PlayerSyncInfo.Flag.ANIMATION.value : NpcSyncInfo.Flag.ANIMATION.value))
 			animate(id); // TODO all the block animations QQ
 	}
-	
+
 	public void shout(String text) {
 		sync.shout(text);
 	}
@@ -371,11 +372,11 @@ public abstract class Entity implements HitOrigin {
 	public Hit hit(HitOrigin origin, int hit) {
 		return hit(origin, hit, 0, null);
 	}
-	
+
 	public Hit hit(HitOrigin origin, int hit, int delay) {
 		return hit(origin, hit, delay, null);
 	}
-	
+
 	public Hit hit(HitOrigin origin, int hit, CombatStyle combatStyle) {
 		return hit(origin, hit, 0, combatStyle);
 	}
@@ -384,7 +385,26 @@ public abstract class Entity implements HitOrigin {
 		return hit(origin, hit, delay, null, combatStyle);
 	}
 
-	public Hit hit(HitOrigin origin, int hit, int delay, Hit.Type type, CombatStyle combatStyle) {
+	public Hit hit(HitOrigin origin, int oghit, int delay, Hit.Type type, CombatStyle combatStyle) {
+
+		if (this instanceof Player) {
+			Player player = (Player) this;
+
+			boolean melee = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MELEE) && combatStyle == CombatStyle.MELEE;
+			boolean ranged = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MISSILES) && combatStyle == CombatStyle.RANGED;
+			boolean mage = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MAGIC) && combatStyle == CombatStyle.MAGIC;
+
+			if (melee || ranged || mage) {
+				if (origin instanceof Npc) {
+					oghit = 0;
+				} else {
+					oghit *= 0.6;
+				}
+			}
+		}
+
+		int hit = oghit;
+
 		Hit h = new Hit(hit, type != null ? type : hit > 0 ? Hit.Type.REGULAR : Hit.Type.MISS, delay).origin(origin);
 		hits.add(h);
 
@@ -392,35 +412,30 @@ public abstract class Entity implements HitOrigin {
 			damagers.compute(((Player) origin), (key, value) -> value == null ? hit : value + hit);
 		}
 
-		/*if ((boolean) attribute(AttributeKey.VENGEANCE_ACTIVE, false)) {
-			if (isPlayer() && origin instanceof Entity) {
-				clearattrib(AttributeKey.VENGEANCE_ACTIVE);
-				((Entity) origin).hit(this, (int) (hit * 0.75), delay).block(false);
-				// TODO Taste vengeance
-			}
-		}*/
-
 		// 1.33 on controlled for each skill.
 		if (origin instanceof Player) {
 			Player player = (Player) origin;
 
-			player.messageDebug("style:"+h.style().toString());
-			
+			player.messageDebug("style:" + h.style().toString());
+
 			if (combatStyle == CombatStyle.MELEE) {
-				player.messageDebug("Melee hit");
 				switch (((Player) origin).getCombatUtil().getAttackStyle()) {
 				case ACCURATE:
+					player.messageDebug("acc hit");
 					((Player) origin).skills().addXp(Skills.ATTACK, hit * 4);
 					break;
 				case AGGRESSIVE:
+					player.messageDebug("aggre hit");
 					((Player) origin).skills().addXp(Skills.STRENGTH, hit * 4);
 					break;
 				case CONTROLLED:
+					player.messageDebug("contr hit");
 					((Player) origin).skills().addXp(Skills.ATTACK, hit * 1.33);
 					((Player) origin).skills().addXp(Skills.STRENGTH, hit * 1.33);
 					((Player) origin).skills().addXp(Skills.DEFENCE, hit * 1.33);
 					break;
 				case DEFENSIVE:
+					player.messageDebug("def hit");
 					((Player) origin).skills().addXp(Skills.DEFENCE, hit * 4);
 					break;
 				}
@@ -441,13 +456,6 @@ public abstract class Entity implements HitOrigin {
 
 		if (this instanceof Player) {
 			((Player) this).sound(((Entity) origin).getAttackSound());
-			/*if (this.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
-				if (origin instanceof Player) {
-					this.timers.cancel(TimerKey.VENGEANCE_COOLDOWN);
-					((Player) origin).hit(this, (int)(0.75 * h.damage()));
-					((Player)this).sync().publicChatMessage(new ChatMessage("Taste vengeance!", 0, 0));
-				}
-			}*/
 		}
 
 		return h;

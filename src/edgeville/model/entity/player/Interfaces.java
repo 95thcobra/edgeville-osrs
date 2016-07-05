@@ -57,12 +57,16 @@ public class Interfaces {
 		return visible.entrySet().stream().filter(e -> e.getValue() == id).map(Map.Entry::getKey).findAny().orElse(-1);
 	}
 
+	public void setQuickPrayers(boolean enabled) {
+		send(enabled ? 271 : 77, PANE_FIXED, resizable() ? 65 : 67, true); // prayer
+	}
+
 	public void sendFixed() {
 		sendRoot(PANE_FIXED);
 
 		// Send the interfaces
 
-		//send(90, PANE_FIXED, 12, true); // bounty combat
+		// send(90, PANE_FIXED, 12, true); // bounty combat
 
 		send(50, PANE_FIXED, 27, false); // unidentified
 
@@ -118,7 +122,7 @@ public class Interfaces {
 	public void sendResizable() {
 		sendRoot(PANE_RESIZABLE);
 
-		//send(90, PANE_RESIZABLE, 11, true); // bounty combat
+		// send(90, PANE_RESIZABLE, 11, true); // bounty combat
 
 		send(162, PANE_RESIZABLE, 21, true); // chatbox
 		send(160, PANE_RESIZABLE, 20, true); // orbs

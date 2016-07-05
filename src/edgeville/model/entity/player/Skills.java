@@ -127,16 +127,59 @@ public class Skills {
 		return first + " You have reached level " + level + ".";
 	}
 
-	public void alterSkill(int skill, int change, boolean relative) {
+	public void alterSkillUnder99(int skill, int change, boolean relative) {
 		if (relative) {
 			levels[skill] += change;
+			if (levels[skill] <= 0) {
+				levels[skill] = 0;
+			}
 		} else {
-			if (change > 0 && levels[skill] < xpLevel(skill) + change) {
-				levels[skill] = xpLevel(skill) + change;
-			} else if (change < 0 && levels[skill] > xpLevel(skill) + change) {
-				levels[skill] = xpLevel(skill) + change;
+			levels[skill] = xpLevel(skill) + change;
+			if (levels[skill] <= 0) {
+				levels[skill] = 0;
 			}
 		}
+		
+		if (levels[skill] > 99) {
+			levels[skill] = 99;
+		}
+		update(skill);
+	}
+
+	// If relative enabled, it will alterskill on top of the altered skill!
+	public void alterSkill(int skill, int change, boolean relative) {
+		if (relative) {
+
+			levels[skill] += change;
+			if (levels[skill] <= 0) {
+				levels[skill] = 0;
+			}
+
+		} else {
+			// if (change > 0 && levels[skill] < xpLevel(skill) + change) {
+
+			levels[skill] = xpLevel(skill) + change;
+			if (levels[skill] <= 0) {
+				levels[skill] = 0;
+			}
+
+			// } else if (change < 0 && levels[skill] > xpLevel(skill) + change)
+			// {
+			// levels[skill] = xpLevel(skill) + change;
+			// }
+		}
+		update(skill);
+	}
+
+	public void alterSkillThatworks(int skill, int change) {
+		int newLevel = levels()[skill] + change;
+		if (newLevel > 99) {
+			newLevel = 99;
+		}
+		if (newLevel < 0) {
+			newLevel = 0;
+		}
+		levels()[skill] = newLevel;
 		update(skill);
 	}
 

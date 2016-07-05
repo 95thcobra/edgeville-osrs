@@ -28,7 +28,14 @@ public enum Potions {
 
     SARADOMIN_BREW(-1, -1, -1, false, "Saradomin brew", 6685, 6687, 6689, 6691),
 
-    SUPER_RESTORE(-1, -1, -1, false, "Super restore", 3024, 3026, 3028, 3030),
+   
+    
+    
+    SUPER_RESTORE(-1, -1, -1, true, "Super restore", 3024, 3026, 3028, 3030),
+    PRAYER_POTION(-1, -1, -1, true, "Prayer potion", 2434, 139, 141, 143),
+    
+    
+    
 
     RESTORE_POTION(-1, -1, -1, false, "Restore potion", 2430, 127, 129, 131),
 

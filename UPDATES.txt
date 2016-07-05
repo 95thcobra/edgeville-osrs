@@ -1,109 +1,22 @@
-[04-07-2016]:
-- Magic level requirements ancients added.
-- Rune requirements ancients added.
-- Vengeance level requirement added.
-- Rune requirements vengeance added.
-- XP counter toggle & more.
-- Update counter packet found and implemented.
-- Auto-restart when update counter runs out.
-- Add item requirements.
-- Start implemening clan chat.
-- Add filterable messages.
+[B]Today's updates so far, more to come!
+[05-07-2016]:[/B]
+- Add regular mage damage spells.
+- Add prayer draining, deactivating of spells on 0.
+- Add prayer potion.
+- Add protection prayers.
+- Add prayer overhead icons.
 
-[B]Positioning the XP counter in fullscreen.[/B]
-[IMG]https://i.gyazo.com/8aa6bcf60b2bb6ab2cae73691644601f.gif[/IMG]
+[SPOILER=Media][B]Strikes[/B]
+[IMG]https://i.gyazo.com/5c5d386e13598e96e05f3369bc7a9c0b.gif[/IMG]
 
-[B]Message filter[/B]
-[IMG]https://i.gyazo.com/f3c202fb4a3cd7bf5aa7f0d89edbb500.gif[/IMG]
+[B]Bolts[/B]
+[IMG]https://i.gyazo.com/509d39fcbfb6767e28a0c45d6c230deb.gif[/IMG]
 
-[B][/B]
-[IMG][/IMG]
+[B]Blasts[/B]
+[IMG]https://i.gyazo.com/15243f5ec36b770f5a4f05baa1282796.gif[/IMG]
 
-B][/B]
-[IMG][/IMG]
+[B]Waves[/B]
+[IMG]https://i.gyazo.com/a8fdc9aafd898f96544781f4ef3263fd.gif[/IMG]
 
-
-
-
-
-
-
-
-
-
-
-
-[03-07-2016]:
-
-[03-07-2016]: Item examines dumped and implemented.
-[03-07-2016]: Object examines dumped and implemented.
-[03-07-2016]: Bank tabs
-[03-07-2016]: Bank saving added.
-[03-07-2016]: Bank all inventory button & bank all equipment button added.
-[03-07-2016]: Add bank config options (Digit/roman numbers/hide tabs)
-[03-07-2016]: Cross tab swapping & inserting added.
-
-[B]Bank all inventory & bank all equipment[/B]
-[IMG]https://i.gyazo.com/326770cff76b01c3fb3ea8a17c027ba2.gif[/IMG]
-
-[B]Cross tab swapping & inserting[/B]
-[IMG]https://i.gyazo.com/49263c6c22b955038f111de813aaf7cf.gif[/IMG]
-
-[B]Digits & roman numerals[/B]
-[IMG]https://i.gyazo.com/995bf8bce11ca679ec11a2a1c2b89a94.gif[/IMG]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[01-07-2016]: 
-
-- SpellOnPlayer packet added.
-- Abyssal dagger animations and special added
-- Ice barrage and ice blitz & freezing added.
-- All other ancient magics added.
-- Vengeance added.
-
-[02-07-2016]:
-
-- SpellOnNpc packet added.
-- Npc shout flag found and added.
-- Player shout flag found and added.
-- Vengeance uses player shout for "Taste vengeance!" now.
-
-[02-07-2016]: Start implementing banking.
-[02-07-2016]: Deposit 1, 5, 10, x, all added.
-[02-07-2016]: Add numberinput packet.
-[02-07-2016]: Add stringinput packet.
-[02-07-2016]: Withdraw 1, 5, 10, x, all added.
-[02-07-2016]: Add swap config and note config button.
-[02-07-2016]: Add item-drag-on-item packet.
-[02-07-2016]: Rearranging added, both swap and insert(depending on button config).
-[02-07-2016]: Add unnoting of items on deposit.
-[02-07-2016]: Add noting of items when note button is selected.
-
-
-
-
-
-
-
-
-[SPOILER=Media][IMG]https://i.gyazo.com/01dc10e22a7173a5fa53f12e4d8d5c61.gif[/IMG]
-[IMG]https://i.gyazo.com/c3c74aa31cbab09d9ebc3d074512cd40.gif[/IMG]
-[IMG]https://i.gyazo.com/d073a2450f3e037830d82a22c88c70b7.gif[/IMG]
-[IMG]https://i.gyazo.com/d592e2a28deb98201c29cdea0cbafefd.gif[/IMG]
-[IMG]https://i.gyazo.com/f9ac6eda4c292ce8c15d1cb8bcda4801.gif[/IMG][/SPOILER]
+[B]40% damage reduction[/B]
+[IMG]https://i.gyazo.com/30afb242c34e7cb0cd82c6a473211e8d.png[/IMG][/SPOILER]

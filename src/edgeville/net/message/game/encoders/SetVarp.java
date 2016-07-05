@@ -21,7 +21,8 @@ public class SetVarp implements Command {
 	@Override
 	public RSBuffer encode(Player player) {
 		//player.message("varp set: id:" + id +" value:"+value + " small:"+small);
-
+//System.out.println("varp set: id:" + id +" value:"+value + " small:"+small);
+		
 		RSBuffer buffer = new RSBuffer(player.channel().alloc().buffer(small ? 4 : 7));
 		buffer.packet(small ? 190 : 47);
 

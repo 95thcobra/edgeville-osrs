@@ -3,8 +3,8 @@
   "displayName": "gert",
   "password": "havelte",
   "tile": {
-    "x": 3087,
-    "z": 3493,
+    "x": 3088,
+    "z": 3503,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -12,31 +12,28 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 0,
-  "deaths": 0,
+  "kills": 5,
+  "deaths": 1,
   "inventory": [
     {
       "id": 11802,
       "amount": 1
     },
     {
-      "id": 2442,
+      "id": 229,
       "amount": 1
     },
     {
-      "id": 2442,
+      "id": 167,
       "amount": 1
     },
     {
       "id": 557,
       "amount": 150
     },
+    null,
     {
-      "id": 2444,
-      "amount": 1
-    },
-    {
-      "id": 2444,
+      "id": 165,
       "amount": 1
     },
     {
@@ -48,37 +45,22 @@
       "amount": 150
     },
     {
-      "id": 2434,
+      "id": 143,
       "amount": 1
     },
     {
-      "id": 2434,
+      "id": 141,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 171,
       "amount": 1
     },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "id": 391,
       "amount": 1
@@ -174,7 +156,7 @@
     },
     {
       "id": 9244,
-      "amount": 1245
+      "amount": 1169
     }
   ],
   "loadout": {
@@ -313,12 +295,20 @@
   ],
   "varps": [
     {
+      "id": 43,
+      "value": 1
+    },
+    {
+      "id": 83,
+      "value": 1048576
+    },
+    {
       "id": 173,
       "value": 1
     },
     {
       "id": 300,
-      "value": 1000
+      "value": 300
     },
     {
       "id": 439,
@@ -356,23 +346,23 @@
   "skills": [
     {
       "level": 99,
+      "xp": 1.3035703E7
+    },
+    {
+      "level": 115,
       "xp": 1.3034431E7
     },
     {
       "level": 99,
+      "xp": 1.3035919E7
+    },
+    {
+      "level": 83,
       "xp": 1.3034431E7
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 91,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034679E7
+      "level": 108,
+      "xp": 1.3038531E7
     },
     {
       "level": 99,

@@ -605,6 +605,9 @@ public class Player extends Entity {
 	 * removed from the player list.
 	 */
 	public void logout() {
+		
+		prayer.deactivateAllPrayers();
+		
 		// If we're logged in and the channel is active, begin with sending a
 		// logout message and closing the channel.
 		// We use writeAndFlush here because otherwise the message won't be

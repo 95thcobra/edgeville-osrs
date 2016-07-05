@@ -58,6 +58,14 @@ public class ButtonClickAction {
 		case 60:
 			advancedSettings();
 			break;
+			
+			//quick prayers interface
+		case 77:
+			// done button
+			if (buttonId ==5 ){
+				player.interfaces().setQuickPrayers(false);
+			}
+			break;
 
 		// XP Drops settings
 		case 137:
@@ -68,6 +76,11 @@ public class ButtonClickAction {
 			// XP Drops
 			if (buttonId == 1) {
 				setupXPDrops();
+			}
+			
+			// quick prayers
+			if (buttonId == 14){
+				quickPrayers();
 			}
 
 			// Toggle running
@@ -127,6 +140,10 @@ public class ButtonClickAction {
 	}
 
 	////////////////
+
+	private void quickPrayers() {
+		player.interfaces().setQuickPrayers(true);
+	}
 
 	private void handleClanChat() {
 		StringInputDialog inputDialog = new StringInputDialog(player) {

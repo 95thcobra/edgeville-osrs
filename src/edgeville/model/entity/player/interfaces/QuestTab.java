@@ -81,6 +81,7 @@ public class QuestTab {
 			player.getEquipment().set(EquipSlot.FEET, new Item(11840));
 			player.getEquipment().set(EquipSlot.RING, new Item(11773));
 			// player.getEquipment().set(EquipSlot.AMMO, item);
+			
 			player.setMaster();
 			player.varps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
 			player.message("Spawned some melee gear.");
