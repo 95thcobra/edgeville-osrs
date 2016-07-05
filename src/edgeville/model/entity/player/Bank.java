@@ -125,8 +125,8 @@ public class Bank {
 
 	public int getBankTabOfSlot(int slot) {
 		slot++;
-		int[] sizes = new int[9];
-		for (int i = 0; i < 8; i++) {
+		int[] sizes = new int[10];
+		for (int i = 0; i < 9; i++) {
 			sizes[i] = this.getBankTabSize(i);
 			// System.out.println(i+" - "+sizes[i]);
 		}
@@ -159,7 +159,7 @@ public class Bank {
 		// System.out.println("AND NEW FROM: " + getBankTabOfSlot(slot));
 
 		int bankTabTo = getBankTabOfSlot(slotOther);// this.getBankTab(slotOther);
-		
+
 		changeBankTabSize(bankTabFrom, -1);
 		changeBankTabSize(bankTabTo, 1);
 		System.out.println("BANKTAB TO " + bankTabTo);
@@ -167,17 +167,15 @@ public class Bank {
 		// player.message("Banktab %d to %d", bankTabFrom, bankTabTo);
 
 		// bankItems.remove(slot);
-		
+
 		bankItems.remove(slot);
 
-		// if (bankTabTo != 0)
-		// slotOther--;
 		
-	//if (player.varps().getVarbit(Varbit.BANK_TAB + bankTabTo) > 1) {	
-		if (bankTabTo == -1 || (bankTabTo != 0 && bankTabFrom > -1 && bankTabFrom < bankTabTo)){
-			player.message("got here idk how");
-			slotOther --;}
-	//}
+		final boolean SAME_BANK_AND_MAIN = bankTabTo == bankTabFrom && bankTabTo ==-1;
+			if (!SAME_BANK_AND_MAIN && bankTabTo == -1 ||(bankTabTo >= 1 && bankTabFrom < bankTabTo)){
+				slotOther--;
+				
+		}
 		bankItems.add(slotOther, itemToInsert);
 
 		makeDirty();
