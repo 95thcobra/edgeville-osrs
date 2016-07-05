@@ -740,10 +740,26 @@ public class Player extends Entity {
 		}
 
 		// Sync bank if dirty
-		if (bank.isDirty()) {
+		/*if (bank.isDirty()) {
 			ItemContainer allItems = bank.getAllItems();
 			write(new SetItems(95, allItems));
 			allItems.clean();
+		}*/
+		
+		//test
+		/*if (bank.completeBank.dirty()) {
+			write(new SetItems(95, bank.completeBank));
+			bank.completeBank.clean();
+		}*/
+		
+		if (bank.isDirty()) {
+			ItemContainer container = new ItemContainer(world, 800, Type.FULL_STACKING);
+			int count = 0;
+			for(Item item : bank.bankItems) {
+				container.add(new Item(item.getId(), count++));
+			}
+			write(new SetItems(95, container));
+			bank.clean();
 		}
 	}
 

@@ -1,5 +1,8 @@
 package edgeville.model.entity.player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edgeville.bank.BankTab;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.interfaces.inputdialog.NumberInputDialog;
@@ -14,6 +17,9 @@ public class Bank {
 	private Player player;
 	private BankTab[] bankTabs = new BankTab[10];
 
+	// public ItemContainer completeBank;
+	public List<Item> bankItems;
+
 	public BankTab[] getBankTabs() {
 		return bankTabs;
 	}
@@ -21,10 +27,137 @@ public class Bank {
 	private int currentBankTab = 0;
 
 	public Bank(Player player) {
+
 		this.player = player;
+
+		// This is good
+		/*
+		 * completeBank = new ItemContainer(player.world(), 800,
+		 * Type.FULL_STACKING); for (int i = 0; i < 50; i++) {
+		 * completeBank.add(new Item(100 + i, i + 1000)); }
+		 */
+		bankItems = new ArrayList<Item>();
+		for (int i = 0; i < 50; i++) {
+			bankItems.add(new Item(100 + i, i + 1000));
+		}
+		makeDirty();
+
+		// this is old
 		for (int i = 0; i < bankTabs.length; i++) {
 			bankTabs[i] = new BankTab(i, Varbit.BANK_TAB - 1 + i);
 		}
+	}
+
+	/**
+	 * Inserts an item into slot 0.
+	 * 
+	 * @param item
+	 */
+	public void insertItem(Item item) {
+		/*
+		 * for (int i = completeBank.occupiedSlots() - 1; i >= 0; i--) { Item
+		 * itemToShift = completeBank.getItems()[i]; completeBank.set(i + 1,
+		 * itemToShift);
+		 * 
+		 * player.message("Setting slot %d to item %s", i + 1,
+		 * itemToShift.definition(player.world()).name); }
+		 * 
+		 * completeBank.set(0, item);
+		 */
+		bankItems.add(0, item);
+		makeDirty();
+	}
+	
+	public int firstSlotOfMain() {
+		int slot = 0;
+		for(int i = 0 ; i < 9; i++) {
+			int size = player.varps().getVarbit(Varbit.BANK_TAB + i);
+			slot+= size;
+		}
+		player.message("First slot of main: %d",slot);
+		return slot;
+	}
+
+	/**
+	 * Idk yet
+	 */
+	public void orderBankTabs() {
+		int[] tabItemCounts = new int[9];
+		for (int i = 0; i < tabItemCounts.length - 1; i++) {
+			tabItemCounts[i] = player.varps().getVarbit(Varbit.BANK_TAB + i);
+		}
+	}
+
+	/**
+	 * When you move an item over an other item.
+	 * 
+	 * @param slotOther
+	 * @param itemOther
+	 * @param slot
+	 * @param itemId
+	 */
+	private void moveItemOnItemNew(int itemId, int slot, int itemOther, int slotOther) {
+		Item itemToPutToFirst = bankItems.get(slot);
+		bankItems.remove(slot);
+		
+		int bankTab = slotOther - 11; // Starting from 0
+		int slotToInsertAt = getSlotToInsertAt(bankTab);
+		bankItems.add(slotToInsertAt, itemToPutToFirst);
+		player.message("BankTab: %d, Slot to insert at: %d",bankTab,slotToInsertAt);
+
+		int currentSize = player.varps().getVarbit(Varbit.BANK_TAB + bankTab);
+		player.varps().setVarbit(Varbit.BANK_TAB + bankTab, currentSize + 1);
+		
+		makeDirty();
+	}
+
+	/**
+	 * Gets the last slot of a bankTab.
+	 * @param bankTab
+	 * @return
+	 */
+	public int getSlotToInsertAt(int bankTab) {
+		int[] sizes = new int[9]; // Excluding main tab.
+		int sizeCount = 0;
+		for (int i = 0; i < sizes.length; i++) {
+			sizes[i] = player.varps().getVarbit(Varbit.BANK_TAB + i);
+		}
+		
+		for(int i = 0 ; i < sizes.length; i++ ){
+			sizeCount += sizes[i];
+			if (i == bankTab) {
+				return sizeCount;
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * Get the bank tab of slot.
+	 * 
+	 * @param slot
+	 * @return
+	 */
+	public int getBankTab(int slot) {
+		int[] sizes = new int[9]; // Excluding main tab.
+		for (int i = 0; i < sizes.length; i++) {
+			sizes[i] = player.varps().getVarbit(Varbit.BANK_TAB + i);
+		}
+
+		int slotAmt = 0;
+		for (int i = sizes.length - 1; i >= 0; i--) {
+
+			player.message("Size of tab %d is %d", i, sizes[i]);
+
+			slotAmt += sizes[i];// 0
+
+			if (slot == 0)
+				slot++;
+			if (slotAmt >= slot) {// 0 == 0 true
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	private BankTab getBankTabForItem(int itemId) {
@@ -42,7 +175,11 @@ public class Bank {
 	}
 
 	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther, int hashthing) {
-		
+		if (!player.dead()) {
+			moveItemOnItemNew(itemId, slot, itemOther, slotOther);
+			return;
+		}
+
 		if (hashthing == 10/* itemId == 65535 */ && slotOther >= 10 && slotOther <= 20) {// 10
 																							// is
 			handleBankTabs(itemOther, slotOther);
@@ -59,12 +196,10 @@ public class Bank {
 	}
 
 	private void swapItem(int itemId, int itemOther) {
-		
-		
+
 		BankTab myTab = this.getBankTabForItem(itemId);
 		BankTab otherTab = this.getBankTabForItem(itemOther);
-		
-		
+
 		int slot1 = myTab.getSlot(itemId);
 		int slot2 = otherTab.getSlot(itemOther);
 		player.message("Tab[%d](%d) to Tab[%d](%d)", myTab.getId(), slot1, otherTab.getId(), slot2);
@@ -73,7 +208,7 @@ public class Bank {
 		player.message("item1: %s", item1);
 		Item item2 = otherTab.getItems().get(slot2);
 		player.message("item2: %s", item2);
-		
+
 		myTab.getItems().set(slot1, item2);
 		otherTab.getItems().set(slot2, item1);
 
@@ -83,7 +218,7 @@ public class Bank {
 	private void handleBankTabs(int itemOther, int slotOther) {
 		BankTab fromTab = getBankTabForItem(itemOther);
 		BankTab targetBankTab = bankTabs[slotOther - 10];
-		//player.message("Target bank tab : %d", targetBankTab.getId());
+		// player.message("Target bank tab : %d", targetBankTab.getId());
 
 		int amount = fromTab.remove(itemOther);
 		targetBankTab.add(new Item(itemOther, amount));
@@ -92,27 +227,28 @@ public class Bank {
 	}
 
 	public ItemContainer getAllItems() {
-		ItemContainer container = new ItemContainer(player.world(), 800, Type.FULL_STACKING);
-		for (int i = 1; i < bankTabs.length; i++) {
-			BankTab tab = bankTabs[i];
-			for (Item item : tab.getItems()) {
-				container.add(item);
-			}
-			player.varps().setVarbit(tab.getVarbit(), tab.getItems().size());
-		}
 
-		// Add the main tab items.
-		for (Item item : bankTabs[0].getItems())
-			container.add(item);
-
-		return container;
+		/*
+		 * ItemContainer container = new ItemContainer(player.world(), 800,
+		 * Type.FULL_STACKING); for (int i = 1; i < bankTabs.length; i++) {
+		 * BankTab tab = bankTabs[i]; for (Item item : tab.getItems()) {
+		 * container.add(item); } player.varps().setVarbit(tab.getVarbit(),
+		 * tab.getItems().size()); }
+		 * 
+		 * // Add the main tab items. for (Item item : bankTabs[0].getItems())
+		 * container.add(item);
+		 * 
+		 * return container;
+		 */
+		// return completeBank;
+		return new ItemContainer(player.world(), 800, Type.FULL_STACKING);
 	}
 
 	public void handleClick(int buttonId, int slot, int option) {
 		switch (buttonId) {
 		case 10:
 			currentBankTab = slot - 9;
-			//player.message("currentbanktab:%d", currentBankTab);
+			// player.message("currentbanktab:%d", currentBankTab);
 			break;
 		case 12:
 			if (option == 9) {
@@ -196,13 +332,10 @@ public class Bank {
 		player.write(new InterfaceSettings(12, 12, 818, 827, 1048576));
 		player.write(new InterfaceSettings(12, 10, 10, 10, 1048578));
 		player.write(new InterfaceSettings(12, 10, 11, 19, 1179714));
-		
-		
+
 		player.write(new InterfaceSettings(15, 3, 0, 27, 1181438));
 		player.write(new InterfaceSettings(15, 12, 0, 27, 1054));
-		
-		
-		
+
 		player.write(new InterfaceSettings(12, 32, 0, 3, 2));
 
 		makeDirty();
@@ -261,7 +394,7 @@ public class Bank {
 			idToAdd = id;
 		}
 
-		//player.message("Removing %d ... %d", id, amount);
+		// player.message("Removing %d ... %d", id, amount);
 		BankTab tab = getBankTabForItem(id);
 		if (tab == null) {
 			return;
@@ -324,7 +457,7 @@ public class Bank {
 
 	private void moveItemsToBank(int id, int amount) {
 
-		//player.message("amount:%d", amount);
+		// player.message("amount:%d", amount);
 
 		int unnotedId = new Item(id).definition(player.world()).unnotedID;
 		if (player.getInventory().remove(id, amount).success()) {
@@ -354,14 +487,15 @@ public class Bank {
 		Item itemoToRemove = this.getAllItems().get(slotOther);
 
 		if (myTab == otherTab) {
-			//player.message("ItemToInsert:" + itemToInsert);
-			//player.message("ItemToInsertAt:" + itemoToRemove);
+			// player.message("ItemToInsert:" + itemToInsert);
+			// player.message("ItemToInsertAt:" + itemoToRemove);
 			int insertAtSlot = myTab.getSlot(itemoToRemove.getId());
 			myTab.remove(itemToInsert);
 			myTab.getItems().add(insertAtSlot, itemToInsert);
 		} else {
-			//player.message("Tab:%d -> Tab:%d", myTab.getId(), otherTab.getId());
-			//player.message("ItemToInsert:" + itemToInsert);
+			// player.message("Tab:%d -> Tab:%d", myTab.getId(),
+			// otherTab.getId());
+			// player.message("ItemToInsert:" + itemToInsert);
 			int insertAtSlot = myTab.getSlot(itemoToRemove.getId());
 
 			otherTab.remove(itemToInsert);

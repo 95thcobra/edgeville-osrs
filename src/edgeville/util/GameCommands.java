@@ -38,6 +38,12 @@ public final class GameCommands {
 		/*
 		 * put(Privilege.ADMIN, "input", (p, args) -> { StringInput });
 		 */
+		put(Privilege.ADMIN, "getslot", (p, args) -> {
+			p.message("Tab: "+p.getBank().getBankTab(0));
+		});
+		put(Privilege.ADMIN, "insert", (p, args) -> {
+			p.getBank().insertItem(new Item(4151));
+		});
 		
 		put(Privilege.ADMIN, "loopinter", (p, args) -> {
 			p.interfaces().send(90, p.interfaces().activeRoot(), Integer.parseInt(args[0]), true);
