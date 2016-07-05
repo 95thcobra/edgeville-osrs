@@ -753,10 +753,11 @@ public class Player extends Entity {
 		}*/
 		
 		if (bank.isDirty()) {
+			int count=0;
 			ItemContainer container = new ItemContainer(world, 800, Type.FULL_STACKING);
-			int count = 0;
 			for(Item item : bank.bankItems) {
-				container.add(new Item(item.getId(), count++));
+				container.add(item.getId(), count++);
+				//container.add(item);
 			}
 			write(new SetItems(95, container));
 			bank.clean();

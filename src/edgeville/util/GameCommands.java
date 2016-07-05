@@ -38,8 +38,8 @@ public final class GameCommands {
 		/*
 		 * put(Privilege.ADMIN, "input", (p, args) -> { StringInput });
 		 */
-		put(Privilege.ADMIN, "getslot", (p, args) -> {
-			p.message("Tab: "+p.getBank().getBankTab(0));
+		put(Privilege.ADMIN, "gettab", (p, args) -> {
+			p.message(""+p.getBank().getBankTabOfSlot(Integer.parseInt(args[0])));
 		});
 		put(Privilege.ADMIN, "insert", (p, args) -> {
 			p.getBank().insertItem(new Item(4151));

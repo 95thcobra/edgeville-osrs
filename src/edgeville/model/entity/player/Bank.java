@@ -67,14 +67,14 @@ public class Bank {
 		bankItems.add(0, item);
 		makeDirty();
 	}
-	
+
 	public int firstSlotOfMain() {
 		int slot = 0;
-		for(int i = 0 ; i < 9; i++) {
+		for (int i = 0; i < 9; i++) {
 			int size = player.varps().getVarbit(Varbit.BANK_TAB + i);
-			slot+= size;
+			slot += size;
 		}
-		player.message("First slot of main: %d",slot);
+		player.message("First slot of main: %d", slot);
 		return slot;
 	}
 
@@ -96,23 +96,134 @@ public class Bank {
 	 * @param slot
 	 * @param itemId
 	 */
-	private void moveItemOnItemNew(int itemId, int slot, int itemOther, int slotOther) {
+	private void moveItemOnItemNew(int itemId, int slot, int itemOther, int slotOther, int hashthing) {
+		if (hashthing == 10 && slotOther >= 10 && slotOther <= 20) {
+			draggingToTabs(slot, slotOther);
+			return;
+		}
+
+		if (isInsertEnabled()) {
+			shiftItemsNew(slot, slotOther/* itemId, itemOther */);
+			return;
+		}
+
+		swapItemNew(slot, slotOther);
+	}
+
+	private void changeBankTabSize(int bankTab, int change) {
+		int currentSize = getBankTabSize(bankTab);
+		if (bankTab > -1) {
+			int varbit = Varbit.BANK_TAB + bankTab;
+			player.varps().setVarbit(varbit, currentSize + change);
+			player.message("BankTab %d, size %d -> %d", bankTab, currentSize, currentSize + change);
+		}
+	}
+
+	private int getBankTabSize(int bankTab) {
+		return player.varps().getVarbit(Varbit.BANK_TAB + bankTab);
+	}
+
+	public int getBankTabOfSlot(int slot) {
+		slot++;
+		int[] sizes = new int[9];
+		for (int i = 0; i < 8; i++) {
+			sizes[i] = this.getBankTabSize(i);
+			// System.out.println(i+" - "+sizes[i]);
+		}
+
+		int cnt = 0;
+		for (int i = 0; i < sizes.length; i++) {
+			if (slot >= cnt) {
+				int size = sizes[i]; // size of tab i
+				cnt += size;
+				if (slot <= cnt) {
+					return i;
+				}
+			}
+		}
+
+		return -1;
+	}
+
+	private void shiftItemsNew(int slot, int slotOther) {
+		Item itemToInsert = bankItems.get(slot);
+		// Item itemToInsertAt = bankItems.get(slotOther);
+		// player.message("Item %s -> At %s", itemToInsert.toString(),
+		// itemToInsertAt.toString());
+
+		player.message("slot %d -> %d", slot, slotOther);
+
+		int bankTabFrom = getBankTabOfSlot(slot);// this.getBankTab(slot);
+
+		System.out.println("BANKTAB FROM " + bankTabFrom);
+		// System.out.println("AND NEW FROM: " + getBankTabOfSlot(slot));
+
+		int bankTabTo = getBankTabOfSlot(slotOther);// this.getBankTab(slotOther);
+		
+		changeBankTabSize(bankTabFrom, -1);
+		changeBankTabSize(bankTabTo, 1);
+		System.out.println("BANKTAB TO " + bankTabTo);
+
+		// player.message("Banktab %d to %d", bankTabFrom, bankTabTo);
+
+		// bankItems.remove(slot);
+		
+		bankItems.remove(slot);
+
+		// if (bankTabTo != 0)
+		// slotOther--;
+		
+	//if (player.varps().getVarbit(Varbit.BANK_TAB + bankTabTo) > 1) {	
+		if (bankTabTo == -1 || (bankTabTo != 0 && bankTabFrom > -1 && bankTabFrom < bankTabTo)){
+			player.message("got here idk how");
+			slotOther --;}
+	//}
+		bankItems.add(slotOther, itemToInsert);
+
+		makeDirty();
+	}
+
+	private void swapItemNew(int slot, int slotOther) {
+		Item item1 = bankItems.get(slot);
+		Item item2 = bankItems.get(slotOther);
+		bankItems.set(slot, item2);
+		bankItems.set(slotOther, item1);
+		makeDirty();
+	}
+
+	public void draggingToTabs(int slot, int slotOther) {
+		if (slotOther == 10) {
+			Item itemToPutToFirst = bankItems.get(slot);
+			bankItems.remove(slot);
+
+			int bankTabFrom = this.getBankTab(slot);
+			player.message("BankTabFrom: %d", bankTabFrom);
+			bankItems.add(itemToPutToFirst);
+
+			int currentSize = player.varps().getVarbit(Varbit.BANK_TAB + bankTabFrom);
+			player.varps().setVarbit(Varbit.BANK_TAB + bankTabFrom, currentSize - 1);
+			makeDirty();
+			return;
+		}
+
 		Item itemToPutToFirst = bankItems.get(slot);
 		bankItems.remove(slot);
-		
+
 		int bankTab = slotOther - 11; // Starting from 0
 		int slotToInsertAt = getSlotToInsertAt(bankTab);
+
 		bankItems.add(slotToInsertAt, itemToPutToFirst);
-		player.message("BankTab: %d, Slot to insert at: %d",bankTab,slotToInsertAt);
+		player.message("BankTab: %d, Slot to insert at: %d", bankTab, slotToInsertAt);
 
 		int currentSize = player.varps().getVarbit(Varbit.BANK_TAB + bankTab);
 		player.varps().setVarbit(Varbit.BANK_TAB + bankTab, currentSize + 1);
-		
+
 		makeDirty();
 	}
 
 	/**
 	 * Gets the last slot of a bankTab.
+	 * 
 	 * @param bankTab
 	 * @return
 	 */
@@ -122,8 +233,8 @@ public class Bank {
 		for (int i = 0; i < sizes.length; i++) {
 			sizes[i] = player.varps().getVarbit(Varbit.BANK_TAB + i);
 		}
-		
-		for(int i = 0 ; i < sizes.length; i++ ){
+
+		for (int i = 0; i < sizes.length; i++) {
 			sizeCount += sizes[i];
 			if (i == bankTab) {
 				return sizeCount;
@@ -147,13 +258,14 @@ public class Bank {
 		int slotAmt = 0;
 		for (int i = sizes.length - 1; i >= 0; i--) {
 
-			player.message("Size of tab %d is %d", i, sizes[i]);
+			// player.message("Size of tab %d is %d", i, sizes[i]);
 
 			slotAmt += sizes[i];// 0
 
 			if (slot == 0)
 				slot++;
 			if (slotAmt >= slot) {// 0 == 0 true
+				player.message("slotamt: %d slot: %d", slotAmt, slot);
 				return i;
 			}
 		}
@@ -176,7 +288,7 @@ public class Bank {
 
 	public void moveItemOnItem(int itemId, int slot, int itemOther, int slotOther, int hashthing) {
 		if (!player.dead()) {
-			moveItemOnItemNew(itemId, slot, itemOther, slotOther);
+			moveItemOnItemNew(itemId, slot, itemOther, slotOther, hashthing);
 			return;
 		}
 
