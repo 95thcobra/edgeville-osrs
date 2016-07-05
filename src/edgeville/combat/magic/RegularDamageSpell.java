@@ -10,20 +10,20 @@ public enum RegularDamageSpell {
 	EARTH_STRIKE(9, 711, 97, 12, 96, 98, 6, 4, new Item[] { new Item(Runes.EARTH_RUNE,2),new Item(Runes.AIR_RUNE), new Item(Runes.MIND_RUNE) }),
 	FIRE_STRIKE(13, 711, 100, 12, 99, 101, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
 	
-	WIND_BOLT(17, 	711, 118, 12, 	117, 119, 9, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	WATER_BOLT(23, 	711, 121, 12, 	120, 122, 10, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	EARTH_BOLT(29, 	711, 124, 12, 	123, 125, 11, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	FIRE_BOLT(35, 	711, 127, 12, 	126, 128, 12, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
+	WIND_BOLT(17, 	711, 118, 12, 	117, 119, 9, 4, new Item[] { new Item(Runes.AIR_RUNE,2),new Item(Runes.CHAOS_RUNE,1) }),
+	WATER_BOLT(23, 	711, 121, 12, 	120, 122, 10, 4, new Item[] { new Item(Runes.WATER_RUNE,2),new Item(Runes.AIR_RUNE,2), new Item(Runes.CHAOS_RUNE) }),
+	EARTH_BOLT(29, 	711, 124, 12, 	123, 125, 11, 4, new Item[] { new Item(Runes.EARTH_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.CHAOS_RUNE) }),
+	FIRE_BOLT(35, 	711, 127, 12, 	126, 128, 12, 4, new Item[] { new Item(Runes.FIRE_RUNE,4),new Item(Runes.AIR_RUNE,3), new Item(Runes.CHAOS_RUNE) }),
 	
-	WIND_BLAST(41, 	711, 133, 12, 132, 134, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	WATER_BLAST(47, 711, 136, 12, 135, 137, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	EARTH_BLAST(53, 711, 139, 12, 138, 140, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	FIRE_BLAST(59, 	711, 130, 12, 129, 131, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
+	WIND_BLAST(41, 	711, 133, 12, 132, 134, 13, 4, new Item[] { new Item(Runes.AIR_RUNE,3), new Item(Runes.DEATH_RUNE) }),
+	WATER_BLAST(47, 711, 136, 12, 135, 137, 14, 4, new Item[] { new Item(Runes.WATER_RUNE,3),new Item(Runes.AIR_RUNE,3), new Item(Runes.DEATH_RUNE) }),
+	EARTH_BLAST(53, 711, 139, 12, 138, 140, 15, 4, new Item[] { new Item(Runes.EARTH_RUNE,4),new Item(Runes.AIR_RUNE,3), new Item(Runes.DEATH_RUNE) }),
+	FIRE_BLAST(59, 	711, 130, 12, 129, 131, 16, 4, new Item[] { new Item(Runes.FIRE_RUNE,5),new Item(Runes.AIR_RUNE,4), new Item(Runes.DEATH_RUNE) }),
 	
-	WIND_WAVE(62, 	711, 159, 12, 158, 160, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	WATER_WAVE(65, 	711, 162, 12, 161, 163, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	EARTH_WAVE(70, 	711, 165, 12, 164, 166, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
-	FIRE_WAVE(75, 	711, 156, 12, 155, 157, 8, 4, new Item[] { new Item(Runes.FIRE_RUNE,3),new Item(Runes.AIR_RUNE,2), new Item(Runes.MIND_RUNE) }),
+	WIND_WAVE(62, 	711, 159, 12, 158, 160, 17, 4, new Item[] { new Item(Runes.AIR_RUNE,5), new Item(Runes.BLOOD_RUNE) }),
+	WATER_WAVE(65, 	711, 162, 12, 161, 163, 18, 4, new Item[] { new Item(Runes.WATER_RUNE,7),new Item(Runes.AIR_RUNE,5), new Item(Runes.BLOOD_RUNE) }),
+	EARTH_WAVE(70, 	711, 165, 12, 164, 166, 19, 4, new Item[] { new Item(Runes.EARTH_RUNE,7),new Item(Runes.AIR_RUNE,5), new Item(Runes.BLOOD_RUNE) }),
+	FIRE_WAVE(75, 	711, 156, 12, 155, 157, 20, 4, new Item[] { new Item(Runes.FIRE_RUNE,7),new Item(Runes.AIR_RUNE,5), new Item(Runes.BLOOD_RUNE) }),
 	
 	;
 

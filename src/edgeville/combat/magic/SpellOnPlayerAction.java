@@ -67,6 +67,45 @@ public class SpellOnPlayerAction {
 			cycleRegularDamageSpell(RegularDamageSpell.FIRE_STRIKE);
 			break;
 			
+		case 11:
+			cycleRegularDamageSpell(RegularDamageSpell.WIND_BOLT);
+			break;
+		case 15:
+			cycleRegularDamageSpell(RegularDamageSpell.WATER_BOLT);
+			break;
+		case 18:
+			cycleRegularDamageSpell(RegularDamageSpell.EARTH_BOLT);
+			break;
+		case 21:
+			cycleRegularDamageSpell(RegularDamageSpell.FIRE_BOLT);
+			break;
+			
+		case 25:
+			cycleRegularDamageSpell(RegularDamageSpell.WIND_BLAST);
+			break;
+		case 28:
+			cycleRegularDamageSpell(RegularDamageSpell.WATER_BLAST);
+			break;
+		case 34:
+			cycleRegularDamageSpell(RegularDamageSpell.EARTH_BLAST);
+			break;
+		case 39:
+			cycleRegularDamageSpell(RegularDamageSpell.FIRE_BLAST);
+			break;
+			
+		case 46:
+			cycleRegularDamageSpell(RegularDamageSpell.WIND_WAVE);
+			break;
+		case 49:
+			cycleRegularDamageSpell(RegularDamageSpell.WATER_WAVE);
+			break;		
+		case 53:
+			cycleRegularDamageSpell(RegularDamageSpell.EARTH_WAVE);
+			break;
+		case 56:
+			cycleRegularDamageSpell(RegularDamageSpell.FIRE_WAVE);
+			break;
+			
 			
 			
 			

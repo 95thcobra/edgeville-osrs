@@ -35,7 +35,7 @@ public class Looks {
 		if (transmog >= 0) {
 			calcBuffer.writeShort(0xFFFF).writeShort(transmog);
 		} else {
-			int[] looks = {0, 0, 0, 0, 18, 0, 26, 36, 7, 33, 42, 10};
+			int[] looks = {0, 0, 0, 0, 18, 0, 26/*arms*/, 36, 7, 33, 42, 10/*beard*/};
 			//6 = arms
 			//8 = hair
 			//9 = hands
@@ -47,15 +47,17 @@ public class Looks {
 					calcBuffer.writeByte(0);
 					continue;
 				}
+				
 				if (i == 8 && player.getEquipment().hasAt(0) && equipInfo.typeFor(player.getEquipment().get(0).getId()) == 8) {
 					calcBuffer.writeByte(0);
 					continue;
 				}
+				
 				if (i == 11 && player.getEquipment().hasAt(0) && equipInfo.typeFor(player.getEquipment().get(0).getId()) == 8) {
 
 				}
 
-				if (player.getEquipment().hasAt(i)) {
+				if (player.getEquipment().hasAt(i)) {			
 					calcBuffer.writeShort(0x200 + player.getEquipment().get(i).getId());
 				} else if (looks[i] != 0) {
 					calcBuffer.writeShort(0x100 + looks[i]);

@@ -3,54 +3,138 @@
   "displayName": "gert",
   "password": "havelte",
   "tile": {
-    "x": 3096,
-    "z": 3494,
+    "x": 3087,
+    "z": 3493,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
-  "skullIcon": -1,
+  "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "equipment": [
     {
-      "id": 10828,
+      "id": 11802,
       "amount": 1
     },
     {
-      "id": 2412,
+      "id": 2442,
+      "amount": 1
+    },
+    {
+      "id": 2442,
+      "amount": 1
+    },
+    {
+      "id": 557,
+      "amount": 150
+    },
+    {
+      "id": 2444,
+      "amount": 1
+    },
+    {
+      "id": 2444,
+      "amount": 1
+    },
+    {
+      "id": 560,
+      "amount": 150
+    },
+    {
+      "id": 9075,
+      "amount": 150
+    },
+    {
+      "id": 2434,
+      "amount": 1
+    },
+    {
+      "id": 2434,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    }
+  ],
+  "equipment": [
+    {
+      "id": 4753,
+      "amount": 1
+    },
+    {
+      "id": 10499,
       "amount": 1
     },
     {
@@ -58,20 +142,20 @@
       "amount": 1
     },
     {
-      "id": 4675,
+      "id": 9185,
       "amount": 1
     },
     {
-      "id": 4712,
+      "id": 2503,
       "amount": 1
     },
     {
-      "id": 6889,
+      "id": 11283,
       "amount": 1
     },
     null,
     {
-      "id": 4714,
+      "id": 4759,
       "amount": 1
     },
     null,
@@ -80,15 +164,18 @@
       "amount": 1
     },
     {
-      "id": 6920,
+      "id": 2577,
       "amount": 1
     },
     null,
     {
-      "id": 11773,
+      "id": 6733,
       "amount": 1
     },
-    null
+    {
+      "id": 9244,
+      "amount": 1245
+    }
   ],
   "loadout": {
     "inventory": [
@@ -148,20 +235,16 @@
       "amount": 1
     },
     {
-      "id": 12006,
+      "id": 10551,
       "amount": 1
-    },
-    {
-      "id": 157,
-      "amount": 2
     },
     {
       "id": 4153,
       "amount": 2
     },
     {
-      "id": 163,
-      "amount": 3
+      "id": 6570,
+      "amount": 1
     },
     {
       "id": 4722,
@@ -169,18 +252,14 @@
     },
     {
       "id": 385,
-      "amount": 46
+      "amount": 63
     },
     {
       "id": 11840,
       "amount": 1
     },
     {
-      "id": 560,
-      "amount": 10000
-    },
-    {
-      "id": 10551,
+      "id": 12006,
       "amount": 1
     },
     {
@@ -188,16 +267,8 @@
       "amount": 1
     },
     {
-      "id": 555,
-      "amount": 10000
-    },
-    {
       "id": 565,
       "amount": 10000
-    },
-    {
-      "id": 6570,
-      "amount": 1
     },
     {
       "id": 397,
@@ -206,6 +277,38 @@
     {
       "id": 145,
       "amount": 1
+    },
+    {
+      "id": 163,
+      "amount": 3
+    },
+    {
+      "id": 157,
+      "amount": 2
+    },
+    {
+      "id": 560,
+      "amount": 10000
+    },
+    {
+      "id": 555,
+      "amount": 10000
+    },
+    {
+      "id": 6737,
+      "amount": 1
+    },
+    {
+      "id": 6731,
+      "amount": 1
+    },
+    {
+      "id": 6735,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 10000000
     }
   ],
   "varps": [
@@ -219,15 +322,15 @@
     },
     {
       "id": 439,
-      "value": 1
+      "value": 2
     },
     {
       "id": 843,
-      "value": 18
+      "value": 5
     },
     {
       "id": 867,
-      "value": 7342084
+      "value": 5244931
     },
     {
       "id": 1050,
@@ -264,12 +367,12 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 99,
+      "level": 91,
       "xp": 1.3034431E7
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3034679E7
     },
     {
       "level": 99,
