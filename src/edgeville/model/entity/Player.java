@@ -84,6 +84,8 @@ public class Player extends Entity {
 	private CombatUtil combatUtil;
 
 	private boolean vengOn;
+	
+	
 
 	public boolean isVengOn() {
 		return vengOn;

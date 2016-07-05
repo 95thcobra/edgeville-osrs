@@ -42,6 +42,10 @@ public class SpellOnPlayerAction {
 					((Player)target).interfaces().setBountyInterface(true);
 				}
 				target.timers().register(TimerKey.IN_COMBAT, 10);
+				
+				
+		        player.setTarget(target);
+		        target.setLastAttackedBy(player);
 			}
 
 			handleDamageSpells();

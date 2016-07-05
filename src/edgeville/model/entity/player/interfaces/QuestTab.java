@@ -89,8 +89,33 @@ public class QuestTab {
 
 		// Range
 		case 16:
-			player.message("TODO.");
+			player.getInventory().empty();
+			player.getInventory().add(11802);
+			player.getInventory().add(2442);
+			player.getInventory().add(169);
+			player.getInventory().add(2444);
+			player.getInventory().add(new Item(560, 1000));
+			player.getInventory().add(new Item(557, 1000));
+			player.getInventory().add(new Item(9075, 1000));
+			player.getInventory().add(2434);
+			player.getInventory().add(2434);
+			player.getInventory().add(163);
+			player.getInventory().add(new Item(391, 18));
 
+			player.getEquipment().set(EquipSlot.HEAD, new Item(4753));
+			player.getEquipment().set(EquipSlot.CAPE, new Item(10499));
+			player.getEquipment().set(EquipSlot.AMULET, new Item(6585));
+			player.getEquipment().set(EquipSlot.WEAPON, new Item(9185));
+			player.getEquipment().set(EquipSlot.BODY, new Item(2503));
+			player.getEquipment().set(EquipSlot.SHIELD, new Item(11283));
+			player.getEquipment().set(EquipSlot.LEGS, new Item(4759));
+			player.getEquipment().set(EquipSlot.HANDS, new Item(7462));
+			player.getEquipment().set(EquipSlot.FEET, new Item(2577));
+			player.getEquipment().set(EquipSlot.RING, new Item(6733));
+			player.getEquipment().set(EquipSlot.AMMO, new Item(9244, 1000));
+			
+			player.setMaster();
+			player.varps().setVarbit(Varbit.SPELLBOOK, 2); // Ancients
 			break;
 
 		// Hybrid

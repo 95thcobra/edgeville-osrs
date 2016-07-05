@@ -1,8 +1,5 @@
-fix banking
-regular spellbook
-drain prayer
 
-quickprayers
+quickprayers varbit 4102
 test combat
 
 

@@ -46,6 +46,8 @@ public class PlayerAction1 implements Action {
                 player.putAttribute(AttributeKey.TARGET, /*index*/other);
                 other.putAttribute(AttributeKey.LAST_ATTACKED_BY, player);
                 
+               
+                
               // player.world().server().scriptExecutor().executeScript(player, PlayerCombat.script);
                 new PvPCombat(player, other).start();
                // new CombatBuilder().start();

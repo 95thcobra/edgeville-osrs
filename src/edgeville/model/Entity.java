@@ -51,7 +51,24 @@ public abstract class Entity implements HitOrigin {
 	public void setDamageOn(boolean damageOn) {
 		this.damageOn = damageOn;
 	}
+	private Entity target;
+	private Entity lastAttackedBy;
 
+	public Entity getTarget() {
+		return target;
+	}
+
+	public void setTarget(Entity target) {
+		this.target = target;
+	}
+
+	public Entity getLastAttackedBy() {
+		return lastAttackedBy;
+	}
+
+	public void setLastAttackedBy(Entity lastAttackedBy) {
+		this.lastAttackedBy = lastAttackedBy;
+	}
 	/**
 	 * Information on our synchronization
 	 */

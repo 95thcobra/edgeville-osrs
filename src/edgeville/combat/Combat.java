@@ -33,7 +33,7 @@ public abstract class Combat {
     }
 
     public void start() {
-    	((Player)entity).message("gothere sigh");
+    	//((Player)entity).message("gothere sigh");
         entity.world().getEventHandler().addEvent(entity, new Event() {
             @Override
             public void execute(EventContainer container) {
@@ -44,6 +44,9 @@ public abstract class Combat {
                 cycle(container);
             }
         });
+        
+        entity.setTarget(target);
+        target.setLastAttackedBy(entity);
     }
 
     public abstract void cycle(EventContainer container);

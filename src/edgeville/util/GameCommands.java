@@ -34,6 +34,30 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		put(Privilege.ADMIN, "npcanim", (p, args) -> {
+			Npc npc = new Npc(2005, p.world(), p.getTile(), false);
+			p.world().registerNpc(npc);
+			npc.animate(Integer.parseInt(args[0]));
+			npc.shout("FFS");
+		});
+
+		put(Privilege.ADMIN, "npcanim1", (p, args) -> {
+			Npc npc = new Npc(Integer.parseInt(args[0]), p.world(), p.getTile(), false);
+			p.world().registerNpc(npc);
+			npc.animate(Integer.parseInt(args[0]));
+			npc.shout("FFS");
+		});
+
+		put(Privilege.ADMIN, "animnpc", (p, args) -> {
+			for(int i = 0 ; i <p.world().npcs().size() ; i++) {
+				Npc npc = p.world().npcs().get(i);
+				if (npc.def().name.contains("esser")) {
+					npc.animate(Integer.parseInt(args[0]));
+				}
+			}
+			//npc.shout("FFS");
+		});
+
 		put(Privilege.ADMIN, "testv", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 2555; i++) {
@@ -44,37 +68,35 @@ public final class GameCommands {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-			       // p.interfaces().send(219, 162, 546, false); // chatbox
-			        p.write(new InvokeScript(i));
-			        
-			        //p.write(new InterfaceSettings(161, 593, i, i, i));
-			       p.shout("script:"+i);
-					//p.interfaces().send(593, p.interfaces().activeRoot(), i, false);
-					
-					System.out.println(i +" - ");
+
+					// p.interfaces().send(219, 162, 546, false); // chatbox
+					p.write(new InvokeScript(i));
+
+					// p.write(new InterfaceSettings(161, 593, i, i, i));
+					p.shout("script:" + i);
+					// p.interfaces().send(593, p.interfaces().activeRoot(), i,
+					// false);
+
+					System.out.println(i + " - ");
 				}
 			}).start();
 		});
 
-		
 		// REAL COMMANDS
 		put(Privilege.ADMIN, "getlevel", (p, args) -> {
-		p.message("prayerlevel:"+p.skills().level(Skills.PRAYER));
-		//p.message("prayerlevel:"+p.skills().(Skills.PRAYER));
-		
+			p.message("prayerlevel:" + p.skills().level(Skills.PRAYER));
+			// p.message("prayerlevel:"+p.skills().(Skills.PRAYER));
+
 		});
 		put(Privilege.ADMIN, "setlevel", (p, args) -> {
 			p.skills().levels()[Skills.PRAYER] = Integer.parseInt(args[0]);
 			p.skills().update(Skills.PRAYER);
 		});
-		
-
 
 		put(Privilege.ADMIN, "testf", (p, args) -> {
 			p.interfaces().send(90, p.interfaces().activeRoot(), Integer.parseInt(args[0]), true);
 		});
-		
+
 		put(Privilege.ADMIN, "loopf", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 20; i++) {
@@ -86,7 +108,7 @@ public final class GameCommands {
 						e.printStackTrace();
 					}
 					p.interfaces().send(90, p.interfaces().activeRoot(), i, true);
-					System.out.println(i +" - ");
+					System.out.println(i + " - ");
 				}
 			}).start();
 		});
@@ -224,7 +246,6 @@ public final class GameCommands {
 			}).start();
 		});
 
-
 		put(Privilege.ADMIN, "loopvarbit", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 10000; i++) {
@@ -347,8 +368,6 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "cinterface", (p, args) -> {
 			p.interfaces().send(Integer.parseInt(args[0]), 162, 546, false);
 		});
-		
-		
 
 		put(Privilege.ADMIN, "loopinter", (p, args) -> {
 			new Thread(() -> {
@@ -397,7 +416,7 @@ public final class GameCommands {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					
+
 				}
 			}).start();
 		});

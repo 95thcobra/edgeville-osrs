@@ -64,6 +64,8 @@ public enum TimerKey {
 	 * Key used to indivate that the vengeance spell is on cooldown
 	 */
 	VENGEANCE_COOLDOWN,
+	
+	DFS_COOLDOWN,
 
 	PRAYER_TICK,
 	

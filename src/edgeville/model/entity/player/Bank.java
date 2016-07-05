@@ -27,6 +27,69 @@ public class Bank {
 
 		this.player = player;
 		bankItems = new ArrayList<Item>();
+	
+		bankItems.add(new Item(4708, 1000));
+		bankItems.add(new Item(4712, 1001));
+		bankItems.add(new Item(6920, 1001));
+		bankItems.add(new Item(4714, 1001));
+		bankItems.add(new Item(6585, 1001));
+		bankItems.add(new Item(7462, 41));
+		bankItems.add(new Item(6914, 1000));
+		bankItems.add(new Item(6889, 1001));
+		bankItems.add(new Item(2414, 20));
+		bankItems.add(new Item(4736, 1002));
+		bankItems.add(new Item(12006, 22));
+		bankItems.add(new Item(6570, 22));
+		bankItems.add(new Item(12954, 22));
+		bankItems.add(new Item(11840, 1002));
+		bankItems.add(new Item(11832, 20));
+		bankItems.add(new Item(11834, 1000));
+		bankItems.add(new Item(11802, 20));
+		bankItems.add(new Item(10828, 21));
+		bankItems.add(new Item(6737, 1000));
+		bankItems.add(new Item(5698, 1003));
+		bankItems.add(new Item(4753, 1000));
+		bankItems.add(new Item(10370, 1000));
+		bankItems.add(new Item(10372, 1000));
+		bankItems.add(new Item(4759, 1000));
+		bankItems.add(new Item(10696, 20));
+		bankItems.add(new Item(6733, 20));
+		bankItems.add(new Item(11785, 20));
+		bankItems.add(new Item(9244, 1000000));
+		bankItems.add(new Item(11284, 20));
+		bankItems.add(new Item(10499, 20));
+		bankItems.add(new Item(4716, 1000));
+		bankItems.add(new Item(4720, 1000));
+		bankItems.add(new Item(4722, 1002));
+		bankItems.add(new Item(4718, 1000));
+		bankItems.add(new Item(4153, 1001));
+		bankItems.add(new Item(4675, 1001));
+		bankItems.add(new Item(6918, 1000));
+		bankItems.add(new Item(6916, 1000));
+		bankItems.add(new Item(6924, 1000));
+		bankItems.add(new Item(10551, 22));
+		bankItems.add(new Item(2617, 1000));
+		bankItems.add(new Item(8850, 20));
+		bankItems.add(new Item(3105, 1000));
+		bankItems.add(new Item(2503, 1000));
+		bankItems.add(new Item(6685, 1000));
+		bankItems.add(new Item(3024, 1000));
+		bankItems.add(new Item(2440, 1000));
+		bankItems.add(new Item(2436, 1000));
+		bankItems.add(new Item(397, 1028));
+		bankItems.add(new Item(555, 1020000));
+		bankItems.add(new Item(565, 1020000));
+		bankItems.add(new Item(560, 1020000));
+		bankItems.add(new Item(9075, 1000000));
+		bankItems.add(new Item(557, 1000000));
+		bankItems.add(new Item(385, 1000));
+		bankItems.add(new Item(2448, 1000));
+		bankItems.add(new Item(157, 1));
+		bankItems.add(new Item(163, 1));
+		bankItems.add(new Item(145, 1));
+		bankItems.add(new Item(2412, 1));
+		bankItems.add(new Item(11773, 1));
+
 		currentBankTab = -1;
 		makeDirty();
 	}
@@ -46,7 +109,7 @@ public class Bank {
 				return;
 			}
 			draggingToTabs(slot, slotOther);
-			 player.message("Draggin to tab");
+			player.message("Draggin to tab");
 			return;
 		}
 
@@ -131,19 +194,13 @@ public class Bank {
 			if (currentBankTab >= 0) {
 				this.changeBankTabSize(currentBankTab, -1);
 			}
-			
-			
+
 			int bankTabFrom = getBankTabOfSlot(slot);
 			player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
 			this.changeBankTabSize(bankTabFrom, -1);
 
 			bankItems.remove(slot);
-			
-			
-		
-			
-			
-			
+
 			bankItems.add(itemToPutToFirst);
 			makeDirty();
 			return;
@@ -155,7 +212,7 @@ public class Bank {
 		if (currentBankTab >= 0) {
 			this.changeBankTabSize(currentBankTab, -1);
 		}
-		
+
 		int bankTabFrom = this.getBankTabOfSlot(slot);
 		player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
 		changeBankTabSize(bankTabFrom, -1);
@@ -233,7 +290,7 @@ public class Bank {
 		switch (buttonId) {
 		case 10:
 			currentBankTab = slot - 10;
-			//player.message("currentbanktab:%d", currentBankTab);
+			// player.message("currentbanktab:%d", currentBankTab);
 			break;
 		case 12:
 			if (option == 9) {

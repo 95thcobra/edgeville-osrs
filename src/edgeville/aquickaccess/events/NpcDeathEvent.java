@@ -31,14 +31,14 @@ public class NpcDeathEvent extends Event {
 			break;
 
 		case 1:
-			if (killer instanceof Player) {
+			if (killer != null && killer instanceof Player) {
 				killer.message("You have killed " + npc.def().name);
 			}
 			break;
 
 		case 2:
 			npc.animate(getNpcDeathAnim());
-			if (killer instanceof Player) {
+			if (killer != null && killer instanceof Player) {
 				((Player) killer).sound(getNpcDeathSound());
 			}
 			break;

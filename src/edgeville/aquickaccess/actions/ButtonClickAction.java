@@ -16,6 +16,7 @@ import edgeville.model.item.Item;
 import edgeville.net.message.game.encoders.InvokeScript;
 import edgeville.script.TimerKey;
 import edgeville.util.CombatFormula;
+import edgeville.util.CombatStyle;
 import edgeville.util.SettingsBuilder;
 import edgeville.util.TextUtil;
 import edgeville.util.Varbit;
@@ -58,11 +59,11 @@ public class ButtonClickAction {
 		case 60:
 			advancedSettings();
 			break;
-			
-			//quick prayers interface
+
+		// quick prayers interface
 		case 77:
 			// done button
-			if (buttonId ==5 ){
+			if (buttonId == 5) {
 				player.interfaces().setQuickPrayers(false);
 			}
 			break;
@@ -77,9 +78,9 @@ public class ButtonClickAction {
 			if (buttonId == 1) {
 				setupXPDrops();
 			}
-			
+
 			// quick prayers
-			if (buttonId == 14){
+			if (buttonId == 14) {
 				quickPrayers();
 			}
 
@@ -124,6 +125,10 @@ public class ButtonClickAction {
 
 		// Options: equipment stats, etc.
 		case 387:
+			if (buttonId == 11 && option == 1) {
+				handleDfs();
+				return;
+			}
 			handleOptionsTabs();
 			break;
 
@@ -140,6 +145,28 @@ public class ButtonClickAction {
 	}
 
 	////////////////
+
+	private void handleDfs() {
+		Entity target = player.getTarget();
+		if (target == null) {
+			player.message("Find a target first!");
+			return;
+		}
+		if (player.timers().has(TimerKey.DFS_COOLDOWN)) {
+			player.message("Dragonfire shield hasn't recharged yet.");
+			return;
+		}
+		int max = 25;
+		int hit = player.world().random().nextInt((int) Math.round(max));
+		
+		player.graphic(1165, 92, 0);
+		player.world().spawnProjectile(player.getTile(), target, 1166, 40, 33, 55, 12, 15, 50);
+		target.graphic(1167, 92, 50);
+		
+		target.hit(player, hit, 3);
+		
+		player.timers().register(TimerKey.DFS_COOLDOWN, 50);
+	}
 
 	private void quickPrayers() {
 		player.interfaces().setQuickPrayers(true);
@@ -424,7 +451,7 @@ public class ButtonClickAction {
 		}
 		Item[] requiredRunes = new Item[] { new Item(Runes.ASTRAL_RUNE, 4), new Item(Runes.DEATH_RUNE, 2), new Item(Runes.EARTH_RUNE, 10) };
 		for (Item item : requiredRunes) {
-			if (player.getInventory().contains(item.getId(), item.getAmount())) {
+			if (!player.getInventory().contains(item.getId(), item.getAmount())) {
 				player.message("You do not have the required runes to cast Vengeance!");
 				return;
 			}
@@ -434,7 +461,7 @@ public class ButtonClickAction {
 			return;
 		}
 		if (player.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
-			player.message("Vengeance is on cooldown, wait %i seconds.", (int) (player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).ticks()) / 0.6);
+			player.message("Vengeance is on cooldown, wait %d seconds.", (int) Math.round(player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).ticks() / 0.6));
 			return;
 		}
 		player.graphic(726, 92, 0);
