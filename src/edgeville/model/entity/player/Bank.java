@@ -46,7 +46,7 @@ public class Bank {
 				return;
 			}
 			draggingToTabs(slot, slotOther);
-			// player.message("here1");
+			 player.message("Draggin to tab");
 			return;
 		}
 
@@ -131,9 +131,19 @@ public class Bank {
 			if (currentBankTab >= 0) {
 				this.changeBankTabSize(currentBankTab, -1);
 			}
+			
+			
+			int bankTabFrom = getBankTabOfSlot(slot);
+			player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
+			this.changeBankTabSize(bankTabFrom, -1);
 
 			bankItems.remove(slot);
-			int bankTabFrom = getBankTab(slot);
+			
+			
+		
+			
+			
+			
 			bankItems.add(itemToPutToFirst);
 			makeDirty();
 			return;
@@ -145,6 +155,10 @@ public class Bank {
 		if (currentBankTab >= 0) {
 			this.changeBankTabSize(currentBankTab, -1);
 		}
+		
+		int bankTabFrom = this.getBankTabOfSlot(slot);
+		player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
+		changeBankTabSize(bankTabFrom, -1);
 
 		bankItems.remove(slot);
 
