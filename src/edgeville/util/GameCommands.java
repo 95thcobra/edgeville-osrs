@@ -35,16 +35,7 @@ public final class GameCommands {
 		commands = new HashMap<>();
 
 		// REAL COMMANDS
-		/*
-		 * put(Privilege.ADMIN, "input", (p, args) -> { StringInput });
-		 */
-		put(Privilege.ADMIN, "gettab", (p, args) -> {
-			p.message(""+p.getBank().getBankTabOfSlot(Integer.parseInt(args[0])));
-		});
-		put(Privilege.ADMIN, "insert", (p, args) -> {
-			p.getBank().insertItem(new Item(4151));
-		});
-		
+
 		put(Privilege.ADMIN, "loopinter", (p, args) -> {
 			p.interfaces().send(90, p.interfaces().activeRoot(), Integer.parseInt(args[0]), true);
 		});
