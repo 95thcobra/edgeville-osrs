@@ -46,12 +46,12 @@ public class Bank {
 				return;
 			}
 			draggingToTabs(slot, slotOther);
-			//player.message("here1");
+			// player.message("here1");
 			return;
 		}
 
 		if (isInsertEnabled()) {
-			//player.message("here2");
+			// player.message("here2");
 			shiftItems(slot, slotOther);
 			return;
 		}
@@ -64,7 +64,8 @@ public class Bank {
 		if (bankTab > -1) {
 			int varbit = Varbit.BANK_TAB + bankTab;
 			player.varps().setVarbit(varbit, currentSize + change);
-			//player.message("varbit: %d, change: %d -> %d", varbit, currentSize, currentSize + change);
+			// player.message("varbit: %d, change: %d -> %d", varbit,
+			// currentSize, currentSize + change);
 		}
 	}
 
@@ -125,27 +126,26 @@ public class Bank {
 
 		if (slotOther == 10) {
 			Item itemToPutToFirst = bankItems.get(slot);
-			
+
+			// If item comes from a tab, deduct size.
 			if (currentBankTab >= 0) {
 				this.changeBankTabSize(currentBankTab, -1);
 			}
-			
-			
-			bankItems.remove(slot);
 
+			bankItems.remove(slot);
 			int bankTabFrom = getBankTab(slot);
 			bankItems.add(itemToPutToFirst);
-
-			//this.changeBankTabSize(bankTabFrom, -1);
-
 			makeDirty();
 			return;
 		}
 
 		Item itemToPutToFirst = bankItems.get(slot);
+
+		// If item comes from a tab, deduct size.
 		if (currentBankTab >= 0) {
 			this.changeBankTabSize(currentBankTab, -1);
 		}
+
 		bankItems.remove(slot);
 
 		int bankTab = slotOther - 11; // Starting from 0
@@ -219,7 +219,7 @@ public class Bank {
 		switch (buttonId) {
 		case 10:
 			currentBankTab = slot - 10;
-			player.message("currentbanktab:%d", currentBankTab);
+			//player.message("currentbanktab:%d", currentBankTab);
 			break;
 		case 12:
 			if (option == 9) {
@@ -496,22 +496,21 @@ public class Bank {
 			idToAdd = id;
 		}
 
-		if (contains(id)) {
-			int slot = getSlotForItem(id);
+		if (contains(idToAdd)) {
+			int slot = getSlotForItem(idToAdd);
 			Item item = bankItems.get(slot);
-			bankItems.set(slot, new Item(id, item.getAmount() + amount));
+			bankItems.set(slot, new Item(idToAdd, item.getAmount() + amount));
 		} else {
 			int slotToInsertAt = this.getSlotToInsertAt(currentBankTab);
 			if (currentBankTab > -1) {
 				this.changeBankTabSize(currentBankTab, 1);
 			}
-			bankItems.add(slotToInsertAt, new Item(id, amount));
+			bankItems.add(slotToInsertAt, new Item(idToAdd, amount));
 		}
 		makeDirty();
 	}
 
 	private void moveItemFromInventoryToBank(int id, int amount) {
-		int unnotedId = new Item(id).definition(player.world()).unnotedID;
 		if (player.getInventory().remove(id, amount).success()) {
 			add(id, amount);
 		}

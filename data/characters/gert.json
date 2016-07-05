@@ -1,44 +1,26 @@
 {
-  "username": "sky",
-  "displayName": "sky",
-  "password": "test",
+  "username": "gert",
+  "displayName": "gert",
+  "password": "havelte",
   "tile": {
-    "x": 3094,
-    "z": 3491,
+    "x": 3096,
+    "z": 3494,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
   "skullIcon": -1,
   "prayerIcon": -1,
-  "debug": true,
+  "debug": false,
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    {
-      "id": 556,
-      "amount": 123532234
-    },
-    {
-      "id": 562,
-      "amount": 32523
-    },
-    {
-      "id": 558,
-      "amount": 52352322
-    },
-    {
-      "id": 557,
-      "amount": 240467590
-    },
-    {
-      "id": 554,
-      "amount": 3532531
-    },
-    {
-      "id": 555,
-      "amount": 23542522
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     null,
     null,
@@ -63,19 +45,49 @@
     null
   ],
   "equipment": [
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 6570,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 12006,
+      "amount": 1
+    },
+    {
+      "id": 10551,
+      "amount": 1
+    },
+    {
+      "id": 12954,
+      "amount": 1
+    },
     null,
+    {
+      "id": 4722,
+      "amount": 1
+    },
     null,
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 11840,
+      "amount": 1
+    },
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "id": 11773,
+      "amount": 1
+    },
     null
   ],
   "loadout": {
@@ -128,163 +140,31 @@
   },
   "bank": [
     {
-      "id": 560,
-      "amount": 523542523
-    },
-    {
-      "id": 565,
-      "amount": 245234
-    },
-    {
-      "id": 555,
-      "amount": 1
-    },
-    {
-      "id": 559,
-      "amount": 33523
-    },
-    {
-      "id": 561,
-      "amount": 35253235
-    },
-    {
-      "id": 564,
-      "amount": 5432523
-    },
-    {
-      "id": 563,
-      "amount": 23523
-    },
-    {
-      "id": 558,
-      "amount": 1
-    },
-    {
-      "id": 566,
-      "amount": 35235235
-    },
-    {
-      "id": 557,
-      "amount": 1
-    },
-    {
-      "id": 554,
-      "amount": 1
-    },
-    {
-      "id": 556,
-      "amount": 1
-    },
-    {
-      "id": 397,
-      "amount": 14
-    },
-    {
-      "id": 145,
-      "amount": 1
-    },
-    {
-      "id": 10828,
-      "amount": 1
-    },
-    {
-      "id": 2412,
-      "amount": 1
-    },
-    {
-      "id": 6585,
-      "amount": 1
-    },
-    {
-      "id": 4675,
-      "amount": 1
-    },
-    {
-      "id": 4712,
-      "amount": 1
-    },
-    {
-      "id": 6889,
-      "amount": 1
-    },
-    {
-      "id": 7462,
-      "amount": 1
-    },
-    {
-      "id": 11773,
-      "amount": 1
-    },
-    {
-      "id": 4722,
-      "amount": 1
-    },
-    {
       "id": 5698,
-      "amount": 1
-    },
-    {
-      "id": 12006,
-      "amount": 1
-    },
-    {
-      "id": 6570,
-      "amount": 1
-    },
-    {
-      "id": 10551,
-      "amount": 1
-    },
-    {
-      "id": 11840,
-      "amount": 1
-    },
-    {
-      "id": 12954,
-      "amount": 1
-    },
-    {
-      "id": 4736,
-      "amount": 1
-    },
-    {
-      "id": 6920,
-      "amount": 1
-    },
-    {
-      "id": 4714,
-      "amount": 1
+      "amount": 2
     },
     {
       "id": 163,
-      "amount": 1
+      "amount": 2
+    },
+    {
+      "id": 385,
+      "amount": 46
     },
     {
       "id": 157,
       "amount": 1
     },
     {
-      "id": 567,
-      "amount": 12
+      "id": 145,
+      "amount": 2
     },
     {
-      "id": 567,
-      "amount": 1
-    },
-    {
-      "id": 567,
-      "amount": 1
-    },
-    {
-      "id": 567,
-      "amount": 1
+      "id": 4153,
+      "amount": 2
     }
   ],
   "varps": [
-    {
-      "id": 115,
-      "value": 1
-    },
     {
       "id": 173,
       "value": 1
@@ -294,12 +174,16 @@
       "value": 1000
     },
     {
-      "id": 304,
-      "value": 1
+      "id": 439,
+      "value": 2
+    },
+    {
+      "id": 843,
+      "value": 20
     },
     {
       "id": 867,
-      "value": 12
+      "value": 2
     },
     {
       "id": 1050,
@@ -349,7 +233,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3034463E7
+      "xp": 1.3034431E7
     },
     {
       "level": 99,

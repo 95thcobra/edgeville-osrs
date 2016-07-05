@@ -50,14 +50,26 @@ public class SpellOnPlayerAction {
 	}
 
 	private void handleDamageSpells() {
-		player.messageDebug("ancientspell:" + child);
+		player.messageDebug("spell:" + child);
 		switch (child) {
 
 		// Regular
 		case 2:
 			cycleRegularDamageSpell(RegularDamageSpell.WIND_STRIKE);
 			break;
-
+		case 5:
+			cycleRegularDamageSpell(RegularDamageSpell.WATER_STRIKE);
+			break;
+		case 7:
+			cycleRegularDamageSpell(RegularDamageSpell.EARTH_STRIKE);
+			break;
+		case 9:
+			cycleRegularDamageSpell(RegularDamageSpell.FIRE_STRIKE);
+			break;
+			
+			
+			
+			
 		// Ancients
 		case 74:
 			cycleAncientSpell(AncientSpell.SMOKE_RUSH);
