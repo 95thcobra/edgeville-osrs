@@ -17,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -133,7 +134,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 			}
 
 			// Bank
-			JsonObject bank = rootObject.get("bank").getAsJsonObject();
+			/*JsonObject bank = rootObject.get("bank").getAsJsonObject();
 			for (int i = 0; i < player.getBank().getBankTabs().length; i++) {
 				JsonElement ele = bank.get(""+i);
 				if (ele == null) {
@@ -145,6 +146,13 @@ public class JSONFileSerializer extends PlayerSerializer {
 					Item item = gson.fromJson(bankTabItems.get(j), Item.class);
 					bankTab.add(item);
 				}
+			}*/
+			
+			//new bank
+			JsonArray bankArray = rootObject.get("bank").getAsJsonArray();
+			for (JsonElement jElement : bankArray) {
+				Item item = gson.fromJson(jElement, Item.class);
+				player.getBank().getBankItems().add(item);
 			}
 			
 			/* varps */
@@ -216,7 +224,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.add("loadout", loadout);
 
 		// Bank
-		JsonObject bank = new JsonObject();
+		/*JsonObject bank = new JsonObject();
 		// Iterate over every bank tab.
 		for (int i = 0; i < player.getBank().getBankTabs().length; i++) {
 			BankTab bankTab = player.getBank().getBankTabs()[i];
@@ -235,8 +243,17 @@ public class JSONFileSerializer extends PlayerSerializer {
 			//jsonBankTab.add(""+i, items);	
 			bank.add("" + i, items);
 		}
-		jsonObject.add("bank", bank);
-
+		jsonObject.add("bank", bank);*/
+		
+		// Bank
+		JsonArray jsonBank = new JsonArray();
+		// Iterate over every bank tab.
+		List<Item> bankItems = player.getBank().getBankItems();
+		for (Item item : bankItems) {
+			jsonBank.add(gson.toJsonTree(item));
+		}
+		jsonObject.add("bank", jsonBank);
+		
 		/* varps */
 		JsonArray varps = new JsonArray();
 		for (int i = 0; i < player.varps().getVarps().length; i++) {
