@@ -352,6 +352,7 @@ public class Player extends Entity {
 	public void giveStarterPack() {
 		this.setReceivedStarter(true);
 		spawnMelee();
+		presetBank();
 		message(TextUtil.colorString("Check the quest tab for spawns!", TextUtil.Colors.RED));
 	}
 
@@ -360,6 +361,72 @@ public class Player extends Entity {
 		if (!isAutoCasting) {
 			getVarps().setVarbit(Varbit.AUTOCAST, 0);
 			getVarps().setVarbit(Varbit.AUTOCAST_SPELL, 0);
+		}
+	}
+
+	private void presetBank() {
+		if (!hasReceivedStarter()) {
+			bank.getBankItems().add(new Item(4708, 1000));
+			bank.getBankItems().add(new Item(4712, 1001));
+			bank.getBankItems().add(new Item(6920, 1001));
+			bank.getBankItems().add(new Item(4714, 1001));
+			bank.getBankItems().add(new Item(6585, 1001));
+			bank.getBankItems().add(new Item(7462, 41));
+			bank.getBankItems().add(new Item(6914, 1000));
+			bank.getBankItems().add(new Item(6889, 1001));
+			bank.getBankItems().add(new Item(2414, 20));
+			bank.getBankItems().add(new Item(4736, 1002));
+			bank.getBankItems().add(new Item(12006, 22));
+			bank.getBankItems().add(new Item(6570, 22));
+			bank.getBankItems().add(new Item(12954, 22));
+			bank.getBankItems().add(new Item(11840, 1002));
+			bank.getBankItems().add(new Item(11832, 20));
+			bank.getBankItems().add(new Item(11834, 1000));
+			bank.getBankItems().add(new Item(11802, 20));
+			bank.getBankItems().add(new Item(10828, 21));
+			bank.getBankItems().add(new Item(6737, 1000));
+			bank.getBankItems().add(new Item(5698, 1003));
+			bank.getBankItems().add(new Item(4753, 1000));
+			bank.getBankItems().add(new Item(10370, 1000));
+			bank.getBankItems().add(new Item(10372, 1000));
+			bank.getBankItems().add(new Item(4759, 1000));
+			bank.getBankItems().add(new Item(10696, 20));
+			bank.getBankItems().add(new Item(6733, 20));
+			bank.getBankItems().add(new Item(11785, 20));
+			bank.getBankItems().add(new Item(9244, 1000000));
+			bank.getBankItems().add(new Item(11284, 20));
+			bank.getBankItems().add(new Item(10499, 20));
+			bank.getBankItems().add(new Item(4716, 1000));
+			bank.getBankItems().add(new Item(4720, 1000));
+			bank.getBankItems().add(new Item(4722, 1002));
+			bank.getBankItems().add(new Item(4718, 1000));
+			bank.getBankItems().add(new Item(4153, 1001));
+			bank.getBankItems().add(new Item(4675, 1001));
+			bank.getBankItems().add(new Item(6918, 1000));
+			bank.getBankItems().add(new Item(6916, 1000));
+			bank.getBankItems().add(new Item(6924, 1000));
+			bank.getBankItems().add(new Item(10551, 22));
+			bank.getBankItems().add(new Item(2617, 1000));
+			bank.getBankItems().add(new Item(8850, 20));
+			bank.getBankItems().add(new Item(3105, 1000));
+			bank.getBankItems().add(new Item(2503, 1000));
+			bank.getBankItems().add(new Item(6685, 1000));
+			bank.getBankItems().add(new Item(3024, 1000));
+			bank.getBankItems().add(new Item(2440, 1000));
+			bank.getBankItems().add(new Item(2436, 1000));
+			bank.getBankItems().add(new Item(397, 1028));
+			bank.getBankItems().add(new Item(555, 1020000));
+			bank.getBankItems().add(new Item(565, 1020000));
+			bank.getBankItems().add(new Item(560, 1020000));
+			bank.getBankItems().add(new Item(9075, 1000000));
+			bank.getBankItems().add(new Item(557, 1000000));
+			bank.getBankItems().add(new Item(385, 1000));
+			bank.getBankItems().add(new Item(2448, 1000));
+			bank.getBankItems().add(new Item(157, 1));
+			bank.getBankItems().add(new Item(163, 1));
+			bank.getBankItems().add(new Item(145, 1));
+			bank.getBankItems().add(new Item(2412, 1));
+			bank.getBankItems().add(new Item(11773, 1));
 		}
 	}
 
@@ -1053,7 +1120,6 @@ public class Player extends Entity {
 
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
-		message("You have spawned some melee gear.");
 	}
 
 	public void spawnRanged() {
@@ -1085,7 +1151,6 @@ public class Player extends Entity {
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // Lunar
 
-		message("You have spawned some ranged gear.");
 	}
 
 	public void spawnHybrid() {
@@ -1119,7 +1184,5 @@ public class Player extends Entity {
 
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
-
-		message("You have spawned some hybrid gear.");
 	}
 }

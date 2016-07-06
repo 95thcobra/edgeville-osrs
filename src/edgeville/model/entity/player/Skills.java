@@ -171,18 +171,6 @@ public class Skills {
 		update(skill);
 	}
 
-	public void alterSkillThatworks(int skill, int change) {
-		int newLevel = levels()[skill] + change;
-		if (newLevel > 99) {
-			newLevel = 99;
-		}
-		if (newLevel < 0) {
-			newLevel = 0;
-		}
-		levels()[skill] = newLevel;
-		update(skill);
-	}
-
 	public void alterSkill(int skill, double changePercentage) {
 		levels[skill] = (int) Math.round(xpLevel(skill) * changePercentage);
 		update(skill);

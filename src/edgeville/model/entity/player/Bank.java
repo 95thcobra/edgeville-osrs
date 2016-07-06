@@ -24,76 +24,18 @@ public class Bank {
 	private int currentBankTab;
 
 	public Bank(Player player) {
-
 		this.player = player;
-		bankItems = new ArrayList<Item>();
-
-		if (!player.hasReceivedStarter()) {
-			bankItems.add(new Item(4708, 1000));
-			bankItems.add(new Item(4712, 1001));
-			bankItems.add(new Item(6920, 1001));
-			bankItems.add(new Item(4714, 1001));
-			bankItems.add(new Item(6585, 1001));
-			bankItems.add(new Item(7462, 41));
-			bankItems.add(new Item(6914, 1000));
-			bankItems.add(new Item(6889, 1001));
-			bankItems.add(new Item(2414, 20));
-			bankItems.add(new Item(4736, 1002));
-			bankItems.add(new Item(12006, 22));
-			bankItems.add(new Item(6570, 22));
-			bankItems.add(new Item(12954, 22));
-			bankItems.add(new Item(11840, 1002));
-			bankItems.add(new Item(11832, 20));
-			bankItems.add(new Item(11834, 1000));
-			bankItems.add(new Item(11802, 20));
-			bankItems.add(new Item(10828, 21));
-			bankItems.add(new Item(6737, 1000));
-			bankItems.add(new Item(5698, 1003));
-			bankItems.add(new Item(4753, 1000));
-			bankItems.add(new Item(10370, 1000));
-			bankItems.add(new Item(10372, 1000));
-			bankItems.add(new Item(4759, 1000));
-			bankItems.add(new Item(10696, 20));
-			bankItems.add(new Item(6733, 20));
-			bankItems.add(new Item(11785, 20));
-			bankItems.add(new Item(9244, 1000000));
-			bankItems.add(new Item(11284, 20));
-			bankItems.add(new Item(10499, 20));
-			bankItems.add(new Item(4716, 1000));
-			bankItems.add(new Item(4720, 1000));
-			bankItems.add(new Item(4722, 1002));
-			bankItems.add(new Item(4718, 1000));
-			bankItems.add(new Item(4153, 1001));
-			bankItems.add(new Item(4675, 1001));
-			bankItems.add(new Item(6918, 1000));
-			bankItems.add(new Item(6916, 1000));
-			bankItems.add(new Item(6924, 1000));
-			bankItems.add(new Item(10551, 22));
-			bankItems.add(new Item(2617, 1000));
-			bankItems.add(new Item(8850, 20));
-			bankItems.add(new Item(3105, 1000));
-			bankItems.add(new Item(2503, 1000));
-			bankItems.add(new Item(6685, 1000));
-			bankItems.add(new Item(3024, 1000));
-			bankItems.add(new Item(2440, 1000));
-			bankItems.add(new Item(2436, 1000));
-			bankItems.add(new Item(397, 1028));
-			bankItems.add(new Item(555, 1020000));
-			bankItems.add(new Item(565, 1020000));
-			bankItems.add(new Item(560, 1020000));
-			bankItems.add(new Item(9075, 1000000));
-			bankItems.add(new Item(557, 1000000));
-			bankItems.add(new Item(385, 1000));
-			bankItems.add(new Item(2448, 1000));
-			bankItems.add(new Item(157, 1));
-			bankItems.add(new Item(163, 1));
-			bankItems.add(new Item(145, 1));
-			bankItems.add(new Item(2412, 1));
-			bankItems.add(new Item(11773, 1));
-		}
-
+		bankItems = new ArrayList<Item>(800);
 		currentBankTab = -1;
 		makeDirty();
+	}
+
+	public void add(Item item) {
+		if (bankItems.size() == 800) {
+			player.message("Bank is full!");
+			return;
+		}
+		bankItems.add(item);
 	}
 
 	/**
@@ -159,7 +101,15 @@ public class Bank {
 		return -1;
 	}
 
+	private boolean bankFull() {
+		player.message("Bank is full!");
+		return bankItems.size() == 800;
+	}
+
 	private void shiftItems(int slot, int slotOther) {
+		if (bankFull()) {
+			return;
+		}
 		if (slot >= bankItems.size() || slotOther >= bankItems.size()) {
 			return;
 		}
@@ -187,6 +137,9 @@ public class Bank {
 	}
 
 	public void draggingToTabs(int slot, int slotOther) {
+		if (bankFull()) {
+			return;
+		}
 		player.message("slot: %d, slot2: %d", slot, slotOther);
 
 		if (slotOther == 10) {
@@ -459,11 +412,6 @@ public class Bank {
 			int bankTab = getBankTab(slot);
 			changeBankTabSize(bankTab, -1);
 			bankItems.remove(i);
-			// int slot = getSlotForItem(id);
-			// player.message("Slot %d", slot);
-			// int bankTab =getBankTab(slot);
-			// player.message("BankTab: %d", bankTab);
-			// this.changeBankTabSize(bankTab, -1);
 		}
 	}
 
@@ -492,6 +440,9 @@ public class Bank {
 	}
 
 	public void deposit(int buttonId, int slot, int option) {
+		if (bankFull()) {
+			return;
+		}
 		slot++;
 
 		// The selected item.
@@ -535,15 +486,6 @@ public class Bank {
 		return false;
 	}
 
-	private Item getItem(int id) {
-		for (Item item : bankItems) {
-			if (item.getId() == id) {
-				return item;
-			}
-		}
-		return null;
-	}
-
 	private int getSlotForItem(int itemId) {
 		for (int i = 0; i < bankItems.size(); i++) {
 			Item item = bankItems.get(i);
@@ -561,6 +503,9 @@ public class Bank {
 	}
 
 	private void add(int id, int amount) {
+		if (bankFull()) {
+			return;
+		}
 		int unnotedId = new Item(id).definition(player.world()).unnotedID;
 		int idToAdd;
 		if (unnotedId > 0 && unnotedId < id) {
@@ -584,6 +529,9 @@ public class Bank {
 	}
 
 	private void moveItemFromInventoryToBank(int id, int amount) {
+		if (bankFull()) {
+			return;
+		}
 		if (player.getInventory().remove(id, amount).success()) {
 			add(id, amount);
 		}

@@ -1,6 +1,9 @@
-Make signature better
+Make signature better /logo
 Combat beta release date/time & graphics!
 integrate forums with server?
+
+safe area
+shops
 
 
 

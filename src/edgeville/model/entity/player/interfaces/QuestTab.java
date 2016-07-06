@@ -63,16 +63,19 @@ public class QuestTab {
 		// Melee
 		case 15:
 			player.spawnMelee();
+			player.message("You have spawned some melee gear.");
 			break;
 
 		// Range
 		case 16:
 			player.spawnRanged();
+			player.message("You have spawned some ranged gear.");
 			break;
 
 		// Hybrid
 		case 17:
 			player.spawnHybrid();
+			player.message("You have spawned some hybrid gear.");
 			break;
 
 		// Save loadout

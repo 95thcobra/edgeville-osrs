@@ -26,9 +26,9 @@ public class UpdateGameEvent extends Event {
 	public void execute(EventContainer container) {
 		if (tick == ticksForRestart) {
 			player.world().players().forEach(p -> {
-				 p.logout();	
+				 //p.logout();	
 				 // causes bugs?
-				 //p.savePlayer();
+				 p.savePlayer();
 			});
 		}
 		if (tick == ticksForRestart + 2) {
