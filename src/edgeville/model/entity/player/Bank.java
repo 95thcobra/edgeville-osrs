@@ -102,8 +102,11 @@ public class Bank {
 	}
 
 	private boolean bankFull() {
-		player.message("Bank is full!");
-		return bankItems.size() == 800;
+		if (bankItems.size() == 800) {
+			player.message("Bank is full!");
+			return true;
+		}
+		return false;
 	}
 
 	private void shiftItems(int slot, int slotOther) {
