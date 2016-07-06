@@ -7,50 +7,11 @@ integrate forums with server?
 TE SNEL INLOGGEN BUG?
 
 hiscores
-
-
- smite etc
-
 zammy brew
 sara brew
 
 spirit shields
 
 test combat
-hiscores
 
-
-loop invokescripts+
-
-varbit 4103 prayer orb
-varp 456 sick hp orb
-varp 102 poison hp orb
-varbit 3756 flickering attack styles tab
-varbit 25 run orb
-varp 0 - 2000 turn text green
-loopvarp 2 turns all spellbook spells on
-
-
-
-
-
-
-
-
-
-
-complete prayer
-poisons
-
-add run energy
-copy gear command
-
-
-SPELL ON NPC!!!!!
-abyssal dagger - attack animation & special animation
-
-lesser demon animations: npclist.txt in downloads
-
-
-'
-Prayer & spell requirements
+combat accuracy, maxhits are good.

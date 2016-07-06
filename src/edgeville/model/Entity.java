@@ -54,6 +54,7 @@ public abstract class Entity implements HitOrigin {
 	public void setDamageOn(boolean damageOn) {
 		this.damageOn = damageOn;
 	}
+
 	private Entity target;
 	private Entity lastAttackedBy;
 
@@ -72,6 +73,7 @@ public abstract class Entity implements HitOrigin {
 	public void setLastAttackedBy(Entity lastAttackedBy) {
 		this.lastAttackedBy = lastAttackedBy;
 	}
+
 	/**
 	 * Information on our synchronization
 	 */
@@ -464,10 +466,10 @@ public abstract class Entity implements HitOrigin {
 				double baseXp;
 				Spell spell = player.getLastCastedSpell();
 				if (spell instanceof RegularDamageSpell) {
-					RegularDamageSpell rdSpell = (RegularDamageSpell)spell;
+					RegularDamageSpell rdSpell = (RegularDamageSpell) spell;
 					baseXp = rdSpell.getMagicExperience();
-				} else if ( spell instanceof AncientSpell) {
-					AncientSpell aSpell = (AncientSpell)spell;
+				} else if (spell instanceof AncientSpell) {
+					AncientSpell aSpell = (AncientSpell) spell;
 					baseXp = aSpell.getBaseMagicXp();
 				} else {
 					baseXp = 0;
@@ -480,13 +482,16 @@ public abstract class Entity implements HitOrigin {
 					((Player) origin).skills().addXp(Skills.MAGIC, baseXp + (hit * 0.2));
 				}
 			}
-			
+
 			((Player) origin).skills().addXp(Skills.HITPOINTS, hit * 1.33);
 
 			((Player) origin).sound(((Entity) origin).getAttackSound());
 			if (this instanceof Player) {
 				((Player) origin).setSkullHeadIcon(Skulls.WHITE_SKUL.getSkullId());
 				((Player) origin).timers().extendOrRegister(TimerKey.SKULL, 2000); // 20
+
+				int drain = (int) Math.round(0.25 * hit);
+				((Player)this).skills().alterSkill(Skills.PRAYER, -drain, true);
 			}
 		}
 
