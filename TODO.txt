@@ -1,11 +1,24 @@
+Make signature better
+Combat beta release date/time & graphics!
+integrate forums with server?
 
-quickprayers varbit 4102
+
+
+TE SNEL INLOGGEN BUG?
+
+hiscores
+
+
+ smite etc
+
+zammy brew
+sara brew
+
+spirit shields
+
 test combat
+hiscores
 
-
-
-
-Make new combat formula AND print it somewhere on screen.
 
 loop invokescripts+
 

@@ -1,8 +1,13 @@
 package edgeville.aquickaccess.actions;
 
+import org.fusesource.jansi.Ansi.Color;
+
 import edgeville.combat.Combat;
 import edgeville.combat.PlayerVersusAnyCombat;
+import edgeville.combat.magic.AncientSpell;
+import edgeville.combat.magic.RegularDamageSpell;
 import edgeville.combat.magic.Runes;
+import edgeville.combat.magic.Spell;
 import edgeville.model.AttributeKey;
 import edgeville.model.Entity;
 import edgeville.model.Locations;
@@ -12,6 +17,7 @@ import edgeville.model.entity.player.Skills;
 import edgeville.model.entity.player.interfaces.inputdialog.NumberInputDialog;
 import edgeville.model.entity.player.interfaces.inputdialog.StringInputDialog;
 import edgeville.model.entity.player.skills.Prayer;
+import edgeville.model.entity.player.skills.Prayers;
 import edgeville.model.item.Item;
 import edgeville.net.message.game.encoders.InvokeScript;
 import edgeville.script.TimerKey;
@@ -134,7 +140,7 @@ public class ButtonClickAction {
 
 		// Combat style switching
 		case 593:
-			handleCombatStyleSwitch();
+			tabs();
 			break;
 
 		// Clanchat join chat
@@ -158,18 +164,22 @@ public class ButtonClickAction {
 		}
 		int max = 25;
 		int hit = player.world().random().nextInt((int) Math.round(max));
-		
+
 		player.graphic(1165, 92, 0);
 		player.world().spawnProjectile(player.getTile(), target, 1166, 40, 33, 55, 12, 15, 50);
 		target.graphic(1167, 92, 50);
-		
+
 		target.hit(player, hit, 3);
-		
+
 		player.timers().register(TimerKey.DFS_COOLDOWN, 50);
 	}
 
 	private void quickPrayers() {
-		player.interfaces().setQuickPrayers(true);
+		if (option == 1) {// save
+			player.getPrayer().saveQuickPrayers();
+		} else if (option == 0) {// activate
+			player.getPrayer().toggleQuickPrayers();
+		}
 	}
 
 	private void handleClanChat() {
@@ -187,12 +197,12 @@ public class ButtonClickAction {
 	private void advancedSettings() {
 		switch (buttonId) {
 		case 12:
-			boolean enabled = player.varps().getVarbit(Varbit.TRANSPARENT_CHAT_BOX) == 1;
-			player.varps().setVarbit(Varbit.TRANSPARENT_CHAT_BOX, enabled ? 0 : 1);
+			boolean enabled = player.getVarps().getVarbit(Varbit.TRANSPARENT_CHAT_BOX) == 1;
+			player.getVarps().setVarbit(Varbit.TRANSPARENT_CHAT_BOX, enabled ? 0 : 1);
 			break;
 		case 14:
-			boolean clickThroughEnabled = player.varps().getVarbit(Varbit.CLICKTHROUGH_CHAT_BOX) == 1;
-			player.varps().setVarbit(Varbit.CLICKTHROUGH_CHAT_BOX, clickThroughEnabled ? 0 : 1);
+			boolean clickThroughEnabled = player.getVarps().getVarbit(Varbit.CLICKTHROUGH_CHAT_BOX) == 1;
+			player.getVarps().setVarbit(Varbit.CLICKTHROUGH_CHAT_BOX, clickThroughEnabled ? 0 : 1);
 			break;
 		}
 	}
@@ -272,21 +282,27 @@ public class ButtonClickAction {
 		player.getEquipment().refreshEquipmentStatsInterface(player);
 	}
 
-	private void handleCombatStyleSwitch() {
+	private void tabs() {
 		switch (buttonId) {
 
 		// Attack styles
 		case 3:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 0);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 0);
 			break;
 		case 7:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 1);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 1);
 			break;
 		case 11:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 2);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 2);
 			break;
 		case 15:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 3);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 3);
+			break;
+
+		// autocasting
+		case 20:
+		case 24:
+			handleAutoCast();
 			break;
 
 		// Special attack
@@ -301,6 +317,48 @@ public class ButtonClickAction {
 			}
 			player.toggleSpecialAttack();
 			break;
+		}
+	}
+
+	private void handleAutoCast() {
+		if (player.isAutoCasting()) {
+			player.disableAutocasting();
+			player.message(TextUtil.colorString("You have canceled autocast!", TextUtil.Colors.RED));
+			return;
+		}
+		if (player.getLastCastedSpell() == null) {
+			player.message("Cast a spell you want to auto cast, then press this button!");
+			return;
+		}
+
+		if (player.getVarps().getVarbit(Varbit.SPELLBOOK) == SpellBook.ANCIENTS && player.getLastCastedSpell() instanceof AncientSpell) {
+			player.setAutoCastingSpell(player.getLastCastedSpell());
+			player.setAutoCastingSpellChild(player.getLastSpellCastChild());
+		} else if (player.getVarps().getVarbit(Varbit.SPELLBOOK) == SpellBook.REGULAR && player.getLastCastedSpell() instanceof RegularDamageSpell) {
+			player.setAutoCastingSpell(player.getLastCastedSpell());
+			player.setAutoCastingSpellChild(player.getLastSpellCastChild());
+		} else {
+			player.message("Your last casted spell was from a different spellbook!");
+			return;
+		}
+		//player.setAutoCastingSpell(player.getLastCastedSpell());
+		//player.setAutoCastingSpellChild(player.getLastSpellCastChild());
+
+		player.getVarps().setVarbit(Varbit.AUTOCAST_SPELL, getAutoCastSpellId(player.getAutoCastingSpell()));
+		player.getVarps().setVarbit(Varbit.AUTOCAST, buttonId == 20 ? 1 : 2);
+		player.messageDebug("varbit autocast is now %d", player.getVarps().getVarbit(Varbit.AUTOCAST));
+		String spellName = player.getLastCastedSpell().toString();
+		player.message("<col=FF0000>You are now autocasting <col=0066FF>" + spellName + "<col=FF0000>!");
+		player.setAutoCasting(true);
+	}
+
+	private int getAutoCastSpellId(Spell spell) {
+		if (spell instanceof AncientSpell) {
+			AncientSpell aSpell = (AncientSpell) spell;
+			return 31 + aSpell.ordinal();
+		} else {
+			RegularDamageSpell rdSpell = (RegularDamageSpell) spell;
+			return rdSpell.ordinal();
 		}
 	}
 
@@ -350,42 +408,42 @@ public class ButtonClickAction {
 
 		// Position
 		case 50:
-			player.varps().setVarbit(Varbit.XP_DROPS_POSITION, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_POSITION, slot);
 			break;
 
 		// Size
 		case 51:
-			player.varps().setVarbit(Varbit.XP_DROPS_SIZE, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_SIZE, slot);
 			break;
 
 		// Duration
 		case 52:
-			player.varps().setVarbit(Varbit.XP_DROPS_DURATION, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_DURATION, slot);
 			break;
 
 		// Counter
 		case 53:
-			player.varps().setVarbit(Varbit.XP_DROPS_COUNTER, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_COUNTER, slot);
 			break;
 
 		// Progressbar
 		case 54:
-			player.varps().setVarbit(Varbit.XP_DROPS_PROGRESSBAR, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_PROGRESSBAR, slot);
 			break;
 
 		// Color
 		case 55:
-			player.varps().setVarbit(Varbit.XP_DROPS_COLOR, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_COLOR, slot);
 			break;
 
 		// Group
 		case 56:
-			player.varps().setVarbit(Varbit.XP_DROPS_GROUP, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_GROUP, slot);
 			break;
 
 		// Speed
 		case 57:
-			player.varps().setVarbit(Varbit.XP_DROPS_SPEED, slot);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_SPEED, slot);
 			break;
 		}
 	}

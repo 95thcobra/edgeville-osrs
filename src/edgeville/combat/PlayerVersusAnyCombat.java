@@ -40,7 +40,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		Item ammo = ((Player) getEntity()).getEquipment().get(EquipSlot.AMMO);
 		int ammoId = ammo == null ? -1 : ammo.getId();
 		String ammoName = ammo == null ? "" : ammo.definition(getEntity().world()).name;
-		
+
 		// Check if players are in wilderness.
 		if (target instanceof Player) {
 			if (!Constants.ALL_PVP) {
@@ -59,7 +59,7 @@ public class PlayerVersusAnyCombat extends Combat {
 
 			// bounty interface for target.
 			if (!target.timers().has(TimerKey.IN_COMBAT)) {
-				((Player)target).interfaces().setBountyInterface(true);
+				((Player) target).interfaces().setBountyInterface(true);
 			}
 			target.timers().register(TimerKey.IN_COMBAT, 10);
 		}
@@ -88,8 +88,10 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Move closer if out of range.
 		if (!player.touches(getTarget(), currentTile)) {
-			if (!player.frozen())
+			if (!player.frozen()) {
+				// player.pathQueue().clear();
 				currentTile = moveCloser();
+			}
 			return;
 		}
 
@@ -178,7 +180,13 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (currentTile.distance(target.getTile()) > maxDist && !player.frozen() && !player.stunned()) {
 			// currentTile = moveCloser();
 			player.stepTowards(target, 2);
+			return;
 		}
+
+		// if (player.pathQueue().projectilesBlocked(player, target)) {
+		// player.stepTowards(target, 2);
+		// return;
+		// }
 
 		if (player.getTile().equals(target.getTile())) {
 			currentTile = moveCloser();
@@ -348,7 +356,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		player.timers().register(TimerKey.COMBAT_ATTACK, weaponSpeed);
 
 		// After every attack, reset special.
-		player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
+		player.getVarps().setVarp(Varp.SPECIAL_ENABLED, 0);
 	}
 
 	private void doRangeSpecial(Player player, int weaponId) {

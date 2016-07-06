@@ -34,6 +34,96 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		put(Privilege.ADMIN, "inte", (p, args) -> {
+			p.interfaces().sendMain(548);
+		});
+		
+		put(Privilege.ADMIN, "resetlevel", (p, args) -> {
+			for (int i = 0; i < Skills.SKILL_COUNT; i++) {
+				p.skills().setXp(i, 0);
+				p.skills().resetStats();
+			}
+		});
+		
+		put(Privilege.ADMIN, "varb", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 1000; i++) {
+					try {
+						Thread.sleep(500);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					//p.write(new InvokeScript(i, -1, -2147483648));
+					p.getVarps().setVarbit(276, i);
+					p.shout("invoke: " + i);
+				}
+			}).start();
+		});
+	
+		
+		put(Privilege.ADMIN, "reseti", (p, args) -> {
+			p.interfaces().sendResizable();
+		});
+
+		put(Privilege.ADMIN, "il", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 10000; i++) {
+					try {
+						Thread.sleep(100);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					p.write(new InvokeScript(i, -1, -2147483648));
+		
+					p.shout("invoke: " + i);
+				}
+			}).start();
+		});
+
+	
+		put(Privilege.ADMIN, "testk", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 1000; i++) {
+					try {
+						Thread.sleep(100);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					p.write(new InterfaceSettings(77, i, 0, 1000, new SettingsBuilder().option(2)));
+
+					// p.write(new InterfaceSettings(77, i, 0, 1000, 5));
+
+					p.shout("interfacesetting: " + i);
+				}
+			}).start();
+		});
+
+		put(Privilege.ADMIN, "qp", (p, args) -> {
+			p.getVarps().setVarbit(Varbit.QUICK_PRAYERS, Integer.parseInt(args[0]));
+		});
+
+		put(Privilege.ADMIN, "loopqp", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 200; i++) {
+
+					try {
+						Thread.sleep(2000);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					p.getVarps().setVarbit(Varbit.QUICK_PRAYERS, i);
+					p.shout("script:" + i);
+				}
+			}).start();
+		});
+
 		put(Privilege.ADMIN, "npcanim", (p, args) -> {
 			Npc npc = new Npc(2005, p.world(), p.getTile(), false);
 			p.world().registerNpc(npc);
@@ -49,13 +139,13 @@ public final class GameCommands {
 		});
 
 		put(Privilege.ADMIN, "animnpc", (p, args) -> {
-			for(int i = 0 ; i <p.world().npcs().size() ; i++) {
+			for (int i = 0; i < p.world().npcs().size(); i++) {
 				Npc npc = p.world().npcs().get(i);
 				if (npc.def().name.contains("esser")) {
 					npc.animate(Integer.parseInt(args[0]));
 				}
 			}
-			//npc.shout("FFS");
+			// npc.shout("FFS");
 		});
 
 		put(Privilege.ADMIN, "testv", (p, args) -> {
@@ -162,7 +252,7 @@ public final class GameCommands {
 
 		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
 		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
-		put(Privilege.ADMIN, "spec", (p, args) -> p.varps().setVarp(300, 100000));
+		put(Privilege.ADMIN, "spec", (p, args) -> p.getVarps().setVarp(300, 100000));
 
 		put(Privilege.ADMIN, "emote", (p, args) -> p.animate(Integer.parseInt(args[0])));
 		put(Privilege.ADMIN, "anim", (p, args) -> p.animate(Integer.parseInt(args[0])));
@@ -195,8 +285,7 @@ public final class GameCommands {
 		});
 		///////////
 
-		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
-		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
+	put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
 
 		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
 		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));
@@ -222,7 +311,7 @@ public final class GameCommands {
 		});
 
 		put(Privilege.ADMIN, "getvarp", (p, args) -> {
-			p.message("" + p.varps().getVarp(Integer.parseInt(args[0])));
+			p.message("" + p.getVarps().getVarp(Integer.parseInt(args[0])));
 		});
 
 		put(Privilege.ADMIN, "skull", (p, args) -> {
@@ -249,7 +338,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "loopvarbit", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 10000; i++) {
-					p.varps().setVarbit(i, Integer.parseInt(args[0]));
+					p.getVarps().setVarbit(i, Integer.parseInt(args[0]));
 				}
 			}).start();
 		});
@@ -257,7 +346,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "loopvarp", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 2001; i++) {
-					p.varps().setVarp(i, Integer.parseInt(args[0]));
+					p.getVarps().setVarp(i, Integer.parseInt(args[0]));
 				}
 			}).start();
 		});
@@ -265,7 +354,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "lv", (p, args) -> {
 			new Thread(() -> {
 				for (int i = Integer.parseInt(args[0]); i < Integer.parseInt(args[1]); i++) {
-					p.varps().setVarp(i, Integer.parseInt(args[2]));
+					p.getVarps().setVarp(i, Integer.parseInt(args[2]));
 				}
 			}).start();
 		});
@@ -273,7 +362,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "lvb", (p, args) -> {
 			new Thread(() -> {
 				for (int i = Integer.parseInt(args[0]); i < Integer.parseInt(args[1]); i++) {
-					p.varps().setVarbit(i, Integer.parseInt(args[2]));
+					p.getVarps().setVarbit(i, Integer.parseInt(args[2]));
 				}
 			}).start();
 		});
@@ -281,7 +370,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "lvv", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 5000; i++) {
-					p.varps().setVarp(Integer.parseInt(args[0]), i);
+					p.getVarps().setVarp(Integer.parseInt(args[0]), i);
 				}
 			}).start();
 		});
@@ -289,7 +378,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "lvbv", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 5000; i++) {
-					p.varps().setVarbit(Integer.parseInt(args[0]), i);
+					p.getVarps().setVarbit(Integer.parseInt(args[0]), i);
 				}
 			}).start();
 		});
@@ -299,7 +388,7 @@ public final class GameCommands {
 				int varbit = 0;
 				while (varbit++ < 5000) {
 					// p.varps().varbit(varbit, 1);
-					p.varps().setVarp(varbit, 1);
+					p.getVarps().setVarp(varbit, 1);
 					// p.interfaces().setting(271, varbit, 1, 3, new
 					// SettingsBuilder().option(0));
 
@@ -390,7 +479,7 @@ public final class GameCommands {
 		});
 
 		put(Privilege.ADMIN, "xpdrop", (p, args) -> {
-			p.varps().setVarbit(Varbit.XP_DROPS_COUNTER, 2);
+			p.getVarps().setVarbit(Varbit.XP_DROPS_COUNTER, 2);
 			p.message("xpdrop off.");
 		});
 
@@ -498,8 +587,8 @@ public final class GameCommands {
 
 			p.getInventory().add(new Item(itemId, amount), true);
 		});
-		put(Privilege.ADMIN, "varp", (p, args) -> p.varps().setVarp(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
-		put(Privilege.ADMIN, "varbit", (p, args) -> p.varps().setVarbit(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+		put(Privilege.ADMIN, "varp", (p, args) -> p.getVarps().setVarp(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+		put(Privilege.ADMIN, "varbit", (p, args) -> p.getVarps().setVarbit(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
 		put(Privilege.ADMIN, "give", (p, args) -> {
 
 			if (p.getPrivilege() != Privilege.ADMIN && p.getTile().z > 3520 && p.getTile().z < 3972) {
@@ -544,7 +633,7 @@ public final class GameCommands {
 		put(Privilege.ADMIN, "addxp", (p, args) -> p.skills().addXp(Integer.valueOf(args[0]), Integer.valueOf(args[1])));
 		// put(Privilege.ADMIN, "hitme", (p, args) -> p.hit(p,
 		// Integer.valueOf(args[0]), Hit.Type.REGULAR));
-		put(Privilege.ADMIN, "maxspec", (p, args) -> p.varps().setVarp(Varp.SPECIAL_ENERGY, 1000));
+		put(Privilege.ADMIN, "maxspec", (p, args) -> p.getVarps().setVarp(Varp.SPECIAL_ENERGY, 1000));
 		put(Privilege.ADMIN, "finditem", (p, args) -> {
 			String s = glue(args);
 			new Thread(() -> {
@@ -577,9 +666,9 @@ public final class GameCommands {
 		 * put(Privilege.ADMIN, "input", (p, args) -> { new
 		 * InputDialog(p).sendNumberInput(); });
 		 */
-		put(Privilege.PLAYER, "ancients", (p, args) -> p.varps().setVarbit(4070, 1));
-		put(Privilege.PLAYER, "modern", (p, args) -> p.varps().setVarbit(4070, 0));
-		put(Privilege.PLAYER, "lunar", (p, args) -> p.varps().setVarbit(4070, 2));
+		put(Privilege.PLAYER, "ancients", (p, args) -> p.getVarps().setVarbit(4070, 1));
+		put(Privilege.PLAYER, "modern", (p, args) -> p.getVarps().setVarbit(4070, 0));
+		put(Privilege.PLAYER, "lunar", (p, args) -> p.getVarps().setVarbit(4070, 2));
 		put(Privilege.PLAYER, "gdz", (p, args) -> {
 			if (inWilderness(p)) {
 				p.message("You cannot do this while in the wilderness.");

@@ -1,3 +1,32 @@
+
+
+
+[06-07-2016]: Add preset bank on first login.
+[06-07-2016]: Add ranged set.
+[06-07-2016]: Dragonfire shield activation added.
+[06-07-2016]: Quick prayers added (custom version)!
+[06-07-2016]: Auto casting added (custom version)!
+[06-07-2016]: Fix pjing.
+[06-07-2016]: Add all the correct base magic experienced for spells.
+[06-07-2016]: Defence autocasting now gives defence XP.
+[06-07-2016]: All combat styles now also give hitpoints experience.
+
+[B](de)activating of quick prayers.[/B]
+[IMG]https://gyazo.com/f442424b69f40f34b294d54e5892044b.gif[/IMG]
+
+[B]Quick prayers, made even quicker![/B]
+[IMG]https://i.gyazo.com/a4571af1227e28452659d4220ee412e7.gif[/IMG]
+
+[B]Convenient auto casting, last used spell will be used.[/B]
+[IMG]https://i.gyazo.com/4ae9e283c24bc4f7f6d9564712c7be5b.gif[/IMG]
+
+
+[IMG][/IMG]
+[IMG][/IMG]
+
+
+
+
 [B]Today's updates so far, more to come!
 [05-07-2016]:[/B]
 - Add regular mage damage spells.

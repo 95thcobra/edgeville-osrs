@@ -3,7 +3,7 @@ package edgeville.net.message.game.decoders;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import edgeville.combat.magic.SpellOnPlayerAction;
+import edgeville.combat.magic.SpellOnTargetAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Npc;
@@ -53,7 +53,7 @@ public class SpellOnNpc implements Action {
 			if (!player.locked() && !player.dead() && !other.dead()) {
 				player.face(other);
 				player.putAttribute(AttributeKey.TARGET, hash);
-				new SpellOnPlayerAction(player, other, interfaceId, interfaceChildId).start();
+				new SpellOnTargetAction(player, other, interfaceId, interfaceChildId).start(false);
 			}
 		}
 	}

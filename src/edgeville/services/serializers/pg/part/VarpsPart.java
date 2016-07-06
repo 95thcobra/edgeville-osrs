@@ -22,17 +22,17 @@ public class VarpsPart implements PgJsonPart {
 		JsonArray varparray = parser.parse(resultSet.getString("varps")).getAsJsonArray();
 		for (JsonElement varp : varparray) {
 			JsonObject item = varp.getAsJsonObject();
-			player.varps().getVarps()[item.get("id").getAsInt()] = item.get("val").getAsInt();
+			player.getVarps().getVarps()[item.get("id").getAsInt()] = item.get("val").getAsInt();
 		}
 	}
 
 	@Override
 	public void encode(Player player, PreparedStatement characterUpdateStatement) throws SQLException {
-		player.varps().presave();
+		player.getVarps().presave();
 
 		JsonArray varparray = new JsonArray();
 
-		int[] v = player.varps().getVarps();
+		int[] v = player.getVarps().getVarps();
 		for (int i = 0; i < 2000; i++) {
 			if (v[i] != 0) {
 				JsonObject obj = new JsonObject();

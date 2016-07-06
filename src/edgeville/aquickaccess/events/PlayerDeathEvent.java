@@ -7,6 +7,8 @@ import edgeville.model.Entity;
 import edgeville.model.Locations;
 import edgeville.model.entity.Npc;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.Skills;
+import edgeville.model.entity.player.skills.Prayers;
 import edgeville.script.TimerKey;
 import edgeville.util.ItemsOnDeath;
 import edgeville.util.PkpSystem;
@@ -46,6 +48,8 @@ public class PlayerDeathEvent extends Event {
 		case 2:
 			player.message("Oh dear, you are dead!");
 			player.animate(2304);
+
+			handleRetribution();
 			break;
 
 		case 5:
@@ -64,14 +68,16 @@ public class PlayerDeathEvent extends Event {
 			player.skills().resetStats();
 			player.timers().cancel(TimerKey.FROZEN);
 			player.timers().cancel(TimerKey.STUNNED);
-			player.varps().setVarp(Varp.SPECIAL_ENERGY, 1000);
-			player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
+			player.getVarps().setVarp(Varp.SPECIAL_ENERGY, 1000);
+			player.getVarps().setVarp(Varp.SPECIAL_ENABLED, 0);
 			player.damagers().clear();
 			player.face(null);
 
-			player.varps().setVarbit(Varbit.PROTECT_FROM_MAGIC, 0);
-			player.varps().setVarbit(Varbit.PROTECT_FROM_MELEE, 0);
-			player.varps().setVarbit(Varbit.PROTECT_FROM_MISSILES, 0);
+			player.getVarps().setVarbit(Varbit.PROTECT_FROM_MAGIC, 0);
+			player.getVarps().setVarbit(Varbit.PROTECT_FROM_MELEE, 0);
+			player.getVarps().setVarbit(Varbit.PROTECT_FROM_MISSILES, 0);
+
+			player.getPrayer().deactivateAllPrayers();
 
 			player.graphic(-1);
 			player.animate(-1);
@@ -84,5 +90,19 @@ public class PlayerDeathEvent extends Event {
 			break;
 		}
 		tick++;
+	}
+
+	private void handleRetribution() {
+		if (player.getPrayer().isPrayerOn(Prayers.RETRIBUTION)) {
+			Entity killer = player.killer();
+			if (killer != null && killer.getTile().distance(player.getTile()) <= 1) {
+				int hit = 25;
+				if (killer instanceof Player) {
+					hit = (int) Math.round(0.25 * ((Player) killer).skills().level(Skills.PRAYER));
+				}
+				killer.hit(player, hit); // retribution
+				player.graphic(437);
+			}
+		}
 	}
 }

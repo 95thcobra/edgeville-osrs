@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import edgeville.combat.magic.SpellOnPlayerAction;
+import edgeville.combat.magic.SpellOnTargetAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;
@@ -30,7 +30,7 @@ public class SpellOnPlayer implements Action {
 		slot = buf.readUShort();
 		targetIndex = buf.readULEShort();
 		int hash = buf.readIntV1();
-		
+
 		interfaceId = hash >> 16;
 		child = hash & 0xFFFF;
 		boolean run = buf.readByte() == 1;
@@ -38,22 +38,23 @@ public class SpellOnPlayer implements Action {
 
 	@Override
 	public void process(Player player) {
-		//logger.info("Spell on player ({}); spell from [{}:{}] slot {}.", targetIndex, interfaceId, child, slot);
-		player.messageDebug(slot+","+targetIndex+","+interfaceId+","+child);
-		
+		player.messageDebug(slot + "," + targetIndex + "," + interfaceId + "," + child);
+
 		player.stopActions(false);
 
 		Player other = player.world().players().get(targetIndex);
 		if (other == null) {
 			player.message("Unable to find player.");
-		} else {
-			if (!player.locked() && !player.dead() && !other.dead()) {
-				player.face(other);
-				player.putAttribute(AttributeKey.TARGET, targetIndex);
-				//player.world().server().scriptRepository().triggerSpellOnPlayer(player, interfaceId, child);
-				//TODO: Spell on player
-				new SpellOnPlayerAction(player, other, interfaceId, child).start();
-			}
+			return;
+		}
+		if (other.inCombat() && player.getTarget() != other && player.getLastAttackedBy() != other) {
+			player.message("This player is in combat.");
+			return;
+		}
+		if (!player.locked() && !player.dead() && !other.dead()) {
+			player.face(other);
+			player.putAttribute(AttributeKey.TARGET, targetIndex);
+			new SpellOnTargetAction(player, other, interfaceId, child).start(false);
 		}
 	}
 

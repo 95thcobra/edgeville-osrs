@@ -127,8 +127,8 @@ public class CombatFormula {
 	public static int extraDamageBasedOnAttackStyleRanged(Player player) {
 		int extraDmg = 0;
 
-		int book = player.varps().getVarp(843); // weapon style
-		int style = player.varps().getVarp(43);
+		int book = player.getVarps().getVarp(843); // weapon style
+		int style = player.getVarps().getVarp(43);
 
 		switch (book) {
 		// all atm
@@ -145,8 +145,8 @@ public class CombatFormula {
 	public static int extraDamageBasedOnAttackStyleMelee(Player player) {
 		int extraDmg = 0;
 
-		int book = player.varps().getVarp(843); // weapon style
-		int style = player.varps().getVarp(43);
+		int book = player.getVarps().getVarp(843); // weapon style
+		int style = player.getVarps().getVarp(43);
 
 		switch (book) {
 		// no weapon

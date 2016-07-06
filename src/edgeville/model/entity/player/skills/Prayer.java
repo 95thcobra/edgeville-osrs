@@ -1,23 +1,44 @@
 package edgeville.model.entity.player.skills;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edgeville.aquickaccess.actions.EquipmentRequirement.Skill;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Skills;
 import edgeville.script.Timer;
+import edgeville.util.Varbit;
 import edgeville.util.Varp;
 
 public class Prayer {
 	private Player player;
+	private List<Prayers> quickPrayers;
 
 	public Prayer(Player player) {
 		this.player = player;
 		prepare();
+		quickPrayers = new ArrayList<>();
+	}
+
+	public List<Prayers> getQuickPrayers() {
+		return quickPrayers;
+	}
+
+	public void saveQuickPrayers() {
+		quickPrayers.clear();
+
+		for (Prayers prayer : Prayers.values()) {
+			if (isPrayerOn(prayer)) {
+				quickPrayers.add(prayer);
+			}
+		}
+		player.message("Quick prayers saved!");
 	}
 
 	private void prepare() {
-		player.varps().setVarp(Varp.PIETY_AND_CHILVALRY, 16);
+		player.getVarps().setVarp(Varp.PIETY_AND_CHILVALRY_GLOW, 16);
 	}
 
 	public void togglePrayer(int buttonId) {
@@ -31,11 +52,7 @@ public class Prayer {
 		}
 	}
 
-	public void activatePrayer(int buttonId) {
-		// TODO IF OVERHEADICON
-		int varbit = 4100 + buttonId;
-
-		Prayers prayer = Prayers.getPrayerForVarbit(varbit);
+	public void activatePrayer(Prayers prayer) {
 		if (prayer == null) {
 			return;
 		}
@@ -52,7 +69,7 @@ public class Prayer {
 		}
 
 		prayer.deactivatePrayers(player);
-		player.varps().setVarbit(varbit, 1);
+		player.getVarps().setVarbit(prayer.getVarbit(), 1);
 		if (prayer.getHeadIcon() > -1) {
 			player.setPrayerHeadIcon(prayer.getHeadIcon());
 		}
@@ -63,14 +80,22 @@ public class Prayer {
 				player.skills().alterSkill(Skills.PRAYER, -1, true);
 
 				if (player.skills().level(Skills.PRAYER) <= 0) {
-					deactivatePrayer(buttonId);
+					deactivatePrayer(prayer);
 					container.stop();
 				}
-				if (!isPrayerOn(varbit)) {
+				if (!isPrayerOn(prayer.getVarbit())) {
 					container.stop();
 				}
 			}
 		});
+	}
+
+	public void activatePrayer(int buttonId) {
+		// TODO IF OVERHEADICON
+		int varbit = 4100 + buttonId;
+
+		Prayers prayer = Prayers.getPrayerForVarbit(varbit);
+		activatePrayer(prayer);
 	}
 
 	public void deactivateAllPrayers() {
@@ -85,7 +110,7 @@ public class Prayer {
 	}
 
 	public void deactivatePrayer(Prayers prayer) {
-		player.varps().setVarbit(prayer.getVarbit(), 0);
+		player.getVarps().setVarbit(prayer.getVarbit(), 0);
 		if (prayer.getHeadIcon() > -1) {
 			player.setPrayerHeadIcon(-1);
 		}
@@ -97,17 +122,34 @@ public class Prayer {
 		if (prayer == null) {
 			return;
 		}
-		player.varps().setVarbit(varbit, 0);
+		player.getVarps().setVarbit(varbit, 0);
 		if (prayer.getHeadIcon() > -1) {
 			player.setPrayerHeadIcon(-1);
 		}
 	}
 
 	public boolean isPrayerOn(Prayers prayer) {
-		return player.varps().getVarbit(prayer.getVarbit()) == 1;
+		return player.getVarps().getVarbit(prayer.getVarbit()) == 1;
 	}
 
 	public boolean isPrayerOn(int varbit) {
-		return player.varps().getVarbit(varbit) == 1;
+		return player.getVarps().getVarbit(varbit) == 1;
+	}
+
+	public void toggleQuickPrayers() {
+		boolean enabled = player.getVarps().getVarbit(Varbit.PRAYER_ORB) == 1;
+		player.getVarps().setVarbit(Varbit.PRAYER_ORB, enabled ? 0 : 1);
+
+		deactivateAllPrayers();
+
+		if (!enabled) {
+			for (Prayers prayer : Prayers.values()) {
+				if (quickPrayers.contains(prayer)) {
+					activatePrayer(prayer);
+				}
+			}
+		}
+
+		player.message("Quickprayers %s!", enabled ? "deactivated" : "activated");
 	}
 }

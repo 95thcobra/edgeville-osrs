@@ -4,6 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import edgeville.combat.Graphic;
+import edgeville.combat.magic.AncientSpell;
+import edgeville.combat.magic.RegularDamageSpell;
+import edgeville.combat.magic.Spell;
 import edgeville.model.entity.*;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.NpcSyncInfo;
@@ -206,8 +209,6 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void walkTo(int x, int z, PathQueue.StepType mode) {
-		pathQueue.clear();
-
 		// Are we frozen?
 		if (frozen()) {
 			message("A magical force stops you from moving.");
@@ -460,9 +461,27 @@ public abstract class Entity implements HitOrigin {
 				player.messageDebug("Range hit");
 				((Player) origin).skills().addXp(Skills.RANGED, hit * 4);
 			} else if (combatStyle == CombatStyle.MAGIC) {
-				player.messageDebug("Mage hit");
-				((Player) origin).skills().addXp(Skills.MAGIC, hit * 4);
+				double baseXp;
+				Spell spell = player.getLastCastedSpell();
+				if (spell instanceof RegularDamageSpell) {
+					RegularDamageSpell rdSpell = (RegularDamageSpell)spell;
+					baseXp = rdSpell.getMagicExperience();
+				} else if ( spell instanceof AncientSpell) {
+					AncientSpell aSpell = (AncientSpell)spell;
+					baseXp = aSpell.getBaseMagicXp();
+				} else {
+					baseXp = 0;
+				}
+				if (player.getVarps().getVarbit(Varbit.AUTOCAST) == 1) {
+					((Player) origin).skills().addXp(Skills.MAGIC, baseXp + (hit * 0.1));
+					((Player) origin).skills().addXp(Skills.DEFENCE, hit * 1.33);
+				} else {
+					player.messageDebug("Mage hit");
+					((Player) origin).skills().addXp(Skills.MAGIC, baseXp + (hit * 0.2));
+				}
 			}
+			
+			((Player) origin).skills().addXp(Skills.HITPOINTS, hit * 1.33);
 
 			((Player) origin).sound(((Entity) origin).getAttackSound());
 			if (this instanceof Player) {
@@ -581,11 +600,11 @@ public abstract class Entity implements HitOrigin {
 					// Protection prayers :)
 					if (isPlayer()) {
 						Player us = (Player) this;
-						if (us.varps().getVarbit(Varbit.PROTECT_FROM_MELEE) == 1 && hit.style() == CombatStyle.MELEE) {
+						if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MELEE) == 1 && hit.style() == CombatStyle.MELEE) {
 							damage -= damage * 0.4;
-						} else if (us.varps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1 && hit.style() == CombatStyle.MAGIC) {
+						} else if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1 && hit.style() == CombatStyle.MAGIC) {
 							damage -= damage * 0.4;
-						} else if (us.varps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1 && hit.style() == CombatStyle.RANGED) {
+						} else if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1 && hit.style() == CombatStyle.RANGED) {
 							damage -= damage * 0.4;
 						}
 					}

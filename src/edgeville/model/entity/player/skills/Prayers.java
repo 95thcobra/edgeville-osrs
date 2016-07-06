@@ -75,6 +75,10 @@ public enum Prayers {
 	public int getHeadIcon() {
 		return headIcon;
 	}
+	
+	public int getButtonId() {
+		return varbit - 4100;
+	}
 
 	public static Prayers getPrayerForVarbit(int varbit) {
 		for (Prayers prayer : values()) {
@@ -87,7 +91,7 @@ public enum Prayers {
 
 	public void deactivatePrayers(Player player) {
 		for (int varbit : prayerVarbitsToDeactivate) {
-			player.varps().setVarbit(varbit, 0);
+			player.getVarps().setVarbit(varbit, 0);
 		}
 	}
 }

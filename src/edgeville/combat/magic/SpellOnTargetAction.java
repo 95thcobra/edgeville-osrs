@@ -15,39 +15,45 @@ import edgeville.util.AccuracyFormula;
 import edgeville.util.CombatStyle;
 import edgeville.util.TextUtil;
 
-public class SpellOnPlayerAction {
+public class SpellOnTargetAction {
 
 	private Player player;
 	private Entity target;
 	private int interfaceId;
 	private int child;
 
-	public SpellOnPlayerAction(Player player, Entity target, int interfaceId, int child) {
+	public SpellOnTargetAction(Player player, Entity target, int interfaceId, int child) {
 		this.player = player;
 		this.target = target;
 		this.interfaceId = interfaceId;
 		this.child = child;
 	}
 
-	public void start() {
+	public void start(boolean autocast) {
 		switch (interfaceId) {
 		case 218:
+			if (player.getTile().equals(target.getTile())) {
+				return;
+			}
 			if (target instanceof Player) {
 				if (!player.timers().has(TimerKey.IN_COMBAT)) {
 					player.interfaces().setBountyInterface(true);
 				}
 				player.timers().register(TimerKey.IN_COMBAT, 10);
-				
+
 				if (!target.timers().has(TimerKey.IN_COMBAT)) {
-					((Player)target).interfaces().setBountyInterface(true);
+					((Player) target).interfaces().setBountyInterface(true);
 				}
 				target.timers().register(TimerKey.IN_COMBAT, 10);
-				
-				
-		        player.setTarget(target);
-		        target.setLastAttackedBy(player);
+
+				player.setTarget(target);
+				target.setLastAttackedBy(player);
 			}
 
+			if (autocast && player.isAutoCasting()) {
+				autoCastSpell(player.getAutoCastingSpell());
+				return;
+			}
 			handleDamageSpells();
 			break;
 		}
@@ -70,7 +76,7 @@ public class SpellOnPlayerAction {
 		case 9:
 			cycleRegularDamageSpell(RegularDamageSpell.FIRE_STRIKE);
 			break;
-			
+
 		case 11:
 			cycleRegularDamageSpell(RegularDamageSpell.WIND_BOLT);
 			break;
@@ -83,7 +89,7 @@ public class SpellOnPlayerAction {
 		case 21:
 			cycleRegularDamageSpell(RegularDamageSpell.FIRE_BOLT);
 			break;
-			
+
 		case 25:
 			cycleRegularDamageSpell(RegularDamageSpell.WIND_BLAST);
 			break;
@@ -96,23 +102,20 @@ public class SpellOnPlayerAction {
 		case 39:
 			cycleRegularDamageSpell(RegularDamageSpell.FIRE_BLAST);
 			break;
-			
+
 		case 46:
 			cycleRegularDamageSpell(RegularDamageSpell.WIND_WAVE);
 			break;
 		case 49:
 			cycleRegularDamageSpell(RegularDamageSpell.WATER_WAVE);
-			break;		
+			break;
 		case 53:
 			cycleRegularDamageSpell(RegularDamageSpell.EARTH_WAVE);
 			break;
 		case 56:
 			cycleRegularDamageSpell(RegularDamageSpell.FIRE_WAVE);
 			break;
-			
-			
-			
-			
+
 		// Ancients
 		case 74:
 			cycleAncientSpell(AncientSpell.SMOKE_RUSH);
@@ -180,6 +183,23 @@ public class SpellOnPlayerAction {
 	}
 
 	private void cycleRegularDamageSpell(RegularDamageSpell spell) {
+		cycleRegularDamageSpell(spell, false);
+	}
+
+	private void triggerVeng(int hit) {
+		if (target instanceof Player) {
+			if (((Player) target).isVengOn()) {
+				player.hit(target, (int) (0.75 * hit));
+				((Player) target).shout("Taste Vengeance!");
+				((Player) target).setVengOn(false);
+			}
+		}
+	}
+
+	private void cycleRegularDamageSpell(RegularDamageSpell spell, boolean autocast) {
+		player.setLastSpellCastChild(child);
+		player.setLastCastedSpell(spell);
+
 		int levelReq = spell.getLevelReq();
 		if (levelReq > player.skills().level(Skills.MAGIC)) {
 			player.message("You need a magic level of %d to cast %s.", levelReq, spell.toString());
@@ -199,12 +219,42 @@ public class SpellOnPlayerAction {
 					container.stop();
 					return;
 				}
-				doRegularDamageSpell(spell, container);
+				doRegularDamageSpell(spell, container, false);
 			}
 		});
+	}
+
+	private void autoCastSpell(Spell spell) {
+		if (spell instanceof AncientSpell) {
+			player.world().getEventHandler().addEvent(player, new Event() {
+
+				@Override
+				public void execute(EventContainer container) {
+					if (target.locked() || target.dead()) {
+						container.stop();
+						return;
+					}
+					doAncientSpell((AncientSpell) spell, container, true);
+				}
+			});
+		} else {
+			player.world().getEventHandler().addEvent(player, new Event() {
+				@Override
+				public void execute(EventContainer container) {
+					if (target.locked() || target.dead()) {
+						container.stop();
+						return;
+					}
+					doRegularDamageSpell((RegularDamageSpell) spell, container, true);
+				}
+			});
+		}
 	}
 
 	private void cycleAncientSpell(AncientSpell spell) {
+		player.setLastSpellCastChild(child);
+		player.setLastCastedSpell(spell);
+
 		int levelReq = spell.getLevelReq();
 		if (levelReq > player.skills().level(Skills.MAGIC)) {
 			player.message("You need a magic level of %d to cast %s.", levelReq, spell.toString());
@@ -216,6 +266,8 @@ public class SpellOnPlayerAction {
 			return;
 		}
 
+		spell.removeRunes(player);
+
 		player.world().getEventHandler().addEvent(player, new Event() {
 
 			@Override
@@ -224,12 +276,12 @@ public class SpellOnPlayerAction {
 					container.stop();
 					return;
 				}
-				doAncientSpell(spell, container);
+				doAncientSpell(spell, container, false);
 			}
 		});
 	}
 
-	private boolean doRegularDamageSpell(RegularDamageSpell spell, EventContainer container) {
+	private boolean doRegularDamageSpell(RegularDamageSpell spell, EventContainer container, boolean autocasting) {
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
@@ -237,6 +289,8 @@ public class SpellOnPlayerAction {
 		if (player.timers().has(TimerKey.COMBAT_ATTACK)) {
 			return false;
 		}
+
+		spell.removeRunes(player);
 
 		int tileDist = player.getTile().distance(target.getTile());
 		player.animate(spell.getAnimation());
@@ -254,6 +308,7 @@ public class SpellOnPlayerAction {
 
 		if (success) {
 			target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(new Graphic(spell.getGfxOther(), 92, 0));
+			triggerVeng(hit);
 			if (target instanceof Player) {
 				// if (spell.getSoundId() > 0)
 				// ((Player) target).sound(spell.getSoundId());
@@ -262,11 +317,12 @@ public class SpellOnPlayerAction {
 		} else {
 			target.hit(player, 0, delay).graphic(new Graphic(85, 92, 0));
 		}
-		container.stop();
+		if (!autocasting)
+			container.stop();
 		return true;
 	}
 
-	private boolean doAncientSpell(AncientSpell spell, EventContainer container) {
+	private boolean doAncientSpell(AncientSpell spell, EventContainer container, boolean autocast) {
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
@@ -274,6 +330,8 @@ public class SpellOnPlayerAction {
 		if (player.timers().has(TimerKey.COMBAT_ATTACK)) {
 			return false;
 		}
+
+		spell.removeRunes(player);
 
 		int tileDist = player.getTile().distance(target.getTile());
 		player.animate(spell.getAnimation());
@@ -290,6 +348,7 @@ public class SpellOnPlayerAction {
 
 		if (success) {
 			target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(spell.getGfx());
+			triggerVeng(hit);
 			if (target instanceof Player) {
 				if (spell.getSoundId() > 0)
 					((Player) target).sound(spell.getSoundId());
@@ -330,7 +389,8 @@ public class SpellOnPlayerAction {
 		} else {
 			target.hit(player, 0, delay).graphic(new Graphic(85, 92, 0));
 		}
-		container.stop();
+		if (!autocast)
+			container.stop();
 		return true;
 	}
 }

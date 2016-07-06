@@ -58,7 +58,7 @@ public class Interfaces {
 	}
 
 	public void setQuickPrayers(boolean enabled) {
-		send(enabled ? 271 : 77, PANE_FIXED, resizable() ? 65 : 67, true); // prayer
+		send(enabled ? 77 : 271, player.interfaces().activeRoot(), resizable() ? 65 : 67, false);
 	}
 
 	public void sendFixed() {
@@ -155,9 +155,9 @@ public class Interfaces {
 		player.write(new InterfaceSettings(216, 1, 0, 38, new SettingsBuilder().option(0)));
 
 		// Hotkeys TODO proper!
-		player.varps().setVarp(1224, 102793221);
-		player.varps().setVarp(1225, 379887844);
-		player.varps().setVarp(1226, 12);
+		player.getVarps().setVarp(1224, 102793221);
+		player.getVarps().setVarp(1225, 379887844);
+		player.getVarps().setVarp(1226, 12);
 	}
 
 	public void setting(int i, int c, int start, int end, SettingsBuilder b) {

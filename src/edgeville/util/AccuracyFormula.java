@@ -75,9 +75,9 @@ public class AccuracyFormula {
         int def_equipment_magic_defence = targetBonuses.magedef;
 
         //protect from * prayers
-        boolean def_protect_from_melee = player.varps().getVarbit(Varbit.PROTECT_FROM_MELEE) == 1;
-        boolean def_protect_from_ranged = player.varps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1;
-        boolean def_protect_from_magic = player.varps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1;
+        boolean def_protect_from_melee = player.getVarps().getVarbit(Varbit.PROTECT_FROM_MELEE) == 1;
+        boolean def_protect_from_ranged = player.getVarps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1;
+        boolean def_protect_from_magic = player.getVarps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1;
 
         //chance bonuses
         double off_special_attack_bonus = 1.0;

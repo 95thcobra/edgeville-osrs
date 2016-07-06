@@ -91,6 +91,8 @@ public class ItemAction2 extends ItemAction {
 			}
 			player.getEquipment().set(EquipSlot.SHIELD, null);
 		}
+		
+		player.disableAutocasting();
 
 		// If it is a shield and we have a 2h weapon equipped, unequip it
 		if (targetSlot == EquipSlot.SHIELD && player.getEquipment().hasAt(EquipSlot.WEAPON)) {
@@ -111,7 +113,7 @@ public class ItemAction2 extends ItemAction {
 
 		// Weapons interrupt special attack
 		if (targetSlot == EquipSlot.WEAPON) {
-			player.varps().setVarp(Varp.SPECIAL_ENABLED, 0);
+			player.getVarps().setVarp(Varp.SPECIAL_ENABLED, 0);
 		}
 
 		// Finally, equip the item we had in mind.

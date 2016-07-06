@@ -72,8 +72,9 @@ public class Varps {
 
     public void presave() {
         // Turn off prayers
-        player.skills().disableAllPrayers();
-       // Prayers.disableAllPrayers(player);
+		player.getPrayer().deactivateAllPrayers();
+		
+		
         setVarp(Varp.SPECIAL_ENABLED, 0);
     }
 

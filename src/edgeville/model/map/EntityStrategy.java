@@ -2,6 +2,7 @@ package edgeville.model.map;
 
 import edgeville.model.Entity;
 import edgeville.model.Tile;
+import edgeville.model.entity.Npc;
 
 public class EntityStrategy extends RouteStrategy {
 
@@ -38,21 +39,24 @@ public class EntityStrategy extends RouteStrategy {
 	public EntityStrategy(Entity entity, int accessBlockFlag) {
 		x = entity.getTile().x;
 		z = entity.getTile().z;
-		size = 1;//entity instanceof NPC ? ((NPC) entity).getDefinition().size : 1;
+		//size = 1;
+		size = (entity instanceof Npc ? ((Npc) entity).def().size : 1);
 		this.accessBlockFlag = accessBlockFlag;
 	}
 
 	public EntityStrategy(Entity entity, int accessBlockFlag, Tile t) {
 		x = t.x;
 		z = t.z;
-		size = 1;//entity instanceof NPC ? ((NPC) entity).getDefinition().size : 1;
+		//size = 1;
+		size = (entity instanceof Npc ? ((Npc) entity).def().size : 1);
 		this.accessBlockFlag = accessBlockFlag;
 	}
 
 	public EntityStrategy(Entity entity, int accessBlockFlag, boolean combat) {
 		x = entity.getTile().x;
 		z = entity.getTile().z;
-		size = 1;//entity instanceof NPC ? ((NPC) entity).getDefinition().size : 1;
+		//size = 1;
+		size = (entity instanceof Npc ? ((Npc) entity).def().size : 1);
 		this.accessBlockFlag = accessBlockFlag;
 		this.combat = combat;
 	}
@@ -60,7 +64,8 @@ public class EntityStrategy extends RouteStrategy {
 	public EntityStrategy(Entity entity, int accessBlockFlag, boolean combat, Tile t) {
 		x = t.x;
 		z = t.z;
-		size = 1;//entity instanceof NPC ? ((NPC) entity).getDefinition().size : 1;
+		//size = 1;
+		size = (entity instanceof Npc ? ((Npc) entity).def().size : 1);
 		this.accessBlockFlag = accessBlockFlag;
 		this.combat = combat;
 	}

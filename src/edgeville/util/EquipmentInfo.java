@@ -299,8 +299,8 @@ public class EquipmentInfo {
 	}
 
 	public boolean rapid(Player player) {
-		int book = player.varps().getVarp(843); // weapon book
-		int style = player.varps().getVarp(43);
+		int book = player.getVarps().getVarp(843); // weapon book
+		int style = player.getVarps().getVarp(43);
 		return style == 1 && (book == WeaponType.CROSSBOW || book == WeaponType.BOW
 				|| book == WeaponType.THROWN/*
 											 * || book == WeaponType.CHINCHOMPA
@@ -308,8 +308,8 @@ public class EquipmentInfo {
 	}
 
 	public static int attackAnimationFor(Player player) {
-		int book = player.varps().getVarp(843); // weapon style
-		int style = player.varps().getVarp(43);
+		int book = player.getVarps().getVarp(843); // weapon style
+		int style = player.getVarps().getVarp(43);
 
 		// Handle individual cases first
 		int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).getId() : 0;

@@ -21,16 +21,16 @@ public class CombatUtil {
 	public void setAttackStyle(AttackStyle attackStyle) {
 		switch (attackStyle) {
 		case ACCURATE:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 0);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 0);
 			break;
 		case AGGRESSIVE:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 1);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 1);
 			break;
 		case CONTROLLED:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 2);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 2);
 			break;
 		case DEFENSIVE:
-			player.varps().setVarp(Varp.ATTACK_STYLE, 3);
+			player.getVarps().setVarp(Varp.ATTACK_STYLE, 3);
 			break;
 		}
 	}
@@ -44,7 +44,7 @@ public class CombatUtil {
 
 			if (StringUtil.containsIgnoreCase(wepName, "abyssal tentacle") || StringUtil.containsIgnoreCase(wepName, "abyssal whip")) {
 				player.messageDebug("Hitting with whip");
-				switch (player.varps().getVarp(Varp.ATTACK_STYLE)) {
+				switch (player.getVarps().getVarp(Varp.ATTACK_STYLE)) {
 				case 0:
 					attackStyle = AttackStyle.ACCURATE;
 					break;
@@ -59,7 +59,7 @@ public class CombatUtil {
 			}
 		}
 
-		switch (player.varps().getVarp(Varp.ATTACK_STYLE)) {
+		switch (player.getVarps().getVarp(Varp.ATTACK_STYLE)) {
 		case 0:
 			attackStyle = AttackStyle.ACCURATE;
 			break;

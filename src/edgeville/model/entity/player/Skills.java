@@ -54,14 +54,14 @@ public class Skills {
 	}
 
 	public void toggleXPCounter() {
-		boolean enabled = player.varps().getVarbit(Varbit.XP_DROPS_ORB) == 1;
+		boolean enabled = player.getVarps().getVarbit(Varbit.XP_DROPS_ORB) == 1;
 
 		if (enabled) {
 			player.interfaces().disableXPDrops();
-			player.varps().setVarbit(Varbit.XP_DROPS_ORB, 0);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_ORB, 0);
 		} else {
 			player.interfaces().enableXPDrops();
-			player.varps().setVarbit(Varbit.XP_DROPS_ORB, 1);
+			player.getVarps().setVarbit(Varbit.XP_DROPS_ORB, 1);
 		}
 	}
 
@@ -210,6 +210,10 @@ public class Skills {
 		}
 		update();
 	}
+	
+	public void setYourRealLevel(int skill, int level) {
+		xpLevel(skill);
+	}
 
 	public void restorePrayer() {
 		levels[PRAYER] = xpLevel(PRAYER);
@@ -241,11 +245,11 @@ public class Skills {
 		}
 	}
 
-	public void disableAllPrayers() {
+	/*public void disableAllPrayers() {
 		player.varps().setVarbit(Varbit.PROTECT_FROM_MELEE, 0);
 		player.varps().setVarbit(Varbit.PROTECT_FROM_MISSILES, 0);
 		player.varps().setVarbit(Varbit.PROTECT_FROM_MAGIC, 0);
-	}
+	}*/
 
 	public int combatLevel() {
 		return combat;

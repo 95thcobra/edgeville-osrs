@@ -49,27 +49,22 @@ public class PlayerAction2 implements Action {
         player.world().getEventHandler().addEvent(player, new Event() {
             @Override
             public void execute(EventContainer container) {
-                if (player == null) {
-                    container.stop();
-                    return;
-                }
+  
 
                 if (player.frozen() || player.stunned()) {
                     return;
                 }
 
-                Tile lastTile = other.pathQueue().lastStep();
+                /*Tile lastTile = other.pathQueue().lastStep();
                 if (lastTile == null) {
                     //container.stop();
                     return;
                 }
-
-                player.walkTo(lastTile.x, lastTile.z, PathQueue.StepType.REGULAR);
-
-
-                /*if (!player.touches(other)) {
-                    player.moveCloser(other);
-                }*/
+                player.walkTo(lastTile.x, lastTile.z, PathQueue.StepType.REGULAR);*/
+                
+                
+                player.pathQueue().clear(); // This to prevent weird hickups
+				player.stepTowards(other);
             }
         });
     }

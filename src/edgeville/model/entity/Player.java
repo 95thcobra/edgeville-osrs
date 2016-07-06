@@ -6,8 +6,9 @@ import edgeville.Constants;
 import edgeville.Panel;
 import edgeville.aquickaccess.events.PlayerDeathEvent;
 import edgeville.aquickaccess.events.TeleportEvent;
-import edgeville.bank.BankTab;
 import edgeville.combat.CombatUtil;
+import edgeville.combat.magic.AncientSpell;
+import edgeville.combat.magic.Spell;
 import edgeville.crypto.IsaacRand;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
@@ -84,8 +85,6 @@ public class Player extends Entity {
 	private CombatUtil combatUtil;
 
 	private boolean vengOn;
-	
-	
 
 	public boolean isVengOn() {
 		return vengOn;
@@ -129,6 +128,38 @@ public class Player extends Entity {
 
 	public QuestTab getQuestTab() {
 		return questTab;
+	}
+
+	private int autoCastingSpellChild;
+
+	private int lastSpellCastChild;
+
+	public int getLastSpellCastChild() {
+		return lastSpellCastChild;
+	}
+
+	public void setLastSpellCastChild(int lastSpellCastChild) {
+		this.lastSpellCastChild = lastSpellCastChild;
+	}
+
+	private Spell lastCastedSpell;
+
+	private Spell autoCastingSpell;
+
+	public Spell getAutoCastingSpell() {
+		return autoCastingSpell;
+	}
+
+	public void setAutoCastingSpell(Spell autoCastingSpell) {
+		this.autoCastingSpell = autoCastingSpell;
+	}
+
+	public Spell getLastCastedSpell() {
+		return lastCastedSpell;
+	}
+
+	public void setLastCastedSpell(Spell lastCastedSpell) {
+		this.lastCastedSpell = lastCastedSpell;
 	}
 
 	private int kills;
@@ -264,6 +295,18 @@ public class Player extends Entity {
 	 */
 	private int migration;
 
+	private boolean isAutoCasting;
+
+	private boolean receivedStarter;
+
+	public boolean isAutoCasting() {
+		return isAutoCasting;
+	}
+
+	public void setAutoCasting(boolean isAutoCasting) {
+		this.isAutoCasting = isAutoCasting;
+	}
+
 	public Player(Channel channel, String username, String password, World world, Tile tile, IsaacRand inrand, IsaacRand outrand) {
 		super(world, tile);
 
@@ -272,7 +315,7 @@ public class Player extends Entity {
 		this.outrand = outrand;
 		this.username = this.displayName = username;
 		this.password = password;
-		this.privilege = privilege;
+		// this.privilege = privilege;
 
 		this.sync = new PlayerSyncInfo(this);
 		this.skills = new Skills(this);
@@ -297,10 +340,27 @@ public class Player extends Entity {
 		// bank = new Bank(this);
 		bank = new Bank(this);
 		combatUtil = new CombatUtil(this);
-		varps().setVarbit(Varbit.XP_DROPS_ORB, 1);
-		
-		//remove this TODO
+		getVarps().setVarbit(Varbit.XP_DROPS_ORB, 1);
+		getVarps().setVarbit(Varbit.XP_DROPS_COUNTER, 31);
+
+		// remove this TODO
 		clanChat = new ClanChat(this, username + "'s clanchat", new ArrayList<Player>());
+
+		getVarps().presave();
+	}
+
+	public void giveStarterPack() {
+		this.setReceivedStarter(true);
+		spawnMelee();
+		message(TextUtil.colorString("Check the quest tab for spawns!", TextUtil.Colors.RED));
+	}
+
+	private void onLogin() {
+		getVarps().setVarbit(Varbit.PRAYER_ORB, 0);
+		if (!isAutoCasting) {
+			getVarps().setVarbit(Varbit.AUTOCAST, 0);
+			getVarps().setVarbit(Varbit.AUTOCAST_SPELL, 0);
+		}
 	}
 
 	public void resetSpecialEnergy() {
@@ -381,6 +441,10 @@ public class Player extends Entity {
 		// quest tab
 		questTab.prepareQuestTab();
 
+		if (!receivedStarter)
+			giveStarterPack();
+
+		onLogin();
 		// new Panel(this);
 	}
 
@@ -428,6 +492,11 @@ public class Player extends Entity {
 	@Override
 	public void stopActions(boolean cancelMoving) {
 		super.stopActions(cancelMoving);
+
+		// Remove banking interface when banking
+		if (interfaces.visible(12)) {
+			interfaces().closeById(15);
+		}
 
 		// Reset main interface
 		if (interfaces.visible(interfaces.activeRoot(), interfaces.mainComponent())) {
@@ -525,7 +594,7 @@ public class Player extends Entity {
 	 * public ItemContainer bank() { return bank; }
 	 */
 
-	public Varps varps() {
+	public Varps getVarps() {
 		return varps;
 	}
 
@@ -607,9 +676,9 @@ public class Player extends Entity {
 	 * removed from the player list.
 	 */
 	public void logout() {
-		
+
 		prayer.deactivateAllPrayers();
-		
+
 		// If we're logged in and the channel is active, begin with sending a
 		// logout message and closing the channel.
 		// We use writeAndFlush here because otherwise the message won't be
@@ -660,8 +729,8 @@ public class Player extends Entity {
 
 				switch (key) {
 				case SPECIAL_ENERGY_RECHARGE:
-					int currentEnergy = varps().getVarp(Varp.SPECIAL_ENERGY);
-					varps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
+					int currentEnergy = getVarps().getVarp(Varp.SPECIAL_ENERGY);
+					getVarps().setVarp(Varp.SPECIAL_ENERGY, Math.min(1000, currentEnergy + 100));
 					timers.register(TimerKey.SPECIAL_ENERGY_RECHARGE, 50);
 					break;
 				case SKULL:
@@ -745,24 +814,23 @@ public class Player extends Entity {
 		}
 
 		// Sync bank if dirty
-		/*if (bank.isDirty()) {
-			ItemContainer allItems = bank.getAllItems();
-			write(new SetItems(95, allItems));
-			allItems.clean();
-		}*/
-		
-		//test
-		/*if (bank.completeBank.dirty()) {
-			write(new SetItems(95, bank.completeBank));
-			bank.completeBank.clean();
-		}*/
-		
+		/*
+		 * if (bank.isDirty()) { ItemContainer allItems = bank.getAllItems();
+		 * write(new SetItems(95, allItems)); allItems.clean(); }
+		 */
+
+		// test
+		/*
+		 * if (bank.completeBank.dirty()) { write(new SetItems(95,
+		 * bank.completeBank)); bank.completeBank.clean(); }
+		 */
+
 		if (bank.isDirty()) {
-			/*ItemContainer container = new ItemContainer(world, 800, Type.FULL_STACKING);
-			for(Item item : bank.getBankItems()) {
-				container.add(item);
-			}
-			write(new SetItems(95, container));*/
+			/*
+			 * ItemContainer container = new ItemContainer(world, 800,
+			 * Type.FULL_STACKING); for(Item item : bank.getBankItems()) {
+			 * container.add(item); } write(new SetItems(95, container));
+			 */
 			write(new SetItems(95, bank.getBankItems()));
 			bank.clean();
 		}
@@ -800,9 +868,7 @@ public class Player extends Entity {
 
 	@Override
 	protected void die() {
-		// lock();
 		world.getEventHandler().addEvent(this, false, new PlayerDeathEvent(this));
-		// world.server().scriptExecutor().executeScript(this, Death.script);
 	}
 
 	public void write(Object... o) {
@@ -863,7 +929,7 @@ public class Player extends Entity {
 			soundId = 2696;
 		}
 		if (StringUtils.containsIgnoreCase(item.definition(world).name, "dagger")) {
-			soundId = varps().getVarp(Varp.ATTACK_STYLE) == 3 ? 2548 : 2547;
+			soundId = getVarps().getVarp(Varp.ATTACK_STYLE) == 3 ? 2548 : 2547;
 		}
 		if (StringUtils.containsIgnoreCase(item.definition(world).name, "staff")) {
 			soundId = 2555;
@@ -940,5 +1006,120 @@ public class Player extends Entity {
 			// message(format, params);
 			messageFilterable(format, params);
 		}
+	}
+
+	public void disableAutocasting() {
+		getVarps().setVarbit(Varbit.AUTOCAST, 0);
+		getVarps().setVarbit(Varbit.AUTOCAST_SPELL, 0);
+		setAutoCasting(false);
+	}
+
+	public int getAutoCastingSpellChild() {
+		return autoCastingSpellChild;
+	}
+
+	public void setAutoCastingSpellChild(int autoCastingSpellChild) {
+		this.autoCastingSpellChild = autoCastingSpellChild;
+	}
+
+	public boolean hasReceivedStarter() {
+		return receivedStarter;
+	}
+
+	public void setReceivedStarter(boolean receivedStarter) {
+		this.receivedStarter = receivedStarter;
+	}
+
+	public void spawnMelee() {
+		getInventory().empty();
+		getInventory().add(5698);
+		getInventory().add(145);
+		getInventory().add(157);
+		getInventory().add(163);
+		getInventory().add(4153);
+		getInventory().add(new Item(385, 23));
+
+		getEquipment().set(EquipSlot.HEAD, new Item(10828));
+		getEquipment().set(EquipSlot.CAPE, new Item(6570));
+		getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		getEquipment().set(EquipSlot.WEAPON, new Item(12006));
+		getEquipment().set(EquipSlot.BODY, new Item(10551));
+		getEquipment().set(EquipSlot.SHIELD, new Item(12954));
+		getEquipment().set(EquipSlot.LEGS, new Item(4722));
+		getEquipment().set(EquipSlot.HANDS, new Item(7462));
+		getEquipment().set(EquipSlot.FEET, new Item(11840));
+		getEquipment().set(EquipSlot.RING, new Item(11773));
+		// player.getEquipment().set(EquipSlot.AMMO, item);
+
+		setMaster();
+		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
+		message("You have spawned some melee gear.");
+	}
+
+	public void spawnRanged() {
+		getInventory().empty();
+		getInventory().add(11802);
+		getInventory().add(2442);
+		getInventory().add(169);
+		getInventory().add(2444);
+		getInventory().add(new Item(560, 1000));
+		getInventory().add(new Item(557, 1000));
+		getInventory().add(new Item(9075, 1000));
+		getInventory().add(2434);
+		getInventory().add(2434);
+		getInventory().add(163);
+		getInventory().add(new Item(391, 18));
+
+		getEquipment().set(EquipSlot.HEAD, new Item(4753));
+		getEquipment().set(EquipSlot.CAPE, new Item(10499));
+		getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		getEquipment().set(EquipSlot.WEAPON, new Item(9185));
+		getEquipment().set(EquipSlot.BODY, new Item(2503));
+		getEquipment().set(EquipSlot.SHIELD, new Item(11283));
+		getEquipment().set(EquipSlot.LEGS, new Item(4759));
+		getEquipment().set(EquipSlot.HANDS, new Item(7462));
+		getEquipment().set(EquipSlot.FEET, new Item(2577));
+		getEquipment().set(EquipSlot.RING, new Item(6733));
+		getEquipment().set(EquipSlot.AMMO, new Item(9244, 1000));
+
+		setMaster();
+		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // Lunar
+
+		message("You have spawned some ranged gear.");
+	}
+
+	public void spawnHybrid() {
+		getInventory().empty();
+		getInventory().add(5698);
+		getInventory().add(157);
+		getInventory().add(163);
+		getInventory().add(145);
+		getInventory().add(6570);
+		getInventory().add(12006);
+		getInventory().add(12954);
+		getInventory().add(10551);
+		getInventory().add(4722);
+		getInventory().add(11840);
+		getInventory().add(4736);
+		getInventory().add(new Item(560, 10000));
+		getInventory().add(new Item(565, 10000));
+		getInventory().add(new Item(555, 10000));
+		getInventory().add(new Item(397, 14));
+
+		getEquipment().set(EquipSlot.HEAD, new Item(10828));
+		getEquipment().set(EquipSlot.CAPE, new Item(2412));
+		getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		getEquipment().set(EquipSlot.WEAPON, new Item(4675));
+		getEquipment().set(EquipSlot.BODY, new Item(4712));
+		getEquipment().set(EquipSlot.SHIELD, new Item(6889));
+		getEquipment().set(EquipSlot.LEGS, new Item(4714));
+		getEquipment().set(EquipSlot.HANDS, new Item(7462));
+		getEquipment().set(EquipSlot.FEET, new Item(6920));
+		getEquipment().set(EquipSlot.RING, new Item(11773));
+
+		setMaster();
+		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
+
+		message("You have spawned some hybrid gear.");
 	}
 }

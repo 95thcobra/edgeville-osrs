@@ -6,7 +6,9 @@ import java.util.LinkedList;
 import edgeville.model.Area;
 import edgeville.model.Entity;
 import edgeville.model.Tile;
+import edgeville.model.map.EntityStrategy;
 import edgeville.model.map.MapObj;
+import edgeville.model.map.WalkRouteFinder;
 import edgeville.util.Varp;
 
 /**
@@ -147,15 +149,37 @@ public class PathQueue {
         if (!entity.isPlayer()) {
             return;
         }
-        boolean runningEnabled = ((Player) entity).varps().getVarp(Varp.RUNNING_ENABLED) == 1;
-        ((Player) entity).varps().setVarp(Varp.RUNNING_ENABLED, (runningEnabled ? 0 : 1));
+        boolean runningEnabled = ((Player) entity).getVarps().getVarp(Varp.RUNNING_ENABLED) == 1;
+        ((Player) entity).getVarps().setVarp(Varp.RUNNING_ENABLED, (runningEnabled ? 0 : 1));
     }
 
     public boolean running() {
         if (entity.isPlayer()) {
-            return ((Player) entity).varps().getVarp(Varp.RUNNING_ENABLED) == 1;
+            return ((Player) entity).getVarps().getVarp(Varp.RUNNING_ENABLED) == 1;
         }
         return running;
+    }
+    
+    public boolean projectilesBlocked(Player player, Entity target) {
+    	
+    	/*Tile targetTile = target.getTile();
+    	
+    	int distance = player.getTile().distance(targetTile);
+
+    	for(int i = 0 ; i < 20000 ; i ++) {
+    		if (!WalkRouteFinder.canShootEastFrom(i))
+    			player.shout("clip: "+i);
+    		//} else
+    			//player.shout("nah"+i);
+    	}
+    	//player.messageDebug("Steps: %d", steps);
+    	
+    	//if (steps > distance + 1) {
+    	//	return true;
+    	//}
+    	boolean canshoot = WalkRouteFinder.canShootEastFrom(clip[2][1]);
+    	player.messageDebug("canshoot? %b", canshoot);*/
+    	return false;
     }
 
     public static int calculateDirection(int x1, int z1, int x2, int z2) {

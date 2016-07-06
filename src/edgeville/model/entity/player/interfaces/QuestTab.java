@@ -62,96 +62,17 @@ public class QuestTab {
 
 		// Melee
 		case 15:
-			player.getInventory().empty();
-			player.getInventory().add(5698);
-			player.getInventory().add(145);
-			player.getInventory().add(157);
-			player.getInventory().add(163);
-			player.getInventory().add(4153);
-			player.getInventory().add(new Item(385, 23));
-
-			player.getEquipment().set(EquipSlot.HEAD, new Item(10828));
-			player.getEquipment().set(EquipSlot.CAPE, new Item(6570));
-			player.getEquipment().set(EquipSlot.AMULET, new Item(6585));
-			player.getEquipment().set(EquipSlot.WEAPON, new Item(12006));
-			player.getEquipment().set(EquipSlot.BODY, new Item(10551));
-			player.getEquipment().set(EquipSlot.SHIELD, new Item(12954));
-			player.getEquipment().set(EquipSlot.LEGS, new Item(4722));
-			player.getEquipment().set(EquipSlot.HANDS, new Item(7462));
-			player.getEquipment().set(EquipSlot.FEET, new Item(11840));
-			player.getEquipment().set(EquipSlot.RING, new Item(11773));
-			// player.getEquipment().set(EquipSlot.AMMO, item);
-			
-			player.setMaster();
-			player.varps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
-			player.message("Spawned some melee gear.");
+			player.spawnMelee();
 			break;
 
 		// Range
 		case 16:
-			player.getInventory().empty();
-			player.getInventory().add(11802);
-			player.getInventory().add(2442);
-			player.getInventory().add(169);
-			player.getInventory().add(2444);
-			player.getInventory().add(new Item(560, 1000));
-			player.getInventory().add(new Item(557, 1000));
-			player.getInventory().add(new Item(9075, 1000));
-			player.getInventory().add(2434);
-			player.getInventory().add(2434);
-			player.getInventory().add(163);
-			player.getInventory().add(new Item(391, 18));
-
-			player.getEquipment().set(EquipSlot.HEAD, new Item(4753));
-			player.getEquipment().set(EquipSlot.CAPE, new Item(10499));
-			player.getEquipment().set(EquipSlot.AMULET, new Item(6585));
-			player.getEquipment().set(EquipSlot.WEAPON, new Item(9185));
-			player.getEquipment().set(EquipSlot.BODY, new Item(2503));
-			player.getEquipment().set(EquipSlot.SHIELD, new Item(11283));
-			player.getEquipment().set(EquipSlot.LEGS, new Item(4759));
-			player.getEquipment().set(EquipSlot.HANDS, new Item(7462));
-			player.getEquipment().set(EquipSlot.FEET, new Item(2577));
-			player.getEquipment().set(EquipSlot.RING, new Item(6733));
-			player.getEquipment().set(EquipSlot.AMMO, new Item(9244, 1000));
-			
-			player.setMaster();
-			player.varps().setVarbit(Varbit.SPELLBOOK, 2); // Ancients
+			player.spawnRanged();
 			break;
 
 		// Hybrid
 		case 17:
-			player.getInventory().empty();
-			player.getInventory().add(5698);
-			player.getInventory().add(157);
-			player.getInventory().add(163);
-			player.getInventory().add(145);
-			player.getInventory().add(6570);
-			player.getInventory().add(12006);
-			player.getInventory().add(12954);
-			player.getInventory().add(10551);
-			player.getInventory().add(4722);
-			player.getInventory().add(11840);
-			player.getInventory().add(4736);
-			player.getInventory().add(new Item(560, 10000));
-			player.getInventory().add(new Item(565, 10000));
-			player.getInventory().add(new Item(555, 10000));
-			player.getInventory().add(new Item(397, 14));
-
-			player.getEquipment().set(EquipSlot.HEAD, new Item(10828));
-			player.getEquipment().set(EquipSlot.CAPE, new Item(2412));
-			player.getEquipment().set(EquipSlot.AMULET, new Item(6585));
-			player.getEquipment().set(EquipSlot.WEAPON, new Item(4675));
-			player.getEquipment().set(EquipSlot.BODY, new Item(4712));
-			player.getEquipment().set(EquipSlot.SHIELD, new Item(6889));
-			player.getEquipment().set(EquipSlot.LEGS, new Item(4714));
-			player.getEquipment().set(EquipSlot.HANDS, new Item(7462));
-			player.getEquipment().set(EquipSlot.FEET, new Item(6920));
-			player.getEquipment().set(EquipSlot.RING, new Item(11773));
-
-			player.setMaster();
-			player.varps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
-
-			// player.getEquipment().set(EquipSlot.AMMO, item);
+			player.spawnHybrid();
 			break;
 
 		// Save loadout

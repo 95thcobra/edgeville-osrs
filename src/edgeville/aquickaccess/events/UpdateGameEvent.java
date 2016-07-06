@@ -26,25 +26,23 @@ public class UpdateGameEvent extends Event {
 	public void execute(EventContainer container) {
 		if (tick == ticksForRestart) {
 			player.world().players().forEach(p -> {
-				//p.logout();
-				p.savePlayer();
+				 p.logout();	
+				 // causes bugs?
+				 //p.savePlayer();
 			});
-
+		}
+		if (tick == ticksForRestart + 2) {
 			try {
-				//Runtime.getRuntime().exec("run.bat /C start");
 				Runtime.getRuntime().exec("cmd /c start run.bat");
-				//ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", "run.bat");
-				//processBuilder.directory(new File("./"));
-				//processBuilder.start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 			System.out.println("Server has shut down.");
 			System.exit(0);
 			container.stop();
 		}
-		
+
 		tick++;
 	}
 }

@@ -36,9 +36,7 @@ public class NpcAttack implements Action {
 		// player.message("npc attack --- npcindex:" + index + " run:" + run);
 		Npc other = player.world().npcs().get(index);
 
-		if (player.isDebug()) {
-			player.message("npcid:" + other.id() + " run:" + run);
-		}
+			player.messageDebug("npcid:" + other.id() + " run:" + run);
 
 		if (!player.locked() && !player.dead() && !other.dead()) {
 			// player.stepTowards(other, 20);
