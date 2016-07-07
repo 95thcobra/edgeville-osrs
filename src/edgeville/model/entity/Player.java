@@ -43,7 +43,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * @author Simon on 8/22/2014.
+ * @author Simon.
  */
 public class Player extends Entity {
 
@@ -350,10 +350,10 @@ public class Player extends Entity {
 	}
 
 	public void giveStarterPack() {
-		this.setReceivedStarter(true);
 		spawnMelee();
 		presetBank();
 		message(TextUtil.colorString("Check the quest tab for spawns!", TextUtil.Colors.RED));
+		setReceivedStarter(true);
 	}
 
 	private void onLogin() {
@@ -365,7 +365,6 @@ public class Player extends Entity {
 	}
 
 	private void presetBank() {
-		if (!hasReceivedStarter()) {
 			bank.getBankItems().add(new Item(4708, 1000));
 			bank.getBankItems().add(new Item(4712, 1001));
 			bank.getBankItems().add(new Item(6920, 1001));
@@ -427,7 +426,6 @@ public class Player extends Entity {
 			bank.getBankItems().add(new Item(145, 1));
 			bank.getBankItems().add(new Item(2412, 1));
 			bank.getBankItems().add(new Item(11773, 1));
-		}
 	}
 
 	public void resetSpecialEnergy() {
