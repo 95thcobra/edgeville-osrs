@@ -1,7 +1,5 @@
 package edgeville.services.serializers;
 
-import com.typesafe.config.Config;
-
 import edgeville.GameServer;
 import edgeville.model.entity.Player;
 import edgeville.model.uid.UIDProvider;

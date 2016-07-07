@@ -3,7 +3,6 @@ package edgeville;
 import edgeville.model.Locations;
 import edgeville.model.Tile;
 import edgeville.model.uid.UIDProvider;
-import edgeville.model.uid.providers.RedisUIDProvider;
 import edgeville.model.uid.providers.SimpleUIDProvider;
 import edgeville.services.serializers.JSONFileSerializer;
 import edgeville.services.serializers.PlayerSerializer;

@@ -1,7 +1,5 @@
 package edgeville.services;
 
-import com.typesafe.config.Config;
-
 import edgeville.GameServer;
 
 /**

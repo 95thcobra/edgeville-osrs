@@ -1,7 +1,5 @@
 package edgeville.services.login;
 
-import com.typesafe.config.Config;
-
 import edgeville.Constants;
 import edgeville.GameServer;
 import edgeville.io.RSBuffer;

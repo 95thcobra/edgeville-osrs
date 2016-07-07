@@ -8,7 +8,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.intellij.openapi.util.text.StringUtil;
 
 import edgeville.aquickaccess.actions.EquipmentRequirement;
 import edgeville.aquickaccess.actions.EquipmentRequirement.Skill;
@@ -279,7 +278,7 @@ public class EquipmentInfo {
 		if (!attackRequirementFound) {
 			String[] require70Attack = { "abyssal whip" };
 			for (String name : require70Attack) {
-				if (StringUtil.containsIgnoreCase(itemName, name)) {
+				if (StringUtils.containsIgnoreCase(itemName, name)) {
 					reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
 					attackRequirementFound = true;
 				}
@@ -290,7 +289,7 @@ public class EquipmentInfo {
 		if (!attackRequirementFound) {
 			String[] require75Attack = { "godsword", "abyssal tentacle" };
 			for (String name : require75Attack) {
-				if (StringUtil.containsIgnoreCase(itemName, name)) {
+				if (StringUtils.containsIgnoreCase(itemName, name)) {
 					reqs.add(new EquipmentRequirement(Skill.ATTACK, 75));
 				}
 			}

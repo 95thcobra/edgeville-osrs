@@ -1,17 +1,13 @@
 package edgeville;
 
-import com.typesafe.config.*;
-
 import edgeville.migration.MigrationRepository;
 import edgeville.model.World;
 import edgeville.model.uid.UIDProvider;
 import edgeville.model.uid.providers.SimpleUIDProvider;
 import edgeville.net.ClientInitializer;
 import edgeville.plugin.PluginHandler;
-import edgeville.script.ScriptRepository;
 import edgeville.services.Service;
 import edgeville.services.login.LoginService;
-import edgeville.services.redis.RedisService;
 import edgeville.services.serializers.JSONFileSerializer;
 import edgeville.util.HuffmanCodec;
 import edgeville.util.map.MapDecryptionKeys;
@@ -22,7 +18,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import nl.bartpelle.dawnguard.DataStore;
-import nl.bartpelle.skript.ScriptExecutor;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -70,16 +65,6 @@ public class GameServer {
 	 * Every 600ms, this thread 'pulses' and does all the logic.
 	 */
 	private ServerProcessor processor;
-
-	/**
-	 * The scripting repository.
-	 */
-	private ScriptRepository scriptRepository;
-
-	/**
-	 * The script executor
-	 */
-	private ScriptExecutor scriptExecutor;
 
 	/**
 	 * Our list of services currently loaded.

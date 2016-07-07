@@ -1,7 +1,5 @@
 package edgeville.aquickaccess.actions;
 
-import org.fusesource.jansi.Ansi.Color;
-
 import edgeville.combat.Combat;
 import edgeville.combat.PlayerVersusAnyCombat;
 import edgeville.combat.magic.AncientSpell;

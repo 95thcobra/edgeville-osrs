@@ -8,7 +8,6 @@ import edgeville.model.entity.player.Privilege;
 import edgeville.net.message.game.encoders.Action;
 import edgeville.net.message.game.encoders.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
-import nl.bartpelle.skript.WaitReason;
 
 /**
  * @author Simon on 5-2-2015.

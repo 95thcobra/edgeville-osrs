@@ -1,6 +1,6 @@
 package edgeville.combat;
 
-import com.intellij.openapi.util.text.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
@@ -42,7 +42,7 @@ public class CombatUtil {
 		if (weapon != null) {
 			String wepName = weapon.definition(player.world()).name;
 
-			if (StringUtil.containsIgnoreCase(wepName, "abyssal tentacle") || StringUtil.containsIgnoreCase(wepName, "abyssal whip")) {
+			if (StringUtils.containsIgnoreCase(wepName, "abyssal tentacle") || StringUtils.containsIgnoreCase(wepName, "abyssal whip")) {
 				player.messageDebug("Hitting with whip");
 				switch (player.getVarps().getVarp(Varp.ATTACK_STYLE)) {
 				case 0:
