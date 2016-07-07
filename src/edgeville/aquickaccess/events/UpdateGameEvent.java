@@ -3,6 +3,8 @@ package edgeville.aquickaccess.events;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.SystemUtils;
+
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.entity.Player;
@@ -26,14 +28,18 @@ public class UpdateGameEvent extends Event {
 	public void execute(EventContainer container) {
 		if (tick == ticksForRestart) {
 			player.world().players().forEach(p -> {
-				 //p.logout();	
-				 // causes bugs?
-				 p.savePlayer();
+				// p.logout();
+				// causes bugs?
+				p.savePlayer();
 			});
-		}
-		if (tick == ticksForRestart + 2) {
+		//}
+		//if (tick == ticksForRestart) {
 			try {
-				Runtime.getRuntime().exec("cmd /c start run.bat");
+				if (SystemUtils.IS_OS_LINUX) {
+					Runtime.getRuntime().exec("screen -A -m -d -S rsps java -classpath bin:lib/* edgeville.GameServer");
+				} else if (SystemUtils.IS_OS_WINDOWS) {
+					Runtime.getRuntime().exec("cmd /c start run.bat");
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

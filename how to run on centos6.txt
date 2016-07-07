@@ -1,11 +1,17 @@
-check if 64bit, if contains 'lm' then is 64 bit:
-grep flags /proj/cpuinfo
+VPS INFO
 
-install java:
-yum localinstall jdk-8u91-linux-x64.rpm
+Het IPv4-adres van uw VPS: 51.254.222.10
+De naam van uw VPS: vps294645.ovh.net
+Het volgende administrator-account is geconfigureerd op de VPS:
+Gebruikersnaam: root
+Wachtwoord: do75Wh9E
 
-install unzip:
-yum install unzip
+run server:
+screen -A -m -d -S rsps java -classpath bin:lib/* edgeville.GameServer
+java -classpath bin:lib/* edgeville.GameServer
+Show output: screen -R
+Kill screen: "Ctrl-A" and "K" 
+Detach screen(use kill screen): "Ctrl-A" and "d" 
 
 unzip file:
 unzip edgeville.zip
@@ -16,8 +22,17 @@ cd edgeville
 remove folder and content:
 rm -rf foldername
 
-run server:
-screen -A -m -d -S rsps java -classpath bin:lib/* edgeville.GameServer
+shutdown server:
+killall java
+
+check if 64bit, if contains 'lm' then is 64 bit:
+grep flags /proj/cpuinfo
+
+install java:
+yum localinstall jdk-8u91-linux-x64.rpm
+
+install unzip:
+yum install unzip
 
 check ram:
 free -m

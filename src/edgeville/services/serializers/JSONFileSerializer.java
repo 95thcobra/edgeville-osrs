@@ -55,7 +55,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 	@Override
 	public boolean loadPlayer(Player player, Object uid, String password, Consumer<PlayerLoadResult> fn) {
-		File characterFile = new File(characterFolder, player.name() + ".json");
+		File characterFile = new File(characterFolder, player.getUsername() + ".json");
 
 		// If the file does not exist, let the caller know.
 		if (!characterFile.exists()) {

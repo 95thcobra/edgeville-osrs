@@ -2,6 +2,9 @@ KIJK BIJ VAR2 VOOR KEYBINDINGS OPTIONS
 scriptinvoke?
 packetdecoder run energy
 
+equipment requirements
+set level by clicking skill, dont allow when wearing equipment too high
+
 safe area
 shops
 integrate forums with server? hiscores
@@ -9,6 +12,8 @@ integrate forums with server? hiscores
 clip custom objects
 unclip walls to be removed etc
 projectile clipping!
+
+resizable tabs switch block vs line
 
 toxic blowpipe
 staff of dead
@@ -24,4 +29,8 @@ combat accuracy, maxhits are good.
 
 make my own plugins ipb, members online, ranks
 
-linux vps ovh to work
+chmod 777 too high maybe? Idk 
+
+countdown timer / landing page for release
+
+

@@ -1,1 +1,0 @@
-java -server -Xmx3024m -classpath bin:lib/* edgeville.GameServer

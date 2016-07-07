@@ -2,57 +2,132 @@
   "username": "sky",
   "displayName": "sky",
   "password": "test",
+  "receivedStarter": true,
   "tile": {
-    "x": 3084,
-    "z": 3524,
+    "x": 3092,
+    "z": 3506,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
-  "skullIcon": 0,
+  "skullIcon": -1,
   "prayerIcon": -1,
-  "debug": false,
+  "debug": true,
+  "kills": 2,
+  "deaths": 0,
   "inventory": [
+    {
+      "id": 11802,
+      "amount": 1
+    },
+    {
+      "id": 159,
+      "amount": 1
+    },
+    {
+      "id": 163,
+      "amount": 1
+    },
+    {
+      "id": 147,
+      "amount": 1
+    },
+    {
+      "id": 6570,
+      "amount": 1
+    },
+    {
+      "id": 12006,
+      "amount": 1
+    },
     {
       "id": 12954,
       "amount": 1
     },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
     {
-      "id": 12006,
+      "id": 10551,
       "amount": 1
     },
     {
-      "id": 4153,
+      "id": 4722,
       "amount": 1
     },
-    null,
-    null,
-    null,
     {
-      "id": 12006,
+      "id": 11840,
       "amount": 1
     },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    {
+      "id": 4736,
+      "amount": 1
+    },
+    {
+      "id": 560,
+      "amount": 9948
+    },
+    {
+      "id": 565,
+      "amount": 9964
+    },
+    {
+      "id": 555,
+      "amount": 9922
+    },
+    {
+      "id": 4675,
+      "amount": 1
+    },
+    {
+      "id": 6889,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    }
   ],
   "equipment": [
     {
@@ -60,7 +135,7 @@
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 2412,
       "amount": 1
     },
     {
@@ -72,16 +147,13 @@
       "amount": 1
     },
     {
-      "id": 10551,
-      "amount": 1
-    },
-    {
-      "id": 12954,
+      "id": 4712,
       "amount": 1
     },
     null,
+    null,
     {
-      "id": 4722,
+      "id": 4714,
       "amount": 1
     },
     null,
@@ -90,7 +162,7 @@
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 6920,
       "amount": 1
     },
     null,
@@ -102,19 +174,10 @@
   ],
   "loadout": {
     "inventory": [
-      {
-        "id": 4153,
-        "amount": 1
-      },
       null,
-      {
-        "id": 12006,
-        "amount": 1
-      },
-      {
-        "id": 12954,
-        "amount": 1
-      },
+      null,
+      null,
+      null,
       null,
       null,
       null,
@@ -141,52 +204,88 @@
       null
     ],
     "equipment": [
-      {
-        "id": 10828,
-        "amount": 1
-      },
-      {
-        "id": 6570,
-        "amount": 1
-      },
-      {
-        "id": 6585,
-        "amount": 1
-      },
-      {
-        "id": 12006,
-        "amount": 1
-      },
-      {
-        "id": 10551,
-        "amount": 1
-      },
-      {
-        "id": 12954,
-        "amount": 1
-      },
       null,
-      {
-        "id": 4722,
-        "amount": 1
-      },
       null,
-      {
-        "id": 7462,
-        "amount": 1
-      },
-      {
-        "id": 11840,
-        "amount": 1
-      },
       null,
-      {
-        "id": 11773,
-        "amount": 1
-      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
       null
     ]
   },
+  "bank": [
+    {
+      "id": 5698,
+      "amount": 1
+    },
+    {
+      "id": 145,
+      "amount": 1
+    },
+    {
+      "id": 157,
+      "amount": 1
+    },
+    {
+      "id": 163,
+      "amount": 1
+    },
+    {
+      "id": 4153,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 23
+    },
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 6570,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 12006,
+      "amount": 1
+    },
+    {
+      "id": 10551,
+      "amount": 1
+    },
+    {
+      "id": 12954,
+      "amount": 1
+    },
+    {
+      "id": 4722,
+      "amount": 1
+    },
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 11840,
+      "amount": 1
+    },
+    {
+      "id": 11773,
+      "amount": 1
+    }
+  ],
   "varps": [
     {
       "id": 43,
@@ -197,12 +296,16 @@
       "value": 1
     },
     {
+      "id": 287,
+      "value": 5
+    },
+    {
       "id": 300,
       "value": 1000
     },
     {
-      "id": 588,
-      "value": 4096
+      "id": 439,
+      "value": 1
     },
     {
       "id": 843,
@@ -214,7 +317,11 @@
     },
     {
       "id": 1055,
-      "value": 8704
+      "value": 8192
+    },
+    {
+      "id": 1105,
+      "value": 1
     },
     {
       "id": 1224,
@@ -230,13 +337,25 @@
     },
     {
       "id": 1227,
-      "value": 10
+      "value": 130023426
     }
   ],
   "skills": [
     {
       "level": 99,
-      "xp": 1.3038811E7
+      "xp": 1.3034771E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3035075E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034929E7
     },
     {
       "level": 99,
@@ -248,19 +367,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3035585E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3034848E7
     },
     {
       "level": 99,
@@ -330,5 +437,10 @@
       "level": 99,
       "xp": 1.3034431E7
     }
-  ]
+  ],
+  "quickprayers": [],
+  "autocastSpellChild": 0,
+  "lastCastedSpell": "ICE_BLITZ",
+  "lastCastedSpellChild": 67,
+  "autocasting": false
 }

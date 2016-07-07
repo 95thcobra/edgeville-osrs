@@ -882,8 +882,7 @@ public class Player extends Entity {
 
 		// Sync bank if dirty
 		if (bank.isDirty()) {
-			for (int i = 0 ; i < 100; i ++) 
-			write(new SetItems(i, bank.getBankItems()));
+			write(new SetItems(95, bank.getBankItems()));
 			bank.clean();
 		}
 	}
