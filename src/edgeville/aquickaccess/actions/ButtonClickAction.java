@@ -73,6 +73,11 @@ public class ButtonClickAction {
 				player.interfaces().setQuickPrayers(false);
 			}
 			break;
+			
+			// keybindings
+		case 121:
+			setupKeybindings();
+			break;
 
 		// XP Drops settings
 		case 137:
@@ -110,11 +115,18 @@ public class ButtonClickAction {
 
 		// Run toggle, in settings
 		case 261:
+			
+			if (buttonId == 57) {
+				player.interfaces().sendMain(121);
+				return;
+			}
 			if (buttonId == 66) {
 				player.pathQueue().toggleRunning();
+				return;
 			}
 			if (buttonId == 21) {
 				player.interfaces().sendMain(60);
+				return;
 			}
 			break;
 
@@ -151,6 +163,24 @@ public class ButtonClickAction {
 	}
 
 	////////////////
+
+	private void setupKeybindings() {
+			//player.write(new InvokeScript(917, -1, -1));
+			player.interfaces().sendMain(121);
+
+			SettingsBuilder settingsBuilder = new SettingsBuilder();
+			player.interfaces().setting(121, 21, 1, 14, settingsBuilder.option(0));
+			player.interfaces().setting(121, 22, 1, 14, settingsBuilder.option(0));
+			player.interfaces().setting(121, 23, 1, 14, settingsBuilder.option(0));
+			/*player.interfaces().setting(121, 51, 1, 3, settingsBuilder.option(0));
+			player.interfaces().setting(121, 52, 1, 4, settingsBuilder.option(0));
+			player.interfaces().setting(121, 53, 1, 32, settingsBuilder.option(0));
+			player.interfaces().setting(121, 54, 1, 32, settingsBuilder.option(0));
+			player.interfaces().setting(121, 55, 1, 8, settingsBuilder.option(0));
+			player.interfaces().setting(121, 56, 1, 2, settingsBuilder.option(0));
+			player.interfaces().setting(121, 57, 1, 3, settingsBuilder.option(0));
+			player.interfaces().setting(121, 16, 0, 24, settingsBuilder.option(0));*/
+	}
 
 	private void handleDfs() {
 		Entity target = player.getTarget();

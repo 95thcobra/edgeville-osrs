@@ -36,9 +36,9 @@ public class SpellOnTargetAction {
 				return;
 			}
 			if (target instanceof Player) {
-				if (!player.timers().has(TimerKey.IN_COMBAT)) {
+				/*if (!player.timers().has(TimerKey.IN_COMBAT)) {
 					player.interfaces().setBountyInterface(true);
-				}
+				}*/
 				player.timers().register(TimerKey.IN_COMBAT, 10);
 
 				if (!target.timers().has(TimerKey.IN_COMBAT)) {

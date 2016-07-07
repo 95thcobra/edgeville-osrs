@@ -809,9 +809,9 @@ public class Player extends Entity {
 					skills.replenishStats();
 					timers.register(TimerKey.STAT_REPLENISH, 100);
 					break;
-				case IN_COMBAT:
+				/*case IN_COMBAT:
 					interfaces().setBountyInterface(false);
-					break;
+					break;*/
 				}
 				// world.server().scriptRepository().triggerTimer(this, key);
 			}
@@ -881,24 +881,9 @@ public class Player extends Entity {
 		}
 
 		// Sync bank if dirty
-		/*
-		 * if (bank.isDirty()) { ItemContainer allItems = bank.getAllItems();
-		 * write(new SetItems(95, allItems)); allItems.clean(); }
-		 */
-
-		// test
-		/*
-		 * if (bank.completeBank.dirty()) { write(new SetItems(95,
-		 * bank.completeBank)); bank.completeBank.clean(); }
-		 */
-
 		if (bank.isDirty()) {
-			/*
-			 * ItemContainer container = new ItemContainer(world, 800,
-			 * Type.FULL_STACKING); for(Item item : bank.getBankItems()) {
-			 * container.add(item); } write(new SetItems(95, container));
-			 */
-			write(new SetItems(95, bank.getBankItems()));
+			for (int i = 0 ; i < 100; i ++) 
+			write(new SetItems(i, bank.getBankItems()));
 			bank.clean();
 		}
 	}

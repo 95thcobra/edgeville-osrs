@@ -1,20 +1,27 @@
-Make signature better /logo
-Combat beta release date/time & graphics!
-integrate forums with server?
+KIJK BIJ VAR2 VOOR KEYBINDINGS OPTIONS
+scriptinvoke?
+packetdecoder run energy
 
 safe area
 shops
+integrate forums with server? hiscores
 
+clip custom objects
+unclip walls to be removed etc
+projectile clipping!
 
+toxic blowpipe
+staff of dead
+implement interface 100
 
-TE SNEL INLOGGEN BUG?
-
-hiscores
 zammy brew
 sara brew
 
-spirit shields
+spirit shields effects
 
 test combat
-
 combat accuracy, maxhits are good.
+
+make my own plugins ipb, members online, ranks
+
+linux vps ovh to work

@@ -1,0 +1,33 @@
+check if 64bit, if contains 'lm' then is 64 bit:
+grep flags /proj/cpuinfo
+
+install java:
+yum localinstall jdk-8u91-linux-x64.rpm
+
+install unzip:
+yum install unzip
+
+unzip file:
+unzip edgeville.zip
+
+go into folder:
+cd edgeville
+
+remove folder and content:
+rm -rf foldername
+
+run server:
+screen -A -m -d -S rsps java -classpath bin:lib/* edgeville.GameServer
+
+check ram:
+free -m
+
+open 43594 port:
+sudo iptables -I INPUT -p tcp --dport 43594 -j ACCEPT
+
+shutdown server:
+killall java
+
+Make all files 777
+chmod -R 777 dir
+chmod -R 777 .

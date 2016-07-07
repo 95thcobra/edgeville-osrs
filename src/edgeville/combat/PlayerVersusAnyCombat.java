@@ -52,9 +52,9 @@ public class PlayerVersusAnyCombat extends Combat {
 			}
 
 			// bounty interface for player.
-			if (!player.timers().has(TimerKey.IN_COMBAT)) {
+			/*if (!player.timers().has(TimerKey.IN_COMBAT)) {
 				player.interfaces().setBountyInterface(true);
-			}
+			}*/
 			player.timers().register(TimerKey.IN_COMBAT, 10);
 
 			// bounty interface for target.

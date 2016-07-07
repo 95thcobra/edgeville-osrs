@@ -15,6 +15,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Privilege;
 import edgeville.model.entity.player.Skills;
 import edgeville.model.item.Item;
+import edgeville.model.map.MapObj;
 import edgeville.net.message.game.encoders.*;
 
 /**
@@ -31,20 +32,48 @@ public final class GameCommands {
 
 	}
 
+	public static void spawnObj(Player player, MapObj obj) {
+		player.world().getSpawnedObjs().add(obj);
+
+		player.world().players().forEach(p -> {
+			if (p.activeArea().contains(obj.tile())) {
+				p.write(new SetMapBase(p, obj.tile()));
+				p.write(new SpawnObject(obj));
+			}
+		});
+	}
+
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
+
+		put(Privilege.ADMIN, "obj", (p, args) -> {
+			Tile tile = p.getTile();
+			for (int i = 0; i < 21; i++) {
+
+				//for(int j = 0 ; j < 20 ; j ++) {
+				MapObj mapObj = new MapObj(tile, Integer.parseInt(args[0]), i, 0);// the 0 is face, irrelvent
+				spawnObj(p, mapObj);
+				//}
+
+			}
+		});
+
+		put(Privilege.ADMIN, "run", (p, args) -> {
+			p.write(new RunEnergy(50));
+			p.message("update run...");
+		});
 
 		put(Privilege.ADMIN, "inte", (p, args) -> {
 			p.interfaces().sendMain(548);
 		});
-		
+
 		put(Privilege.ADMIN, "resetlevel", (p, args) -> {
 			for (int i = 0; i < Skills.SKILL_COUNT; i++) {
 				p.skills().setXp(i, 0);
 				p.skills().resetStats();
 			}
 		});
-		
+
 		put(Privilege.ADMIN, "varb", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 1000; i++) {
@@ -55,14 +84,13 @@ public final class GameCommands {
 						e.printStackTrace();
 					}
 
-					//p.write(new InvokeScript(i, -1, -2147483648));
+					// p.write(new InvokeScript(i, -1, -2147483648));
 					p.getVarps().setVarbit(276, i);
 					p.shout("invoke: " + i);
 				}
 			}).start();
 		});
-	
-		
+
 		put(Privilege.ADMIN, "reseti", (p, args) -> {
 			p.interfaces().sendResizable();
 		});
@@ -78,13 +106,12 @@ public final class GameCommands {
 					}
 
 					p.write(new InvokeScript(i, -1, -2147483648));
-		
+
 					p.shout("invoke: " + i);
 				}
 			}).start();
 		});
 
-	
 		put(Privilege.ADMIN, "testk", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 1000; i++) {
@@ -285,7 +312,7 @@ public final class GameCommands {
 		});
 		///////////
 
-	put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
+		put(Privilege.PLAYER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
 
 		put(Privilege.ADMIN, "debugon", (p, args) -> p.setDebug(true));
 		put(Privilege.ADMIN, "debugoff", (p, args) -> p.setDebug(false));

@@ -4,8 +4,8 @@
   "password": "23g23g23",
   "receivedStarter": true,
   "tile": {
-    "x": 3094,
-    "z": 3503,
+    "x": 3093,
+    "z": 3494,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -16,163 +16,49 @@
   "kills": 0,
   "deaths": 0,
   "inventory": [
-    {
-      "id": 5698,
-      "amount": 1
-    },
-    {
-      "id": 145,
-      "amount": 1
-    },
-    {
-      "id": 157,
-      "amount": 1
-    },
-    {
-      "id": 163,
-      "amount": 1
-    },
-    {
-      "id": 4153,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   "equipment": [
-    {
-      "id": 10828,
-      "amount": 1
-    },
-    {
-      "id": 6570,
-      "amount": 1
-    },
-    {
-      "id": 6585,
-      "amount": 1
-    },
-    {
-      "id": 12006,
-      "amount": 1
-    },
-    {
-      "id": 10551,
-      "amount": 1
-    },
-    {
-      "id": 12954,
-      "amount": 1
-    },
     null,
-    {
-      "id": 4722,
-      "amount": 1
-    },
     null,
-    {
-      "id": 7462,
-      "amount": 1
-    },
-    {
-      "id": 11840,
-      "amount": 1
-    },
     null,
-    {
-      "id": 11773,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null
   ],
   "loadout": {
@@ -223,7 +109,72 @@
       null
     ]
   },
-  "bank": [],
+  "bank": [
+    {
+      "id": 5698,
+      "amount": 1
+    },
+    {
+      "id": 145,
+      "amount": 1
+    },
+    {
+      "id": 157,
+      "amount": 1
+    },
+    {
+      "id": 163,
+      "amount": 1
+    },
+    {
+      "id": 4153,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 23
+    },
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 6570,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 12006,
+      "amount": 1
+    },
+    {
+      "id": 10551,
+      "amount": 1
+    },
+    {
+      "id": 12954,
+      "amount": 1
+    },
+    {
+      "id": 4722,
+      "amount": 1
+    },
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 11840,
+      "amount": 1
+    },
+    {
+      "id": 11773,
+      "amount": 1
+    }
+  ],
   "varps": [
     {
       "id": 300,
@@ -232,10 +183,6 @@
     {
       "id": 439,
       "value": 2
-    },
-    {
-      "id": 843,
-      "value": 20
     },
     {
       "id": 1050,
