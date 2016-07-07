@@ -118,6 +118,16 @@ public class Interfaces {
 			close(activeRoot, child);
 		}
 	}
+	
+	public void showSkull(boolean enabled) {
+		int child = activeRoot == PANE_RESIZABLE ? 7 : 10;
+
+		if (enabled) {
+			send(105, activeRoot, child, true);
+		} else {
+			close(activeRoot, child);
+		}
+	}
 
 	public void sendResizable() {
 		sendRoot(PANE_RESIZABLE);
@@ -175,6 +185,8 @@ public class Interfaces {
 	public void sendMain(int id, boolean clickthrough) {
 		send(id, activeRoot, mainComponent(), clickthrough);
 	}
+	
+
 
 	public void send(int id, int target, int targetChild, boolean clickthrough) {
 		player.write(new OpenInterface(id, target, targetChild, clickthrough));

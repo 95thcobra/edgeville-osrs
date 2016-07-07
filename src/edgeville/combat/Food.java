@@ -52,7 +52,9 @@ public enum Food {
     HALF_WILD_PIE(7210, 11, 2313),
     SUMMER_PIE(7218, 11, 7220),
     HALF_SUMMER_PIE(7220, 11, 2313),
-    BEER(1917, 1, 1919);
+    BEER(1917, 1, 1919),
+	
+    COOKED_KARAMBWAN(3144, 18, -1);
 
     private int id;
     private int heal;

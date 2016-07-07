@@ -19,6 +19,11 @@ public enum TimerKey {
 	 * Key used when player is in combat.
 	 */
 	IN_COMBAT,
+	
+	/**
+	 * Key used when player runs into safe area.
+	 */
+	AFTER_COMBAT,
 
 	/**
 	 * Key used when burying bones in the ground.
@@ -69,7 +74,7 @@ public enum TimerKey {
 
 	PRAYER_TICK,
 	
-	SKULL
+	SKULL, KARAMBWAN
 	
 	
 

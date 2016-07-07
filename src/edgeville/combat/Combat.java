@@ -40,9 +40,12 @@ public abstract class Combat {
 		// autocasting
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
+
 			Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
 			if (player.isAutoCasting()) {
-				if (weapon != null && player.world().equipmentInfo().weaponType(weapon.getId()) == WeaponType.MAGIC_STAFF && player.getLastCastedSpell() != null) {
+				if (weapon != null
+						&& player.world().equipmentInfo().weaponType(weapon.getId()) == WeaponType.MAGIC_STAFF
+						&& player.getLastCastedSpell() != null) {
 					new SpellOnTargetAction(player, target, 218, player.getAutoCastingSpellChild()).start(true);
 					return;
 				}
@@ -77,8 +80,10 @@ public abstract class Combat {
 		int steps = entity.pathQueue().running() ? 2 : 1;
 		int otherSteps = target.pathQueue().running() ? 2 : 1;
 
-		Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile() : target.pathQueue().peekAfter(otherSteps).toTile();
+		Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile()
+				: target.pathQueue().peekAfter(otherSteps).toTile();
 		entity.stepTowards(target, otherTile, 25);
-		return entity.pathQueue().peekAfter(steps - 1) == null ? entity.getTile() : entity.pathQueue().peekAfter(steps - 1).toTile();
+		return entity.pathQueue().peekAfter(steps - 1) == null ? entity.getTile()
+				: entity.pathQueue().peekAfter(steps - 1).toTile();
 	}
 }

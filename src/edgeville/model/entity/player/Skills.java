@@ -145,6 +145,73 @@ public class Skills {
 		}
 		update(skill);
 	}
+	
+	/**
+	 * Increases your currentlevel (so not max level).
+	 * If below 0, set 0.
+	 * Can only go over 99 once.
+	 * Used for saradomin brew hitpoints for example.
+	 * @param skill
+	 * @param change
+	 */
+	public void increaseLeftLevel(int skill, int change) {
+		levels[skill] += change;
+		if (levels[skill] <= 0) {
+			levels[skill] = 0;
+		}
+		//player.message("Level - change is %d", levels[skill] - change);
+		if (levels[skill] - change > xpLevel(skill)) {
+			levels[skill] = xpLevel(skill) + change;
+		}
+		update(skill);
+	}
+	
+	/**
+	 * Restores untill 99, but if currentlevel is higher it will stay that way.
+	 */
+	public void restoreLeftLevel(int skill, int change) {
+		boolean skillIsOver99 = levels[skill] > xpLevel(skill);
+		if (skillIsOver99) {
+			return;
+		}
+		
+		levels[skill] += change;
+		if (levels[skill] <= 0) {
+			levels[skill] = 0;
+		}
+		if (levels[skill]  > xpLevel(skill)) {
+			levels[skill] = xpLevel(skill);
+		}
+		update(skill);
+	}
+	
+	/**
+	 * Decreases levels ONCE(so drinking multiple times does not have effect!)
+	 * Used for saradomin brew decreasing of stats.
+	 * @param skill
+	 * @param change
+	 */
+	public void decreaseLeftLevel(int skill, int change) {
+		levels[skill] += change;
+		
+		if (levels[skill] <= 0) {
+			levels[skill] = 0;
+		}
+		
+		player.message("!!!Skill that changed: %d", skill);
+		player.message("Level - change is %d", levels[skill] - change);
+		
+		// Makes sure you cant go higher than once.
+		if (levels[skill] - change > xpLevel(skill)) {
+			levels[skill] = xpLevel(skill) + change;
+		}
+		
+		// Makes sure you cant go lower than once.
+		if (levels[skill] < xpLevel(skill) + change) {
+			levels[skill] = xpLevel(skill) + change;
+		}
+		update(skill);
+	}
 
 	// If relative enabled, it will alterskill on top of the altered skill!
 	public void alterSkill(int skill, int change, boolean relative) {
@@ -178,7 +245,7 @@ public class Skills {
 
 	public void replenishStats() {
 		for (int i = 0; i < SKILL_COUNT; i++) {
-			if (i == HITPOINTS || i == PRAYER) // Hitpoints does not replenish
+			if (i == PRAYER) // Hitpoints does not replenish
 												// this way
 				continue;
 

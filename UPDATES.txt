@@ -1,6 +1,11 @@
 [06-06-2016]:
 - Retribution added
 - Smite added.
+- Saradomin brew added.
+- Super restore potion added.
+- Zamorak brews added.
+- Karambwans added.
+- Added safe area (Edgeville bank)
 
 
 

@@ -15,8 +15,6 @@ public class Constants {
 	// Settings
 	public static final boolean ALL_PVP = true;
 	
-	
-
 	public static final String SERVER_NAME = "Edgeville";
 	public static final int REVISION = 86;
 	public static final boolean FORCE_REVISION = false;

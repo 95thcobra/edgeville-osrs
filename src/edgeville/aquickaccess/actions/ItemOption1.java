@@ -78,28 +78,59 @@ public class ItemOption1 {
 		}
 
 		// Default
-		double change = potion.getBaseValue() + (player.skills().xpLevel(potion.getSkill()) * potion.getPercentage() / 100.0);
+		double change = potion.getBaseValue()
+				+ (player.skills().xpLevel(potion.getSkill()) * potion.getPercentage() / 100.0);
 		player.skills().alterSkill(potion.getSkill(), (int) Math.round(change), false);
 	}
 
 	private boolean handleSpecialPotion(Potions potion) {
 		player.messageDebug("Handling special potion");
-		if (potion == Potions.PRAYER_POTION) {
-
+		switch (potion) {
+		case PRAYER_POTION:
 			int prayerRestore = (int) Math.round(Math.floor(7 + (player.skills().level(Skills.PRAYER) / 4)));
 			player.skills().alterSkillUnder99(Skills.PRAYER, prayerRestore, true);
+			break;
 
-		} else if (potion == Potions.SUPER_RESTORE) {
+		case SUPER_RESTORE:
+			int prayerRestoreSuper = (int) Math.round(Math.floor(7 + (player.skills().level(Skills.PRAYER) / 4)));
+			player.skills().restoreLeftLevel(Skills.PRAYER, prayerRestoreSuper + 1);
 
-			int prayerRestore = (int) Math.round(Math.floor(7 + (player.skills().level(Skills.PRAYER) / 4)));
-			player.skills().alterSkillUnder99(Skills.PRAYER, prayerRestore + 1, true);
-
-			for (int i = 0; i < 2; i++) {
-				int restore = 8 + Math.round(player.skills().xpLevel(i) / 4);
-				player.skills().alterSkillUnder99(i, restore, true);
+			int[] skills = { Skills.RANGED, Skills.MAGIC, Skills.STRENGTH, Skills.ATTACK, Skills.DEFENCE };
+			for (int skill : skills) {
+				int restore = 8 + Math.round(player.skills().xpLevel(skill) / 4);
+				player.skills().restoreLeftLevel(skill, restore);
 			}
+			break;
 
-		} else {
+		case SARADOMIN_BREW:
+			int hpChange = (int) Math.floor(0.15 * player.skills().xpLevel(Skills.HITPOINTS)) + 2;
+			player.skills().increaseLeftLevel(Skills.HITPOINTS, hpChange);
+
+			int defChange = (int) Math.floor(0.20 * player.skills().xpLevel(Skills.DEFENCE)) + 2;
+			player.skills().increaseLeftLevel(Skills.DEFENCE, defChange);
+
+			int[] decreaseLevels = { Skills.STRENGTH, Skills.ATTACK, Skills.MAGIC, Skills.RANGED };
+			for (int skill : decreaseLevels) {
+				int change = (int) Math.floor(0.10 * player.skills().xpLevel(skill));
+				player.skills().decreaseLeftLevel(skill, -change);
+			}
+			break;
+			
+		case ZAMORAK_BREW:
+			int attackIncrease = (int) Math.floor(0.20 * player.skills().xpLevel(Skills.ATTACK)) + 2; 
+			int strengthIncrease = (int) Math.floor(0.12 * player.skills().xpLevel(Skills.STRENGTH)) + 2; 
+			int defenceDecrease=(int) Math.floor(0.10 * player.skills().xpLevel(Skills.DEFENCE)) + 2;
+			int hitPointsDecrease = (int) Math.floor(0.10 * player.skills().xpLevel(Skills.HITPOINTS)) + 2;
+			int prayerRestoreZ = (int) Math.floor(0.10 * player.skills().xpLevel(Skills.PRAYER));
+			
+			player.skills().increaseLeftLevel(Skills.ATTACK, attackIncrease);
+			player.skills().increaseLeftLevel(Skills.STRENGTH, strengthIncrease);
+			player.skills().decreaseLeftLevel(Skills.DEFENCE, -defenceDecrease);
+			player.skills().decreaseLeftLevel(Skills.HITPOINTS, -hitPointsDecrease);
+			player.skills().restoreLeftLevel(Skills.PRAYER, prayerRestoreZ);
+			break;
+
+		default:
 			return false;
 		}
 		return true;
@@ -116,7 +147,10 @@ public class ItemOption1 {
 	}
 
 	private void eat(Food food) {
-		if (player.timers().has(TimerKey.FOOD)) {
+		if (player.timers().has(TimerKey.FOOD) && food != Food.COOKED_KARAMBWAN) {
+			return;
+		}
+		if (player.timers().has(TimerKey.KARAMBWAN) && food== Food.COOKED_KARAMBWAN) {
 			return;
 		}
 
@@ -128,9 +162,14 @@ public class ItemOption1 {
 		player.sound(Sounds.EATING);
 
 		player.timers().register(TimerKey.FOOD, 3);
+		if (food == Food.COOKED_KARAMBWAN) {
+			player.timers().register(TimerKey.KARAMBWAN, 3);
+		}
+		
 		player.timers().extendOrRegister(TimerKey.COMBAT_ATTACK, 3);
 
-		player.heal(food.getHeal());
+		// player.heal(food.getHeal());
+		player.skills().restoreLeftLevel(Skills.HITPOINTS, food.getHeal());
 		player.animate(829);
 
 		if (food == Food.BEER) {

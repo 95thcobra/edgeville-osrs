@@ -16,7 +16,7 @@ import edgeville.util.Varp;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * @author Simon on 5-2-2015.
+ * @author Simon.
  */
 @PacketInfo(size = 8)
 public class ItemAction2 extends ItemAction {

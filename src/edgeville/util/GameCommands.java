@@ -64,7 +64,7 @@ public final class GameCommands {
 		});
 
 		put(Privilege.ADMIN, "inte", (p, args) -> {
-			p.interfaces().sendMain(548);
+			p.interfaces().send(105, p.interfaces().activeRoot(), Integer.parseInt(args[0]), true);
 		});
 
 		put(Privilege.ADMIN, "resetlevel", (p, args) -> {
@@ -364,7 +364,7 @@ public final class GameCommands {
 
 		put(Privilege.ADMIN, "loopvarbit", (p, args) -> {
 			new Thread(() -> {
-				for (int i = 0; i < 10000; i++) {
+				for (int i = 0; i < 20000; i++) {
 					p.getVarps().setVarbit(i, Integer.parseInt(args[0]));
 				}
 			}).start();

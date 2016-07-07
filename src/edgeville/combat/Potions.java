@@ -27,9 +27,8 @@ public enum Potions {
     SUPER_RANGING_POTION(Skills.RANGED, 2, 12, true, "Super ranging potion", 11722, 11723, 11724, 11725),
 
     SARADOMIN_BREW(-1, -1, -1, false, "Saradomin brew", 6685, 6687, 6689, 6691),
+    ZAMORAK_BREW(-1, -1, -1, false, "Zamorak brew", 2450, 189, 191, 193),
 
-   
-    
     
     SUPER_RESTORE(-1, -1, -1, true, "Super restore", 3024, 3026, 3028, 3030),
     PRAYER_POTION(-1, -1, -1, true, "Prayer potion", 2434, 139, 141, 143),

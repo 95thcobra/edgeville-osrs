@@ -307,7 +307,8 @@ public class Player extends Entity {
 		this.isAutoCasting = isAutoCasting;
 	}
 
-	public Player(Channel channel, String username, String password, World world, Tile tile, IsaacRand inrand, IsaacRand outrand) {
+	public Player(Channel channel, String username, String password, World world, Tile tile, IsaacRand inrand,
+			IsaacRand outrand) {
 		super(world, tile);
 
 		this.channel = channel;
@@ -365,67 +366,67 @@ public class Player extends Entity {
 	}
 
 	private void presetBank() {
-			bank.getBankItems().add(new Item(4708, 1000));
-			bank.getBankItems().add(new Item(4712, 1001));
-			bank.getBankItems().add(new Item(6920, 1001));
-			bank.getBankItems().add(new Item(4714, 1001));
-			bank.getBankItems().add(new Item(6585, 1001));
-			bank.getBankItems().add(new Item(7462, 41));
-			bank.getBankItems().add(new Item(6914, 1000));
-			bank.getBankItems().add(new Item(6889, 1001));
-			bank.getBankItems().add(new Item(2414, 20));
-			bank.getBankItems().add(new Item(4736, 1002));
-			bank.getBankItems().add(new Item(12006, 22));
-			bank.getBankItems().add(new Item(6570, 22));
-			bank.getBankItems().add(new Item(12954, 22));
-			bank.getBankItems().add(new Item(11840, 1002));
-			bank.getBankItems().add(new Item(11832, 20));
-			bank.getBankItems().add(new Item(11834, 1000));
-			bank.getBankItems().add(new Item(11802, 20));
-			bank.getBankItems().add(new Item(10828, 21));
-			bank.getBankItems().add(new Item(6737, 1000));
-			bank.getBankItems().add(new Item(5698, 1003));
-			bank.getBankItems().add(new Item(4753, 1000));
-			bank.getBankItems().add(new Item(10370, 1000));
-			bank.getBankItems().add(new Item(10372, 1000));
-			bank.getBankItems().add(new Item(4759, 1000));
-			bank.getBankItems().add(new Item(10696, 20));
-			bank.getBankItems().add(new Item(6733, 20));
-			bank.getBankItems().add(new Item(11785, 20));
-			bank.getBankItems().add(new Item(9244, 1000000));
-			bank.getBankItems().add(new Item(11284, 20));
-			bank.getBankItems().add(new Item(10499, 20));
-			bank.getBankItems().add(new Item(4716, 1000));
-			bank.getBankItems().add(new Item(4720, 1000));
-			bank.getBankItems().add(new Item(4722, 1002));
-			bank.getBankItems().add(new Item(4718, 1000));
-			bank.getBankItems().add(new Item(4153, 1001));
-			bank.getBankItems().add(new Item(4675, 1001));
-			bank.getBankItems().add(new Item(6918, 1000));
-			bank.getBankItems().add(new Item(6916, 1000));
-			bank.getBankItems().add(new Item(6924, 1000));
-			bank.getBankItems().add(new Item(10551, 22));
-			bank.getBankItems().add(new Item(2617, 1000));
-			bank.getBankItems().add(new Item(8850, 20));
-			bank.getBankItems().add(new Item(3105, 1000));
-			bank.getBankItems().add(new Item(2503, 1000));
-			bank.getBankItems().add(new Item(6685, 1000));
-			bank.getBankItems().add(new Item(3024, 1000));
-			bank.getBankItems().add(new Item(2440, 1000));
-			bank.getBankItems().add(new Item(2436, 1000));
-			bank.getBankItems().add(new Item(397, 1028));
-			bank.getBankItems().add(new Item(555, 1020000));
-			bank.getBankItems().add(new Item(565, 1020000));
-			bank.getBankItems().add(new Item(560, 1020000));
-			bank.getBankItems().add(new Item(9075, 1000000));
-			bank.getBankItems().add(new Item(557, 1000000));
-			bank.getBankItems().add(new Item(385, 1000));
-			bank.getBankItems().add(new Item(2448, 1000));
-			bank.getBankItems().add(new Item(157, 1));
-			bank.getBankItems().add(new Item(163, 1));
-			bank.getBankItems().add(new Item(145, 1));
-			bank.getBankItems().add(new Item(2412, 1));
-			bank.getBankItems().add(new Item(11773, 1));
+		bank.getBankItems().add(new Item(4708, 1000));
+		bank.getBankItems().add(new Item(4712, 1001));
+		bank.getBankItems().add(new Item(6920, 1001));
+		bank.getBankItems().add(new Item(4714, 1001));
+		bank.getBankItems().add(new Item(6585, 1001));
+		bank.getBankItems().add(new Item(7462, 41));
+		bank.getBankItems().add(new Item(6914, 1000));
+		bank.getBankItems().add(new Item(6889, 1001));
+		bank.getBankItems().add(new Item(2414, 20));
+		bank.getBankItems().add(new Item(4736, 1002));
+		bank.getBankItems().add(new Item(12006, 22));
+		bank.getBankItems().add(new Item(6570, 22));
+		bank.getBankItems().add(new Item(12954, 22));
+		bank.getBankItems().add(new Item(11840, 1002));
+		bank.getBankItems().add(new Item(11832, 20));
+		bank.getBankItems().add(new Item(11834, 1000));
+		bank.getBankItems().add(new Item(11802, 20));
+		bank.getBankItems().add(new Item(10828, 21));
+		bank.getBankItems().add(new Item(6737, 1000));
+		bank.getBankItems().add(new Item(5698, 1003));
+		bank.getBankItems().add(new Item(4753, 1000));
+		bank.getBankItems().add(new Item(10370, 1000));
+		bank.getBankItems().add(new Item(10372, 1000));
+		bank.getBankItems().add(new Item(4759, 1000));
+		bank.getBankItems().add(new Item(10696, 20));
+		bank.getBankItems().add(new Item(6733, 20));
+		bank.getBankItems().add(new Item(11785, 20));
+		bank.getBankItems().add(new Item(9244, 1000000));
+		bank.getBankItems().add(new Item(11284, 20));
+		bank.getBankItems().add(new Item(10499, 20));
+		bank.getBankItems().add(new Item(4716, 1000));
+		bank.getBankItems().add(new Item(4720, 1000));
+		bank.getBankItems().add(new Item(4722, 1002));
+		bank.getBankItems().add(new Item(4718, 1000));
+		bank.getBankItems().add(new Item(4153, 1001));
+		bank.getBankItems().add(new Item(4675, 1001));
+		bank.getBankItems().add(new Item(6918, 1000));
+		bank.getBankItems().add(new Item(6916, 1000));
+		bank.getBankItems().add(new Item(6924, 1000));
+		bank.getBankItems().add(new Item(10551, 22));
+		bank.getBankItems().add(new Item(2617, 1000));
+		bank.getBankItems().add(new Item(8850, 20));
+		bank.getBankItems().add(new Item(3105, 1000));
+		bank.getBankItems().add(new Item(2503, 1000));
+		bank.getBankItems().add(new Item(6685, 1000));
+		bank.getBankItems().add(new Item(3024, 1000));
+		bank.getBankItems().add(new Item(2440, 1000));
+		bank.getBankItems().add(new Item(2436, 1000));
+		bank.getBankItems().add(new Item(397, 1028));
+		bank.getBankItems().add(new Item(555, 1020000));
+		bank.getBankItems().add(new Item(565, 1020000));
+		bank.getBankItems().add(new Item(560, 1020000));
+		bank.getBankItems().add(new Item(9075, 1000000));
+		bank.getBankItems().add(new Item(557, 1000000));
+		bank.getBankItems().add(new Item(385, 1000));
+		bank.getBankItems().add(new Item(2448, 1000));
+		bank.getBankItems().add(new Item(157, 1));
+		bank.getBankItems().add(new Item(163, 1));
+		bank.getBankItems().add(new Item(145, 1));
+		bank.getBankItems().add(new Item(2412, 1));
+		bank.getBankItems().add(new Item(11773, 1));
 	}
 
 	public void resetSpecialEnergy() {
@@ -466,9 +467,7 @@ public class Player extends Entity {
 		skills.update();
 
 		// Send simple player options
-		if (Constants.ALL_PVP) {
-			write(new SetPlayerOption(1, true, "Attack"));
-		}
+
 		write(new SetPlayerOption(2, false, "Follow"));
 		write(new SetPlayerOption(3, false, "Trade with"));
 
@@ -575,7 +574,8 @@ public class Player extends Entity {
 	}
 
 	public void filterableMessage(String format, Object... params) {
-		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format, AddMessage.Type.GAME_FILTER));
+		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format,
+				AddMessage.Type.GAME_FILTER));
 	}
 
 	public void id(Object id) {
@@ -807,14 +807,16 @@ public class Player extends Entity {
 					skills.replenishStats();
 					timers.register(TimerKey.STAT_REPLENISH, 100);
 					break;
-				/*case IN_COMBAT:
-					interfaces().setBountyInterface(false);
-					break;*/
+				/*
+				 * case IN_COMBAT: interfaces().setBountyInterface(false);
+				 * break;
+				 */
 				}
 				// world.server().scriptRepository().triggerTimer(this, key);
 			}
 		}
 
+		interfaces.showSkull(!inSafeArea());
 		// Regenerate special energy
 		/*
 		 * if (!timers().has(TimerKey.SPECIAL_ENERGY_RECHARGE)) { int
@@ -843,12 +845,19 @@ public class Player extends Entity {
 		putAttribute(AttributeKey.LAST_REGION, tile.region());
 
 		// Show attack option when player is in wilderness.
-		if (!Constants.ALL_PVP) {
-			handlePlayerOptions();
-		}
+		handlePlayerOptions();
 	}
 
 	private void handlePlayerOptions() {
+		if (Constants.ALL_PVP) {
+			if (!inSafeArea() || canBeAttackInSafeArea()) {
+				write(new SetPlayerOption(1, true, "Attack"));
+			} else {
+				write(new SetPlayerOption(1, true, "Null"));
+			}
+			return;
+		}
+
 		if (inWilderness()) {
 			write(new SetPlayerOption(1, true, "Attack"));
 		} else {
@@ -859,6 +868,12 @@ public class Player extends Entity {
 	public boolean inWilderness() {
 		Tile tile = getTile();
 		return tile.x > 2941 && tile.x < 3329 && tile.z > 3523 && tile.z < 3968;
+	}
+
+	public boolean inSafeArea() {
+		// Edgeville bank
+		Tile tile = getTile();
+		return tile.x >= 3091 && tile.x <= 3098 && tile.z >= 3488 && tile.z <= 3499;
 	}
 
 	public void precycle() {
@@ -932,9 +947,14 @@ public class Player extends Entity {
 		return timers.has(TimerKey.IN_COMBAT);
 	}
 
+	public boolean canBeAttackInSafeArea() {
+		return timers.has(TimerKey.AFTER_COMBAT);
+	}
+
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this).add("id", id).add("username", username).add("displayName", displayName).add("tile", tile).add("privilege", privilege).toString();
+		return MoreObjects.toStringHelper(this).add("id", id).add("username", username).add("displayName", displayName)
+				.add("tile", tile).add("privilege", privilege).toString();
 	}
 
 	//////////////////
@@ -962,7 +982,8 @@ public class Player extends Entity {
 		if (item == null) {
 			return soundId;
 		}
-		if (StringUtils.containsIgnoreCase(item.definition(world).name, "shortbow") || StringUtils.containsIgnoreCase(item.definition(world).name, "longbow")) {
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "shortbow")
+				|| StringUtils.containsIgnoreCase(item.definition(world).name, "longbow")) {
 			soundId = 2693;
 		}
 		if (StringUtils.containsIgnoreCase(item.definition(world).name, "crossbow")) {
@@ -1047,7 +1068,8 @@ public class Player extends Entity {
 	}
 
 	public void messageFilterable(String format, Object... params) {
-		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format, AddMessage.Type.GAME_FILTER));
+		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format,
+				AddMessage.Type.GAME_FILTER));
 	}
 
 	public void messageDebug(String format, Object... params) {

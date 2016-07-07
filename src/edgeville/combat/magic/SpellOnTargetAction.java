@@ -2,6 +2,8 @@ package edgeville.combat.magic;
 
 import org.apache.commons.lang3.StringUtils;
 
+import edgeville.Constants;
+import edgeville.combat.CombatUtil;
 import edgeville.combat.Graphic;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
@@ -35,16 +37,26 @@ public class SpellOnTargetAction {
 			if (player.getTile().equals(target.getTile())) {
 				return;
 			}
+			if (!CombatUtil.canAttack(player, target)) {
+				return;
+			}
 			if (target instanceof Player) {
-				/*if (!player.timers().has(TimerKey.IN_COMBAT)) {
-					player.interfaces().setBountyInterface(true);
-				}*/
+				/*
+				 * if (!player.timers().has(TimerKey.IN_COMBAT)) {
+				 * player.interfaces().setBountyInterface(true); }
+				 */
 				player.timers().register(TimerKey.IN_COMBAT, 10);
-
-				/*if (!target.timers().has(TimerKey.IN_COMBAT)) {
-					((Player) target).interfaces().setBountyInterface(true);
-				}*/
+				if (!player.inSafeArea()) {
+					player.timers().register(TimerKey.AFTER_COMBAT, 5);
+				}
+				/*
+				 * if (!target.timers().has(TimerKey.IN_COMBAT)) { ((Player)
+				 * target).interfaces().setBountyInterface(true); }
+				 */
 				target.timers().register(TimerKey.IN_COMBAT, 10);
+				if (!((Player)target).inSafeArea()) {
+					target.timers().register(TimerKey.AFTER_COMBAT, 5);
+				}
 
 				player.setTarget(target);
 				target.setLastAttackedBy(player);
@@ -57,6 +69,7 @@ public class SpellOnTargetAction {
 			handleDamageSpells();
 			break;
 		}
+
 	}
 
 	private void handleDamageSpells() {
@@ -177,9 +190,11 @@ public class SpellOnTargetAction {
 		int steps = player.pathQueue().running() ? 2 : 1;
 		int otherSteps = target.pathQueue().running() ? 2 : 1;
 
-		Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile() : target.pathQueue().peekAfter(otherSteps).toTile();
+		Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile()
+				: target.pathQueue().peekAfter(otherSteps).toTile();
 		player.stepTowards(target, otherTile, 25);
-		return player.pathQueue().peekAfter(steps - 1) == null ? player.getTile() : player.pathQueue().peekAfter(steps - 1).toTile();
+		return player.pathQueue().peekAfter(steps - 1) == null ? player.getTile()
+				: player.pathQueue().peekAfter(steps - 1).toTile();
 	}
 
 	private void cycleRegularDamageSpell(RegularDamageSpell spell) {
@@ -215,6 +230,10 @@ public class SpellOnTargetAction {
 
 			@Override
 			public void execute(EventContainer container) {
+				if (!CombatUtil.canAttack(player, target)) {
+					container.stop();
+					return;
+				}
 				if (target.locked() || target.dead()) {
 					container.stop();
 					return;
@@ -234,11 +253,16 @@ public class SpellOnTargetAction {
 						container.stop();
 						return;
 					}
+					if (!CombatUtil.canAttack(player, target)) {
+						container.stop();
+						return;
+					}
 					doAncientSpell((AncientSpell) spell, container, true);
 				}
 			});
 		} else {
 			player.world().getEventHandler().addEvent(player, new Event() {
+
 				@Override
 				public void execute(EventContainer container) {
 					if (target.locked() || target.dead()) {
@@ -247,6 +271,7 @@ public class SpellOnTargetAction {
 					}
 					doRegularDamageSpell((RegularDamageSpell) spell, container, true);
 				}
+
 			});
 		}
 	}
@@ -276,6 +301,10 @@ public class SpellOnTargetAction {
 					container.stop();
 					return;
 				}
+				if (!CombatUtil.canAttack(player, target)) {
+					container.stop();
+					return;
+				}
 				doAncientSpell(spell, container, false);
 			}
 		});
@@ -297,7 +326,8 @@ public class SpellOnTargetAction {
 		player.graphic(spell.getGfx(), 92, 0);
 
 		if (spell.getProjectileId() > 0) {
-			player.world().spawnProjectile(player.getTile(), target, spell.getProjectileId(), 40, 33, 55, spell.getProjectileSpeed() * tileDist, 15, 50);
+			player.world().spawnProjectile(player.getTile(), target, spell.getProjectileId(), 40, 33, 55,
+					spell.getProjectileSpeed() * tileDist, 15, 50);
 		}
 
 		int delay = (int) (1 + Math.floor(tileDist) / 2.0);
@@ -337,7 +367,8 @@ public class SpellOnTargetAction {
 		player.animate(spell.getAnimation());
 
 		if (spell.getProjectileId() > 0/* && !target.pathQueue().empty() */) {
-			player.world().spawnProjectile(player.getTile(), target, spell.getProjectileId(), 0, 0, 36, spell.getSpeed() * tileDist, 0, 0);
+			player.world().spawnProjectile(player.getTile(), target, spell.getProjectileId(), 0, 0, 36,
+					spell.getSpeed() * tileDist, 0, 0);
 		}
 
 		int delay = (int) (1 + Math.floor(tileDist) / 2.0);
@@ -366,7 +397,8 @@ public class SpellOnTargetAction {
 					((Player) target).skills().alterSkill(Skills.ATTACK, 0.85);
 			}
 
-			if (spell == AncientSpell.BLOOD_RUSH || spell == AncientSpell.BLOOD_BURST || spell == AncientSpell.BLOOD_BLITZ || spell == AncientSpell.BLOOD_BARRAGE) {
+			if (spell == AncientSpell.BLOOD_RUSH || spell == AncientSpell.BLOOD_BURST
+					|| spell == AncientSpell.BLOOD_BLITZ || spell == AncientSpell.BLOOD_BARRAGE) {
 				player.heal(hit / 4);
 			}
 

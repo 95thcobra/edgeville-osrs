@@ -43,29 +43,33 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Check if players are in wilderness.
 		if (target instanceof Player) {
-			if (!Constants.ALL_PVP) {
-				if (!player.inWilderness() || !((Player) target).inWilderness()) {
-					player.message("You or your target are not in wild.");
-					container.stop();
-					return;
-				}
+			if (!CombatUtil.canAttack(player, target)) {
+				container.stop();
+				return;
 			}
-
 			// bounty interface for player.
-			/*if (!player.timers().has(TimerKey.IN_COMBAT)) {
-				player.interfaces().setBountyInterface(true);
-			}*/
+			/*
+			 * if (!player.timers().has(TimerKey.IN_COMBAT)) {
+			 * player.interfaces().setBountyInterface(true); }
+			 */
 			player.timers().register(TimerKey.IN_COMBAT, 10);
-
+			if (!player.inSafeArea()) {
+				player.timers().register(TimerKey.AFTER_COMBAT, 5);
+			}
 			// bounty interface for target.
-			/*if (!target.timers().has(TimerKey.IN_COMBAT)) {
-				((Player) target).interfaces().setBountyInterface(true);
-			}*/
+			/*
+			 * if (!target.timers().has(TimerKey.IN_COMBAT)) { ((Player)
+			 * target).interfaces().setBountyInterface(true); }
+			 */
 			target.timers().register(TimerKey.IN_COMBAT, 10);
+			if (!((Player)target).inSafeArea()) {
+				target.timers().register(TimerKey.AFTER_COMBAT, 5);
+			}
 		}
 
 		// Combat type?
-		if (weaponType == WeaponType.BOW || weaponType == WeaponType.CROSSBOW || weaponType == WeaponType.THROWN || weaponType == WeaponType.CHINCHOMPA) {
+		if (weaponType == WeaponType.BOW || weaponType == WeaponType.CROSSBOW || weaponType == WeaponType.THROWN
+				|| weaponType == WeaponType.CHINCHOMPA) {
 			// getEntity().message("ranging...");
 			handleRangeCombat(weaponId, ammoName, weaponType, container);
 		} else {
@@ -115,7 +119,8 @@ public class PlayerVersusAnyCombat extends Combat {
 			triggerVeng(success ? hit : 0);
 
 			getEntity().animate(EquipmentInfo.attackAnimationFor(((Player) getEntity())));
-			getEntity().timers().register(TimerKey.COMBAT_ATTACK, getEntity().world().equipmentInfo().weaponSpeed(weaponId));
+			getEntity().timers().register(TimerKey.COMBAT_ATTACK,
+					getEntity().world().equipmentInfo().weaponSpeed(weaponId));
 		}
 	}
 
@@ -200,14 +205,16 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		// Do we have ammo?
-		if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA && ammoName.equals("") && weaponId != 4212) {
+		if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA && ammoName.equals("")
+				&& weaponId != 4212) {
 			player.message("There's no ammo left in your quiver.");
 			container.stop();
 			return;
 		}
 
 		// Check if ammo is of right type
-		if (weaponType == WeaponType.CROSSBOW && !ammoName.contains(" bolts") && !ammoName.contains("Bolt rack") && weaponId != 4212) {
+		if (weaponType == WeaponType.CROSSBOW && !ammoName.contains(" bolts") && !ammoName.contains("Bolt rack")
+				&& weaponId != 4212) {
 			player.message("You can't use that ammo with your crossbow.");
 			container.stop();
 			return;
@@ -317,11 +324,13 @@ public class PlayerVersusAnyCombat extends Combat {
 			player.world().spawnProjectile(player.getTile(), target, 249, 50, 36, 30, 5 * tileDist, 15, 105);
 			player.graphic(new Graphic(256, 92, 10));
 		} else {
-			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay, cyclesPerTile * distance, curve, 105);
+			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay,
+					cyclesPerTile * distance, curve, 105);
 		}
 		// if dark bow then another spawnprojec
 		if (weaponId == 11235) {
-			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay + 7, cyclesPerTile * distance, curve, 105);
+			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay + 7,
+					cyclesPerTile * distance, curve, 105);
 		}
 
 		long delay = Math.round(Math.floor(baseDelay / 30.0) + (distance * (cyclesPerTile * 0.020) / 0.6));
@@ -378,10 +387,12 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		int tileDist = player.getTile().distance(target.getTile());
 		if (specialAttack.getProjectileId() != -1) {
-			player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 32, 5 * tileDist, 15, 105);
+			player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 32,
+					5 * tileDist, 15, 105);
 
 			if (specialAttack.isDoubleProjectile()) {
-				player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 52, 5 * tileDist, 15, 105);
+				player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 52,
+						5 * tileDist, 15, 105);
 			}
 		}
 

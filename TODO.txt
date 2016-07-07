@@ -19,9 +19,6 @@ toxic blowpipe
 staff of dead
 implement interface 100
 
-zammy brew
-sara brew
-
 spirit shields effects
 
 test combat
