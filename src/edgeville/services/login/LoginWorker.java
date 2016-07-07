@@ -52,10 +52,6 @@ public class LoginWorker implements Runnable {
 					// Convert pipeline
 					service.server().initializer().initForGame(message.channel());
 
-					// Apply migrations, or panic out if it failed.
-					if (Constants.MIGRATIONS_ENABLED && !service.server().migrations().process(player))
-						result = PlayerLoadResult.ERROR_LOADING;
-
 					// Was the result faulty?
 					if (result != PlayerLoadResult.OK) {
 						ByteBuf resp = message.channel().alloc().buffer(1).writeByte(result.code());

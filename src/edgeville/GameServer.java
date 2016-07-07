@@ -1,6 +1,5 @@
 package edgeville;
 
-import edgeville.migration.MigrationRepository;
 import edgeville.model.World;
 import edgeville.model.uid.UIDProvider;
 import edgeville.model.uid.providers.SimpleUIDProvider;
@@ -82,16 +81,6 @@ public class GameServer {
 	private HuffmanCodec huffman;
 
 	/**
-	 * The config instance, read from server.conf.
-	 */
-	//private Config config;
-
-	/**
-	 * The migration repository, which contains all (reflection-scanned) migrations.
-	 */
-	private MigrationRepository migrations;
-
-	/**
 	 * Creates a new server instance from the passed configuration.
 	 *
 	 * @param config The configuration to load settings from.
@@ -123,11 +112,6 @@ public class GameServer {
 
 		// Start the engine
 		processor = new ServerProcessor(this);
-
-		// Load migrations
-		if (Constants.MIGRATIONS_ENABLED) {
-			migrations = new MigrationRepository();
-		}
 	
 		// Construct bootstrap
 		//EventLoopGroup acceptGroup = new NioEventLoopGroup(config.getInt("net.acceptthreads"));
@@ -302,28 +286,12 @@ public class GameServer {
 		return processor;
 	}
 
-	/*public ScriptRepository scriptRepository() {
-		return scriptRepository;
-	}
-
-	public ScriptExecutor scriptExecutor() {
-		return scriptExecutor;
-	}*/
-
 	public HuffmanCodec huffman() {
 		return huffman;
 	}
 
-	/*public Config config() {
-		return config;
-	}*/
-
 	public UIDProvider uidProvider() {
 		return uidProvider;
-	}
-
-	public MigrationRepository migrations() {
-		return migrations;
 	}
 
 	public static void main(String[] args) {
