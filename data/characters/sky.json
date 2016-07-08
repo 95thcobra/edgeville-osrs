@@ -4,8 +4,8 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3093,
-    "z": 3502,
+    "x": 3094,
+    "z": 3491,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -36,46 +36,22 @@
       "id": 4153,
       "amount": 1
     },
+    null,
+    null,
+    null,
+    null,
     {
-      "id": 385,
+      "id": 3144,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 3144,
       "amount": 1
     },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
+    null,
     {
       "id": 385,
       "amount": 1
@@ -6305,19 +6281,19 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034603E7
+      "xp": 1.3034644E7
     },
     {
       "level": 99,
-      "xp": 1.3034719E7
+      "xp": 1.303476E7
     },
     {
       "level": 99,
-      "xp": 1.3034679E7
+      "xp": 1.303472E7
     },
     {
       "level": 99,
-      "xp": 1.3034723E7
+      "xp": 1.3034764E7
     },
     {
       "level": 99,

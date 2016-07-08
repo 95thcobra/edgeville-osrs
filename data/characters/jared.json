@@ -4,8 +4,8 @@
   "password": "2142",
   "receivedStarter": true,
   "tile": {
-    "x": 3093,
-    "z": 3498,
+    "x": 3087,
+    "z": 3493,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -103,7 +103,7 @@
     },
     {
       "id": 565,
-      "amount": 9804
+      "amount": 9800
     },
     {
       "id": 555,
@@ -111,7 +111,7 @@
     },
     {
       "id": 560,
-      "amount": 9608
+      "amount": 9606
     }
   ],
   "equipment": [
@@ -1267,7 +1267,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3036506E7
+      "xp": 1.303651664E7
     },
     {
       "level": 99,
@@ -1275,7 +1275,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3037516E7
+      "xp": 1.303752664E7
     },
     {
       "level": 99,
@@ -1287,7 +1287,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3035671E7
+      "xp": 1.30357168E7
     },
     {
       "level": 99,
@@ -1363,8 +1363,8 @@
     "SMITE",
     "PIETY"
   ],
-  "autocastSpell": "ICE_BARRAGE",
-  "autocastSpellChild": 69,
+  "autocastSpell": "BLOOD_BLITZ",
+  "autocastSpellChild": 71,
   "lastCastedSpell": "BLOOD_BLITZ",
   "lastCastedSpellChild": 71,
   "autocasting": false
