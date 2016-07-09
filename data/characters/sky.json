@@ -4,8 +4,8 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3093,
-    "z": 3497,
+    "x": 3097,
+    "z": 3495,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -21,7 +21,7 @@
       "amount": 1
     },
     {
-      "id": 2442,
+      "id": 163,
       "amount": 1
     },
     {
@@ -49,11 +49,11 @@
       "amount": 1
     },
     {
-      "id": 2434,
+      "id": 141,
       "amount": 1
     },
     {
-      "id": 163,
+      "id": 165,
       "amount": 1
     },
     {
@@ -78,10 +78,8 @@
       "id": 391,
       "amount": 1
     },
-    {
-      "id": 391,
-      "amount": 1
-    },
+    null,
+    null,
     null,
     {
       "id": 391,
@@ -95,14 +93,7 @@
       "id": 391,
       "amount": 1
     },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
+    null,
     {
       "id": 391,
       "amount": 1
@@ -6299,7 +6290,7 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 99,
+      "level": 118,
       "xp": 1.3034431E7
     },
     {
