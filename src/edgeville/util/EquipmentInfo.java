@@ -11,6 +11,8 @@ import com.google.gson.JsonParser;
 
 import edgeville.aquickaccess.actions.EquipmentRequirement;
 import edgeville.aquickaccess.actions.EquipmentRequirement.Skill;
+import edgeville.combat.CombatUtil;
+import edgeville.combat.CombatUtil.SlashStabCrunch;
 import edgeville.fs.DefinitionRepository;
 import edgeville.fs.ItemDefinition;
 import edgeville.model.World;
@@ -412,7 +414,33 @@ public class EquipmentInfo {
 	public int weaponSpeed(int id) {
 		return weaponSpeeds.getOrDefault(id, 5);
 	}
+	
+	public int getDefenceBonus(Player player, Player attackedBy) {
+		SlashStabCrunch slashStabCrunch = CombatUtil.getSlashStabCrunch(attackedBy);
+		switch(slashStabCrunch) {
+		case STAB:
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).stabdef;
+		case SLASH:
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slashdef;
+		case CRUNCH:
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).crushdef;	
+		}
+		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slashdef;
+	}
 
+	public int getAttackBonus(Player player) {
+		SlashStabCrunch slashStabCrunch = CombatUtil.getSlashStabCrunch(player);
+		switch(slashStabCrunch) {
+		case STAB:
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).stab;
+		case SLASH:
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slash;
+		case CRUNCH:
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).crush;	
+		}
+		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slash;
+	}
+	
 	public static class Bonuses {
 		public int stab;
 		public int slash;

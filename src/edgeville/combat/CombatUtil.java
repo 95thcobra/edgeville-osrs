@@ -39,7 +39,7 @@ public class CombatUtil {
 				player.message("You or your target are in a safe area!");
 				return false;
 			}
-			
+
 			return true;
 		}
 		return true;
@@ -112,5 +112,32 @@ public class CombatUtil {
 			break;
 		}
 		return attackStyle;
+	}
+
+	public enum SlashStabCrunch {
+		SLASH, STAB, CRUNCH
+	}
+
+	public static SlashStabCrunch getSlashStabCrunch(Player player) {
+		SlashStabCrunch slashStabCrunch = SlashStabCrunch.SLASH;
+		// AttackStyle attackStyle = AttackStyle.ACCURATE;
+
+		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+		if (weapon != null) {
+			String wepName = weapon.definition(player.world()).name;
+
+			if (StringUtils.containsIgnoreCase(wepName, "abyssal tentacle")
+					|| StringUtils.containsIgnoreCase(wepName, "abyssal whip")) {
+				player.messageDebug("Hitting with whip");
+				return SlashStabCrunch.SLASH;
+			}
+		}
+
+		switch (player.getVarps().getVarp(Varp.ATTACK_STYLE)) {
+		case 2:
+			slashStabCrunch = SlashStabCrunch.STAB;
+			break;
+		}
+		return slashStabCrunch;
 	}
 }

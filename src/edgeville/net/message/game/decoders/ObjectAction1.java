@@ -55,8 +55,8 @@ public class ObjectAction1 implements Action {
             player.faceObj(obj);
 
 
-            Tile targetTile = player.pathQueue().getTargetTile();
-            player.world().getEventHandler().addEvent(player, new ClickObjectEvent(player, obj, targetTile));
+            //Tile targetTile = player.pathQueue().getTargetTile();
+            player.world().getEventHandler().addEvent(player, new ClickObjectEvent(player, obj));
 
 
 

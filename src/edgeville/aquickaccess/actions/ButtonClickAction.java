@@ -138,6 +138,51 @@ public class ButtonClickAction {
 			// handleQuestTab();
 			player.getQuestTab().clickButton(buttonId);
 			break;
+			
+		case 320:
+			int skillId = -1;
+			switch(buttonId) {
+			case 1:
+				skillId = Skills.ATTACK;
+				break;
+			case 2:
+				skillId = Skills.STRENGTH;
+				break;
+			case 3:
+				skillId = Skills.DEFENCE;
+				break;
+			case 4:
+				skillId = Skills.RANGED;
+				break;
+			case 5:
+				skillId = Skills.PRAYER;
+				break;
+			case 6:
+				skillId = Skills.MAGIC;
+				break;
+			case 9:
+				skillId = Skills.HITPOINTS;
+				break;
+			}
+			if (skillId == -1)
+				return;
+			
+			if (!player.getEquipment().isEmpty()) {
+				player.message("Unequip your equipment before setting your levels!");
+				return;
+			}
+			
+			final int skillToSet = skillId;
+			NumberInputDialog dialog = new NumberInputDialog(player) {
+
+				@Override
+				public void doAction(int value) {
+					player.skills().setYourRealLevel(skillToSet, value);
+				}
+				
+			};
+			dialog.send();
+			break;
 
 		// Options: equipment stats, etc.
 		case 387:

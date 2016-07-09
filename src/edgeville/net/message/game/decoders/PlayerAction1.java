@@ -47,6 +47,11 @@ public class PlayerAction1 implements Action {
 				player.message("You are not in the wilderness.");
 				return;
 			}
+			
+			if (Math.abs(player.skills().combatLevel() - other.skills().combatLevel()) > 5) {
+				player.message("The difference in combat level should be 5 or lower.");
+				return;
+			}
 
 			player.putAttribute(AttributeKey.TARGET_TYPE, 0);
 			player.putAttribute(AttributeKey.TARGET, /* index */other);

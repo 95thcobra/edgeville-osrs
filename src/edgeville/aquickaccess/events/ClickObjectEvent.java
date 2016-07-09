@@ -13,17 +13,16 @@ import edgeville.model.map.MapObj;
 public class ClickObjectEvent extends Event {
     private Player player;
     private MapObj mapObject;
-    private Tile targetTile;
 
-    public ClickObjectEvent(Player player, MapObj mapObject, Tile targetTile) {
+    public ClickObjectEvent(Player player, MapObj mapObject) {
         this.player = player;
-        this.targetTile = targetTile;
         this.mapObject = mapObject;
     }
 
     @Override
     public void execute(EventContainer container) {
-        if (player.getTile().distance(targetTile) <= 3) {
+    	if (player.getTile().distance(mapObject.tile()) <= 3) {
+        //if (player.getTile().distance(targetTile) <= 3) {
             container.stop();
         }
     }

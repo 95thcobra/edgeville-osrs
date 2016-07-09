@@ -9,6 +9,7 @@ import edgeville.model.Entity;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
+import edgeville.model.entity.player.Skills;
 import edgeville.model.entity.player.Skulls;
 import edgeville.model.entity.player.WeaponType;
 import edgeville.model.item.Item;
@@ -94,7 +95,8 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (!player.touches(getTarget(), currentTile)) {
 			if (!player.frozen()) {
 				// player.pathQueue().clear();
-				currentTile = moveCloser();
+				//currentTile = moveCloser();
+				player.stepTowards(target, 2);
 			}
 			return;
 		}
@@ -108,16 +110,24 @@ public class PlayerVersusAnyCombat extends Combat {
 			}
 
 			boolean success = AccuracyFormula.doesHit(((Player) getEntity()), getTarget(), CombatStyle.MELEE);
-
+			
 			int max = CombatFormula.maximumMeleeHit(((Player) getEntity()));
-			// if (player.isDebug()) {
+			int hit=0;
+			
+			if (success) {
+				hit = getEntity().world().random(max);
+			}
+			
+			//int hit = (target instanceof Player ? AccuracyFormula.calculateHit(player, (Player)target, max) : getEntity().world().random(max));
 			player.getQuestTab().updateMaxHit(max);
-			// }
-			int hit = getEntity().world().random(max);
+			//int hit = getEntity().world().random(max);
 
-			getTarget().hit(getEntity(), success ? hit : 0, CombatStyle.MELEE);
-			triggerVeng(success ? hit : 0);
-
+			//getTarget().hit(getEntity(), success ? hit : 0, CombatStyle.MELEE);
+			//triggerVeng(success ? hit : 0);
+			
+			getTarget().hit(getEntity(),hit, CombatStyle.MELEE);
+			triggerVeng(hit);
+			
 			getEntity().animate(EquipmentInfo.attackAnimationFor(((Player) getEntity())));
 			getEntity().timers().register(TimerKey.COMBAT_ATTACK,
 					getEntity().world().equipmentInfo().weaponSpeed(weaponId));

@@ -308,7 +308,7 @@ public abstract class Entity implements HitOrigin {
 		if (e == null)
 			return tile;
 
-		EntityStrategy target = new EntityStrategy(t);
+		EntityStrategy target = new EntityStrategy(e);// e instead of t
 		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true, false);
 		int[] bufferX = WalkRouteFinder.getLastPathBufferX();
 		int[] bufferZ = WalkRouteFinder.getLastPathBufferZ();

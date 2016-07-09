@@ -816,7 +816,7 @@ public class Player extends Entity {
 			}
 		}
 
-		interfaces.showSkull(!inSafeArea());
+		interfaces.showSkull(!inSafeArea() || canBeAttackInSafeArea());
 		// Regenerate special energy
 		/*
 		 * if (!timers().has(TimerKey.SPECIAL_ENERGY_RECHARGE)) { int

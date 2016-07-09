@@ -1,6 +1,7 @@
 package edgeville.util;
 
 import java.security.SecureRandom;
+import java.util.Random;
 
 import edgeville.model.Entity;
 import edgeville.model.entity.Player;
@@ -240,4 +241,112 @@ public class AccuracyFormula {
         return off_hit_chance > def_block_chance;
     } //end main
 
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    	//static int attackLevel = 99;
+    	//static int defenceLevel = 99;
+
+    	//static int defenceBonus = 0; // Slash, crush, stab
+    	//static int attackBonus = 0;
+    	
+    	
+    	public static int calculateHit(Player player, Player target, int maxHit) {
+    		int playerAttackLevel = player.skills().level(Skills.ATTACK);
+    		int targetDefenceLevel=target.skills().level(Skills.DEFENCE);
+    		
+    		int playerAttackBonus = player.world().equipmentInfo().getAttackBonus(player);
+    		int targetDefenceBonus = target.world().equipmentInfo().getDefenceBonus(target, player);
+    		
+    		/*
+    		 * Generate attackers effective accuracy.
+    		 */
+    		int EA = playerAttackLevel + playerAttackBonus + 8;
+    		int a = (EA * (64 + 0)) / 10;
+    		
+    		
+    		/*
+    		 * Generate defenders effective defense.
+    		 */
+    		int ED = targetDefenceLevel + targetDefenceBonus + 8;
+    		int d = (ED * (64 + 0)) / 10;
+    		
+    		/*
+    		 * generate final accuracy rating between 0-1 and then multiply by 100
+    		 * to generate a more meaningful number.
+    		 */
+    		double accuracy = 0;
+    		
+    		if (a > d) {
+    			accuracy = (double)1 - (d + 1) / (2 * a); 
+    		} else {
+    			accuracy = (double)(a - 1) / (2 * d); 
+    		}
+    		
+    		accuracy *= 100;
+    		/*
+    		 * Generate the attackers max hit.
+    		 */
+    		//double maxHit = 32;
+    		
+    		
+    		/*
+    		 * Using the accuracy value we can then generate a reducing value which indicates
+    		 * the maximum damage the defense/accuracy will soak up.
+    		 */
+    		int maxReducer = (int)(maxHit - ((double) (((double)(maxHit / 100)) *  accuracy)));
+    		if (maxReducer <= 0)
+    			maxReducer = 1;
+    		
+    		/*
+    		 * Generate a random hit using the max hit and a random defense/accuracy reducer from
+    		 * the maxReducer value.
+    		 * 
+    		 * NOTE - // + 1 because value specified is exclusive on nextInt.
+    		 * 
+    		 */
+    		//Random rand = new Random();
+    		int randomHit = player.world().random((int) maxHit + 1);
+    		int randomReducer = player.world().random(maxReducer + 1);
+    		
+    		/*
+    		 * Subtract our random reducer from our final hit.
+    		 */
+    		int finalHit = randomHit - randomReducer;
+    		
+    		if (finalHit < 0)
+    			finalHit = 0;
+    		if (finalHit > maxHit)
+    			finalHit = (int) maxHit;
+    		
+    		System.out.println(finalHit + " " + maxReducer);
+    		player.shout("AttackLevel:"+playerAttackLevel+" Maxhit:" + maxHit + " Final hit:" + finalHit + " Attackbonus:"+playerAttackBonus + " TargetDefencedbonus:"+targetDefenceBonus);
+    		
+    		return finalHit;
+    	}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

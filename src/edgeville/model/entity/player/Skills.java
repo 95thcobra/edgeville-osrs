@@ -266,8 +266,30 @@ public class Skills {
 		update();
 	}
 	
+	public int getXPForLevel(int level)
+	{
+		int points = 0;
+		int output = 0;
+		for (int lvl = 1; lvl <= level; lvl++) {
+			points += Math.floor(lvl + 300.0 * Math.pow(2.0, lvl / 7.0));
+			if (lvl >= level)
+			{
+				return output;
+			}
+			output = (int) Math.floor(points / 4);
+		}
+		return 0;
+	}
+	
 	public void setYourRealLevel(int skill, int level) {
-		xpLevel(skill);
+		if (level > 99) {
+			level = 99;
+		} else if (level < 1) {
+			level = 1;
+		}
+		xps[skill] = getXPForLevel(level);
+		levels[skill] = xpLevel(skill);
+		player.write(new UpdateSkill(skill, levels[skill], (int) xps[skill]));
 	}
 
 	public void restorePrayer() {

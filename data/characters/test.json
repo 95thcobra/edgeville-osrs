@@ -4,8 +4,8 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3097,
-    "z": 3503,
+    "x": 3084,
+    "z": 3485,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -13,7 +13,7 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 0,
+  "kills": 4,
   "deaths": 2,
   "inventory": [
     {
@@ -25,7 +25,7 @@
       "amount": 1
     },
     {
-      "id": 157,
+      "id": 159,
       "amount": 1
     },
     {
@@ -37,13 +37,10 @@
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 11802,
       "amount": 1
     },
-    {
-      "id": 385,
-      "amount": 1
-    },
+    null,
     {
       "id": 385,
       "amount": 1
@@ -226,12 +223,28 @@
   "bank": [],
   "varps": [
     {
+      "id": 173,
+      "value": 1
+    },
+    {
       "id": 300,
       "value": 1000
     },
     {
+      "id": 439,
+      "value": 2
+    },
+    {
+      "id": 843,
+      "value": 20
+    },
+    {
       "id": 1050,
       "value": 16
+    },
+    {
+      "id": 1055,
+      "value": 8192
     },
     {
       "id": 1224,
@@ -244,31 +257,35 @@
     {
       "id": 1226,
       "value": 12
+    },
+    {
+      "id": 1227,
+      "value": 130023424
     }
   ],
   "skills": [
     {
-      "level": 113,
-      "xp": 1.3034739E7
+      "level": 112,
+      "xp": 1.3056631E7
     },
     {
       "level": 99,
       "xp": 1.3034431E7
     },
     {
+      "level": 112,
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 78,
+      "xp": 1.304185151E7
+    },
+    {
       "level": 99,
       "xp": 1.3034431E7
     },
     {
-      "level": 40,
-      "xp": 1.3034533E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034431E7
-    },
-    {
-      "level": 83,
+      "level": 0,
       "xp": 1.3034431E7
     },
     {
