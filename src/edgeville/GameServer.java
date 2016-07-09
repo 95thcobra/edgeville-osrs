@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author Simon on 8/4/2014.
+ * @author Simon.
  */
 public class GameServer {
 
@@ -85,17 +85,13 @@ public class GameServer {
 	 *
 	 * @param config The configuration to load settings from.
 	 */
-	public GameServer(/*Config config, */File store) throws Exception {
+	public GameServer(File store) throws Exception {
 		if (!store.exists()) {
 			throw new FileNotFoundException("Cannot load data store from " + store.getAbsolutePath() + ", aborting.");
 		}
 
-		//this.config = config;
-		//MapDecryptionKeys.load(new File(config.getString("server.mapkeys")));
 		MapDecryptionKeys.load(new File(Constants.MAP_KEYS_DIR));
 		fileStore = new DataStore(store);
-		//loadScripts();
-		//loadGroovyPlugins();
 		world = new World(this);
 		huffman = new HuffmanCodec(fileStore);
 	}
@@ -114,8 +110,6 @@ public class GameServer {
 		processor = new ServerProcessor(this);
 	
 		// Construct bootstrap
-		//EventLoopGroup acceptGroup = new NioEventLoopGroup(config.getInt("net.acceptthreads"));
-		//EventLoopGroup ioGroup = new NioEventLoopGroup(config.getInt("net.iothreads"));
 		EventLoopGroup acceptGroup = new NioEventLoopGroup(Constants.ACCEPT_THREADS);
 		EventLoopGroup ioGroup = new NioEventLoopGroup(Constants.IO_THREADS);
 		connectionInitializer = new ClientInitializer(this);
@@ -131,15 +125,8 @@ public class GameServer {
 
 		System.gc();
 
-		// Bind to the address/port from the configuration
-		logger.info("Binding to {}:{}", /*config.getString("net.address")*/Constants.IP_ADDRESS, /*config.getInt("net.port")*/Constants.PORT);
-		
-		//System.out.println("HELLO1");
-		
-		//bootstrap.bind("127.0.0.1", 43594).sync().awaitUninterruptibly();
+		logger.info("Binding to {}:{}", Constants.IP_ADDRESS, Constants.PORT);
 		bootstrap.bind(Constants.IP_ADDRESS, Constants.PORT).sync().awaitUninterruptibly();
-		
-		//System.out.println("HELLO");
 	}
 
 	/**

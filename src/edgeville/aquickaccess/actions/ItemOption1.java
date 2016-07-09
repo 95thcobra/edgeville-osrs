@@ -62,13 +62,12 @@ public class ItemOption1 {
 
 	private void deductPotionDose(Potions potion) {
 		if (potion.isLastDose(itemId)) {
-			player.getInventory().remove(new Item(itemId));
-			player.getInventory().add(new Item(229));
+			//player.getInventory().remove(new Item(itemId), true, slot);
+			player.getInventory().set(slot, new Item(229));
 			player.message("You have finished your potion.");
 		} else {
-
-			player.getInventory().remove(itemId);
-			player.getInventory().add(potion.getNextDose(itemId));
+			//player.getInventory().remove(itemId);
+			player.getInventory().set(slot, new Item(potion.getNextDose(itemId)));
 			player.message("You have " + potion.dosesLeft(itemId) + " doses left.");
 		}
 
@@ -115,14 +114,14 @@ public class ItemOption1 {
 				player.skills().decreaseLeftLevel(skill, -change);
 			}
 			break;
-			
+
 		case ZAMORAK_BREW:
-			int attackIncrease = (int) Math.floor(0.20 * player.skills().xpLevel(Skills.ATTACK)) + 2; 
-			int strengthIncrease = (int) Math.floor(0.12 * player.skills().xpLevel(Skills.STRENGTH)) + 2; 
-			int defenceDecrease=(int) Math.floor(0.10 * player.skills().xpLevel(Skills.DEFENCE)) + 2;
+			int attackIncrease = (int) Math.floor(0.20 * player.skills().xpLevel(Skills.ATTACK)) + 2;
+			int strengthIncrease = (int) Math.floor(0.12 * player.skills().xpLevel(Skills.STRENGTH)) + 2;
+			int defenceDecrease = (int) Math.floor(0.10 * player.skills().xpLevel(Skills.DEFENCE)) + 2;
 			int hitPointsDecrease = (int) Math.floor(0.10 * player.skills().xpLevel(Skills.HITPOINTS)) + 2;
 			int prayerRestoreZ = (int) Math.floor(0.10 * player.skills().xpLevel(Skills.PRAYER));
-			
+
 			player.skills().increaseLeftLevel(Skills.ATTACK, attackIncrease);
 			player.skills().increaseLeftLevel(Skills.STRENGTH, strengthIncrease);
 			player.skills().decreaseLeftLevel(Skills.DEFENCE, -defenceDecrease);
@@ -150,13 +149,14 @@ public class ItemOption1 {
 		if (player.timers().has(TimerKey.FOOD) && food != Food.COOKED_KARAMBWAN) {
 			return;
 		}
-		if (player.timers().has(TimerKey.KARAMBWAN) && food== Food.COOKED_KARAMBWAN) {
+		if (player.timers().has(TimerKey.KARAMBWAN) && food == Food.COOKED_KARAMBWAN) {
 			return;
 		}
 
-		player.getInventory().remove(new Item(food.getId()), true, player.attribute(AttributeKey.ITEM_SLOT, 0));
 		if (food.getNextId() != -1) {
-			player.getInventory().add(new Item(food.getId()), true);
+			player.getInventory().set(slot, new Item(food.getId()));
+		} else {
+			player.getInventory().remove(new Item(food.getId()), true, player.attribute(AttributeKey.ITEM_SLOT, slot));
 		}
 
 		player.sound(Sounds.EATING);
@@ -165,7 +165,7 @@ public class ItemOption1 {
 		if (food == Food.COOKED_KARAMBWAN) {
 			player.timers().register(TimerKey.KARAMBWAN, 3);
 		}
-		
+
 		player.timers().extendOrRegister(TimerKey.COMBAT_ATTACK, 3);
 
 		// player.heal(food.getHeal());

@@ -87,8 +87,8 @@ public class Interfaces {
 		send(432, PANE_FIXED, 71, true); // ignore list
 		send(182, PANE_FIXED, 72, true); // logout/world switcher
 		send(261, PANE_FIXED, 73, true); // settings
-		send(216, PANE_FIXED, 74, true); // emotes
-		send(239, PANE_FIXED, 75, true); // music
+	//	send(216, PANE_FIXED, 74, true); // emotes
+		//send(239, PANE_FIXED, 75, true); // music
 		send(589, PANE_FIXED, 69, true); // clan chat
 		send(593, PANE_FIXED, 62, true); // attack styles
 

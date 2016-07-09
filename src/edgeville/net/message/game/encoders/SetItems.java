@@ -29,6 +29,13 @@ public class SetItems implements Command {
 		this.targetChild = targetChild;
 		this.container = container.copy();
 	}
+	
+	public SetItems(int key, int target, int targetChild, List<Item> items) {
+		this.key = key;
+		this.target = target;
+		this.targetChild = targetChild;
+		this.items = items;
+	}
 
 	public SetItems(int key, ItemContainer container) {
 		this.key = key;
