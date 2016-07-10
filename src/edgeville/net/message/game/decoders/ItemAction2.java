@@ -52,8 +52,7 @@ public class ItemAction2 extends ItemAction {
 
 		EquipmentInfo info = player.world().equipmentInfo();
 		int targetSlot = info.slotFor(item.getId());
-		
-		
+
 		// Check the item requirements
 		List<EquipmentRequirement> equipmentRequirements = info.getEquipmentRequirements(player, item, targetSlot);
 		if (equipmentRequirements != null) {
@@ -63,7 +62,8 @@ public class ItemAction2 extends ItemAction {
 				Skill skill = equipmentRequirement.getSkill();
 
 				if (player.skills().level(skill.getId()) < level) {
-					player.message("You need a %s level of %d to equip %s.", skill.toString(), level, item.definition(player.world()).name);
+					player.message("You need a %s level of %d to equip %s.", skill.toString(), level,
+							item.definition(player.world()).name);
 					meetsRequirements = false;
 					return;
 				}
@@ -91,8 +91,9 @@ public class ItemAction2 extends ItemAction {
 			}
 			player.getEquipment().set(EquipSlot.SHIELD, null);
 		}
-		
-		player.disableAutocasting();
+
+		if (targetSlot == EquipSlot.WEAPON)
+			player.disableAutocasting();
 
 		// If it is a shield and we have a 2h weapon equipped, unequip it
 		if (targetSlot == EquipSlot.SHIELD && player.getEquipment().hasAt(EquipSlot.WEAPON)) {
