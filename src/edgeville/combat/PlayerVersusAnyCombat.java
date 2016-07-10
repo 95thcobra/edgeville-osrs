@@ -96,7 +96,8 @@ public class PlayerVersusAnyCombat extends Combat {
 			if (!player.frozen()) {
 				// player.pathQueue().clear();
 				//currentTile = moveCloser();
-				player.stepTowards(target, 2);
+				//player.stepTowards(target, 2);
+				player.stepTowardsPlayerNotBugged(target, target.getTile(), 2);
 			}
 			return;
 		}
@@ -116,6 +117,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			
 			if (success) {
 				hit = getEntity().world().random(max);
+			//hit = AccuracyFormula.calculateHit(player, (Player)target, max);
 			}
 			
 			//int hit = (target instanceof Player ? AccuracyFormula.calculateHit(player, (Player)target, max) : getEntity().world().random(max));
@@ -193,8 +195,8 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Are we in range?
 		if (currentTile.distance(target.getTile()) > maxDist && !player.frozen() && !player.stunned()) {
-			// currentTile = moveCloser();
-			player.stepTowards(target, 2);
+			 //currentTile = moveCloser();
+			player.stepTowards(target, 25);
 			return;
 		}
 

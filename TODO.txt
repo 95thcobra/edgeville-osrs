@@ -1,3 +1,20 @@
+MAKE OVER MAGe
+
+FIX PJING, YOU CANT SWITCH BETWEEEN ATTACKING PPL 
+
+combat formula, more frequent lower hits
+HITTING ON AHRIMS SHOULD BE WAY HIGHER 
+
+disable all commands, just ::item and ::finditem
+
+FORUM INTEGRATION
+
+
+
+
+
+
+
 KIJK BIJ VAR2 VOOR KEYBINDINGS OPTIONS
 scriptinvoke?
 packetdecoder run energy

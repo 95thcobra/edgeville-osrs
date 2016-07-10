@@ -328,7 +328,7 @@ public class AccuracyFormula {
     			finalHit = (int) maxHit;
     		
     		System.out.println(finalHit + " " + maxReducer);
-    		player.shout("AttackLevel:"+playerAttackLevel+" Maxhit:" + maxHit + " Final hit:" + finalHit + " Attackbonus:"+playerAttackBonus + " TargetDefencedbonus:"+targetDefenceBonus);
+    		//player.shout("AttackLevel:"+playerAttackLevel+" Maxhit:" + maxHit + " Final hit:" + finalHit + " Attackbonus:"+playerAttackBonus + " TargetDefencedbonus:"+targetDefenceBonus);
     		
     		return finalHit;
     	}

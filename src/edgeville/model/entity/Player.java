@@ -363,6 +363,7 @@ public class Player extends Entity {
 			getVarps().setVarbit(Varbit.AUTOCAST, 0);
 			getVarps().setVarbit(Varbit.AUTOCAST_SPELL, 0);
 		}
+		prayer.deactivateAllPrayers();
 	}
 
 	private void presetBank() {
@@ -557,6 +558,9 @@ public class Player extends Entity {
 	public void stopActions(boolean cancelMoving) {
 		super.stopActions(cancelMoving);
 
+		// Make input dialog null
+		setInputDialog(null);
+		
 		// Remove banking interface when banking
 		if (interfaces.visible(12)) {
 			interfaces().closeById(15);
@@ -742,8 +746,6 @@ public class Player extends Entity {
 	 */
 	public void logout() {
 
-		prayer.deactivateAllPrayers();
-
 		// If we're logged in and the channel is active, begin with sending a
 		// logout message and closing the channel.
 		// We use writeAndFlush here because otherwise the message won't be
@@ -767,8 +769,32 @@ public class Player extends Entity {
 		}
 		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
 			skills.setXp(i, 13034431);
-			skills.resetStats();
 		}
+		
+		skills.resetStats();
+		skills.recalculateCombat();
+	}
+	
+	public void setPure() {
+		if (inWilderness()) {
+			message("You cannot do this while in the wilderness.");
+			return;
+		}
+		if (inCombat()) {
+			message("You cannot do this in combat!.");
+			return;
+		}
+		
+		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
+			skills.setYourRealLevel(Skills.PRAYER, 99);
+		}
+		
+		skills.setYourRealLevel(Skills.ATTACK, 60);
+		skills.setYourRealLevel(Skills.DEFENCE, 1);
+		skills.setYourRealLevel(Skills.PRAYER, 52);
+		
+		skills.resetStats();
+		skills.recalculateCombat();
 	}
 
 	@Override
@@ -1187,6 +1213,53 @@ public class Player extends Entity {
 		getEquipment().set(EquipSlot.RING, new Item(11773));
 
 		setMaster();
+		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
+	}
+
+	public void spawnPure() {
+		getInventory().empty();
+		getInventory().add(5698,1);
+	    getInventory().add(10499,1);
+	    getInventory().add(4587,1);
+	    getInventory().add(2497,1);
+	    getInventory().add(2440,1);
+	    getInventory().add(11785,1);
+	    getInventory().add(6570,1);
+	    getInventory().add(397,1);
+	    getInventory().add(2444,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(3024,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(3024,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(3024,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(397,1);
+	    getInventory().add(565,2000);
+	    getInventory().add(560,3000);
+	    getInventory().add(555,6000);
+	    getInventory().add(397,1);
+
+		getEquipment().set(EquipSlot.HEAD, new Item(12453));
+		getEquipment().set(EquipSlot.CAPE, new Item(2412));
+		getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		getEquipment().set(EquipSlot.WEAPON, new Item(4675));
+		getEquipment().set(EquipSlot.BODY, new Item(577));
+		getEquipment().set(EquipSlot.SHIELD, new Item(3842));
+		getEquipment().set(EquipSlot.LEGS, new Item(6108));
+		getEquipment().set(EquipSlot.HANDS, new Item(7462));
+		getEquipment().set(EquipSlot.FEET, new Item(3105));
+		getEquipment().set(EquipSlot.RING, new Item(6737));
+		getEquipment().set(EquipSlot.AMMO, new Item(9244, 500));
+
+		setPure();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
 	}
 }

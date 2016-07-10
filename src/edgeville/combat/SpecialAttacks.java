@@ -28,7 +28,7 @@ public enum SpecialAttacks {
 	
 	DARK_BOW(11235, 426, null, new Graphic(1100, 92, 60), 55, 1, true, 1099, true),//projectile id, doubleprojectile
 	
-
+	ARMADYL_CROSSBOW(11785, 4230, null, null, 40, 1.2, false, 301, false)
 	;
 
 	private int weaponId;

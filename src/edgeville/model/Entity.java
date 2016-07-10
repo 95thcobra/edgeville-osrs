@@ -324,6 +324,28 @@ public abstract class Entity implements HitOrigin {
 
 		return last;
 	}
+	
+	// The other one sometimes dances
+	public Tile stepTowardsPlayerNotBugged(Entity e, Tile t, int maxSteps) {
+		if (e == null)
+			return tile;
+
+		EntityStrategy target = new EntityStrategy(t);// e instead of t
+		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true, false);
+		int[] bufferX = WalkRouteFinder.getLastPathBufferX();
+		int[] bufferZ = WalkRouteFinder.getLastPathBufferZ();
+
+		Tile last = tile;
+		for (int i = steps - 1; i >= 0; i--) {
+			maxSteps -= pathQueue.interpolate(bufferX[i], bufferZ[i], PathQueue.StepType.REGULAR, maxSteps);
+
+			last = new Tile(bufferX[i], bufferZ[i], tile.level);
+			if (maxSteps <= 0)
+				break;
+		}
+
+		return last;
+	}
 
 	public boolean touches(Entity e) {
 		return touches(e, tile);

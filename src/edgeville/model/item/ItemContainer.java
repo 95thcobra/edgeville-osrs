@@ -266,7 +266,7 @@ public class ItemContainer {
 	 * @return
 	 */
 	public boolean contains(int id, int amount) {
-		for (int i = 0; i < occupiedSlots(); i++) {
+		for (int i = 0; i < getItems().length; i++) {
 			Item item = items[i];
 			if (item != null && item.getId() == id) {
 				if (item.getAmount() >= amount) {

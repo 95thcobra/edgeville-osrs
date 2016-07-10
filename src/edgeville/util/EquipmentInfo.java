@@ -264,13 +264,46 @@ public class EquipmentInfo {
 		List<EquipmentRequirement> reqs = new ArrayList<EquipmentRequirement>();
 
 		boolean attackRequirementFound = false;
-
+		
+		// Mithril
+		if (!attackRequirementFound) {
+			if (StringUtils.containsIgnoreCase(itemName, "mithril")) {
+				if (targetSlot == EquipSlot.WEAPON)
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 20));
+				else if (targetSlot != EquipSlot.AMMO && targetSlot != EquipSlot.RING && targetSlot != EquipSlot.AMULET)
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 20));
+				attackRequirementFound = true;
+			}
+		}
+		
+		// Adamant
+		if (!attackRequirementFound) {
+			if (StringUtils.containsIgnoreCase(itemName, "adamant")) {
+				if (targetSlot == EquipSlot.WEAPON)
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 30));
+				else if (targetSlot != EquipSlot.AMMO && targetSlot != EquipSlot.RING && targetSlot != EquipSlot.AMULET)
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 30));
+				attackRequirementFound = true;
+			}
+		}
+		
+		// Rune
+		if (!attackRequirementFound) {
+			if (StringUtils.containsIgnoreCase(itemName, "rune")) {
+				if (targetSlot == EquipSlot.WEAPON)
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 40));
+				else if (targetSlot != EquipSlot.AMMO && targetSlot != EquipSlot.RING && targetSlot != EquipSlot.AMULET)
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 40));
+				attackRequirementFound = true;
+			}
+		}
+		
 		// Dragon
 		if (!attackRequirementFound) {
 			if (StringUtils.containsIgnoreCase(itemName, "dragon")) {
 				if (targetSlot == EquipSlot.WEAPON)
 					reqs.add(new EquipmentRequirement(Skill.ATTACK, 60));
-				else
+				else if (targetSlot != EquipSlot.AMMO && targetSlot != EquipSlot.RING && targetSlot != EquipSlot.AMULET)
 					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 60));
 				attackRequirementFound = true;
 			}

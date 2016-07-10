@@ -8,6 +8,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.database.ForumIntegration;
 import edgeville.net.message.HandshakeMessage;
 import edgeville.net.message.Js5DataRequest;
 import edgeville.net.message.LoginRequestMessage;

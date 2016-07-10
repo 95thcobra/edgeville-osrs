@@ -46,6 +46,28 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		put(Privilege.ADMIN, "find", (p, args) -> {
+			String s = glue(args);
+			new Thread(() -> {
+				int found = 0;
+
+				for (int i = 0; i < 14_000; i++) {
+					if (found > 249) {
+						p.message("Too many results (> 250). Please narrow down.");
+						break;
+					}
+					ItemDefinition def = p.world().definitions().get(ItemDefinition.class, i);
+					if (def != null && def.name.toLowerCase().contains(s)) {
+						p.message("Result: " + i + " - " + def.name + " (price: " + def.cost + ")");
+						found++;
+					}
+				}
+				p.message("Done searching. Found " + found + " results.");
+			}).start();
+		});
+		
+		
+		
 		put(Privilege.ADMIN, "obj", (p, args) -> {
 			Tile tile = p.getTile();
 			for (int i = 0; i < 21; i++) {
@@ -582,6 +604,11 @@ public final class GameCommands {
 		});
 		put(Privilege.PLAYER, "item", (p, args) -> {
 
+			if (!p.inSafeArea()) {
+				p.message("You cannot spawn items in a pking area!");
+				return;
+			}
+			
 			if (p.getPrivilege() != Privilege.ADMIN && p.getTile().z > 3520 && p.getTile().z < 3972) {
 				p.message("You cannot spawn items while standing in the wilderness.");
 				return;
@@ -590,27 +617,6 @@ public final class GameCommands {
 			int itemId = Integer.parseInt(args[0]);
 			int amount = args.length > 1 ? Integer.parseInt(args[1]) : 1;
 			Item item = new Item(itemId, amount);
-
-			/*
-			 * int pkp = PkpSystem.getCost(itemId);
-			 * 
-			 * if (item.definition(p.world()).unnotedID > -1) { pkp =
-			 * Math.max(PkpSystem.getCost(item.definition(p.world()).unnotedID),
-			 * pkp); item = new Item(item.definition(p.world()).unnotedID); }
-			 * 
-			 * if (pkp > -1) { amount = 1;
-			 * 
-			 * if (pkp > (int) p.attrib(AttributeKey.PK_POINTS, 0)) { p.message(
-			 * "You don't have enough PK points to purchase the " +
-			 * item.definition(p.world()).name + ". You have " +
-			 * p.attrib(AttributeKey.PK_POINTS, 0) +
-			 * " points and the item costs " + pkp + " points."); return; } else
-			 * { p.putattrib(AttributeKey.PK_POINTS, (int)
-			 * p.attrib(AttributeKey.PK_POINTS, 0) - pkp); p.message(
-			 * "You have purchased the " + item.definition(p.world()).name +
-			 * " for " + pkp + " points, you now have " +
-			 * p.attrib(AttributeKey.PK_POINTS, 0) + " points left."); } }
-			 */
 
 			p.getInventory().add(new Item(itemId, amount), true);
 		});

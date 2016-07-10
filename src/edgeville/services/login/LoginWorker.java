@@ -42,9 +42,9 @@ public class LoginWorker implements Runnable {
 				}
 				
 				// TODO
-				if (forumIntegration.checkUser(message.username(), message.password()) != 2) {
+				/*if (forumIntegration.checkUser(message.username(), message.password()) != 2) {
 					return;
-				}
+				}*/
 				
 				logger.info("Attempting to process login request for {}.", message.username());
 

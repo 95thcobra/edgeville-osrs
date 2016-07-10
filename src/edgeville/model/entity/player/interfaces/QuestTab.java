@@ -20,15 +20,15 @@ public class QuestTab {
 	}
 
 	public void updateMaxHit(int maxHit) {
-		player.interfaces().sendInterfaceString(274, 25, "Max hit: " + maxHit);
+		player.interfaces().sendInterfaceString(274, 26, "Max hit: " + maxHit);
 	}
 
 	public void updateKills() {
-		player.interfaces().sendInterfaceString(274, 22, "Kills: " + player.getKills());
+		player.interfaces().sendInterfaceString(274, 23, "Kills: " + player.getKills());
 	}
 
 	public void updateDeaths() {
-		player.interfaces().sendInterfaceString(274, 23, "Deaths: " + player.getDeaths());
+		player.interfaces().sendInterfaceString(274, 24, "Deaths: " + player.getDeaths());
 	}
 
 	public void prepareQuestTab() {
@@ -43,16 +43,17 @@ public class QuestTab {
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 15, "Melee gear");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 16, "Range gear");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "Hybrid gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 19, "Save loadout");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 20, "Load loadout");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 21, "");
-		updateKills();// 22
-		updateDeaths();// 23
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "");
-		updateMaxHit(-1);// 25
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "Pure gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 19, "");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 20, "Save loadout");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 21, "Load loadout");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 22, "");
+		updateKills();// 23
+		updateDeaths();// 24
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "");
+		updateMaxHit(-1);// 26
 
-		for (int child = 26; child < 143; child++) {
+		for (int child = 27; child < 143; child++) {
 			player.write(new InterfaceText(questTabInterfaceId, child, ""));
 		}
 	}
@@ -62,30 +63,76 @@ public class QuestTab {
 
 		// Melee
 		case 15:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+
+			player.getPrayer().deactivateAllPrayers();
 			player.spawnMelee();
 			player.message("You have spawned some melee gear.");
 			break;
 
 		// Range
 		case 16:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+
+			player.getPrayer().deactivateAllPrayers();
 			player.spawnRanged();
 			player.message("You have spawned some ranged gear.");
 			break;
 
 		// Hybrid
 		case 17:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+
+			player.getPrayer().deactivateAllPrayers();
 			player.spawnHybrid();
 			player.message("You have spawned some hybrid gear.");
 			break;
 
+		// Pure
+		case 18:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+
+			if (!player.getEquipment().isEmpty()) {
+				player.message("Unequip your equipment before spawning!");
+				return;
+			}
+
+			player.getPrayer().deactivateAllPrayers();
+			player.spawnPure();
+			player.message("You have spawned some pure gear.");
+			break;
+
 		// Save loadout
-		case 19:
+		case 20:
 			player.getLoadout().save(player);
 			player.message("Saved loadout.");
 			break;
 
 		// Load loadout
-		case 20:
+		case 21:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+
+			if (!player.getEquipment().isEmpty()) {
+				player.message("Unequip your equipment!");
+				return;
+			}
+
+			player.getPrayer().deactivateAllPrayers();
 			player.getLoadout().load(player);
 			player.message("Loaded loadout.");
 			break;
