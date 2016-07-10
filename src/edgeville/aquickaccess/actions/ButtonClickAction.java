@@ -167,10 +167,17 @@ public class ButtonClickAction {
 			if (skillId == -1)
 				return;
 			
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+			
 			if (!player.getEquipment().isEmpty()) {
 				player.message("Unequip your equipment before setting your levels!");
 				return;
 			}
+			
+			player.getPrayer().deactivateAllPrayers();
 			
 			final int skillToSet = skillId;
 			NumberInputDialog dialog = new NumberInputDialog(player) {

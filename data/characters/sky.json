@@ -5,7 +5,7 @@
   "receivedStarter": true,
   "tile": {
     "x": 3086,
-    "z": 3495,
+    "z": 3498,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -13,8 +13,8 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": true,
-  "kills": 12,
-  "deaths": 10,
+  "kills": 13,
+  "deaths": 11,
   "inventory": [
     {
       "id": 5698,
@@ -6309,15 +6309,15 @@
     },
     {
       "level": 99,
-      "xp": 1.3036457899999999E7
+      "xp": 1.3036725E7
     },
     {
       "level": 99,
-      "xp": 1.3037097899999999E7
+      "xp": 1.3037365E7
     },
     {
       "level": 99,
-      "xp": 1.3036670899999999E7
+      "xp": 1.3036938E7
     },
     {
       "level": 99,

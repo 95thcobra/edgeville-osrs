@@ -15,6 +15,10 @@ import java.sql.Statement;
 import edgeville.model.entity.Player;
 
 public class ForumIntegration {
+	
+//	public static getInstance() {
+		//todo poling
+	//}
 
 	private Connection conn; //// new MySQLDatabase("edgeville.org", 3306, "edgevill_forum", "edgevill_forum",
 		//	"Ph,g(n$2g[OD");
@@ -41,12 +45,13 @@ public class ForumIntegration {
 	}
 			
 
-	private static final int CRYPTION_ID = 85461564;
+	private static final String CRYPTION_ID = "28Vqeuyr";
 
-	public int checkUser(Player player) {
+	public int checkUser(String username, String password) {
+		int response = -1;
 		try {
-			String urlString = "http://www.edgeville.org/db/login.php?security=" + CRYPTION_ID + "&name="
-					+ player.getUsername().replace(" ", "_") + "&pass=" + player.getPassword();
+			String urlString = "http://scripts.edgeville.org/login.php?security=" + CRYPTION_ID + "&name="
+					+ username.replace(" ", "_") + "&pass=" + password;
 
 			System.out.println(urlString);
 
@@ -62,15 +67,12 @@ public class ForumIntegration {
 			BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "iso-8859-1"));
 
 			String line = br.readLine();
-			//System.out.println(line);
-			
-			 while(true) { line = br.readLine(); if (line == null) { break; }
-			  System.out.println(line); }
-			
+			System.out.println(line);
+			response = Integer.parseInt(line);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 1;
+		return response;
 	}
 }

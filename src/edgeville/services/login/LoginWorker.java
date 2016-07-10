@@ -40,7 +40,12 @@ public class LoginWorker implements Runnable {
 				if (message == null) {
 					continue;
 				}
-
+				
+				// TODO
+				if (forumIntegration.checkUser(message.username(), message.password()) != 2) {
+					return;
+				}
+				
 				logger.info("Attempting to process login request for {}.", message.username());
 
 				// Prepare random gens
@@ -50,12 +55,6 @@ public class LoginWorker implements Runnable {
 
 				Tile startTile = new Tile(3094, 3503);
 				Player player = new Player(message.channel(), message.username(), message.password(), service.server().world(), startTile, inrand, outrand);
-
-				// TODO
-				/*if (forumIntegration.checkUser(player) != 2) {
-					return;
-				}*/
-				forumIntegration.checkUser(player);
 				
 				boolean success = service.serializer().loadPlayer(player, null, message.password(), result -> {
 					// Convert pipeline
