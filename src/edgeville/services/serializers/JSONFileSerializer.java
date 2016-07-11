@@ -7,6 +7,7 @@ import edgeville.bank.BankTab;
 import edgeville.combat.magic.AncientSpell;
 import edgeville.combat.magic.RegularDamageSpell;
 import edgeville.combat.magic.Spell;
+import edgeville.database.ForumIntegration;
 import edgeville.model.AttributeKey;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
@@ -57,6 +58,12 @@ public class JSONFileSerializer extends PlayerSerializer {
 	public boolean loadPlayer(Player player, Object uid, String password, Consumer<PlayerLoadResult> fn) {
 		File characterFile = new File(characterFolder, player.getUsername() + ".json");
 
+		// Check if login matches a forum account.
+		if (ForumIntegration.checkUser(player.getUsername(), password) != 2) {
+			fn.accept(PlayerLoadResult.INVALID_DETAILS);
+			return true;
+		}
+		
 		// If the file does not exist, let the caller know.
 		if (!characterFile.exists()) {
 			fn.accept(PlayerLoadResult.OK);
@@ -80,8 +87,8 @@ public class JSONFileSerializer extends PlayerSerializer {
 			JsonObject rootObject = element.getAsJsonObject();
 
 			// Check password
-			if (!rootObject.get("password").getAsString().equals(password))
-				return PlayerLoadResult.INVALID_DETAILS;
+			//if (!rootObject.get("password").getAsString().equals(password))
+				//return PlayerLoadResult.INVALID_DETAILS;
 
 			/* Basic information */
 			String displayName = rootObject.get("displayName").getAsString();

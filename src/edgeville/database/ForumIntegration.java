@@ -46,8 +46,14 @@ public class ForumIntegration {
 			
 
 	private static final String CRYPTION_ID = "28Vqeuyr";
-
-	public int checkUser(String username, String password) {
+	
+	/**
+	 * -1 = mysql down, 1 is wrong pass, 2 = success 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public static int checkUser(String username, String password) {
 		int response = -1;
 		try {
 			String urlString = "http://scripts.edgeville.org/login.php?security=" + CRYPTION_ID + "&name="
@@ -55,16 +61,14 @@ public class ForumIntegration {
 
 			System.out.println(urlString);
 
-			// HttpURLConnection conn = (HttpURLConnection) new
-			// URL(urlString).openConnection();
 			URL url = new URL(urlString);
 			URLConnection urlConnection = url.openConnection();
-			((HttpURLConnection) urlConnection).setRequestMethod("POST");
-			urlConnection.setDoOutput(true);
+			//((HttpURLConnection) urlConnection).setRequestMethod("POST");
+			//urlConnection.setDoOutput(true);
 			InputStream is = urlConnection.getInputStream();
 
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "iso-8859-1"));
+			//InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 			String line = br.readLine();
 			System.out.println(line);

@@ -41,7 +41,8 @@ public class PlayerSyncTask implements Task {
 				sync(player);
 		}
 
-		private void sync(Player player) {
+		public static boolean testlol = false;
+		private void sync(Player player) {			
 			RSBuffer buffer = new RSBuffer(player.channel().alloc().buffer(512));
 			buffer.packet(79).writeSize(RSBuffer.SizeType.SHORT);
 
