@@ -1,20 +1,20 @@
 {
-  "username": "ga23a3g",
-  "displayName": "ga23a3g",
-  "password": "a3g",
+  "username": "tyler",
+  "displayName": "tyler",
+  "password": "coolboy",
   "receivedStarter": true,
   "tile": {
     "x": 3094,
-    "z": 3503,
+    "z": 3502,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
-  "skullIcon": -1,
+  "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
   "kills": 0,
-  "deaths": 0,
+  "deaths": 1,
   "inventory": [
     {
       "id": 5698,
@@ -124,10 +124,7 @@
       "id": 385,
       "amount": 1
     },
-    {
-      "id": 385,
-      "amount": 1
-    }
+    null
   ],
   "equipment": [
     {
@@ -479,6 +476,10 @@
       "value": 2
     },
     {
+      "id": 843,
+      "value": 20
+    },
+    {
       "id": 1050,
       "value": 16
     },
@@ -506,7 +507,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3034551E7
     },
     {
       "level": 99,
@@ -518,7 +519,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.303447E7
     },
     {
       "level": 99,

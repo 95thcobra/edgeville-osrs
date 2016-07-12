@@ -8,9 +8,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 
 import edgeville.model.entity.Player;
 
@@ -20,24 +22,35 @@ public class ForumIntegration {
 		//todo poling
 	//}
 
-	private Connection conn; //// new MySQLDatabase("edgeville.org", 3306, "edgevill_forum", "edgevill_forum",
+	//private static Connection conn; //// new MySQLDatabase("edgeville.org", 3306, "edgevill_forum", "edgevill_forum",
 		//	"Ph,g(n$2g[OD");
 
-	public void init() {
+	public static void insertHiscore(Player player) {
 			try {
 				// Connect to database
-				conn = DriverManager.getConnection("jdbc:mysql://185.62.188.4:3306/edgevill_forum", "edgevill_forum", "Ph,g(n$2g[OD");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://185.62.188.4:3306/edgevill_hiscores", "edgevill_hiscores", "4K&cx6kk9LQ7");
 				
 				// Create statement
-				Statement stmt = conn.createStatement();
+				//Statement stmt = conn.createStatement();
+				PreparedStatement pstmt = conn.prepareStatement(
+						"INSERT INTO user_hiscore (member_id, kills, deaths) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE kills = ?, deaths = ?"
+				);
+
+				pstmt.setInt(1, player.getMemberId());
+				pstmt.setInt(2, player.getKills());
+				pstmt.setInt(3, player.getDeaths());
+				pstmt.setInt(4, player.getKills());
+				pstmt.setInt(5, player.getDeaths());
+				
+				pstmt.executeUpdate();
 				
 				// Execute query
-				ResultSet rs = stmt.executeQuery("select * from core_memebers");
+				//ResultSet rs = stmt.executeQuery("INSERT INTO user_hiscore (member_id, kills, deaths, elo) VALUES ()");
 				
 				// Results
-				while(rs.next()) {
-					System.out.println(rs.getString("name") + ", email:"+rs.getString("email"));
-				}
+				//while(rs.next()) {
+				//	System.out.println(rs.getString("name") + ", email:"+rs.getString("email"));
+				//}
 			
 			} catch (SQLException e) {
 				e.printStackTrace();

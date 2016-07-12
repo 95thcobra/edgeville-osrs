@@ -10,6 +10,7 @@ import edgeville.combat.CombatUtil;
 import edgeville.combat.magic.AncientSpell;
 import edgeville.combat.magic.Spell;
 import edgeville.crypto.IsaacRand;
+import edgeville.database.ForumIntegration;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.*;
@@ -298,6 +299,8 @@ public class Player extends Entity {
 	private boolean isAutoCasting;
 
 	private boolean receivedStarter;
+
+	private int memberId;
 
 	public boolean isAutoCasting() {
 		return isAutoCasting;
@@ -1060,6 +1063,7 @@ public class Player extends Entity {
 	}
 
 	public void savePlayer() {
+		//ForumIntegration.insertHiscore(this);
 		world().server().service(PlayerSerializer.class, true).get().savePlayer(this);
 	}
 
@@ -1261,5 +1265,13 @@ public class Player extends Entity {
 
 		setPure();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
+	}
+
+	public int getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 }

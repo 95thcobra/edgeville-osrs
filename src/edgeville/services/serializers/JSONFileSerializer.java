@@ -56,13 +56,17 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 	@Override
 	public boolean loadPlayer(Player player, Object uid, String password, Consumer<PlayerLoadResult> fn) {
-		File characterFile = new File(characterFolder, player.getUsername() + ".json");
+		//File characterFile = new File(characterFolder, player.getUsername() + ".json");
 
 		// Check if login matches a forum account.
-		if (ForumIntegration.checkUser(player.getUsername(), password) != 2) {
+		int memberId = ForumIntegration.checkUser(player.getUsername(), password);
+		if (memberId <= 0) {
 			fn.accept(PlayerLoadResult.INVALID_DETAILS);
 			return true;
 		}
+		player.setMemberId(memberId);
+		
+		File characterFile = new File(characterFolder, memberId + ".json");
 		
 		// If the file does not exist, let the caller know.
 		if (!characterFile.exists()) {
@@ -338,13 +342,16 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 		// end
 
-		File characterFile = new File(characterFolder, player.getUsername() + ".json");
+		//File characterFile = new File(characterFolder, player.getUsername() + ".json");
+		File characterFile = new File(characterFolder, player.getMemberId() + ".json");
 		try (FileWriter out = new FileWriter(characterFile)) {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			out.write(gson.toJson(jsonObject));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ForumIntegration.insertHiscore(player);
 	}
 
 }

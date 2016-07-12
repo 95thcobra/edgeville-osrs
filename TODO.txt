@@ -1,3 +1,18 @@
+change spawn location to inside edge
+makeover mage
+interface 269 appearance
+
+right click on XP drop orb, context menu cancel bug.
+
+
+
+
+connection pooling? insert hiscores
+
+
+
+
+
 MAKE OVER MAGe
 
 FIX PJING, YOU CANT SWITCH BETWEEEN ATTACKING PPL 

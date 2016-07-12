@@ -509,8 +509,8 @@ public final class GameCommands {
 
 		put(Privilege.ADMIN, "loopinter", (p, args) -> {
 			new Thread(() -> {
-				int interfaceId = 320;
-				while (interfaceId++ < 380) {
+				int interfaceId = 0;
+				while (interfaceId++ < 600) {
 					p.interfaces().sendMain(interfaceId, false);
 					p.shout("Interface: " + interfaceId);
 					System.out.println("Interface: " + interfaceId);
