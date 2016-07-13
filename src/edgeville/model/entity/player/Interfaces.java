@@ -79,8 +79,8 @@ public class Interfaces {
 		// Tabs
 		send(149, PANE_FIXED, 65, true); // inventory
 		send(320, PANE_FIXED, 63, true); // skills
-		//send(274, PANE_FIXED, 64, true); // quest
-		send(259, PANE_FIXED, 64, true); // quest
+		send(274, PANE_FIXED, 64, true); // quest
+		//send(259, PANE_FIXED, 64, true); // quest achiev
 		send(387, PANE_FIXED, 66, true); // equipment
 		send(271, PANE_FIXED, 67, true); // prayer
 		send(218, PANE_FIXED, 68, true); // spellbook
@@ -142,8 +142,8 @@ public class Interfaces {
 
 		// tabs
 		send(320, PANE_RESIZABLE, 61, true); // skills
-		//send(274, PANE_RESIZABLE, 62, true); // quest
-		send(259, PANE_RESIZABLE, 62, true); // quest
+		send(274, PANE_RESIZABLE, 62, true); // quest 
+		//send(259, PANE_RESIZABLE, 62, true); // quest achiev
 		send(149, PANE_RESIZABLE, 63, true); // inventory
 		send(387, PANE_RESIZABLE, 64, true); // equipment
 		send(271, PANE_RESIZABLE, 65, true); // prayer

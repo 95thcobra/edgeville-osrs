@@ -76,6 +76,8 @@ public class Player extends Entity {
 	 */
 	private Privilege privilege;
 
+	private long lastHiscoresUpdate;
+	
 	/**
 	 * Our achieved skill levels
 	 */
@@ -1273,5 +1275,13 @@ public class Player extends Entity {
 
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
+	}
+
+	public long getLastHiscoresUpdate() {
+		return lastHiscoresUpdate;
+	}
+
+	public void setLastHiscoresUpdate(long lastHiscoresUpdate) {
+		this.lastHiscoresUpdate = lastHiscoresUpdate;
 	}
 }

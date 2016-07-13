@@ -25,7 +25,12 @@ public class ForumIntegration {
 	//private static Connection conn; //// new MySQLDatabase("edgeville.org", 3306, "edgevill_forum", "edgevill_forum",
 		//	"Ph,g(n$2g[OD");
 
-	public static void insertHiscore(Player player) {
+	public static boolean insertHiscore(Player player) {
+			if ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) > (10 * 60 * 1000)) {
+				return false;
+			}
+			player.setLastHiscoresUpdate(System.currentTimeMillis());
+		
 			try {
 				// Connect to database
 				Connection conn = DriverManager.getConnection("jdbc:mysql://185.62.188.4:3306/edgevill_hiscores", "edgevill_hiscores", "4K&cx6kk9LQ7");
@@ -55,6 +60,7 @@ public class ForumIntegration {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			return true;
 	}
 			
 

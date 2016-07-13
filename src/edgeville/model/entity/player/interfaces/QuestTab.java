@@ -1,5 +1,12 @@
 package edgeville.model.entity.player.interfaces;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import edgeville.database.ForumIntegration;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.Loadout;
@@ -19,52 +26,111 @@ public class QuestTab {
 		player.interfaces().sendInterfaceString(274, 10, "Players online: " + player.world().getPlayersOnline());
 	}
 
-	public void updateMaxHit(int maxHit) {
-		player.interfaces().sendInterfaceString(274, 26, "Max hit: " + maxHit);
-	}
-
 	public void updateKills() {
-		player.interfaces().sendInterfaceString(274, 23, "Kills: " + player.getKills());
+		player.interfaces().sendInterfaceString(274, 19, "Kills: " + player.getKills());
 	}
 
 	public void updateDeaths() {
-		player.interfaces().sendInterfaceString(274, 24, "Deaths: " + player.getDeaths());
+		player.interfaces().sendInterfaceString(274, 20, "Deaths: " + player.getDeaths());
+	}
+
+	public void updateMaxHit(int maxHit) {
+		player.interfaces().sendInterfaceString(274, 21, "Max hit: " + maxHit);
 	}
 
 	public void prepareQuestTab() {
 		final int questTabInterfaceId = 274;
 
 		sendQuestTabTitle();
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 14, "Quick-gear"); // Second
-																						// big
-																						// string
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 14, "Information & Spawn"); // Second
+		// big
+		// string
+
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 15, "Save loadout");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 16, "Load loadout");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "View hiscores");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "Update hiscores");
+		updateKills();// 19
+		updateDeaths();// 20
+		updateMaxHit(-1);// 21
 
 		// Small strings start. COLORS <col=00AEDB>
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 15, "Melee gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 16, "Range gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "Hybrid gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "Pure gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 19, "");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 20, "Save loadout");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 21, "Load loadout");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 22, "");
-		updateKills();// 23
-		updateDeaths();// 24
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "");
-		updateMaxHit(-1);// 26
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 23, "Melee gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "Range gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "Hybrid gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 26, "Pure gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 27, "Food");
 
-		for (int child = 27; child < 143; child++) {
+		for (int child = 28; child < 143; child++) {
 			player.write(new InterfaceText(questTabInterfaceId, child, ""));
+		}
+		
+		makeLinesYellow();
+	}
+	
+	private void makeLinesYellow() {
+		int[] varps = {29,31,62,71,107,122,130,144,222,273,176,32};
+		for(int varp : varps) {
+			player.getVarps().setVarp(varp, 1);
 		}
 	}
 
 	public void clickButton(int buttonId) {
 		switch (buttonId) {
 
-		// Melee
+		// Save loadout
 		case 15:
+			player.getLoadout().save(player);
+			player.message("Saved loadout.");
+			break;
+
+		// Load loadout
+		case 16:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
+				return;
+			}
+
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
+				return;
+			}
+			
+			if (!player.getEquipment().isEmpty()) {
+				player.message("Unequip your equipment!");
+				return;
+			}
+
+			player.getPrayer().deactivateAllPrayers();
+			player.getLoadout().load(player);
+			player.message("Loaded loadout.");
+			break;
+			
+			// view hiscores
+		case 17:
+			try {
+				Desktop.getDesktop().browse(new URI("http://edgeville.org/hiscores"));
+			} catch (Exception e) {
+				player.message("Something went wrong, is website down?");
+			}
+			break;
+			
+			// update hiscores
+		case 18:
+			if (!ForumIntegration.insertHiscore(player)) {
+				player.message("You can only do this every 10 minutes!");
+			}
+			break;
+
+		// Melee
+		case 23:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
 				return;
 			}
 
@@ -74,9 +140,13 @@ public class QuestTab {
 			break;
 
 		// Range
-		case 16:
+		case 24:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
+				return;
+			}
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
 				return;
 			}
 
@@ -86,9 +156,13 @@ public class QuestTab {
 			break;
 
 		// Hybrid
-		case 17:
+		case 25:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
+				return;
+			}
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
 				return;
 			}
 
@@ -98,9 +172,13 @@ public class QuestTab {
 			break;
 
 		// Pure
-		case 18:
+		case 26:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
+				return;
+			}
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
 				return;
 			}
 
@@ -113,28 +191,21 @@ public class QuestTab {
 			player.spawnPure();
 			player.message("You have spawned some pure gear.");
 			break;
+		
 
-		// Save loadout
-		case 20:
-			player.getLoadout().save(player);
-			player.message("Saved loadout.");
-			break;
-
-		// Load loadout
-		case 21:
+		// Food
+		case 27:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
 			}
-
-			if (!player.getEquipment().isEmpty()) {
-				player.message("Unequip your equipment!");
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
 				return;
 			}
 
-			player.getPrayer().deactivateAllPrayers();
-			player.getLoadout().load(player);
-			player.message("Loaded loadout.");
+			player.getInventory().add(391, 28);
+			player.message("You have spawned some food.");
 			break;
 		}
 	}

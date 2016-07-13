@@ -46,6 +46,21 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		put(Privilege.ADMIN, "loopverp", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 250; i++) {
+					p.getVarps().setVarp(i, 1);
+					p.shout("varp:"+i);
+					try {
+						Thread.sleep(500);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		});
+		
 		put(Privilege.ADMIN, "find", (p, args) -> {
 			String s = glue(args);
 			new Thread(() -> {
