@@ -38,6 +38,7 @@ public class ActionDecoder extends ByteToMessageDecoder {
 
 	public ActionDecoder() {
 		/* Fill repo, maybe through xml/json? */
+		actionRepository[33] = MakeOverDecoder.class;
 		actionRepository[40] = SpellOnNpc.class;
 		actionRepository[50] = ItemDragBank.class;
 		actionRepository[13] = JoinClanChatDialog.class;

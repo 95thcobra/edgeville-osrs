@@ -9,6 +9,13 @@ import edgeville.model.entity.Player;
 public class NpcClick1Action {
     public void handleNpcClick(Player player, int npcId) {
         switch (npcId) {
+        
+        // make over mage
+        case 1306:
+        	player.interfaces().sendMain(269);
+        	break;
+        
+        // teleport wizard edgeville
             case 4400:
                 new DialogueHandler().sendOptionDialogue(
                         player,
@@ -19,6 +26,8 @@ public class NpcClick1Action {
                         "Nowhere");
                 player.setDialogueAction(1);
                 break;
+                
+               
         }
     }
 }

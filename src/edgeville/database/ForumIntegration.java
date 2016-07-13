@@ -26,7 +26,7 @@ public class ForumIntegration {
 		//	"Ph,g(n$2g[OD");
 
 	public static boolean insertHiscore(Player player) {
-			if ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) > (10 * 60 * 1000)) {
+			if ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) < (10 * 60 * 1000)) {
 				return false;
 			}
 			player.setLastHiscoresUpdate(System.currentTimeMillis());

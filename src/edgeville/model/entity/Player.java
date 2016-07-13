@@ -353,6 +353,8 @@ public class Player extends Entity {
 		clanChat = new ClanChat(this, username + "'s clanchat", new ArrayList<Player>());
 
 		getVarps().presave();
+		
+		lastHiscoresUpdate = System.currentTimeMillis();
 	}
 
 	public void giveStarterPack() {

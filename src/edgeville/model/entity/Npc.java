@@ -25,7 +25,7 @@ public class Npc extends Entity {
 		this.id = id;
 		sync = new NpcSyncInfo(this);
 		spawnTile = tile;
-		hp = 100;
+		hp = Integer.MAX_VALUE;
 		def = world.definitions().get(NpcDefinition.class, id);
 		this.respawn = respawn;
 	}

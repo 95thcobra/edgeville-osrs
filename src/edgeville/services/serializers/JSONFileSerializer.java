@@ -86,7 +86,13 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 	public PlayerLoadResult loadPlayer(Player player, InputStream inputStream, String password) {
 		JsonElement element = new JsonParser().parse(new InputStreamReader(inputStream));
-
+		try {
+			inputStream.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		if (element.isJsonObject()) {
 			JsonObject rootObject = element.getAsJsonObject();
 
@@ -119,6 +125,12 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 			player.setTile(tile);
 
+			/* looks information */
+			JsonArray looks = rootObject.get("looks").getAsJsonArray();
+			for (int i = 0; i < looks.size(); i++) {
+				player.looks().getLooks()[i] = looks.get(i).getAsInt();
+			}
+			
 			/* Skill information */
 			JsonArray skills = rootObject.get("skills").getAsJsonArray();
 			for (int i = 0; i < skills.size(); i++) {
@@ -220,7 +232,6 @@ public class JSONFileSerializer extends PlayerSerializer {
 					player.setLastCastedSpell(lastSpell);
 				}
 			}
-
 			return PlayerLoadResult.OK;
 		}
 
@@ -243,6 +254,14 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("kills", player.getKills());
 		jsonObject.addProperty("deaths", player.getDeaths());
 
+		/* looks */
+		JsonArray jsonLooks = new JsonArray();
+		int[] looks = player.looks().getLooks();
+		for (int i = 0; i < looks.length; i++) {
+			jsonLooks.add(looks[i]);
+		}
+		jsonObject.add("looks", jsonLooks);
+		
 		/* Inventory */
 		JsonArray inventory = new JsonArray();
 		for (int i = 0; i < player.getInventory().size(); i++) {
@@ -270,23 +289,6 @@ public class JSONFileSerializer extends PlayerSerializer {
 		loadout.add("inventory", inv);
 		loadout.add("equipment", equip);
 		jsonObject.add("loadout", loadout);
-
-		// Bank
-		/*
-		 * JsonObject bank = new JsonObject(); // Iterate over every bank tab.
-		 * for (int i = 0; i < player.getBank().getBankTabs().length; i++) {
-		 * BankTab bankTab = player.getBank().getBankTabs()[i];
-		 * 
-		 * // If bank tab empty, skip. if (bankTab.getItems().isEmpty()) {
-		 * continue; }
-		 * 
-		 * // Array of items in bank tab. JsonArray items = new JsonArray(); for
-		 * (Item item : bankTab.getItems()) { items.add(gson.toJsonTree(item));
-		 * }
-		 * 
-		 * //jsonBankTab.add(""+i, items); bank.add("" + i, items); }
-		 * jsonObject.add("bank", bank);
-		 */
 
 		// Bank
 		JsonArray jsonBank = new JsonArray();
@@ -350,7 +352,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	
 		ForumIntegration.insertHiscore(player);
 	}
 
