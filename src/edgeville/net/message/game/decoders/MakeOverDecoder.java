@@ -4,6 +4,7 @@ import edgeville.aquickaccess.actions.ButtonClickAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.Looks.Gender;
 import edgeville.net.message.game.encoders.Action;
 import edgeville.net.message.game.encoders.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
@@ -26,11 +27,26 @@ public class MakeOverDecoder implements Action {
 		colors = new int[5];
 
 		for (int i = 0; i < 7; i++) {
-			clothes[i] = buf.readByte();
+			int cloth = buf.readByte();
+			
+			///////// disable the invisible heads
+			if (cloth < 0 && i == 0) {
+				int defaultMaleHead = 0;
+				int defaultFemaleHead = 45;
+				if (gender == Gender.MALE.getId()) {
+					cloth = defaultMaleHead;
+				} else {
+					cloth = defaultFemaleHead;
+				}
+			}
+			////////
+			
+			clothes[i] = cloth;
 		}
 
 		for (int i = 0; i < 5; i++) {
-			colors[i] = buf.readByte();
+			int color = buf.readByte();
+			colors[i] = color;
 		}
 	}
 

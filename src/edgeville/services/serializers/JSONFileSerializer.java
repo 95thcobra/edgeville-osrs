@@ -14,6 +14,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Bank;
 import edgeville.model.entity.player.Privilege;
 import edgeville.model.entity.player.Skills;
+import edgeville.model.entity.player.Looks.Gender;
 import edgeville.model.entity.player.skills.Prayer;
 import edgeville.model.entity.player.skills.Prayers;
 import edgeville.model.item.Item;
@@ -56,7 +57,8 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 	@Override
 	public boolean loadPlayer(Player player, Object uid, String password, Consumer<PlayerLoadResult> fn) {
-		//File characterFile = new File(characterFolder, player.getUsername() + ".json");
+		// File characterFile = new File(characterFolder, player.getUsername() +
+		// ".json");
 
 		// Check if login matches a forum account.
 		int memberId = ForumIntegration.checkUser(player.getUsername(), password);
@@ -65,9 +67,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 			return true;
 		}
 		player.setMemberId(memberId);
-		
+
 		File characterFile = new File(characterFolder, memberId + ".json");
-		
+
 		// If the file does not exist, let the caller know.
 		if (!characterFile.exists()) {
 			fn.accept(PlayerLoadResult.OK);
@@ -92,13 +94,13 @@ public class JSONFileSerializer extends PlayerSerializer {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		if (element.isJsonObject()) {
 			JsonObject rootObject = element.getAsJsonObject();
 
 			// Check password
-			//if (!rootObject.get("password").getAsString().equals(password))
-				//return PlayerLoadResult.INVALID_DETAILS;
+			// if (!rootObject.get("password").getAsString().equals(password))
+			// return PlayerLoadResult.INVALID_DETAILS;
 
 			/* Basic information */
 			String displayName = rootObject.get("displayName").getAsString();
@@ -125,10 +127,18 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 			player.setTile(tile);
 
-			/* looks information */
+			/* looks clothes */
+			Gender gender = Gender.valueOf(rootObject.get("gender").getAsString());
+			player.looks().setGender(gender);
 			JsonArray looks = rootObject.get("looks").getAsJsonArray();
 			for (int i = 0; i < looks.size(); i++) {
 				player.looks().getLooks()[i] = looks.get(i).getAsInt();
+			}
+			
+			/* looks colors */
+			JsonArray lookColors = rootObject.get("colors").getAsJsonArray();
+			for (int i = 0; i < lookColors.size(); i++) {
+				player.looks().getColors()[i] = lookColors.get(i).getAsInt();
 			}
 			
 			/* Skill information */
@@ -181,15 +191,11 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 			// Skull head icon
 			JsonElement skullIcon = rootObject.get("skullIcon");
-			if (skullIcon != null) {
-				player.setSkullHeadIcon(skullIcon.getAsInt());
-			}
+			player.setSkullHeadIcon(skullIcon.getAsInt());
 
 			// Prayer head icon
 			JsonElement prayerIcon = rootObject.get("prayerIcon");
-			if (prayerIcon != null) {
-				player.setPrayerHeadIcon(prayerIcon.getAsInt());
-			}
+			player.setPrayerHeadIcon(prayerIcon.getAsInt());
 
 			// Quick prayers
 			JsonArray quickPrayers = rootObject.get("quickprayers").getAsJsonArray();
@@ -254,7 +260,8 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("kills", player.getKills());
 		jsonObject.addProperty("deaths", player.getDeaths());
 
-		/* looks */
+		/* look clothes */
+		jsonObject.addProperty("gender", player.looks().getGender().toString());
 		JsonArray jsonLooks = new JsonArray();
 		int[] looks = player.looks().getLooks();
 		for (int i = 0; i < looks.length; i++) {
@@ -262,6 +269,14 @@ public class JSONFileSerializer extends PlayerSerializer {
 		}
 		jsonObject.add("looks", jsonLooks);
 		
+		/*look colors*/
+		JsonArray jsonLookColors = new JsonArray();
+		int[] colors = player.looks().getColors();
+		for (int i = 0; i < colors.length; i++) {
+			jsonLookColors.add(colors[i]);
+		}
+		jsonObject.add("colors", jsonLookColors);
+
 		/* Inventory */
 		JsonArray inventory = new JsonArray();
 		for (int i = 0; i < player.getInventory().size(); i++) {
@@ -344,7 +359,8 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 		// end
 
-		//File characterFile = new File(characterFolder, player.getUsername() + ".json");
+		// File characterFile = new File(characterFolder, player.getUsername() +
+		// ".json");
 		File characterFile = new File(characterFolder, player.getMemberId() + ".json");
 		try (FileWriter out = new FileWriter(characterFile)) {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -352,7 +368,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+
 		ForumIntegration.insertHiscore(player);
 	}
 

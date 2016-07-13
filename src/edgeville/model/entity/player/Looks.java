@@ -34,6 +34,10 @@ public class Looks {
 	public void setColors(int[] colors) {
 		this.colors = colors;
 	}
+	
+	public int[] getColors() {
+		return colors;
+	}
 
 	private int[] looks = { 
 			0, 
@@ -56,7 +60,7 @@ public class Looks {
 
 	private Gender gender;
 
-	private enum Gender {
+	public enum Gender {
 		MALE(0), FEMALE(1);
 
 		private int id;

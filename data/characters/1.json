@@ -5,16 +5,17 @@
   "receivedStarter": true,
   "tile": {
     "x": 3086,
-    "z": 3495,
+    "z": 3498,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
   "skullIcon": -1,
   "prayerIcon": -1,
-  "debug": true,
+  "debug": false,
   "kills": 0,
   "deaths": 0,
+  "gender": "FEMALE",
   "looks": [
     0,
     10,
@@ -29,208 +30,218 @@
     70,
     -1
   ],
+  "colors": [
+    0,
+    0,
+    7,
+    4,
+    6
+  ],
   "inventory": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    {
+      "id": 5698,
+      "amount": 1
+    },
+    {
+      "id": 145,
+      "amount": 1
+    },
+    {
+      "id": 157,
+      "amount": 1
+    },
+    {
+      "id": 163,
+      "amount": 1
+    },
+    {
+      "id": 4153,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    }
   ],
   "equipment": [
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 6570,
+      "amount": 1
+    },
+    {
+      "id": 6585,
+      "amount": 1
+    },
+    {
+      "id": 12006,
+      "amount": 1
+    },
+    {
+      "id": 10551,
+      "amount": 1
+    },
+    {
+      "id": 12954,
+      "amount": 1
+    },
     null,
+    {
+      "id": 4722,
+      "amount": 1
+    },
     null,
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 11840,
+      "amount": 1
+    },
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "id": 11773,
+      "amount": 1
+    },
     null
   ],
   "loadout": {
     "inventory": [
-      {
-        "id": 5698,
-        "amount": 1
-      },
-      {
-        "id": 157,
-        "amount": 1
-      },
-      {
-        "id": 163,
-        "amount": 1
-      },
-      {
-        "id": 145,
-        "amount": 1
-      },
-      {
-        "id": 6570,
-        "amount": 1
-      },
-      {
-        "id": 4675,
-        "amount": 1
-      },
-      {
-        "id": 12954,
-        "amount": 1
-      },
-      {
-        "id": 10551,
-        "amount": 1
-      },
-      {
-        "id": 4722,
-        "amount": 1
-      },
-      {
-        "id": 11840,
-        "amount": 1
-      },
-      {
-        "id": 4736,
-        "amount": 1
-      },
-      {
-        "id": 560,
-        "amount": 9976
-      },
-      {
-        "id": 565,
-        "amount": 9984
-      },
-      {
-        "id": 555,
-        "amount": 9964
-      },
       null,
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      },
-      {
-        "id": 397,
-        "amount": 1
-      }
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
     ],
     "equipment": [
-      {
-        "id": 10828,
-        "amount": 1
-      },
-      {
-        "id": 2412,
-        "amount": 1
-      },
-      {
-        "id": 6585,
-        "amount": 1
-      },
-      {
-        "id": 12006,
-        "amount": 1
-      },
-      {
-        "id": 4712,
-        "amount": 1
-      },
-      {
-        "id": 6889,
-        "amount": 1
-      },
       null,
-      {
-        "id": 4714,
-        "amount": 1
-      },
       null,
-      {
-        "id": 7462,
-        "amount": 1
-      },
-      {
-        "id": 6920,
-        "amount": 1
-      },
       null,
-      {
-        "id": 11773,
-        "amount": 1
-      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
       null
     ]
   },
@@ -241,23 +252,23 @@
     },
     {
       "id": 4712,
-      "amount": 1002
+      "amount": 1001
     },
     {
       "id": 6920,
-      "amount": 1002
+      "amount": 1001
     },
     {
       "id": 4714,
-      "amount": 1002
+      "amount": 1001
     },
     {
       "id": 6585,
-      "amount": 1003
+      "amount": 1001
     },
     {
       "id": 7462,
-      "amount": 43
+      "amount": 41
     },
     {
       "id": 6914,
@@ -265,7 +276,7 @@
     },
     {
       "id": 6889,
-      "amount": 1002
+      "amount": 1001
     },
     {
       "id": 2414,
@@ -273,23 +284,23 @@
     },
     {
       "id": 4736,
-      "amount": 1003
+      "amount": 1002
     },
     {
       "id": 12006,
-      "amount": 24
+      "amount": 22
     },
     {
       "id": 6570,
-      "amount": 24
+      "amount": 22
     },
     {
       "id": 12954,
-      "amount": 24
+      "amount": 22
     },
     {
       "id": 11840,
-      "amount": 1004
+      "amount": 1002
     },
     {
       "id": 11832,
@@ -305,7 +316,7 @@
     },
     {
       "id": 10828,
-      "amount": 23
+      "amount": 21
     },
     {
       "id": 6737,
@@ -313,7 +324,7 @@
     },
     {
       "id": 5698,
-      "amount": 1004
+      "amount": 1003
     },
     {
       "id": 4753,
@@ -365,7 +376,7 @@
     },
     {
       "id": 4722,
-      "amount": 1004
+      "amount": 1002
     },
     {
       "id": 4718,
@@ -377,7 +388,7 @@
     },
     {
       "id": 4675,
-      "amount": 1002
+      "amount": 1001
     },
     {
       "id": 6918,
@@ -393,7 +404,7 @@
     },
     {
       "id": 10551,
-      "amount": 24
+      "amount": 22
     },
     {
       "id": 2617,
@@ -429,19 +440,19 @@
     },
     {
       "id": 397,
-      "amount": 1041
+      "amount": 1028
     },
     {
       "id": 555,
-      "amount": 1029964
+      "amount": 1020000
     },
     {
       "id": 565,
-      "amount": 1029984
+      "amount": 1020000
     },
     {
       "id": 560,
-      "amount": 1029976
+      "amount": 1020000
     },
     {
       "id": 9075,
@@ -461,23 +472,23 @@
     },
     {
       "id": 157,
-      "amount": 2
+      "amount": 1
     },
     {
       "id": 163,
-      "amount": 2
+      "amount": 1
     },
     {
       "id": 145,
-      "amount": 2
+      "amount": 1
     },
     {
       "id": 2412,
-      "amount": 2
+      "amount": 1
     },
     {
       "id": 11773,
-      "amount": 3
+      "amount": 1
     }
   ],
   "varps": [
@@ -539,7 +550,11 @@
     },
     {
       "id": 439,
-      "value": 1
+      "value": 2
+    },
+    {
+      "id": 843,
+      "value": 20
     },
     {
       "id": 1050,
@@ -581,10 +596,6 @@
     },
     {
       "level": 99,
-      "xp": 1.3034476E7
-    },
-    {
-      "level": 99,
       "xp": 1.3034431E7
     },
     {
@@ -593,7 +604,11 @@
     },
     {
       "level": 99,
-      "xp": 1.3034633E7
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
@@ -666,7 +681,6 @@
   ],
   "quickprayers": [],
   "autocastSpellChild": 0,
-  "lastCastedSpell": "ICE_BARRAGE",
-  "lastCastedSpellChild": 69,
+  "lastCastedSpellChild": 0,
   "autocasting": false
 }

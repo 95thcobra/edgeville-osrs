@@ -42,7 +42,7 @@ public class ItemAction2 extends ItemAction {
 			return;
 
 		// Stop player actions
-		player.stopActions(false);
+		player.stopActionsWithoutRemovingMainInterface(false);
 
 		Item item = player.getInventory().get(slot);
 		if (item == null || item.getId() != this.item) {// Avoid reclicking

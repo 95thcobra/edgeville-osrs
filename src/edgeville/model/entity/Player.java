@@ -561,6 +561,23 @@ public class Player extends Entity {
 		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format));
 	}
 
+	public void stopActionsWithoutRemovingMainInterface(boolean cancelMoving) {
+		super.stopActions(cancelMoving);
+
+		// Make input dialog null
+		setInputDialog(null);
+		
+		// Remove banking interface when banking
+		if (interfaces.visible(12)) {
+			interfaces().closeById(15);
+		}
+
+		// Reset chatbox interface
+		if (interfaces.visible(162, 546)) {
+			interfaces.close(162, 546);
+		}
+	}
+	
 	@Override
 	public void stopActions(boolean cancelMoving) {
 		super.stopActions(cancelMoving);
