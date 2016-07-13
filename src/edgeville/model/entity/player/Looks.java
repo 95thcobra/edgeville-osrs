@@ -44,9 +44,9 @@ public class Looks {
 			36/* NIKS */, 
 			42/* 6. feet */,
 			36/* NIKS */, 
-			7/* 8. head */, 
+			0/* 8. head */, 
 			33/* NIKS */, 
-			42/* 10. legs */, 
+			36/* 10. legs */, 
 			10/* 11. beard */
 	};
 
@@ -153,7 +153,7 @@ public class Looks {
 				}
 
 				// Beard
-				if (i == 11) {
+				if (i == 11 && gender == Gender.MALE) {
 					calcBuffer.writeShort(0x100 + looks[i]);
 					continue;
 				}
