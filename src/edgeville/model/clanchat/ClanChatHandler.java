@@ -25,7 +25,7 @@ public class ClanChatHandler {
 
 	public ClanChat getClanChat(Player player) {
 		try {
-			File clanchatFolder = new File("data/clanchats", player.getUsername() + ".json");
+			File clanchatFolder = new File("saves/clanchats", player.getUsername() + ".json");
 			JsonElement element = new JsonParser().parse(new InputStreamReader(new FileInputStream(clanchatFolder)));
 			JsonObject jsonObjectClan = element.getAsJsonObject();
 

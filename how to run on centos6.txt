@@ -7,11 +7,15 @@ Gebruikersnaam: root
 Wachtwoord: do75Wh9E
 
 run server:
+cd edgeville
+
+killall screen
 screen -A -m -d -S rsps java -classpath bin:lib/* edgeville.GameServer
+
 java -classpath bin:lib/* edgeville.GameServer
 Show output: screen -R
+Detach screen: "Ctrl-A" and "d" 
 Kill screen: "Ctrl-A" and "K" 
-Detach screen(use kill screen): "Ctrl-A" and "d" 
 
 unzip file:
 unzip edgeville.zip

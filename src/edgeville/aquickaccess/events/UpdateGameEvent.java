@@ -36,6 +36,7 @@ public class UpdateGameEvent extends Event {
 		//if (tick == ticksForRestart) {
 			try {
 				if (SystemUtils.IS_OS_LINUX) {
+					Runtime.getRuntime().exec("killall screen");
 					Runtime.getRuntime().exec("screen -A -m -d -S rsps java -classpath bin:lib/* edgeville.GameServer");
 				} else if (SystemUtils.IS_OS_WINDOWS) {
 					Runtime.getRuntime().exec("cmd /c start run.bat");

@@ -44,7 +44,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 	/**
 	 * The folder containing the character files.
 	 */
-	private File characterFolder = new File("data/characters");
+	private File characterFolder = new File("saves/characters");
 
 	public JSONFileSerializer(UIDProvider provider) {
 		super(provider);
