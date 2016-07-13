@@ -4,8 +4,8 @@
   "password": "jailbreak",
   "receivedStarter": true,
   "tile": {
-    "x": 3086,
-    "z": 3498,
+    "x": 3087,
+    "z": 3489,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -43,10 +43,6 @@
       "amount": 1
     },
     {
-      "id": 145,
-      "amount": 1
-    },
-    {
       "id": 157,
       "amount": 1
     },
@@ -55,99 +51,103 @@
       "amount": 1
     },
     {
-      "id": 4153,
+      "id": 145,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 6570,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 12006,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 12954,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 10551,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 4722,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 11840,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 4736,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 560,
+      "amount": 9800
+    },
+    {
+      "id": 565,
+      "amount": 9872
+    },
+    {
+      "id": 555,
+      "amount": 9712
+    },
+    {
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
+      "id": 397,
       "amount": 1
     }
   ],
@@ -157,7 +157,7 @@
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 2412,
       "amount": 1
     },
     {
@@ -165,20 +165,20 @@
       "amount": 1
     },
     {
-      "id": 12006,
+      "id": 4675,
       "amount": 1
     },
     {
-      "id": 10551,
+      "id": 4712,
       "amount": 1
     },
     {
-      "id": 12954,
+      "id": 6889,
       "amount": 1
     },
     null,
     {
-      "id": 4722,
+      "id": 4714,
       "amount": 1
     },
     null,
@@ -187,7 +187,7 @@
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 6920,
       "amount": 1
     },
     null,
@@ -517,6 +517,10 @@
       "value": 1
     },
     {
+      "id": 108,
+      "value": 92
+    },
+    {
       "id": 122,
       "value": 1
     },
@@ -550,11 +554,11 @@
     },
     {
       "id": 439,
-      "value": 2
+      "value": 1
     },
     {
       "id": 843,
-      "value": 20
+      "value": 18
     },
     {
       "id": 1050,
@@ -584,7 +588,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3034575E7
     },
     {
       "level": 99,
@@ -596,7 +600,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.303503834E7
     },
     {
       "level": 99,
@@ -608,7 +612,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3036179400000002E7
     },
     {
       "level": 99,
@@ -680,7 +684,9 @@
     }
   ],
   "quickprayers": [],
-  "autocastSpellChild": 0,
-  "lastCastedSpellChild": 0,
-  "autocasting": false
+  "autocastSpell": "ICE_BARRAGE",
+  "autocastSpellChild": 69,
+  "lastCastedSpell": "ICE_BARRAGE",
+  "lastCastedSpellChild": 69,
+  "autocasting": true
 }

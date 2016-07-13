@@ -80,6 +80,8 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGER, getEntity());
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
+		
+		target.setLastDamagedMillis(System.currentTimeMillis());
 	}
 
 	@Override

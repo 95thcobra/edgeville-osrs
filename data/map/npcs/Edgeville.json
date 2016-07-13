@@ -3,6 +3,21 @@
     "id": 1306,
     "x": 3086,
     "z": 3499,
-    "direction": "S"
+    "direction": "S",
+	"radius": 2
+  },
+  {
+    "id": 300,
+    "x": 3086,
+    "z": 3496,
+    "direction": "E",
+	"radius": 2
+  },
+  {
+    "id": 300,
+    "x": 3086,
+    "z": 3491,
+    "direction": "W",
+	"radius": 2
   }
 ]

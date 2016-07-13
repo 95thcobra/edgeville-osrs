@@ -25,7 +25,7 @@ public class Npc extends Entity {
 		this.id = id;
 		sync = new NpcSyncInfo(this);
 		spawnTile = tile;
-		hp = Integer.MAX_VALUE;
+		hp = maxHp();
 		def = world.definitions().get(NpcDefinition.class, id);
 		this.respawn = respawn;
 	}
@@ -70,8 +70,16 @@ public class Npc extends Entity {
 	public void cycle() {
 		super.cycle();
 
-		long lastAttackTime = (System.currentTimeMillis() - (long) attribute(AttributeKey.LAST_DAMAGE, (long) 0));
-		if (lastAttackTime < 10_000 && !locked() && inViewport && walkRadius > 0 && pathQueue.empty() && world.random(9) == 0) {
+		//long lastAttackTime = (System.currentTimeMillis() - (long) attribute(AttributeKey.LAST_DAMAGE, (long) 0));
+		long lastAttackTime = (System.currentTimeMillis() - getLastDamagedMillis());
+		
+		//System.out.println(lastAttackTime);
+		//System.out.println(!locked());
+		//System.out.println(inViewport);
+		//System.out.println(walkRadius);
+		//System.out.println(pathQueue.empty());
+		
+		if (lastAttackTime > 10_000 && !frozen() && !stunned() && !locked() && inViewport && walkRadius > 0 && pathQueue.empty() && world.random(9) == 0) {
 			int rndX = world.random(walkRadius * 2 + 1) - walkRadius;
 			int rndZ = world.random(walkRadius * 2 + 1) - walkRadius;
 			walkTo(spawnTile.transform(rndX, rndZ, 0), PathQueue.StepType.REGULAR);
@@ -89,7 +97,7 @@ public class Npc extends Entity {
 
 	@Override
 	public int maxHp() {
-		return 100;
+		return id == 1306 ? Integer.MAX_VALUE : 500;
 	}
 	
 	public void setHp(int hp) {

@@ -41,6 +41,8 @@ public abstract class Entity implements HitOrigin {
 	private Map<Entity, Integer> damagers = new HashMap<>();
 
 	private LockType lock = LockType.NONE;
+	
+	private long lastDamagedMillis;
 
 	////// sj
 	// private CombatBuilder combatBuilder = new CombatBuilder();
@@ -668,5 +670,13 @@ public abstract class Entity implements HitOrigin {
 	public abstract boolean isNpc();
 
 	protected abstract void die();
+
+	public long getLastDamagedMillis() {
+		return lastDamagedMillis;
+	}
+
+	public void setLastDamagedMillis(long lastDamagedMillis) {
+		this.lastDamagedMillis = lastDamagedMillis;
+	}
 
 }

@@ -211,7 +211,7 @@ public class SpellOnTargetAction {
 		}
 	}
 
-	private void cycleRegularDamageSpell(RegularDamageSpell spell, boolean autocast) {
+	private void cycleRegularDamageSpell(RegularDamageSpell spell, boolean autocast) {	
 		player.setLastSpellCastChild(child);
 		player.setLastCastedSpell(spell);
 
@@ -276,7 +276,7 @@ public class SpellOnTargetAction {
 		}
 	}
 
-	private void cycleAncientSpell(AncientSpell spell) {
+	private void cycleAncientSpell(AncientSpell spell) {		
 		player.setLastSpellCastChild(child);
 		player.setLastCastedSpell(spell);
 
@@ -311,6 +311,8 @@ public class SpellOnTargetAction {
 	}
 
 	private boolean doRegularDamageSpell(RegularDamageSpell spell, EventContainer container, boolean autocasting) {
+		target.setLastDamagedMillis(System.currentTimeMillis());
+		
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
@@ -353,6 +355,8 @@ public class SpellOnTargetAction {
 	}
 
 	private boolean doAncientSpell(AncientSpell spell, EventContainer container, boolean autocast) {
+		target.setLastDamagedMillis(System.currentTimeMillis());
+		
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
