@@ -3,6 +3,7 @@ package edgeville.services.serializers;
 import com.google.gson.*;
 import com.google.gson.stream.JsonWriter;
 
+import edgeville.Constants;
 import edgeville.bank.BankTab;
 import edgeville.combat.magic.AncientSpell;
 import edgeville.combat.magic.RegularDamageSpell;
@@ -61,14 +62,18 @@ public class JSONFileSerializer extends PlayerSerializer {
 		// ".json");
 
 		// Check if login matches a forum account.
-		int memberId = ForumIntegration.checkUser(player.getUsername(), password);
-		if (memberId <= 0) {
-			fn.accept(PlayerLoadResult.INVALID_DETAILS);
-			return true;
+		File characterFile;
+		if (Constants.MYSQL_ENABLED) {
+			int memberId = ForumIntegration.checkUser(player.getUsername(), password);
+			if (memberId <= 0) {
+				fn.accept(PlayerLoadResult.INVALID_DETAILS);
+				return true;
+			}
+			player.setMemberId(memberId);
+			characterFile = new File(characterFolder, memberId + ".json");
+		} else {
+			characterFile = new File(characterFolder, player.getUsername() + ".json");
 		}
-		player.setMemberId(memberId);
-
-		File characterFile = new File(characterFolder, memberId + ".json");
 
 		// If the file does not exist, let the caller know.
 		if (!characterFile.exists()) {
@@ -99,8 +104,10 @@ public class JSONFileSerializer extends PlayerSerializer {
 			JsonObject rootObject = element.getAsJsonObject();
 
 			// Check password
-			// if (!rootObject.get("password").getAsString().equals(password))
-			// return PlayerLoadResult.INVALID_DETAILS;
+			if (!Constants.MYSQL_ENABLED) {
+				if (!rootObject.get("password").getAsString().equals(password))
+					return PlayerLoadResult.INVALID_DETAILS;
+			}
 
 			/* Basic information */
 			String displayName = rootObject.get("displayName").getAsString();
@@ -134,13 +141,13 @@ public class JSONFileSerializer extends PlayerSerializer {
 			for (int i = 0; i < looks.size(); i++) {
 				player.looks().getLooks()[i] = looks.get(i).getAsInt();
 			}
-			
+
 			/* looks colors */
 			JsonArray lookColors = rootObject.get("colors").getAsJsonArray();
 			for (int i = 0; i < lookColors.size(); i++) {
 				player.looks().getColors()[i] = lookColors.get(i).getAsInt();
 			}
-			
+
 			/* Skill information */
 			JsonArray skills = rootObject.get("skills").getAsJsonArray();
 			for (int i = 0; i < skills.size(); i++) {
@@ -246,6 +253,11 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 	@Override
 	public void savePlayer(Player player) {
+
+		if (!Constants.SAVE_PLAYERS) {
+			return;
+		}
+		
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("username", player.getUsername());
 		jsonObject.addProperty("displayName", player.getDisplayName());
@@ -268,8 +280,8 @@ public class JSONFileSerializer extends PlayerSerializer {
 			jsonLooks.add(looks[i]);
 		}
 		jsonObject.add("looks", jsonLooks);
-		
-		/*look colors*/
+
+		/* look colors */
 		JsonArray jsonLookColors = new JsonArray();
 		int[] colors = player.looks().getColors();
 		for (int i = 0; i < colors.length; i++) {
@@ -368,8 +380,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		ForumIntegration.insertHiscore(player);
+		if (Constants.MYSQL_ENABLED) {
+			ForumIntegration.insertHiscore(player);
+		}
 	}
 
 }

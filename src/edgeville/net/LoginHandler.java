@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import edgeville.Constants;
 import edgeville.GameServer;
 import edgeville.crypto.IsaacRand;
+import edgeville.model.Locations;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 import edgeville.net.message.*;
@@ -84,7 +85,7 @@ public class LoginHandler extends ChannelInboundHandlerAdapter {
 			IsaacRand inrand = new IsaacRand(seed);
 			IsaacRand outrand = new IsaacRand(Arrays.stream(seed).map(i -> i + 50).toArray());
 
-			Player player = new Player(message.channel(), message.username(), message.password(), server.world(), new Tile(3088, 3505), inrand, outrand);
+			Player player = new Player(message.channel(), message.username(), message.password(), server.world(), Locations.SPAWN_LOCATION.getTile(), inrand, outrand);
 			player.id(player.getUsername());
 			LoginService.complete(player, server, message);
 		}

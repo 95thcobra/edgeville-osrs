@@ -12,6 +12,15 @@ import edgeville.services.serializers.PlayerSerializer;
  */
 public class Constants {
 	
+	// Crucial settings
+	public static final boolean MYSQL_ENABLED = true;
+	public static final boolean SAVE_PLAYERS = true;
+	
+	
+	
+	
+	
+	
 	// Settings
 	public static final boolean ALL_PVP = true;
 	

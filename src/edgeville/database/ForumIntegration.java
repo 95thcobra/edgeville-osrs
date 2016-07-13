@@ -33,7 +33,7 @@ public class ForumIntegration {
 		
 			try {
 				// Connect to database
-				Connection conn = DriverManager.getConnection("jdbc:mysql://185.62.188.4:3306/edgevill_hiscores", "edgevill_hiscores", "4K&cx6kk9LQ7");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://edgeville.org:3306/sky_hiscores", "sky_hiscores", "3!zbr,vU2S%C");
 				
 				// Create statement
 				//Statement stmt = conn.createStatement();
@@ -75,7 +75,7 @@ public class ForumIntegration {
 	public static int checkUser(String username, String password) {
 		int response = -1;
 		try {
-			String urlString = "http://scripts.edgeville.org/login.php?security=" + CRYPTION_ID + "&name="
+			String urlString = "http://edgeville.org/game/login.php?security=" + CRYPTION_ID + "&name="
 					+ username.replace(" ", "_") + "&pass=" + password;
 
 			System.out.println(urlString);

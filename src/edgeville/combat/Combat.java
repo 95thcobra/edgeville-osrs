@@ -82,7 +82,7 @@ public abstract class Combat {
 
 		Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile()
 				: target.pathQueue().peekAfter(otherSteps).toTile();
-		entity.stepTowards(target, otherTile, 25);
+		entity.stepTowardsPlayerNotBugged(target, otherTile, 25);
 		return entity.pathQueue().peekAfter(steps - 1) == null ? entity.getTile()
 				: entity.pathQueue().peekAfter(steps - 1).toTile();
 	}

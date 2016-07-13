@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import edgeville.Constants;
 import edgeville.crypto.IsaacRand;
 import edgeville.database.ForumIntegration;
+import edgeville.model.Locations;
 import edgeville.model.Tile;
 import edgeville.model.entity.Player;
 import edgeville.net.future.ClosingChannelFuture;
@@ -53,7 +54,7 @@ public class LoginWorker implements Runnable {
 				IsaacRand inrand = new IsaacRand(seed);
 				IsaacRand outrand = new IsaacRand(Arrays.stream(seed).map(i -> i + 50).toArray());
 
-				Tile startTile = new Tile(3094, 3503);
+				Tile startTile = Locations.SPAWN_LOCATION.getTile();
 				Player player = new Player(message.channel(), message.username(), message.password(), service.server().world(), startTile, inrand, outrand);
 				
 				boolean success = service.serializer().loadPlayer(player, null, message.password(), result -> {

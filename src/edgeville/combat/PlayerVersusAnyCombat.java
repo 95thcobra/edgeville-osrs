@@ -99,7 +99,9 @@ public class PlayerVersusAnyCombat extends Combat {
 				// player.pathQueue().clear();
 				//currentTile = moveCloser();
 				//player.stepTowards(target, 2);
-				player.stepTowardsPlayerNotBugged(target, target.getTile(), 2);
+				
+				currentTile = moveCloser();
+				//player.stepTowardsPlayerNotBugged(target, target.getTile(), 2);
 			}
 			return;
 		}
@@ -117,7 +119,11 @@ public class PlayerVersusAnyCombat extends Combat {
 			int max = CombatFormula.maximumMeleeHit(((Player) getEntity()));
 			int hit=0;
 			
-			if (success) {
+			if(target instanceof Player){
+			hit = AccuracyFormula.calculateHitNEW(player, (Player)target, max);
+			}else{
+				
+			//if (success) {
 				hit = getEntity().world().random(max);
 			//hit = AccuracyFormula.calculateHit(player, (Player)target, max);
 			}
