@@ -385,13 +385,21 @@ public class AccuracyFormula {
 		 * Generate attackers effective accuracy.
 		 */
 		int EA = playerAttackLevel + playerAttackBonus + 8;
-		int a = (EA * (64 + 0)) / 10;
+		int a = (int) ((EA * (64 + 0)) / 10.0);
+		
+		a*=prayerMeleeAccuracyMultiplier(player);
+		
+		player.message("attackbonus:%d",a);
 
 		/*
 		 * Generate defenders effective defense.
 		 */
 		int ED = targetDefenceLevel + targetDefenceBonus + 8;
-		int d = (ED * (64 + 0)) / 10;
+		int d = (int) ((ED * (64 + 0)) / 10.0);
+		
+		d*=prayerMeleeDefenceMultiplier(target);
+		
+		player.message("a:%d, d:%d", a,d);
 
 		/*
 		 * generate final accuracy rating between 0-1 and then multiply by 100
@@ -410,17 +418,14 @@ public class AccuracyFormula {
 		player.message("Accuracy: %d", (int)accuracy);
 		
 		/*
-		 * Generate the attackers max hit.
-		 */
-		// double maxHit = 32;
-
-		/*
 		 * Using the accuracy value we can then generate a reducing value which
 		 * indicates the maximum damage the defense/accuracy will soak up.
 		 */
-		int maxReducer = (int) (maxHit - ((double) (((double) (maxHit / 100)) * accuracy)));
+		int maxReducer = (int) (maxHit - ((maxHit / 100.0) * accuracy));
 		if (maxReducer <= 0)
 			maxReducer = 1;
+		
+		player.message("Max reducer: %d", maxReducer);
 
 		/*
 		 * Generate a random hit using the max hit and a random defense/accuracy
@@ -506,6 +511,102 @@ public class AccuracyFormula {
 			base *= 1.25;
 		}
 		return base;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static int CALCHITBACKUP(Player player, Player target, int maxHit) {
+		int playerAttackLevel = player.skills().level(Skills.ATTACK);
+		int targetDefenceLevel = target.skills().level(Skills.DEFENCE);
+
+		int playerAttackBonus = player.world().equipmentInfo().getAttackBonus(player);
+		int targetDefenceBonus = target.world().equipmentInfo().getDefenceBonus(target, player);
+
+		/*
+		 * Generate attackers effective accuracy.
+		 */
+		int EA = playerAttackLevel + playerAttackBonus + 8;
+		int a = (EA * (64 + 0)) / 10;
+
+		/*
+		 * Generate defenders effective defense.
+		 */
+		int ED = targetDefenceLevel + targetDefenceBonus + 8;
+		int d = (ED * (64 + 0)) / 10;
+
+		/*
+		 * generate final accuracy rating between 0-1 and then multiply by 100
+		 * to generate a more meaningful number.
+		 */
+		double accuracy = 0;
+
+		if (a > d) {
+			accuracy = (double) 1 - (d + 1) / (2.0 * a);
+		} else {
+			accuracy = (double) (a - 1) / (2.0 * d);
+		}
+
+		accuracy *= 100;
+		
+		player.message("Accuracy: %d", (int)accuracy);
+		
+		/*
+		 * Generate the attackers max hit.
+		 */
+		// double maxHit = 32;
+
+		/*
+		 * Using the accuracy value we can then generate a reducing value which
+		 * indicates the maximum damage the defense/accuracy will soak up.
+		 */
+		int maxReducer = (int) (maxHit - (maxHit / 100.0) * accuracy);
+		if (maxReducer <= 0)
+			maxReducer = 1;
+		
+		player.message("Max reducer: %d", maxReducer);
+
+		/*
+		 * Generate a random hit using the max hit and a random defense/accuracy
+		 * reducer from the maxReducer value.
+		 * 
+		 * NOTE - // + 1 because value specified is exclusive on nextInt.
+		 * 
+		 */
+		// Random rand = new Random();
+		int randomHit = player.world().random((int) maxHit + 1);
+		int randomReducer = player.world().random(maxReducer + 1);
+
+		/*
+		 * Subtract our random reducer from our final hit.
+		 */
+		int finalHit = randomHit - randomReducer;
+
+		if (finalHit < 0)
+			finalHit = 0;
+		if (finalHit > maxHit)
+			finalHit = (int) maxHit;
+
+		System.out.println(finalHit + " " + maxReducer);
+		// player.shout("AttackLevel:"+playerAttackLevel+" Maxhit:" + maxHit + "
+		// Final hit:" + finalHit + " Attackbonus:"+playerAttackBonus + "
+		// TargetDefencedbonus:"+targetDefenceBonus);
+
+		return finalHit;
 	}
 
 }
