@@ -463,6 +463,9 @@ public class EquipmentInfo {
 
 	public int getAttackBonus(Player player) {
 		SlashStabCrunch slashStabCrunch = CombatUtil.getSlashStabCrunch(player);
+		
+		//player.message("Attackbonus for:"+slashStabCrunch.toString());
+		
 		switch(slashStabCrunch) {
 		case STAB:
 			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).stab;

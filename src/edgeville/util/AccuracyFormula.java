@@ -6,6 +6,7 @@ import java.util.Random;
 import edgeville.model.Entity;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Skills;
+import edgeville.model.entity.player.skills.Prayers;
 
 /**
  * @author Simon on 8/22/2015.
@@ -242,8 +243,51 @@ public class AccuracyFormula {
 		// determine hit
 		return off_hit_chance > def_block_chance;
 	} // end main
+	
+	public static int calculateHitAgainstNPC(Player player, Entity target, int maxHit, CombatStyle combatStyle) {
+		boolean success = AccuracyFormula.doesHit(player, target, combatStyle);
+		return success ? player.world().random(maxHit) : 0;
+	}
+	
+	public static int calcHitNEWMage(Player player, Player target, int maxHit) {
+		int magicLevel = player.skills().level(Skills.MAGIC);
 
-	public static int calculateHitNEW(Player player, Player target, int maxHit) {
+		int magicAttack = magicLevel + CombatFormula.totalBonuses(player, player.world().equipmentInfo()).mage;
+		int magicDefence = CombatFormula.totalBonuses(target, target.world().equipmentInfo()).magedef;
+		
+		//EquipmentInfo.Bonuses playerBonuses = CombatFormula.totalBonuses(player, player.world().equipmentInfo());
+		
+		// TODO TODO PRAYERS
+		
+		player.message("MA: %d, MD: %d", magicAttack, magicDefence);
+		
+		int maxReducer = 0;//maxHit;
+		
+		//maxReducer -= maxHit * ;
+		maxReducer += maxHit + 25 - ((magicAttack-magicDefence) / 3);
+		
+		if (maxReducer <= 0)
+			maxReducer = 1;
+		
+		player.message("Max hit reduce: %d", maxReducer);
+
+		int randomHit = player.world().random((int) maxHit + 1);
+		int randomReducer = player.world().random(maxReducer);
+
+		int finalHit = randomHit - randomReducer;
+
+		if (finalHit < 0)
+			finalHit = 0;
+		if (finalHit > maxHit)
+			finalHit = (int) maxHit;
+
+		return finalHit;
+	}
+
+	public static int calcHitNEWMelee(Player player, Player target, int maxHit) {
+		
+		// TODO TODO PRAYERS
+		
 		int playerAttackLevel = player.skills().level(Skills.ATTACK);
 		int targetDefenceLevel = target.skills().level(Skills.DEFENCE);
 
@@ -262,36 +306,6 @@ public class AccuracyFormula {
 		 */
 		int ED = targetDefenceLevel + targetDefenceBonus + 8;
 		int d = (ED * (64 + 0)) / 10;
-	
-		//player.message("ED:%d, d:%d", ED,d);
-
-		/*
-		 * generate final accuracy rating between 0-1 and then multiply by 100
-		 * to generate a more meaningful number.
-		 */
-		
-		/*double accuracy = 0;
-
-		if (a > d) {
-			accuracy = (double) 1 - (d + 1) / (2 * a);
-		} else {
-			accuracy = (double) (a - 1) / (2 * d);
-		}
-		player.message("accuracy before100: " + accuracy);
-
-		accuracy *= 100;*/
-		
-		//a+=2000;
-		//d-=500;
-		
-		//player.message("Accuracy: "+ accuracy);
-
-		/*
-		 * Using the accuracy value we can then generate a reducing value which
-		 * indicates the maximum damage the defense/accuracy will soak up.
-		 */
-		//int maxReducer = (int) (maxHit - ((double) (((double) (maxHit / 100)))));
-		//player.message("Max hit reduce: %d", maxReducer);
 		
 		int maxReducer = maxHit;
 		
@@ -300,11 +314,10 @@ public class AccuracyFormula {
 		maxReducer -= 70;
 		maxReducer += 40 - ((a-d) / 30);
 		
-		player.message("Max hit reduce: %d", maxReducer);
-		
 		if (maxReducer <= 0)
 			maxReducer = 1;
 
+		player.message("Max hit reduce: %d", maxReducer);
 		/*
 		 * Generate a random hit using the max hit and a random defense/accuracy
 		 * reducer from the maxReducer value.
@@ -325,11 +338,6 @@ public class AccuracyFormula {
 			finalHit = 0;
 		if (finalHit > maxHit)
 			finalHit = (int) maxHit;
-
-		System.out.println(finalHit + " " + maxReducer);
-		// player.shout("AttackLevel:"+playerAttackLevel+" Maxhit:" + maxHit + "
-		// Final hit:" + finalHit + " Attackbonus:"+playerAttackBonus + "
-		// TargetDefencedbonus:"+targetDefenceBonus);
 
 		return finalHit;
 	}
@@ -406,6 +414,29 @@ public class AccuracyFormula {
 		// TargetDefencedbonus:"+targetDefenceBonus);
 
 		return finalHit;
+	}
+	
+	
+	
+	private static double prayerMeleeAccuracyMultiplier(Player player) {
+		double base = 1.00;
+		// Prayer multipliers
+		if (player.getPrayer().isPrayerOn(Prayers.BURST_OF_STRENGTH)) {
+			base *= 1.05;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.SUPERHUMAN_STRENGTH)) {
+			base *= 1.10;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.ULTIMATE_STRENGTH)) {
+			base *= 1.15;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.CHILVAlRY)) {
+			base *= 1.18;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.PIETY)) {
+			base *= 1.23;
+		}
+		return base;
 	}
 
 }

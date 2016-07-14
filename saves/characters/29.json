@@ -4,17 +4,17 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3093,
-    "z": 3501,
+    "x": 3092,
+    "z": 3500,
     "level": 0
   },
   "privilege": "ADMIN",
   "migration": 0,
   "skullIcon": 0,
   "prayerIcon": -1,
-  "debug": false,
+  "debug": true,
   "kills": 2,
-  "deaths": 0,
+  "deaths": 6,
   "gender": "MALE",
   "looks": [
     0,
@@ -43,11 +43,7 @@
       "amount": 1
     },
     {
-      "id": 229,
-      "amount": 1
-    },
-    {
-      "id": 229,
+      "id": 157,
       "amount": 1
     },
     {
@@ -55,99 +51,103 @@
       "amount": 1
     },
     {
-      "id": 4153,
+      "id": 145,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 6570,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 12006,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 12954,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 4736,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 4722,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 11840,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 4712,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 560,
+      "amount": 10000
+    },
+    {
+      "id": 565,
+      "amount": 10000
+    },
+    {
+      "id": 555,
+      "amount": 10000
+    },
+    {
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
+      "id": 397,
       "amount": 1
     },
     {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
+      "id": 397,
       "amount": 1
     }
   ],
@@ -157,7 +157,7 @@
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 2412,
       "amount": 1
     },
     {
@@ -165,7 +165,7 @@
       "amount": 1
     },
     {
-      "id": 12006,
+      "id": 4675,
       "amount": 1
     },
     {
@@ -173,12 +173,12 @@
       "amount": 1
     },
     {
-      "id": 12954,
+      "id": 6889,
       "amount": 1
     },
     null,
     {
-      "id": 4722,
+      "id": 4714,
       "amount": 1
     },
     null,
@@ -187,7 +187,7 @@
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 6920,
       "amount": 1
     },
     null,
@@ -195,7 +195,10 @@
       "id": 11773,
       "amount": 1
     },
-    null
+    {
+      "id": 9244,
+      "amount": 1000
+    }
   ],
   "loadout": {
     "inventory": [
@@ -550,11 +553,11 @@
     },
     {
       "id": 439,
-      "value": 2
+      "value": 1
     },
     {
       "id": 843,
-      "value": 20
+      "value": 18
     },
     {
       "id": 1050,
@@ -583,27 +586,27 @@
   ],
   "skills": [
     {
-      "level": 115,
-      "xp": 1.3048879E7
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
       "xp": 1.3034431E7
     },
     {
-      "level": 115,
+      "level": 99,
       "xp": 1.3034431E7
     },
     {
-      "level": 8,
-      "xp": 1.3039232460000003E7
+      "level": 49,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
       "xp": 1.3034431E7
     },
     {
-      "level": 47,
+      "level": 85,
       "xp": 1.3034431E7
     },
     {

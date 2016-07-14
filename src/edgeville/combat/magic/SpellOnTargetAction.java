@@ -54,7 +54,7 @@ public class SpellOnTargetAction {
 				 * target).interfaces().setBountyInterface(true); }
 				 */
 				target.timers().register(TimerKey.IN_COMBAT, 10);
-				if (!((Player)target).inSafeArea()) {
+				if (!((Player) target).inSafeArea()) {
 					target.timers().register(TimerKey.AFTER_COMBAT, 5);
 				}
 
@@ -211,7 +211,7 @@ public class SpellOnTargetAction {
 		}
 	}
 
-	private void cycleRegularDamageSpell(RegularDamageSpell spell, boolean autocast) {	
+	private void cycleRegularDamageSpell(RegularDamageSpell spell, boolean autocast) {
 		player.setLastSpellCastChild(child);
 		player.setLastCastedSpell(spell);
 
@@ -276,7 +276,7 @@ public class SpellOnTargetAction {
 		}
 	}
 
-	private void cycleAncientSpell(AncientSpell spell) {		
+	private void cycleAncientSpell(AncientSpell spell) {
 		player.setLastSpellCastChild(child);
 		player.setLastCastedSpell(spell);
 
@@ -312,7 +312,7 @@ public class SpellOnTargetAction {
 
 	private boolean doRegularDamageSpell(RegularDamageSpell spell, EventContainer container, boolean autocasting) {
 		target.setLastDamagedMillis(System.currentTimeMillis());
-		
+
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
@@ -334,21 +334,28 @@ public class SpellOnTargetAction {
 
 		int delay = (int) (1 + Math.floor(tileDist) / 2.0);
 		player.timers().register(TimerKey.COMBAT_ATTACK, spell.getCombatDelayTicks());
-		boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.MAGIC);
+		// boolean success = AccuracyFormula.doesHit(player, target,
+		// CombatStyle.MAGIC);
 
-		int hit = player.world().random(spell.getMaxHit());
+		// int hit = player.world().random(spell.getMaxHit());
+		player.getQuestTab().updateMaxHit(spell.getMaxHit());
+		
+		int hit;
 
-		if (success) {
-			target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(new Graphic(spell.getGfxOther(), 92, 0));
-			triggerVeng(hit);
-			if (target instanceof Player) {
-				// if (spell.getSoundId() > 0)
-				// ((Player) target).sound(spell.getSoundId());
-			}
-			// player.sound(spell.getSoundId());
+		if (target instanceof Player) {
+			hit = AccuracyFormula.calcHitNEWMage(player, (Player)target, spell.getMaxHit());
 		} else {
-			target.hit(player, 0, delay).graphic(new Graphic(85, 92, 0));
+			hit = AccuracyFormula.calculateHitAgainstNPC(player, target, spell.getMaxHit(), CombatStyle.MAGIC);
 		}
+
+		// if (success) {
+		target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(new Graphic(spell.getGfxOther(), 92, 0));
+		if (hit > 0)
+			triggerVeng(hit);
+		// player.sound(spell.getSoundId());
+		// } else {
+		// target.hit(player, 0, delay).graphic(new Graphic(85, 92, 0));
+		// }
 		if (!autocasting)
 			container.stop();
 		return true;
@@ -356,7 +363,7 @@ public class SpellOnTargetAction {
 
 	private boolean doAncientSpell(AncientSpell spell, EventContainer container, boolean autocast) {
 		target.setLastDamagedMillis(System.currentTimeMillis());
-		
+
 		if (player.getTile().distance(target.getTile()) > 7 && !player.frozen() && !player.stunned()) {
 			player.stepTowards(target, 2);
 			return false;
@@ -377,11 +384,19 @@ public class SpellOnTargetAction {
 
 		int delay = (int) (1 + Math.floor(tileDist) / 2.0);
 		player.timers().register(TimerKey.COMBAT_ATTACK, spell.getCombatDelayTicks());
-		boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.MAGIC);
+		//boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.MAGIC);
 
-		int hit = player.world().random(spell.getMaxHit());
-
-		if (success) {
+		int hit;// = player.world().random(spell.getMaxHit());
+		
+		player.getQuestTab().updateMaxHit(spell.getMaxHit());
+		
+		if (target instanceof Player) {
+			hit = AccuracyFormula.calcHitNEWMage(player, (Player)target, spell.getMaxHit());
+		} else {
+			hit = AccuracyFormula.calculateHitAgainstNPC(player, target, spell.getMaxHit(), CombatStyle.MAGIC);
+		}
+		
+		if (hit > 0) {
 			target.hit(player, hit, delay, CombatStyle.MAGIC).graphic(spell.getGfx());
 			triggerVeng(hit);
 			if (target instanceof Player) {

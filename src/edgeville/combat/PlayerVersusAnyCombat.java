@@ -63,7 +63,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			 * target).interfaces().setBountyInterface(true); }
 			 */
 			target.timers().register(TimerKey.IN_COMBAT, 10);
-			if (!((Player)target).inSafeArea()) {
+			if (!((Player) target).inSafeArea()) {
 				target.timers().register(TimerKey.AFTER_COMBAT, 5);
 			}
 		}
@@ -80,7 +80,7 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGER, getEntity());
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
-		
+
 		target.setLastDamagedMillis(System.currentTimeMillis());
 	}
 
@@ -97,11 +97,12 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (!player.touches(getTarget(), currentTile)) {
 			if (!player.frozen()) {
 				// player.pathQueue().clear();
-				//currentTile = moveCloser();
-				//player.stepTowards(target, 2);
-				
+				// currentTile = moveCloser();
+				// player.stepTowards(target, 2);
+
 				currentTile = moveCloser();
-				//player.stepTowardsPlayerNotBugged(target, target.getTile(), 2);
+				// player.stepTowardsPlayerNotBugged(target, target.getTile(),
+				// 2);
 			}
 			return;
 		}
@@ -115,29 +116,34 @@ public class PlayerVersusAnyCombat extends Combat {
 			}
 
 			boolean success = AccuracyFormula.doesHit(((Player) getEntity()), getTarget(), CombatStyle.MELEE);
-			
-			int max = CombatFormula.maximumMeleeHit(((Player) getEntity()));
-			int hit=0;
-			
-			if(target instanceof Player){
-			hit = AccuracyFormula.calculateHitNEW(player, (Player)target, max);
-			}else{
-				
-			//if (success) {
-				hit = getEntity().world().random(max);
-			//hit = AccuracyFormula.calculateHit(player, (Player)target, max);
-			}
-			
-			//int hit = (target instanceof Player ? AccuracyFormula.calculateHit(player, (Player)target, max) : getEntity().world().random(max));
-			player.getQuestTab().updateMaxHit(max);
-			//int hit = getEntity().world().random(max);
 
-			//getTarget().hit(getEntity(), success ? hit : 0, CombatStyle.MELEE);
-			//triggerVeng(success ? hit : 0);
-			
-			getTarget().hit(getEntity(),hit, CombatStyle.MELEE);
-			triggerVeng(hit);
-			
+			int max = CombatFormula.maximumMeleeHit(((Player) getEntity()));
+			int hit = 0;
+
+			if (target instanceof Player) {
+				hit = AccuracyFormula.calcHitNEWMelee(player, (Player) target, max);
+			} else {
+
+				// if (success) {
+				hit = getEntity().world().random(max);
+				// hit = AccuracyFormula.calculateHit(player, (Player)target,
+				// max);
+			}
+
+			// int hit = (target instanceof Player ?
+			// AccuracyFormula.calculateHit(player, (Player)target, max) :
+			// getEntity().world().random(max));
+			player.getQuestTab().updateMaxHit(max);
+			// int hit = getEntity().world().random(max);
+
+			// getTarget().hit(getEntity(), success ? hit : 0,
+			// CombatStyle.MELEE);
+			// triggerVeng(success ? hit : 0);
+
+			getTarget().hit(getEntity(), hit, CombatStyle.MELEE);
+			if (hit > 0)
+				triggerVeng(hit);
+
 			getEntity().animate(EquipmentInfo.attackAnimationFor(((Player) getEntity())));
 			getEntity().timers().register(TimerKey.COMBAT_ATTACK,
 					getEntity().world().equipmentInfo().weaponSpeed(weaponId));
@@ -203,7 +209,7 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Are we in range?
 		if (currentTile.distance(target.getTile()) > maxDist && !player.frozen() && !player.stunned()) {
-			 //currentTile = moveCloser();
+			// currentTile = moveCloser();
 			player.stepTowards(target, 25);
 			return;
 		}

@@ -1,6 +1,7 @@
-change spawn location to inside edge
-makeover mage
-interface 269 appearance
+FIX EQUIPMENT looks when range gear
+
+
+
 
 right click on XP drop orb, context menu cancel bug.
 

@@ -72,6 +72,11 @@ public class ButtonClickAction {
 			}
 			break;
 			
+			// unequip in equipment interface
+		case 84:
+			handleEquipmentInterface();
+			break;
+			
 			// keybindings
 		case 121:
 			setupKeybindings();
@@ -287,6 +292,53 @@ public class ButtonClickAction {
 		}
 	}
 
+	private void handleEquipmentInterface() {
+		switch(buttonId) {
+
+		// Unequip
+		case 11:
+			unequip(EquipSlot.HEAD);
+			break;
+		case 12:
+			unequip(EquipSlot.CAPE);
+			break;
+
+		case 13:
+			unequip(EquipSlot.AMULET);
+			break;
+
+		case 14:
+			unequip(EquipSlot.WEAPON);
+			break;
+
+		case 15:
+			unequip(EquipSlot.BODY);
+			break;
+
+		case 16:
+			unequip(EquipSlot.SHIELD);
+			break;
+
+		case 17:
+			unequip(EquipSlot.LEGS);
+			break;
+
+		case 18:
+			unequip(EquipSlot.HANDS);
+			break;
+
+		case 19:
+			unequip(EquipSlot.FEET);
+			break;
+		case 20:
+			unequip(EquipSlot.RING);
+			break;
+		case 21:
+			unequip(EquipSlot.AMMO);
+			break;
+		}
+	}
+	
 	private void handleOptionsTabs() {
 		switch (buttonId) {
 

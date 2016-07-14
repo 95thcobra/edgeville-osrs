@@ -80,7 +80,7 @@ public class Interfaces {
 		send(149, PANE_FIXED, 65, true); // inventory
 		send(320, PANE_FIXED, 63, true); // skills
 		send(274, PANE_FIXED, 64, true); // quest
-		//send(259, PANE_FIXED, 64, true); // quest achiev
+		// send(259, PANE_FIXED, 64, true); // quest achiev
 		send(387, PANE_FIXED, 66, true); // equipment
 		send(271, PANE_FIXED, 67, true); // prayer
 		send(218, PANE_FIXED, 68, true); // spellbook
@@ -119,15 +119,16 @@ public class Interfaces {
 			close(activeRoot, child);
 		}
 	}
-	
+
 	public void showSkull(boolean enabled) {
 		int child = activeRoot == PANE_RESIZABLE ? 7 : 10;
 
-		if (enabled) {
-			send(105, activeRoot, child, true);
-		} else {
-			close(activeRoot, child);
-		}
+			if (enabled) {
+				if (!visible(105))
+					send(105, activeRoot, child, true);
+			} else {
+				close(activeRoot, child);
+			}
 	}
 
 	public void sendResizable() {
@@ -142,8 +143,8 @@ public class Interfaces {
 
 		// tabs
 		send(320, PANE_RESIZABLE, 61, true); // skills
-		send(274, PANE_RESIZABLE, 62, true); // quest 
-		//send(259, PANE_RESIZABLE, 62, true); // quest achiev
+		send(274, PANE_RESIZABLE, 62, true); // quest
+		// send(259, PANE_RESIZABLE, 62, true); // quest achiev
 		send(149, PANE_RESIZABLE, 63, true); // inventory
 		send(387, PANE_RESIZABLE, 64, true); // equipment
 		send(271, PANE_RESIZABLE, 65, true); // prayer
@@ -187,8 +188,6 @@ public class Interfaces {
 	public void sendMain(int id, boolean clickthrough) {
 		send(id, activeRoot, mainComponent(), clickthrough);
 	}
-	
-
 
 	public void send(int id, int target, int targetChild, boolean clickthrough) {
 		player.write(new OpenInterface(id, target, targetChild, clickthrough));
