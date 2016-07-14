@@ -405,7 +405,7 @@ public class Player extends Entity {
 		bank.getBankItems().add(new Item(10370, 1000));
 		bank.getBankItems().add(new Item(10372, 1000));
 		bank.getBankItems().add(new Item(4759, 1000));
-		bank.getBankItems().add(new Item(10696, 20));
+		bank.getBankItems().add(new Item(2577, 20));
 		bank.getBankItems().add(new Item(6733, 20));
 		bank.getBankItems().add(new Item(11785, 20));
 		bank.getBankItems().add(new Item(9244, 1000000));
@@ -429,6 +429,8 @@ public class Player extends Entity {
 		bank.getBankItems().add(new Item(3024, 1000));
 		bank.getBankItems().add(new Item(2440, 1000));
 		bank.getBankItems().add(new Item(2436, 1000));
+		bank.getBankItems().add(new Item(11726, 1000));
+		bank.getBankItems().add(new Item(11722, 1000));
 		bank.getBankItems().add(new Item(397, 1028));
 		bank.getBankItems().add(new Item(555, 1020000));
 		bank.getBankItems().add(new Item(565, 1020000));

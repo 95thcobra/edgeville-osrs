@@ -272,13 +272,13 @@ public class CombatFormula {
 	}
 
 	private static boolean wearingVoidNoHelm(Player player) {
-		if (player.getEquipment().get(EquipSlot.BODY).getId() != 8839) {
+		if (player.getEquipment().get(EquipSlot.BODY) != null && player.getEquipment().get(EquipSlot.BODY).getId() != 8839) {
 			return false;
 		}
-		if (player.getEquipment().get(EquipSlot.LEGS).getId() != 8840) {
+		if (player.getEquipment().get(EquipSlot.BODY) != null && player.getEquipment().get(EquipSlot.LEGS).getId() != 8840) {
 			return false;
 		}
-		if (player.getEquipment().get(EquipSlot.HANDS).getId() != 8842) {
+		if (player.getEquipment().get(EquipSlot.BODY) != null && player.getEquipment().get(EquipSlot.HANDS).getId() != 8842) {
 			return false;
 		}
 

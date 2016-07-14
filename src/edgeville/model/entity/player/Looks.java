@@ -22,37 +22,41 @@ public class Looks {
 	private int[] colors;
 
 	public void setClothes(int[] clothes) {
-		this.looks[8] = clothes[0]; // head
+		/*
+		 * this.looks[8] = clothes[0]; // hair this.looks[11] = clothes[1]; //
+		 * jaw this.looks[2] = clothes[2];// torso this.looks[3] = clothes[3];
+		 * // arms this.looks[4] = clothes[4]; // arms this.looks[10] =
+		 * clothes[5]; // legs this.looks[6] = clothes[6]; // feet
+		 */
+
+		this.looks[8] = clothes[0]; // hair
 		this.looks[11] = clothes[1]; // jaw
-		this.looks[2] = clothes[2];// torso
-		this.looks[3] = clothes[3]; // arms
-		this.looks[4] = clothes[4]; // arms
-		this.looks[10] = clothes[5]; // legs
-		this.looks[6] = clothes[6]; // feet
+		this.looks[4] = clothes[2];// torso
+		this.looks[6] = clothes[3]; // arms
+		this.looks[9] = clothes[4]; // hands
+		this.looks[7] = clothes[5]; // legs
+		this.looks[10] = clothes[6]; // feet
+
 	}
 
 	public void setColors(int[] colors) {
 		this.colors = colors;
 	}
-	
+
 	public int[] getColors() {
 		return colors;
 	}
 
-	private int[] looks = { 
-			0, 
-			10/* NIKS */, 
-			18/* 2. torso */, 
-			26/* 3. arms */, 
-			33/* 4. hands */, 
-			36/* NIKS */, 
-			42/* 6. feet */,
-			36/* NIKS */, 
-			0/* 8. head */, 
-			33/* NIKS */, 
-			36/* 10. legs */, 
-			10/* 11. beard */
-	};
+	// private int[] looks = {1, 2, 3, 4, 18, 5, 26, 36, 7, 33, 42, 10};
+
+	/*
+	 * private int[] looks = { 0, 0, // niks 18, // 2. torso 26, // 3. arms *
+	 * 33, // 4. hands 0, // NIKS 42, // 6. feet 36, // NIKS 0, // 8. head 33,
+	 * // NIKS * 36, // 10. legs 10// 11. beard };
+	 */
+
+	private int[] looks = { 0, 0, 0, 0, 18/* torso */, 0, 27/* arms */, 37/* legs */, 8/* hair */, 33/* hands */,
+			42/* boots */, 10/* beard */ };
 
 	public int[] getLooks() {
 		return looks;
@@ -93,10 +97,21 @@ public class Looks {
 		if (transmog >= 0) {
 			calcBuffer.writeShort(0xFFFF).writeShort(transmog);
 		} else {
-			for (int look : looks)
-				System.out.println("LOOK: " + look);
 
+			// int[] looks = {0, 0, 0, 0, 18/*torso*/, 0, 27/*arms*/,
+			// 37/*legs*/, 8/*hair*/, 33/*hands*/, 42/*boots*/, 10/*beard*/};
+
+			// 6 = arms
+			// 8 = hair
+			// 9 = hands
+			// 10 = boots
+			// 11 = beard
 			EquipmentInfo equipInfo = player.world().equipmentInfo();
+			boolean hideHead = player.getEquipment().hasAt(EquipSlot.HEAD)
+					&& equipInfo.typeFor(player.getEquipment().get(EquipSlot.HEAD).getId()) == 8;
+
+			boolean hideBeard = false;
+
 			for (int i = 0; i < 12; i++) {
 				if (i == 6 && player.getEquipment().hasAt(4)
 						&& equipInfo.typeFor(player.getEquipment().get(4).getId()) == 6) {
@@ -104,88 +119,42 @@ public class Looks {
 					continue;
 				}
 
-				if (i == 8 && player.getEquipment().hasAt(0)
-						&& equipInfo.typeFor(player.getEquipment().get(0).getId()) == 8) {
+				if (i == 8 && hideHead) {
 					calcBuffer.writeByte(0);
 					continue;
 				}
 
-				if (i == 11 && player.getEquipment().hasAt(0)
-						&& equipInfo.typeFor(player.getEquipment().get(0).getId()) == 8) {
-
+				if (i == 11 && (hideBeard || gender == Gender.FEMALE)) {
+					calcBuffer.writeByte(0);
+					continue;
 				}
 
 				if (player.getEquipment().hasAt(i)) {
 					calcBuffer.writeShort(0x200 + player.getEquipment().get(i).getId());
-					continue;
+				} else {
+					if (looks[i] != 0 || (i == 8 && gender == Gender.MALE)) {
+						calcBuffer.writeShort(0x100 + looks[i]);
+					} else {
+						calcBuffer.writeByte(0);
+					}
 				}
-				
-				// Hands
-				if (i == 4) {
-					calcBuffer.writeShort(0x100 + looks[i]);
-					continue;
-				}
-				
-				// Head/hair
-				if (i == 8) {
-					calcBuffer.writeShort(0x100 + looks[i]);
-					continue;
-				}
-				
-				// Torso
-				if (i == 2) {
-					calcBuffer.writeShort(0x100 + looks[i]);
-					continue;
-				}
-				
-				// Arms
-				if (i == 3) {
-					calcBuffer.writeShort(0x100 + looks[i]);
-					continue;
-				}
-				
-				// Legs
-				if (i == 10) {
-					calcBuffer.writeShort(0x100 + looks[i]);
-					continue;
-				}
-				
-				// Feet
-				if (i == 6) {
-					calcBuffer.writeShort(0x100 + looks[i]);
-					continue;
-				}
-
-				// Beard
-				if (i == 11 && gender == Gender.MALE) {
-					calcBuffer.writeShort(0x100 + looks[i]);
-					continue;
-				}
-				
-				calcBuffer.writeByte(0);
 			}
 		}
-
-		// Dem colors
-		// calcBuffer.writeByte(3);
-		// calcBuffer.writeByte(16);
-		// calcBuffer.writeByte(16);
-		// calcBuffer.writeByte(0);
-		// calcBuffer.writeByte(0);
-
+		// Colors
 		for (int i = 0; i < 5; i++) {
 			calcBuffer.writeByte(colors[i]);
 		}
 
 		int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).getId()
 				: -1;
-		
-		int[] renderpair = renderpairOverride != null ? renderpairOverride : player.world().equipmentInfo().renderPair(weapon);
+
+		int[] renderpair = renderpairOverride != null ? renderpairOverride
+				: player.world().equipmentInfo().renderPair(weapon);
 		for (int renderAnim : renderpair) {
 			calcBuffer.writeShort(renderAnim); // Renderanim
-			System.out.println(renderAnim +" ->> renderanim");
+			System.out.println(renderAnim + " ->> renderanim");
 		}
-		
+
 		/* Str idgaf */
 		calcBuffer.writeBytes(player.name().getBytes()).writeByte(0);// with
 																		// terminator
