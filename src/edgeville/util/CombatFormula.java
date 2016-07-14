@@ -219,7 +219,7 @@ public class CombatFormula {
 				+ ((effectiveStr * bonuses.rangestr) / 640d);
 
 		if (wearingVoidRange(player))
-			baseDamage *= 20;
+			baseDamage *= 1.2;
 
 		return (int) baseDamage;
 	}

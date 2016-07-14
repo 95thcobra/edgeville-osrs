@@ -160,6 +160,10 @@ public class AccuracyFormula {
 			effective_defence = Math.floor((def_current_defence_level * def_defence_prayer_bonus) + def_stance_bonus);
 			off_equipment_bonus = off_equipment_ranged_attack;
 			def_equipment_bonus = def_equipment_ranged_defence;
+
+			if (CombatFormula.wearingVoidRange(player)) {
+				effective_attack *= 1.1;
+			}
 			break;
 		case MAGIC:
 			if (off_base_magic_level > off_spell_requirement) {
@@ -390,7 +394,6 @@ public class AccuracyFormula {
 		int EA = playerAttackLevel + playerAttackBonus + 8;
 		int a = (int) ((EA * (64 + 0)) / 10.0);
 
-
 		player.message("attackbonus:%d", a);
 
 		/*
@@ -398,8 +401,6 @@ public class AccuracyFormula {
 		 */
 		int ED = targetDefenceLevel + targetDefenceBonus + 8;
 		int d = (int) ((ED * (64 + 0)) / 10.0);
-
-	
 
 		player.message("a:%d, d:%d", a, d);
 
@@ -419,9 +420,10 @@ public class AccuracyFormula {
 
 		accuracy *= prayerMeleeAccuracyMultiplier(player);
 		accuracy /= prayerMeleeDefenceMultiplier(target);
-		if (CombatFormula.wearingVoidMelee(player)) 
+		if (CombatFormula.wearingVoidMelee(player))
 			accuracy *= 1.1;
-		
+
+		accuracy += 15;
 		player.message("Accuracy: %d", (int) accuracy);
 
 		/*

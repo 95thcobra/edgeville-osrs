@@ -115,7 +115,7 @@ public class PlayerVersusAnyCombat extends Combat {
 				return;
 			}
 
-			boolean success = AccuracyFormula.doesHit(((Player) getEntity()), getTarget(), CombatStyle.MELEE);
+			
 
 			int max = CombatFormula.maximumMeleeHit(((Player) getEntity()));
 			int hit = 0;
@@ -125,9 +125,10 @@ public class PlayerVersusAnyCombat extends Combat {
 				// target, max);
 				hit = AccuracyFormula.calculateHit(player, (Player) target, max);
 			} else {
-
-				// if (success) {
-				hit = getEntity().world().random(max);
+				boolean success = AccuracyFormula.doesHit(((Player) getEntity()), getTarget(), CombatStyle.MELEE);
+				if (success) {
+					hit = getEntity().world().random(max);
+				}
 				// hit = AccuracyFormula.calculateHit(player, (Player)target,
 				// max);
 			}

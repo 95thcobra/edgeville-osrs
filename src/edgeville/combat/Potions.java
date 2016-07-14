@@ -38,7 +38,9 @@ public enum Potions {
 
     RESTORE_POTION(-1, -1, -1, false, "Restore potion", 2430, 127, 129, 131),
 
-    COMBAT_POTION(-1, -1, -1, false, "Combat potion", 9739, 9741, 9743, 9745);
+    //COMBAT_POTION(-1, -1, -1, false, "Combat potion", 9739, 9741, 9743, 9745),
+	
+    SUPER_COMBAT_POTION(-1, -1, -1, false, "Super combat potion", 12695, 12697, 12699, 12701);
 
     private int skill;
     private int baseValue;

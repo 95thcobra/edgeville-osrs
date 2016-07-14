@@ -1,9 +1,10 @@
-FIX EQUIPMENT looks when range gear
+Dont give kills when same IP
+save last ip killed
 
 
 
 
-right click on XP drop orb, context menu cancel bug.
+
 
 
 
@@ -14,32 +15,18 @@ connection pooling? insert hiscores
 
 
 
-MAKE OVER MAGe
-
 FIX PJING, YOU CANT SWITCH BETWEEEN ATTACKING PPL 
 
-combat formula, more frequent lower hits
-HITTING ON AHRIMS SHOULD BE WAY HIGHER 
 
 disable all commands, just ::item and ::finditem
 
-FORUM INTEGRATION
 
 
 
-
-
-
-
-KIJK BIJ VAR2 VOOR KEYBINDINGS OPTIONS
-scriptinvoke?
 packetdecoder run energy
-
 equipment requirements
-set level by clicking skill, dont allow when wearing equipment too high
 
 shops
-integrate forums with server? hiscores
 
 clip custom objects
 unclip walls to be removed etc
@@ -53,15 +40,5 @@ implement interface 100
 
 spirit shields effects
 
-test combat
-combat accuracy, maxhits are good.
-
-make my own plugins ipb, members online, ranks
-
-chmod 777 too high maybe? Idk 
-
-countdown timer / landing page for release
-
-block falador xteas.
 
 

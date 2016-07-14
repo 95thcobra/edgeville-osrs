@@ -329,6 +329,42 @@ public class EquipmentInfo {
 				}
 			}
 		}
+		
+		// All items that require 20 defence.
+		if (!attackRequirementFound) {
+			String[] require20def = { "infinity" };
+			for (String name : require20def) {
+				if (StringUtils.containsIgnoreCase(itemName, name)) {
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 20));
+				}
+			}
+		}
+		
+		// All items that require 65 defence.
+		if (!attackRequirementFound) {
+			String[] items = { "bandos" };
+			for (String name : items) {
+				if (StringUtils.containsIgnoreCase(itemName, name) && targetSlot != EquipSlot.WEAPON && targetSlot != EquipSlot.AMULET && targetSlot != EquipSlot.RING) {
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 65));
+				}
+			}
+		}
+		
+		// All items that require 75 defence.
+		if (!attackRequirementFound) {
+			//String[] require75Attack = { "primordial boots", "abyssal tentacle" };
+			int[] require75Attack = {12825,13239};
+			/*for (String name : require75Attack) {
+				if (StringUtils.containsIgnoreCase(itemName, name)) {
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 75));
+				}
+			}*/
+			for(int id : require75Attack) {
+				if (item.getId()==id) {
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 75));
+				}
+			}
+		}
 		return reqs;
 	}
 

@@ -131,6 +131,24 @@ public class ButtonClickAction {
 				player.interfaces().sendMain(60);
 				return;
 			}
+			
+			
+			if (buttonId == 15) { 
+				player.getVarps().setVarp(Varp.BRIGHTNESS, 1);
+				return;
+			}
+			if (buttonId == 16) { 
+				player.getVarps().setVarp(Varp.BRIGHTNESS, 2);
+				return;
+			}
+			if (buttonId == 17) { 
+				player.getVarps().setVarp(Varp.BRIGHTNESS, 3);
+				return;
+			}
+			if (buttonId == 18) { 
+				player.getVarps().setVarp(Varp.BRIGHTNESS, 4);
+				return;
+			}
 			break;
 
 		// activate prayer

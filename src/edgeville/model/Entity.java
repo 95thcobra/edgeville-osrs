@@ -41,7 +41,7 @@ public abstract class Entity implements HitOrigin {
 	private Map<Entity, Integer> damagers = new HashMap<>();
 
 	private LockType lock = LockType.NONE;
-	
+
 	private long lastDamagedMillis;
 
 	////// sj
@@ -225,7 +225,8 @@ public abstract class Entity implements HitOrigin {
 		}
 
 		FixedTileStrategy target = new FixedTileStrategy(x, z);
-		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, size(), target, true, false);
+		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, size(), target, true,
+				false);
 		int[] bufferX = WalkRouteFinder.getLastPathBufferX();
 		int[] bufferZ = WalkRouteFinder.getLastPathBufferZ();
 
@@ -251,7 +252,8 @@ public abstract class Entity implements HitOrigin {
 		}
 
 		FixedTileStrategy target = new FixedTileStrategy(npcTile.x, npcTile.z);
-		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 2, target, true, false);
+		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 2, target, true,
+				false);
 		int[] bufferX = WalkRouteFinder.getLastPathBufferX();
 		int[] bufferZ = WalkRouteFinder.getLastPathBufferZ();
 
@@ -279,7 +281,8 @@ public abstract class Entity implements HitOrigin {
 		}
 
 		ObjectStrategy target = new ObjectStrategy(world, obj);
-		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true, false);
+		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true,
+				false);
 		int[] bufferX = WalkRouteFinder.getLastPathBufferX();
 		int[] bufferZ = WalkRouteFinder.getLastPathBufferZ();
 
@@ -311,7 +314,8 @@ public abstract class Entity implements HitOrigin {
 			return tile;
 
 		EntityStrategy target = new EntityStrategy(e);// e instead of t
-		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true, false);
+		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true,
+				false);
 		int[] bufferX = WalkRouteFinder.getLastPathBufferX();
 		int[] bufferZ = WalkRouteFinder.getLastPathBufferZ();
 
@@ -326,14 +330,15 @@ public abstract class Entity implements HitOrigin {
 
 		return last;
 	}
-	
+
 	// The other one sometimes dances
 	public Tile stepTowardsPlayerNotBugged(Entity e, Tile t, int maxSteps) {
 		if (e == null)
 			return tile;
 
 		EntityStrategy target = new EntityStrategy(t);// e instead of t
-		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true, false);
+		int steps = WalkRouteFinder.findRoute(world().definitions(), tile.x, tile.z, tile.level, 1, target, true,
+				false);
 		int[] bufferX = WalkRouteFinder.getLastPathBufferX();
 		int[] bufferZ = WalkRouteFinder.getLastPathBufferZ();
 
@@ -370,7 +375,8 @@ public abstract class Entity implements HitOrigin {
 		int steps = pathQueue().running() ? 2 : 1;
 		int otherSteps = target.pathQueue().running() ? 2 : 1;
 
-		Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile() : target.pathQueue().peekAfter(otherSteps).toTile();
+		Tile otherTile = target.pathQueue().peekAfter(otherSteps) == null ? target.getTile()
+				: target.pathQueue().peekAfter(otherSteps).toTile();
 		stepTowards(target, otherTile, 25);
 		return pathQueue().peekAfter(steps - 1) == null ? getTile() : pathQueue().peekAfter(steps - 1).toTile();
 	}
@@ -434,9 +440,12 @@ public abstract class Entity implements HitOrigin {
 		if (this instanceof Player) {
 			Player player = (Player) this;
 
-			boolean melee = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MELEE) && combatStyle == CombatStyle.MELEE;
-			boolean ranged = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MISSILES) && combatStyle == CombatStyle.RANGED;
-			boolean mage = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MAGIC) && combatStyle == CombatStyle.MAGIC;
+			boolean melee = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MELEE)
+					&& combatStyle == CombatStyle.MELEE;
+			boolean ranged = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MISSILES)
+					&& combatStyle == CombatStyle.RANGED;
+			boolean mage = player.getPrayer().isPrayerOn(Prayers.PROTECT_FROM_MAGIC)
+					&& combatStyle == CombatStyle.MAGIC;
 
 			if (melee || ranged || mage) {
 				if (origin instanceof Npc) {
@@ -514,8 +523,10 @@ public abstract class Entity implements HitOrigin {
 				((Player) origin).setSkullHeadIcon(Skulls.WHITE_SKUL.getSkullId());
 				((Player) origin).timers().extendOrRegister(TimerKey.SKULL, 2000); // 20
 
-				int drain = (int) Math.round(0.25 * hit);
-				((Player)this).skills().alterSkill(Skills.PRAYER, -drain, true);
+				if (((Player) origin).getPrayer().isPrayerOn(Prayers.SMITE)) {
+					int drain = (int) Math.round(0.25 * hit);
+					((Player) this).skills().alterSkill(Skills.PRAYER, -drain, true);
+				}
 			}
 		}
 
@@ -629,11 +640,14 @@ public abstract class Entity implements HitOrigin {
 					// Protection prayers :)
 					if (isPlayer()) {
 						Player us = (Player) this;
-						if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MELEE) == 1 && hit.style() == CombatStyle.MELEE) {
+						if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MELEE) == 1
+								&& hit.style() == CombatStyle.MELEE) {
 							damage -= damage * 0.4;
-						} else if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1 && hit.style() == CombatStyle.MAGIC) {
+						} else if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MAGIC) == 1
+								&& hit.style() == CombatStyle.MAGIC) {
 							damage -= damage * 0.4;
-						} else if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1 && hit.style() == CombatStyle.RANGED) {
+						} else if (us.getVarps().getVarbit(Varbit.PROTECT_FROM_MISSILES) == 1
+								&& hit.style() == CombatStyle.RANGED) {
 							damage -= damage * 0.4;
 						}
 					}

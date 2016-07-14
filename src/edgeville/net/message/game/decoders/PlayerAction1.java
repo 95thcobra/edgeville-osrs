@@ -32,7 +32,7 @@ public class PlayerAction1 implements Action {
 			player.message("Unable to find player.");
 			return;
 		}
-		if (other.inCombat() && player.getTarget() != other && player.getLastAttackedBy() != other) {
+		if (other.inCombat() && other.getLastAttackedBy() != player && other.getTarget() != player) {
 			player.message("This player is in combat.");
 			return;
 		}

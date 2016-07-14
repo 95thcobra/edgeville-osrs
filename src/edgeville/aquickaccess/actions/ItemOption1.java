@@ -77,21 +77,26 @@ public class ItemOption1 {
 		}
 
 		// Default
-		double change = potion.getBaseValue()
-				+ (player.skills().xpLevel(potion.getSkill()) * potion.getPercentage() / 100.0);
-		player.skills().alterSkill(potion.getSkill(), (int) Math.round(change), false);
+		double change = potion.getBaseValue() + (player.skills().xpLevel(potion.getSkill()) * potion.getPercentage() / 100.0);
+		player.skills().alterSkill(potion.getSkill(), (int) Math.floor(change), false);
 	}
 
 	private boolean handleSpecialPotion(Potions potion) {
 		player.messageDebug("Handling special potion");
 		switch (potion) {
 		case PRAYER_POTION:
-			int prayerRestore = (int) Math.round(Math.floor(7 + (player.skills().level(Skills.PRAYER) / 4)));
+			int prayerRestore = (int) Math.round(Math.floor(7 + (player.skills().xpLevel(Skills.PRAYER) / 4)));
+			
+			player.message("Restoring prayer: %d", prayerRestore);
+			
 			player.skills().alterSkillUnder99(Skills.PRAYER, prayerRestore, true);
 			break;
 
 		case SUPER_RESTORE:
-			int prayerRestoreSuper = (int) Math.round(Math.floor(7 + (player.skills().level(Skills.PRAYER) / 4)));
+			int prayerRestoreSuper = (int) Math.round(Math.floor(7 + (player.skills().xpLevel(Skills.PRAYER) / 4)));
+			
+			player.message("Restoring prayer: %d", prayerRestoreSuper);
+			
 			player.skills().restoreLeftLevel(Skills.PRAYER, prayerRestoreSuper + 1);
 
 			int[] skills = { Skills.RANGED, Skills.MAGIC, Skills.STRENGTH, Skills.ATTACK, Skills.DEFENCE };
@@ -129,6 +134,12 @@ public class ItemOption1 {
 			player.skills().restoreLeftLevel(Skills.PRAYER, prayerRestoreZ);
 			break;
 
+		case SUPER_COMBAT_POTION:
+			player.skills().increaseLeftLevel(Skills.ATTACK, (int)Math.floor(5 + 0.15 * player.skills().xpLevel(Skills.ATTACK)));
+			player.skills().increaseLeftLevel(Skills.STRENGTH, (int)Math.floor(5 + 0.15 * player.skills().xpLevel(Skills.STRENGTH)));
+			player.skills().increaseLeftLevel(Skills.DEFENCE, (int)Math.floor(5 + 0.15 * player.skills().xpLevel(Skills.DEFENCE)));
+			break;
+			
 		default:
 			return false;
 		}
