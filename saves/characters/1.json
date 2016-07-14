@@ -4,8 +4,8 @@
   "password": "jailbreak",
   "receivedStarter": true,
   "tile": {
-    "x": 3086,
-    "z": 3500,
+    "x": 3087,
+    "z": 3496,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -15,33 +15,30 @@
   "debug": false,
   "kills": 0,
   "deaths": 0,
-  "gender": "MALE",
+  "gender": "FEMALE",
   "looks": [
     0,
     0,
     0,
     0,
-    18,
+    56,
     0,
-    26,
-    36,
-    0,
-    33,
-    42,
-    10
+    61,
+    70,
+    50,
+    67,
+    79,
+    -1
   ],
   "colors": [
     0,
     0,
     0,
     0,
-    0
+    4
   ],
   "inventory": [
-    {
-      "id": 10828,
-      "amount": 1
-    },
+    null,
     null,
     null,
     null,
@@ -71,7 +68,10 @@
     null
   ],
   "equipment": [
-    null,
+    {
+      "id": 10828,
+      "amount": 1
+    },
     {
       "id": 6570,
       "amount": 1

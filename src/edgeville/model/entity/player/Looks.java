@@ -107,10 +107,27 @@ public class Looks {
 			// 10 = boots
 			// 11 = beard
 			EquipmentInfo equipInfo = player.world().equipmentInfo();
-			boolean hideHead = player.getEquipment().hasAt(EquipSlot.HEAD)
-					&& equipInfo.typeFor(player.getEquipment().get(EquipSlot.HEAD).getId()) == 8;
 
+			boolean hideHead = false;
 			boolean hideBeard = false;
+
+			if (player.getEquipment().hasAt(EquipSlot.HEAD)) {
+				Item helm = player.getEquipment().get(EquipSlot.HEAD);
+				int helmType = equipInfo.typeFor(helm.getId());
+				if (helmType == 8) {
+					hideHead = true;
+				}
+
+				player.messageDebug("HelmId: %d", helm.getId());
+				player.messageDebug("Helmtype: %d", helmType);
+
+				int[] itemsThatHideBeards = { 4753, 11665, 11664 };
+				for (int itemBeard : itemsThatHideBeards) {
+					if (helm.getId() == itemBeard) {
+						hideBeard = true;
+					}
+				}
+			}
 
 			for (int i = 0; i < 12; i++) {
 				if (i == 6 && player.getEquipment().hasAt(4)
