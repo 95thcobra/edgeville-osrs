@@ -28,7 +28,8 @@ public class CombatFormula {
 				double E_ = Math.floor(((target.skills().level(Skills.DEFENCE) * praymod) + 8) * voidbonus);
 
 				int meleebonus = Math.max(Math.max(playerBonuses.crush, playerBonuses.stab), playerBonuses.slash);
-				int meleedef = Math.max(Math.max(targetBonuses.crushdef, targetBonuses.stabdef), targetBonuses.slashdef);
+				int meleedef = Math.max(Math.max(targetBonuses.crushdef, targetBonuses.stabdef),
+						targetBonuses.slashdef);
 				double A = E * (1 + (meleebonus) / 64.);
 				double D = E_ * (1 + (meleedef) / 64.);
 
@@ -67,6 +68,7 @@ public class CombatFormula {
 
 	/**
 	 * Not used!
+	 * 
 	 * @param player
 	 * @param combatStyle
 	 * @return
@@ -94,18 +96,18 @@ public class CombatFormula {
 		} else if (combatStyle == CombatStyle.RANGED) {
 			effectiveStrength += extraDamageBasedOnAttackStyleRanged(player);
 		}
-		
-		//TODO DHAROK
-		
+
+		// TODO DHAROK
+
 		return effectiveStrength;
 	}
-	
+
 	public static int maximumMeleeHit(Player player) {
 		EquipmentInfo.Bonuses bonuses = totalBonuses(player, player.world().equipmentInfo());
 
 		double effectiveStr = Math.floor(player.skills().level(Skills.STRENGTH));
 		effectiveStr *= prayerMeleeMultiplier(player); // PRAYER BY SKY
-		
+
 		// TODO effectiveStr depends on prayer and style and e.g. salve ammy
 		double baseDamage = 1.3 + (effectiveStr / 10d) + (bonuses.str / 80d) + ((effectiveStr * bonuses.str) / 640d);
 
@@ -120,6 +122,9 @@ public class CombatFormula {
 			baseDamage *= 1.1;
 		// TODO some more special handling etc for e.g. ags.. or do we do that
 		// in the override in cb?
+
+		if (wearingVoidMelee(player))
+			baseDamage *= 1.1;
 
 		return (int) baseDamage;
 	}
@@ -203,7 +208,6 @@ public class CombatFormula {
 		return base;
 	}
 
-
 	public static int maximumRangedHit(Player player) {
 		EquipmentInfo.Bonuses bonuses = totalBonuses(player, player.world().equipmentInfo());
 
@@ -211,7 +215,11 @@ public class CombatFormula {
 		effectiveStr *= prayerRangedMultiplier(player); // PRAYER BY SKY
 
 		// TODO effectiveStr depends on prayer and style and e.g. salve ammy
-		double baseDamage = 1.3 + (effectiveStr / 10d) + (bonuses.rangestr / 80d) + ((effectiveStr * bonuses.rangestr) / 640d);
+		double baseDamage = 1.3 + (effectiveStr / 10d) + (bonuses.rangestr / 80d)
+				+ ((effectiveStr * bonuses.rangestr) / 640d);
+
+		if (wearingVoidRange(player))
+			baseDamage *= 20;
 
 		return (int) baseDamage;
 	}
@@ -261,6 +269,49 @@ public class CombatFormula {
 
 	private static boolean hasGodSword(Player player) {
 		return player.getEquipment().hasAny(11802, 11804, 11806, 11808);
+	}
+
+	private static boolean wearingVoidNoHelm(Player player) {
+		if (player.getEquipment().get(EquipSlot.BODY).getId() != 8839) {
+			return false;
+		}
+		if (player.getEquipment().get(EquipSlot.LEGS).getId() != 8840) {
+			return false;
+		}
+		if (player.getEquipment().get(EquipSlot.HANDS).getId() != 8842) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public static boolean wearingVoidMelee(Player player) {
+		if (wearingVoidNoHelm(player) && player.getEquipment().get(EquipSlot.HEAD) != null
+				&& player.getEquipment().get(EquipSlot.HEAD).getId() == 11665)
+			return true;
+
+		return false;
+	}
+
+	public static boolean wearingVoidMage(Player player) {
+		if (wearingVoidNoHelm(player) && player.getEquipment().get(EquipSlot.HEAD) != null
+				&& player.getEquipment().get(EquipSlot.HEAD).getId() == 11663)
+			return true;
+
+		return false;
+	}
+
+	public static boolean wearingVoidRange(Player player) {
+		if (wearingVoidNoHelm(player) && player.getEquipment().get(EquipSlot.HEAD) != null
+				&& player.getEquipment().get(EquipSlot.HEAD).getId() == 11664)
+			return true;
+
+		return false;
+	}
+
+	public static double getMagicMaxMultipliers(Player player) {
+		double base = 1;
+		return base;
 	}
 
 }

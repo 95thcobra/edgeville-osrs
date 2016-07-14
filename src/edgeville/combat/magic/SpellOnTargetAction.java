@@ -14,6 +14,7 @@ import edgeville.model.entity.player.Skills;
 import edgeville.model.item.Item;
 import edgeville.script.TimerKey;
 import edgeville.util.AccuracyFormula;
+import edgeville.util.CombatFormula;
 import edgeville.util.CombatStyle;
 import edgeville.util.TextUtil;
 
@@ -338,14 +339,17 @@ public class SpellOnTargetAction {
 		// CombatStyle.MAGIC);
 
 		// int hit = player.world().random(spell.getMaxHit());
-		player.getQuestTab().updateMaxHit(spell.getMaxHit());
+		
+		int maxHit = spell.getMaxHit();// * CombatFormula.getMagicMaxMultipliers(player);
+		
+		player.getQuestTab().updateMaxHit(maxHit);
 		
 		int hit;
 
 		if (target instanceof Player) {
-			hit = AccuracyFormula.calcHitNEWMage(player, (Player)target, spell.getMaxHit());
+			hit = AccuracyFormula.calcHitNEWMage(player, (Player)target, maxHit);
 		} else {
-			hit = AccuracyFormula.calculateHitAgainstNPC(player, target, spell.getMaxHit(), CombatStyle.MAGIC);
+			hit = AccuracyFormula.calculateHitAgainstNPC(player, target, maxHit, CombatStyle.MAGIC);
 		}
 
 		// if (success) {
@@ -386,14 +390,19 @@ public class SpellOnTargetAction {
 		player.timers().register(TimerKey.COMBAT_ATTACK, spell.getCombatDelayTicks());
 		//boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.MAGIC);
 
+		
+		int maxHit = spell.getMaxHit();// * CombatFormula.getMagicMaxMultipliers();
+		
 		int hit;// = player.world().random(spell.getMaxHit());
+		
+		
 		
 		player.getQuestTab().updateMaxHit(spell.getMaxHit());
 		
 		if (target instanceof Player) {
-			hit = AccuracyFormula.calcHitNEWMage(player, (Player)target, spell.getMaxHit());
+			hit = AccuracyFormula.calcHitNEWMage(player, (Player)target, maxHit);
 		} else {
-			hit = AccuracyFormula.calculateHitAgainstNPC(player, target, spell.getMaxHit(), CombatStyle.MAGIC);
+			hit = AccuracyFormula.calculateHitAgainstNPC(player, target, maxHit, CombatStyle.MAGIC);
 		}
 		
 		if (hit > 0) {

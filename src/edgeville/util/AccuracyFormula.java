@@ -243,39 +243,39 @@ public class AccuracyFormula {
 		// determine hit
 		return off_hit_chance > def_block_chance;
 	} // end main
-	
+
 	public static int calculateHitAgainstNPC(Player player, Entity target, int maxHit, CombatStyle combatStyle) {
 		boolean success = AccuracyFormula.doesHit(player, target, combatStyle);
 		return success ? player.world().random(maxHit) : 0;
 	}
-	
+
 	public static int calcHitNEWMage(Player player, Player target, int maxHit) {
 		int magicLevel = player.skills().level(Skills.MAGIC);
 
 		int magicAttack = magicLevel + CombatFormula.totalBonuses(player, player.world().equipmentInfo()).mage;
 		int magicDefence = CombatFormula.totalBonuses(target, target.world().equipmentInfo()).magedef;
-		
-		//EquipmentInfo.Bonuses playerBonuses = CombatFormula.totalBonuses(player, player.world().equipmentInfo());
-		
+
+		// EquipmentInfo.Bonuses playerBonuses =
+		// CombatFormula.totalBonuses(player, player.world().equipmentInfo());
+
 		// TODO TODO PRAYERS
-		magicAttack *= prayerMagicAccuracyMultiplier(player);
-		
-		//player.message("MA: %d, MD: %d", magicAttack, magicDefence);
-		
-		//int maxReducer = 0;//maxHit;
-		
-		//maxReducer -= maxHit * ;
-		
+		// magicAttack *= prayerMagicAccuracyMultiplier(player);
+
+		// player.message("MA: %d, MD: %d", magicAttack, magicDefence);
+
+		// int maxReducer = 0;//maxHit;
+
+		// maxReducer -= maxHit * ;
 
 		int EA = magicAttack + 8;
-		int a = (EA * (64 + 0)) / 10;
+		int a = (int) ((EA * (64 + 0)) / 10.0);
 
 		int ED = magicDefence + 8;
-		int d = (ED * (64 + 0)) / 10;
-		
-		//a*=100;
-		//d*=100;
-		
+		int d = (int) ((ED * (64 + 0)) / 10.0);
+
+		// a*=100;
+		// d*=100;
+
 		player.message("MA: %d, MD: %d", a, d);
 
 		double accuracy = 0;
@@ -287,19 +287,22 @@ public class AccuracyFormula {
 		}
 
 		accuracy *= 100;
-		
-		player.message("Accuracy: %d", (int)accuracy);
-	
 
-		//int maxReducer = (int) (maxHit - ((maxHit / 100.0) * accuracy));
-		//double percentage = accuracy / 100.0;
-		//int maxReducer = (int) (maxHit - (maxHit) * percentage * percentage * percentage);
-		
+		magicAttack *= prayerMagicAccuracyMultiplier(player);
+		if (CombatFormula.wearingVoidMage(player))
+			magicAttack *= 1.3;
+		player.message("Accuracy: %d", (int) accuracy);
+
+		// int maxReducer = (int) (maxHit - ((maxHit / 100.0) * accuracy));
+		// double percentage = accuracy / 100.0;
+		// int maxReducer = (int) (maxHit - (maxHit) * percentage * percentage *
+		// percentage);
+
 		int maxReducer = (int) (100 - (accuracy));
-		
+
 		if (maxReducer <= 0)
 			maxReducer = 1;
-		
+
 		player.message("Max hit reduce: %d", maxReducer);
 
 		int randomHit = player.world().random((int) maxHit + 1);
@@ -325,27 +328,27 @@ public class AccuracyFormula {
 		// PRAYER TODO IMPROVE?
 		playerAttackBonus *= prayerMeleeAccuracyMultiplier(player);
 		targetDefenceBonus *= prayerMeleeDefenceMultiplier(target);
-		
+
 		/*
 		 * Generate attackers effective accuracy.
 		 */
 		int EA = playerAttackLevel + playerAttackBonus + 8;
 		int a = (EA * (64 + 0)) / 10;
-		//player.message("EA:%d, a:%d", EA,a);
+		// player.message("EA:%d, a:%d", EA,a);
 
 		/*
 		 * Generate defenders effective defense.
 		 */
 		int ED = targetDefenceLevel + targetDefenceBonus + 8;
 		int d = (ED * (64 + 0)) / 10;
-		
+
 		int maxReducer = maxHit;
-		
-		player.message("a:%d, d:%d", a,d);
-		
+
+		player.message("a:%d, d:%d", a, d);
+
 		maxReducer -= 70;
-		maxReducer += 40 - ((a-d) / 30);
-		
+		maxReducer += 40 - ((a - d) / 30);
+
 		if (maxReducer <= 0)
 			maxReducer = 1;
 
@@ -386,20 +389,19 @@ public class AccuracyFormula {
 		 */
 		int EA = playerAttackLevel + playerAttackBonus + 8;
 		int a = (int) ((EA * (64 + 0)) / 10.0);
-		
-		a*=prayerMeleeAccuracyMultiplier(player);
-		
-		player.message("attackbonus:%d",a);
+
+
+		player.message("attackbonus:%d", a);
 
 		/*
 		 * Generate defenders effective defense.
 		 */
 		int ED = targetDefenceLevel + targetDefenceBonus + 8;
 		int d = (int) ((ED * (64 + 0)) / 10.0);
-		
-		d*=prayerMeleeDefenceMultiplier(target);
-		
-		player.message("a:%d, d:%d", a,d);
+
+	
+
+		player.message("a:%d, d:%d", a, d);
 
 		/*
 		 * generate final accuracy rating between 0-1 and then multiply by 100
@@ -414,9 +416,14 @@ public class AccuracyFormula {
 		}
 
 		accuracy *= 100;
+
+		accuracy *= prayerMeleeAccuracyMultiplier(player);
+		accuracy /= prayerMeleeDefenceMultiplier(target);
+		if (CombatFormula.wearingVoidMelee(player)) 
+			accuracy *= 1.1;
 		
-		player.message("Accuracy: %d", (int)accuracy);
-		
+		player.message("Accuracy: %d", (int) accuracy);
+
 		/*
 		 * Using the accuracy value we can then generate a reducing value which
 		 * indicates the maximum damage the defense/accuracy will soak up.
@@ -424,7 +431,7 @@ public class AccuracyFormula {
 		int maxReducer = (int) (maxHit - ((maxHit / 100.0) * accuracy));
 		if (maxReducer <= 0)
 			maxReducer = 1;
-		
+
 		player.message("Max reducer: %d", maxReducer);
 
 		/*
@@ -455,7 +462,7 @@ public class AccuracyFormula {
 
 		return finalHit;
 	}
-	
+
 	private static double prayerMagicAccuracyMultiplier(Player player) {
 		double base = 1.00;
 		// Prayer multipliers
@@ -470,7 +477,7 @@ public class AccuracyFormula {
 		}
 		return base;
 	}
-	
+
 	private static double prayerMeleeAccuracyMultiplier(Player player) {
 		double base = 1.00;
 		// Prayer multipliers
@@ -491,7 +498,7 @@ public class AccuracyFormula {
 		}
 		return base;
 	}
-	
+
 	private static double prayerMeleeDefenceMultiplier(Player player) {
 		double base = 1.00;
 		// Prayer multipliers
@@ -512,24 +519,7 @@ public class AccuracyFormula {
 		}
 		return base;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public static int CALCHITBACKUP(Player player, Player target, int maxHit) {
 		int playerAttackLevel = player.skills().level(Skills.ATTACK);
 		int targetDefenceLevel = target.skills().level(Skills.DEFENCE);
@@ -562,9 +552,9 @@ public class AccuracyFormula {
 		}
 
 		accuracy *= 100;
-		
-		player.message("Accuracy: %d", (int)accuracy);
-		
+
+		player.message("Accuracy: %d", (int) accuracy);
+
 		/*
 		 * Generate the attackers max hit.
 		 */
@@ -577,7 +567,7 @@ public class AccuracyFormula {
 		int maxReducer = (int) (maxHit - (maxHit / 100.0) * accuracy);
 		if (maxReducer <= 0)
 			maxReducer = 1;
-		
+
 		player.message("Max reducer: %d", maxReducer);
 
 		/*

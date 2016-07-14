@@ -374,6 +374,13 @@ public class Player extends Entity {
 	}
 
 	private void presetBank() {
+		bank.getBankItems().add(new Item(8839, 1000));
+		bank.getBankItems().add(new Item(8840, 1000));
+		bank.getBankItems().add(new Item(8842, 1000));
+		bank.getBankItems().add(new Item(11663, 1000));
+		bank.getBankItems().add(new Item(11664, 1000));
+		bank.getBankItems().add(new Item(11665, 1000));
+		
 		bank.getBankItems().add(new Item(4708, 1000));
 		bank.getBankItems().add(new Item(4712, 1001));
 		bank.getBankItems().add(new Item(6920, 1001));
