@@ -258,13 +258,44 @@ public class AccuracyFormula {
 		//EquipmentInfo.Bonuses playerBonuses = CombatFormula.totalBonuses(player, player.world().equipmentInfo());
 		
 		// TODO TODO PRAYERS
+		magicAttack *= prayerMagicAccuracyMultiplier(player);
 		
-		player.message("MA: %d, MD: %d", magicAttack, magicDefence);
+		//player.message("MA: %d, MD: %d", magicAttack, magicDefence);
 		
-		int maxReducer = 0;//maxHit;
+		//int maxReducer = 0;//maxHit;
 		
 		//maxReducer -= maxHit * ;
-		maxReducer += maxHit + 25 - ((magicAttack-magicDefence) / 3);
+		
+
+		int EA = magicAttack + 8;
+		int a = (EA * (64 + 0)) / 10;
+
+		int ED = magicDefence + 8;
+		int d = (ED * (64 + 0)) / 10;
+		
+		//a*=100;
+		//d*=100;
+		
+		player.message("MA: %d, MD: %d", a, d);
+
+		double accuracy = 0;
+
+		if (a > d) {
+			accuracy = (double) 1 - (d + 1) / (2.0 * a);
+		} else {
+			accuracy = (double) (a - 1) / (2.0 * d);
+		}
+
+		accuracy *= 100;
+		
+		player.message("Accuracy: %d", (int)accuracy);
+	
+
+		//int maxReducer = (int) (maxHit - ((maxHit / 100.0) * accuracy));
+		//double percentage = accuracy / 100.0;
+		//int maxReducer = (int) (maxHit - (maxHit) * percentage * percentage * percentage);
+		
+		int maxReducer = (int) (100 - (accuracy));
 		
 		if (maxReducer <= 0)
 			maxReducer = 1;
@@ -285,15 +316,16 @@ public class AccuracyFormula {
 	}
 
 	public static int calcHitNEWMelee(Player player, Player target, int maxHit) {
-		
-		// TODO TODO PRAYERS
-		
 		int playerAttackLevel = player.skills().level(Skills.ATTACK);
 		int targetDefenceLevel = target.skills().level(Skills.DEFENCE);
 
 		int playerAttackBonus = player.world().equipmentInfo().getAttackBonus(player);
 		int targetDefenceBonus = target.world().equipmentInfo().getDefenceBonus(target, player);
 
+		// PRAYER TODO IMPROVE?
+		playerAttackBonus *= prayerMeleeAccuracyMultiplier(player);
+		targetDefenceBonus *= prayerMeleeDefenceMultiplier(target);
+		
 		/*
 		 * Generate attackers effective accuracy.
 		 */
@@ -368,12 +400,15 @@ public class AccuracyFormula {
 		double accuracy = 0;
 
 		if (a > d) {
-			accuracy = (double) 1 - (d + 1) / (2 * a);
+			accuracy = (double) 1 - (d + 1) / (2.0 * a);
 		} else {
-			accuracy = (double) (a - 1) / (2 * d);
+			accuracy = (double) (a - 1) / (2.0 * d);
 		}
 
 		accuracy *= 100;
+		
+		player.message("Accuracy: %d", (int)accuracy);
+		
 		/*
 		 * Generate the attackers max hit.
 		 */
@@ -416,25 +451,59 @@ public class AccuracyFormula {
 		return finalHit;
 	}
 	
-	
+	private static double prayerMagicAccuracyMultiplier(Player player) {
+		double base = 1.00;
+		// Prayer multipliers
+		if (player.getPrayer().isPrayerOn(Prayers.MYSTIC_WILL)) {
+			base *= 1.05;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.MYSTIC_LORE)) {
+			base *= 1.10;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.MYSTIC_MIGHT)) {
+			base *= 1.15;
+		}
+		return base;
+	}
 	
 	private static double prayerMeleeAccuracyMultiplier(Player player) {
 		double base = 1.00;
 		// Prayer multipliers
-		if (player.getPrayer().isPrayerOn(Prayers.BURST_OF_STRENGTH)) {
+		if (player.getPrayer().isPrayerOn(Prayers.CLARITY_OF_THOUGHT)) {
 			base *= 1.05;
 		}
-		if (player.getPrayer().isPrayerOn(Prayers.SUPERHUMAN_STRENGTH)) {
+		if (player.getPrayer().isPrayerOn(Prayers.IMPROVED_REFLEXES)) {
 			base *= 1.10;
 		}
-		if (player.getPrayer().isPrayerOn(Prayers.ULTIMATE_STRENGTH)) {
+		if (player.getPrayer().isPrayerOn(Prayers.INCREDIBLE_REFLEXES)) {
 			base *= 1.15;
 		}
 		if (player.getPrayer().isPrayerOn(Prayers.CHILVAlRY)) {
-			base *= 1.18;
+			base *= 1.15;
 		}
 		if (player.getPrayer().isPrayerOn(Prayers.PIETY)) {
-			base *= 1.23;
+			base *= 1.20;
+		}
+		return base;
+	}
+	
+	private static double prayerMeleeDefenceMultiplier(Player player) {
+		double base = 1.00;
+		// Prayer multipliers
+		if (player.getPrayer().isPrayerOn(Prayers.THICK_SKIN)) {
+			base *= 1.05;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.ROCK_SKIN)) {
+			base *= 1.10;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.STEEL_SKIN)) {
+			base *= 1.15;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.CHILVAlRY)) {
+			base *= 1.20;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.PIETY)) {
+			base *= 1.25;
 		}
 		return base;
 	}

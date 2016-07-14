@@ -121,7 +121,8 @@ public class PlayerVersusAnyCombat extends Combat {
 			int hit = 0;
 
 			if (target instanceof Player) {
-				hit = AccuracyFormula.calcHitNEWMelee(player, (Player) target, max);
+				//hit = AccuracyFormula.calcHitNEWMelee(player, (Player) target, max);
+				hit = AccuracyFormula.calculateHit(player, (Player) target, max);
 			} else {
 
 				// if (success) {
