@@ -1185,6 +1185,7 @@ public class Player extends Entity {
 
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
+		skills().recalculateCombat();
 	}
 
 	public void spawnRanged() {
@@ -1215,6 +1216,7 @@ public class Player extends Entity {
 
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // Lunar
+		skills().recalculateCombat();
 
 	}
 
@@ -1249,6 +1251,7 @@ public class Player extends Entity {
 
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
+		skills().recalculateCombat();
 	}
 
 	public void spawnPure() {
@@ -1296,6 +1299,7 @@ public class Player extends Entity {
 
 		setPure();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
+		skills().recalculateCombat();
 	}
 
 	public int getMemberId() {

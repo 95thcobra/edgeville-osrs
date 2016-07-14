@@ -380,8 +380,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		if (Constants.MYSQL_ENABLED) {
-			ForumIntegration.insertHiscore(player);
+			ForumIntegration.updateHiscores(player);
 		}
 	}
 

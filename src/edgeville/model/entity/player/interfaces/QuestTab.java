@@ -118,9 +118,10 @@ public class QuestTab {
 			
 			// update hiscores
 		case 18:
-			if (!ForumIntegration.insertHiscore(player)) {
-				player.message("1."+System.currentTimeMillis());
-				player.message("2."+ player.getLastHiscoresUpdate());
+			//if (!ForumIntegration.insertHiscore(player)) {
+			if (!ForumIntegration.updateHiscores(player)) {
+				//player.message("1."+System.currentTimeMillis());
+				//player.message("2."+ player.getLastHiscoresUpdate());
 				int minutesLeft = (int)(10-((System.currentTimeMillis() - player.getLastHiscoresUpdate()) / 60000));
 				player.message("You can update the hiscores in %d minutes!", minutesLeft);
 				return;

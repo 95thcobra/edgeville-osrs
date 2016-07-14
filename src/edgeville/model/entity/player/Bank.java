@@ -391,7 +391,7 @@ public class Bank {
 		} else {
 			idToAdd = id;
 		}
-		if (!this.contains(id, amount)) {
+		if (!contains(id, amount)) {
 			return;
 		}
 

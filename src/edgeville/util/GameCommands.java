@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
+import edgeville.database.ForumIntegration;
+
 import edgeville.aquickaccess.dialogue.DialogueHandler;
 import edgeville.aquickaccess.events.UpdateGameEvent;
 import edgeville.fs.ItemDefinition;
@@ -46,6 +48,11 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		put(Privilege.ADMIN, "updatehs", (p, args) -> {
+			//ForumIntegration.insertHiscore2(p);
+			ForumIntegration.updateHiscores(p);
+		});
+		
 		put(Privilege.ADMIN, "loopverp", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 250; i++) {

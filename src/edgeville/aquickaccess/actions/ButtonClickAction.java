@@ -208,6 +208,7 @@ public class ButtonClickAction {
 				@Override
 				public void doAction(int value) {
 					player.skills().setYourRealLevel(skillToSet, value);
+					player.skills().recalculateCombat();
 				}
 				
 			};

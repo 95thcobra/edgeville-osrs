@@ -2,14 +2,11 @@ Dont give kills when same IP
 save last ip killed
 
 
+Add heal spec restore NPC not in combat
+disable altar in combat
 
-
-
-
-
-
-
-connection pooling? insert hiscores
+WITHDRAW BANK BUG!!!!!!!
+HISCORES STILL NOT UPDATING ALWAYS
 
 
 

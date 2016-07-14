@@ -17,14 +17,6 @@ import edgeville.model.entity.Player;
 
 public class ForumIntegration {
 
-	// public static getInstance() {
-	// todo poling
-	// }
-
-	// private static Connection conn; //// new MySQLDatabase("edgeville.org",
-	// 3306, "edgevill_forum", "edgevill_forum",
-	// "Ph,g(n$2g[OD");
-
 	public static boolean insertHiscore(Player player) {
 		if ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) < (10 * 60 * 1000)) {
 			return false;
@@ -39,14 +31,13 @@ public class ForumIntegration {
 		return true;
 	}
 
-	private static boolean insertHiscore2(Player player) {
+	public static boolean insertHiscore2(Player player) {
 		try {
 			// Connect to database
 			Connection conn = DriverManager.getConnection("jdbc:mysql://edgeville.org:3306/sky_hiscores",
 					"sky_hiscores", "3!zbr,vU2S%C");
 
 			// Create statement
-			// Statement stmt = conn.createStatement();
 			PreparedStatement pstmt = conn.prepareStatement(
 					"INSERT INTO user_hiscore (member_id, kills, deaths) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE kills = ?, deaths = ?");
 
@@ -56,22 +47,39 @@ public class ForumIntegration {
 			pstmt.setInt(4, player.getKills());
 			pstmt.setInt(5, player.getDeaths());
 
-			pstmt.executeUpdate();
-
-			// Execute query
-			// ResultSet rs = stmt.executeQuery("INSERT INTO user_hiscore
-			// (member_id, kills, deaths, elo) VALUES ()");
-
-			// Results
-			// while(rs.next()) {
-			// System.out.println(rs.getString("name") + ",
-			// email:"+rs.getString("email"));
-			// }
+			int response = pstmt.executeUpdate();
+			System.out.println("Updated hiscores! : " + response);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return true;
+	}
+	
+	private static final String CRYPTION_ID_HISCORES = "6Jsh689y";
+	public static boolean updateHiscores(Player player) {
+		if ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) < (10 * 60 * 1000)) {
+			return false;
+		}
+		player.setLastHiscoresUpdate(System.currentTimeMillis());
+		try {
+			String urlString = "http://edgeville.org/game/updatehiscores.php?security=" + CRYPTION_ID_HISCORES
+					+ "&memberid=" + player.getMemberId()
+					+ "&kills=" + player.getKills() 
+					+ "&deaths=" + player.getDeaths();
+
+			System.out.println(urlString);
+
+			URL url = new URL(urlString);
+			URLConnection urlConnection = url.openConnection();
+			urlConnection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+			InputStream is = urlConnection.getInputStream();
+			is.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	private static final String CRYPTION_ID = "28Vqeuyr";
@@ -94,11 +102,7 @@ public class ForumIntegration {
 			URL url = new URL(urlString);
 			URLConnection urlConnection = url.openConnection();
 			urlConnection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
-			// ((HttpURLConnection) urlConnection).setRequestMethod("POST");
-			// urlConnection.setDoOutput(true);
 			InputStream is = urlConnection.getInputStream();
-
-			// InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 			String line = br.readLine();
