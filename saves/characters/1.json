@@ -4,8 +4,8 @@
   "password": "jailbreak",
   "receivedStarter": true,
   "tile": {
-    "x": 3094,
-    "z": 3502,
+    "x": 3095,
+    "z": 3495,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -13,8 +13,8 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 1,
-  "deaths": 0,
+  "kills": 2,
+  "deaths": 1,
   "gender": "MALE",
   "looks": [
     0,
@@ -39,7 +39,7 @@
   ],
   "inventory": [
     {
-      "id": 10551,
+      "id": 8839,
       "amount": 1
     },
     {
@@ -97,7 +97,7 @@
       "amount": 1
     },
     {
-      "id": 8839,
+      "id": 10551,
       "amount": 1
     },
     {
@@ -127,10 +127,22 @@
   ],
   "loadout": {
     "inventory": [
-      null,
-      null,
-      null,
-      null,
+      {
+        "id": 10551,
+        "amount": 1
+      },
+      {
+        "id": 4722,
+        "amount": 1
+      },
+      {
+        "id": 7462,
+        "amount": 1
+      },
+      {
+        "id": 10828,
+        "amount": 1
+      },
       null,
       null,
       null,
@@ -157,19 +169,49 @@
       null
     ],
     "equipment": [
+      {
+        "id": 11665,
+        "amount": 1
+      },
+      {
+        "id": 6570,
+        "amount": 1
+      },
+      {
+        "id": 6585,
+        "amount": 1
+      },
+      {
+        "id": 12006,
+        "amount": 1
+      },
+      {
+        "id": 8839,
+        "amount": 1
+      },
+      {
+        "id": 12954,
+        "amount": 1
+      },
       null,
+      {
+        "id": 8840,
+        "amount": 1
+      },
       null,
+      {
+        "id": 8842,
+        "amount": 1
+      },
+      {
+        "id": 11840,
+        "amount": 1
+      },
       null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
+      {
+        "id": 11773,
+        "amount": 1
+      },
       null
     ]
   },
@@ -536,7 +578,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3035723E7
+      "xp": 1.3036183E7
     },
     {
       "level": 99,
@@ -548,7 +590,7 @@
     },
     {
       "level": 99,
-      "xp": 1.303486059E7
+      "xp": 1.3035012950000003E7
     },
     {
       "level": 99,

@@ -121,7 +121,8 @@ public class PlayerVersusAnyCombat extends Combat {
 			int hit = 0;
 
 			if (target instanceof Player) {
-				//hit = AccuracyFormula.calcHitNEWMelee(player, (Player) target, max);
+				// hit = AccuracyFormula.calcHitNEWMelee(player, (Player)
+				// target, max);
 				hit = AccuracyFormula.calculateHit(player, (Player) target, max);
 			} else {
 
@@ -179,8 +180,13 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
-		int hit = player.world().random().nextInt((int) Math.round(max));
-
+		// int hit = player.world().random().nextInt((int) Math.round(max));
+		int hit;
+		if (target instanceof Player) {
+			hit = AccuracyFormula.calculateHit(player, (Player) target, (int) Math.round(max));
+		} else {
+			hit = player.world().random().nextInt((int) Math.round(max));
+		}
 		if (specialAttack.isHits()) {
 			// double max = CombatFormula.maximumMeleeHit(player) *
 			// specialAttack.getMaxHitMultiplier();
@@ -189,7 +195,13 @@ public class PlayerVersusAnyCombat extends Combat {
 			triggerVeng(hit);
 
 			if (specialAttack.isDoubleHit()) {
-				int hit2 = player.world().random().nextInt((int) Math.round(max));
+				//int hit2 = player.world().random().nextInt((int) Math.round(max));
+				int hit2;
+				if (target instanceof Player) {
+					hit2 = AccuracyFormula.calculateHit(player, (Player) target, (int) Math.round(max));
+				} else {
+					hit2 = player.world().random().nextInt((int) Math.round(max));
+				}
 				target.hit(player, hit2, CombatStyle.MELEE);
 			}
 		}
