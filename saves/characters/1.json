@@ -4,8 +4,8 @@
   "password": "jailbreak",
   "receivedStarter": true,
   "tile": {
-    "x": 3087,
-    "z": 3496,
+    "x": 3086,
+    "z": 3497,
     "level": 0
   },
   "privilege": "ADMIN",
@@ -25,7 +25,7 @@
     0,
     61,
     70,
-    50,
+    45,
     67,
     79,
     -1
@@ -35,11 +35,17 @@
     0,
     0,
     0,
-    4
+    0
   ],
   "inventory": [
-    null,
-    null,
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 6918,
+      "amount": 1
+    },
     null,
     null,
     null,
@@ -69,7 +75,7 @@
   ],
   "equipment": [
     {
-      "id": 10828,
+      "id": 4753,
       "amount": 1
     },
     {
@@ -268,7 +274,7 @@
     },
     {
       "id": 4753,
-      "amount": 1000
+      "amount": 999
     },
     {
       "id": 10370,
@@ -332,7 +338,7 @@
     },
     {
       "id": 6918,
-      "amount": 1000
+      "amount": 999
     },
     {
       "id": 6916,

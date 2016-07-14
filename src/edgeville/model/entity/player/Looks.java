@@ -169,7 +169,7 @@ public class Looks {
 				: player.world().equipmentInfo().renderPair(weapon);
 		for (int renderAnim : renderpair) {
 			calcBuffer.writeShort(renderAnim); // Renderanim
-			System.out.println(renderAnim + " ->> renderanim");
+			//System.out.println(renderAnim + " ->> renderanim");
 		}
 
 		/* Str idgaf */

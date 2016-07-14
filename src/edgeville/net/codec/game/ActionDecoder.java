@@ -42,6 +42,7 @@ public class ActionDecoder extends ByteToMessageDecoder {
 		actionRepository[40] = SpellOnNpc.class;
 		actionRepository[50] = ItemDragBank.class;
 		actionRepository[13] = JoinClanChatDialog.class;
+		//actionRepository[76] = NpcAction2.class;//TODO
 		
 		actionRepository[202] = WalkMap.class;
 		actionRepository[70] = WalkMap.class;

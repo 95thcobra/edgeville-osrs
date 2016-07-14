@@ -9,7 +9,7 @@ import edgeville.net.message.game.encoders.PacketInfo;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Created by Tom on 9/26/2015. Modified by Sky on 1/3/2016.
+ * Created by Simon.
  */
 @PacketInfo(size = 3)
 public class NpcAction1 implements Action {
@@ -21,9 +21,6 @@ public class NpcAction1 implements Action {
 
 	@Override
 	public void decode(RSBuffer buf, ChannelHandlerContext ctx, int opcode, int size) {
-		// run = buf.readByteA() == 1;
-		// index = buf.readUShortA();
-
 		index = buf.readULEShort();
 		run = buf.readByteA() == 1;
 	}
@@ -32,22 +29,14 @@ public class NpcAction1 implements Action {
 	public void process(Player player) {
 		player.stopActions(true);
 
-		player.message("npcaction1 --- npcindex:" + index + " run:" + run);
+		player.messageDebug("Npc index: %d",index);
 		Npc other = player.world().npcs().get(index);
 		int npcId = other.id();
-		player.message("npcid:" + npcId + " run:" + run);
 
 		if (!player.locked() && !player.dead() && !other.dead()) {
 			player.stepTowards(other, 20);
 			player.face(other);
-
-			// player.tile().distance(other.tile()) <= 2
 			player.world().getEventHandler().addEvent(player, new ClickNpcEvent(player, other));
-
-			// player.putattrib(AttributeKey.TARGET_TYPE, 1);
-			// player.putattrib(AttributeKey.TARGET, index);
-			// player.world().server().scriptExecutor().executeScript(player,
-			// PvPCombat.script);
 		}
 	}
 }
