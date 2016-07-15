@@ -38,6 +38,8 @@ import io.netty.channel.Channel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -95,6 +97,13 @@ public class Player extends Entity {
 
 	public void setVengOn(boolean vengOn) {
 		this.vengOn = vengOn;
+	}
+	
+	public String getHostName() {
+		String address = channel.remoteAddress().toString();
+		address = address.replace("/", "");
+		address = address.substring(0, address.indexOf(':'));
+		return address; 
 	}
 
 	public CombatUtil getCombatUtil() {
@@ -812,10 +821,6 @@ public class Player extends Entity {
 			message("You cannot do this in combat!.");
 			return;
 		}
-		if (!getEquipment().isEmpty()) {
-			message("Unequip your equipment first!");
-			return;
-		}
 
 		getPrayer().deactivateAllPrayers();
 
@@ -1308,7 +1313,7 @@ public class Player extends Entity {
 
 	public void spawnHybrid() {
 		getInventory().empty();
-		getInventory().add(5698);
+		/*getInventory().add(5698);
 		getInventory().add(157);
 		getInventory().add(163);
 		getInventory().add(145);
@@ -1333,8 +1338,40 @@ public class Player extends Entity {
 		getEquipment().set(EquipSlot.LEGS, new Item(4714));
 		getEquipment().set(EquipSlot.HANDS, new Item(7462));
 		getEquipment().set(EquipSlot.FEET, new Item(6920));
-		getEquipment().set(EquipSlot.RING, new Item(11773));
-
+		getEquipment().set(EquipSlot.RING, new Item(11773));*/
+		
+		getInventory().add(12006);
+        getInventory().add(13239);
+        getInventory().add(6570);
+        getInventory().add(11832);
+        
+        getInventory().add(12954);
+        getInventory().add(4736);
+        getInventory().add(6585);
+        getInventory().add(11834);
+        
+        getInventory().add(5698);
+        getInventory().add(6685);
+        getInventory().add(new Item(3024, 2));
+        
+        getInventory().add(12695);
+        getInventory().add(new Item(3144, 2));
+        getInventory().add(new Item(391, 10));    
+        getInventory().add(new Item(555, 10000));
+        getInventory().add(new Item(560, 10000));
+        getInventory().add(new Item(565, 10000));
+        
+        getEquipment().set(EquipSlot.HEAD, new Item(13197));
+        getEquipment().set(EquipSlot.CAPE, new Item(2412));
+        getEquipment().set(EquipSlot.AMULET, new Item(12002));
+        getEquipment().set(EquipSlot.WEAPON, new Item(6914));
+        getEquipment().set(EquipSlot.BODY, new Item(4712));
+        getEquipment().set(EquipSlot.SHIELD, new Item(12825));
+        getEquipment().set(EquipSlot.LEGS, new Item(4714));
+        getEquipment().set(EquipSlot.HANDS, new Item(7462));
+        getEquipment().set(EquipSlot.FEET, new Item(13235));
+        getEquipment().set(EquipSlot.RING, new Item(11773));
+        
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
 		skills().recalculateCombat();

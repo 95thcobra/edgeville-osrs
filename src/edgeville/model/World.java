@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import edgeville.Constants;
 import edgeville.GameServer;
+import edgeville.aquickaccess.actions.LogsHandler;
 import edgeville.event.EventHandler;
 import edgeville.fs.DefinitionRepository;
 import edgeville.fs.MapDefinition;
@@ -60,6 +61,7 @@ public class World {
     private int skillingXpMult;
 
     private Punishments punishments;
+    private LogsHandler logsHandler;
     
     public World(GameServer server) {
         this.server = server;
@@ -86,6 +88,7 @@ public class World {
         loadObjectSpawns();
         
         setPunishments(new Punishments());
+        setLogsHandler(new LogsHandler());
         
         this.clanChatHandler = new ClanChatHandler();
     }
@@ -440,6 +443,14 @@ public class World {
 
 	public void setPunishments(Punishments punishments) {
 		this.punishments = punishments;
+	}
+
+	public LogsHandler getLogsHandler() {
+		return logsHandler;
+	}
+
+	public void setLogsHandler(LogsHandler logsHandler) {
+		this.logsHandler = logsHandler;
 	}
 
 }

@@ -1,10 +1,7 @@
+
+AND time played, 10 hours played means beta rank!
+
 timer for uptime, timed mutes idk
-
-
-Add back food & pots quest tab spawn
-sarabreqw, 2 super restores, super combat
-
-
 
 SHOULD SWITCHING ITEMS STOP COMBAT?!
 
@@ -13,25 +10,13 @@ SHOULD SWITCHING ITEMS STOP COMBAT?!
 add last time server reset INSTEAD OF information and spawn
 
 
-disable control shift teleporting for non admins
-
-
-DO RANKS RIGHT
-admins and mods, rest no rank.
-
 
 VIEW HISCORES DOESNT WORK
 browse url wrong
 
 
-BAN PLAYERS FUNCTION
-
-
-
 Dont give kills when same IP
 save last ip killed
-
-
 
 WITHDRAW BANK BUG!!!!!!!
 disable all commands, just ::item and ::finditem

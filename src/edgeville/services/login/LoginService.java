@@ -17,6 +17,7 @@ import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.net.InetSocketAddress;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -24,16 +25,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * @author Simon on 8/1/2015.
  *
- * Handles logging in, logging out... and being logged in?
+ *         Handles logging in, logging out... and being logged in?
  */
 public class LoginService implements Service {
 
 	private static final Logger logger = LogManager.getLogger(LoginService.class);
 
 	/**
-	 * The queue of pending login requests, which is concurrent because there's (at least) two threads
-	 * accessing this at the same time. One (or more) being the decoder thread from Netty, one (or more) being
-	 * the login service worker.
+	 * The queue of pending login requests, which is concurrent because there's
+	 * (at least) two threads accessing this at the same time. One (or more)
+	 * being the decoder thread from Netty, one (or more) being the login
+	 * service worker.
 	 */
 	private LinkedBlockingQueue<LoginRequestMessage> messages = new LinkedBlockingQueue<>();
 
@@ -48,12 +50,13 @@ public class LoginService implements Service {
 	private GameServer gameServer;
 
 	/**
-	 * The serializer we use to (de)serialize our lovely player's data. Defaults to JSON.
+	 * The serializer we use to (de)serialize our lovely player's data. Defaults
+	 * to JSON.
 	 */
 	private PlayerSerializer serializer;
 
 	@Override
-	public void setup(GameServer server/*, Config serviceConfig*/) {
+	public void setup(GameServer server/* , Config serviceConfig */) {
 		gameServer = server;
 
 		UIDProvider uidProvider = server.uidProvider();
@@ -87,7 +90,8 @@ public class LoginService implements Service {
 
 	@Override
 	public boolean stop() {
-		return false; // TODO disable the login service, denying requests. Might be a nice feature.
+		return false; // TODO disable the login service, denying requests. Might
+						// be a nice feature.
 	}
 
 	public GameServer server() {
@@ -105,13 +109,25 @@ public class LoginService implements Service {
 		// Attach player to session
 		player.channel().attr(ServerHandler.ATTRIB_PLAYER).set(player);
 
-		player.write(new DisplayMap(player)); // This has to be the first packet!
+		player.write(new DisplayMap(player)); // This has to be the first
+												// packet!
 		player.world().syncMap(player, null);
-		player.interfaces().send(); // Must come after to set root pane; else crash =(
+		player.interfaces().send(); // Must come after to set root pane; else
+									// crash =(
+		
+		System.out.println(message.channel().remoteAddress());
 
-		// This isn't really a packet but it's required to be done on the logic thread
+		//message.channel().
+		
+		//String hostName = ((InetSocketAddress)message.channel()).getHostName();
+		//System.out.println("Hostname: "+hostName);
+		
+		// This isn't really a packet but it's required to be done on the logic
+		// thread
 		player.pendingActions().add(new Action() {
-			public void decode(RSBuffer buf, ChannelHandlerContext ctx, int opcode, int size) {}
+			public void decode(RSBuffer buf, ChannelHandlerContext ctx, int opcode, int size) {
+			}
+
 			public void process(Player player) {
 				player.initiate();
 			}

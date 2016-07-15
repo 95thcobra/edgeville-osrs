@@ -60,4 +60,6 @@ public class Constants {
 	public static final String BANNED_IPS = "./data/punishment/bannedips.txt";
 	public static final String MUTED_IPS = "./data/punishment/mutedips.txt";
 	
+	public static final String COMMAND_LOG_DIR = "./data/logs/commands/";
+	
 }

@@ -7,7 +7,7 @@ import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 import edgeville.database.ForumIntegration;
-
+import edgeville.Constants;
 import edgeville.aquickaccess.dialogue.DialogueHandler;
 import edgeville.aquickaccess.events.UpdateGameEvent;
 import edgeville.fs.ItemDefinition;
@@ -40,10 +40,20 @@ public final class GameCommands {
 
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
-		
+
+		put(Privilege.MODERATOR, "getip", (p, args) -> {
+			String otherUsername = glue(args);
+			Player other = p.world().getPlayerByName(otherUsername).get();
+			if (other == null) {
+				p.message("%s is offline or does not exist.", otherUsername);
+				return;
+			}
+			p.message("The IP of %s is %s.", otherUsername, other.getHostName());
+		});
+
 		put(Privilege.MODERATOR, "ipmute", (p, args) -> {
 			String usernameToBan = glue(args);
-			//p.world().getPunishments().addIPMute(usernameToBan);//TODO
+			// p.world().getPunishments().addIPMute(usernameToBan);//TODO
 			p.message("You have ip-banned %s.", usernameToBan);
 			Player playerToMute = p.world().getPlayerByName(usernameToBan).get();
 			if (playerToMute != null) {
@@ -53,18 +63,18 @@ public final class GameCommands {
 
 		put(Privilege.MODERATOR, "unipmute", (p, args) -> {
 			String otherUsername = glue(args);
-			//p.world().getPunishments().removeIPMute(otherUsername);//TODO
+			// p.world().getPunishments().removeIPMute(otherUsername);//TODO
 			p.message("You have unipmuted %s.", otherUsername);
-			
+
 			Player playerToMute = p.world().getPlayerByName(otherUsername).get();
 			if (playerToMute != null) {
 				playerToMute.message("You have been ip-muted by %s.", p.getUsername());
 			}
 		});
-		
+
 		put(Privilege.MODERATOR, "ipban", (p, args) -> {
 			String usernameToBan = glue(args);
-			//p.world().getPunishments().addIPBan(usernameToBan);//TODO
+			// p.world().getPunishments().addIPBan(usernameToBan);//TODO
 			Player playerToBan = p.world().getPlayerByName(usernameToBan).get();
 			if (playerToBan != null) {
 				playerToBan.logout();
@@ -74,7 +84,7 @@ public final class GameCommands {
 
 		put(Privilege.MODERATOR, "unipban", (p, args) -> {
 			String otherUsername = glue(args);
-			//p.world().getPunishments().removeIPBan(otherUsername);//TODO
+			// p.world().getPunishments().removeIPBan(otherUsername);//TODO
 			p.message("You have unipbanned %s.", otherUsername);
 		});
 
@@ -93,12 +103,12 @@ public final class GameCommands {
 			p.world().getPunishments().removePlayerBan(otherUsername);
 			p.message("You have unbanned %s.", otherUsername);
 		});
-		
+
 		put(Privilege.MODERATOR, "mute", (p, args) -> {
 			String usernameToPunish = glue(args);
 			p.world().getPunishments().addPlayerBan(usernameToPunish);
 			p.message("You have muted %s.", usernameToPunish);
-			
+
 			Player playerToPunish = p.world().getPlayerByName(usernameToPunish).get();
 			if (playerToPunish != null) {
 				playerToPunish.message("You have been muted by %s.", p.getUsername());
@@ -109,7 +119,7 @@ public final class GameCommands {
 			String otherUsername = glue(args);
 			p.world().getPunishments().removePlayerMute(otherUsername);
 			p.message("You have unmuted %s.", otherUsername);
-			
+
 			Player playerToUnmute = p.world().getPlayerByName(otherUsername).get();
 			if (playerToUnmute != null) {
 				playerToUnmute.message("You have been unmuted by %s.", p.getUsername());
@@ -155,6 +165,10 @@ public final class GameCommands {
 			p.setMaster();
 		});
 
+		put(Privilege.PLAYER, "pure", (p, args) -> {
+			p.setPure();
+		});
+
 		put(Privilege.PLAYER, "find", (p, args) -> {
 			String s = glue(args);
 			new Thread(() -> {
@@ -162,7 +176,7 @@ public final class GameCommands {
 
 				for (int i = 0; i < 14_000; i++) {
 					if (found > 249) {
-						p.message("Too many results (> 250). Please narrow down.");
+						p.message("Too many results, try again.");
 						break;
 					}
 					ItemDefinition def = p.world().definitions().get(ItemDefinition.class, i);
@@ -187,6 +201,7 @@ public final class GameCommands {
 				(p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
 
 		put(Privilege.PLAYER, "empty", (p, args) -> p.getInventory().empty());
+
 		put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().getPlayerByName(glue(args)).get().getTile()));
 		put(Privilege.MODERATOR, "teletome",
 				(p, args) -> p.world().getPlayerByName(glue(args)).get().move(p.getTile()));
@@ -212,7 +227,7 @@ public final class GameCommands {
 					Integer.parseInt(args[0]), startHeight, endHeight, baseDelay, 10000, curve, 105);
 		});
 
-		put(Privilege.ADMINISTRATOR, "invokescript", (p, args) -> p.write(
+		put(Privilege.DEVELOPER, "invokescript", (p, args) -> p.write(
 				new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
 
 		put(Privilege.ADMINISTRATOR, "update", (p, args) -> {
@@ -244,24 +259,8 @@ public final class GameCommands {
 		put(Privilege.ADMINISTRATOR, "interface",
 				(p, args) -> p.interfaces().sendMain(Integer.parseInt(args[0]), false));
 
-		put(Privilege.ADMINISTRATOR, "cinterface", (p, args) -> {
+		put(Privilege.DEVELOPER, "cinterface", (p, args) -> {
 			p.interfaces().send(Integer.parseInt(args[0]), 162, 546, false);
-		});
-
-		put(Privilege.ADMINISTRATOR, "loopinter", (p, args) -> {
-			new Thread(() -> {
-				int interfaceId = 0;
-				while (interfaceId++ < 600) {
-					p.interfaces().sendMain(interfaceId, false);
-					p.shout("Interface: " + interfaceId);
-					System.out.println("Interface: " + interfaceId);
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}).start();
 		});
 
 		put(Privilege.PLAYER, "item", (p, args) -> {
@@ -289,35 +288,37 @@ public final class GameCommands {
 			p.world().registerNpc(new Npc(Integer.parseInt(args[0]), p.world(), p.getTile(), false));
 		});
 
-		put(Privilege.ADMINISTRATOR, "musicbyname", (p, args) -> {
-			String name = glue(args).toLowerCase();
-			int id = p.world().server().store().getIndex(6).getContainerByName(name).getId();
-			p.message("%s resolves to %d.", name, id);
-			p.write(new PlayMusic(id));
-		});
-
-		put(Privilege.ADMINISTRATOR, "teleregion", (p, args) -> {
-			int rid = Integer.parseInt(args[0]);
-			p.move((rid >> 8) * 64 + 32, (rid & 0xFF) * 64 + 32);
-		});
-
 		put(Privilege.PLAYER, "commands", (p, args) -> {
-			p.message("--------------------Commands--------------------");
-			p.message("::ancients - changes to the ancient spellbook.");
-			p.message("::lunar - changes to the lunar spellbook.");
-			p.message("::modern - changes to the modern spellbook.");
-			p.message("::master - sets all your levels to 99.");
+			p.message("======= Commands =======");
+			p.message("::master - maxes your combat stats.");
+			p.message("::pure - get the stats of a pure.");
 			p.message("::empty - clears your inventory.");
-			p.message("::item id - spawns an item with the specified id.");
-			p.message("::lvl skillid level - sets the specified skill to a level between 1 and 99.");
-			p.message("::pkp - see your pk points.");
+		});
+
+		put(Privilege.MODERATOR, "modcommands", (p, args) -> {
+			p.message("======= Mod commands =======");
+			p.message("::ban");
+			p.message("::unban - Ban player");
+			p.message("::ipban");
+			p.message("::unipban");
+			p.message("::mute");
+			p.message("::unmute");
+			p.message("::ipmute");
+			p.message("::unipmute");
+		});
+
+		put(Privilege.ADMINISTRATOR, "admincommands", (p, args) -> {
+			p.message("======= Admin commands =======");
+			p.message("::update #");
+			p.message("::givemod");
+			p.message("::demote");
 		});
 
 		put(Privilege.ADMINISTRATOR, "kickall", (p, args) -> {
 			p.world().players().forEach(Player::logout);
 		});
 
-		put(Privilege.ADMINISTRATOR, "transmog", (p, args) -> p.looks().transmog(Integer.parseInt(args[0])));
+		put(Privilege.ADMINISTRATOR, "pnpc", (p, args) -> p.looks().transmog(Integer.parseInt(args[0])));
 		return commands;
 	}
 
@@ -360,6 +361,11 @@ public final class GameCommands {
 			/* Verify privilege */
 			if (player.getPrivilege().eligibleTo(c.privilege)) {
 				c.handler.accept(player, parameters);
+
+				String log = command.toLowerCase() + " " + glue(parameters);
+				player.world().getLogsHandler().appendLog(Constants.COMMAND_LOG_DIR + player.getMemberId() + ".txt",
+						log);
+
 				return;
 			}
 		}
