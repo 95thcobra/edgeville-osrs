@@ -4,17 +4,17 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3092,
+    "x": 3097,
     "z": 3499,
     "level": 0
   },
-  "privilege": "ADMIN",
+  "privilege": "PLAYER",
   "migration": 0,
   "skullIcon": -1,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 1,
-  "deaths": 1,
+  "kills": 0,
+  "deaths": 0,
   "gender": "MALE",
   "looks": [
     0,
@@ -43,6 +43,10 @@
       "amount": 1
     },
     {
+      "id": 145,
+      "amount": 1
+    },
+    {
       "id": 157,
       "amount": 1
     },
@@ -51,103 +55,99 @@
       "amount": 1
     },
     {
-      "id": 145,
+      "id": 4153,
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 12006,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 12954,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 10551,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 4722,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 4736,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 560,
-      "amount": 9988
-    },
-    {
-      "id": 565,
-      "amount": 9992
-    },
-    {
-      "id": 555,
-      "amount": 9982
-    },
-    {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 397,
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
       "amount": 1
     }
   ],
@@ -157,7 +157,7 @@
       "amount": 1
     },
     {
-      "id": 2412,
+      "id": 6570,
       "amount": 1
     },
     {
@@ -165,20 +165,20 @@
       "amount": 1
     },
     {
-      "id": 4675,
+      "id": 12006,
       "amount": 1
     },
     {
-      "id": 4712,
+      "id": 10551,
       "amount": 1
     },
     {
-      "id": 6889,
+      "id": 12954,
       "amount": 1
     },
     null,
     {
-      "id": 4714,
+      "id": 4722,
       "amount": 1
     },
     null,
@@ -187,7 +187,7 @@
       "amount": 1
     },
     {
-      "id": 6920,
+      "id": 11840,
       "amount": 1
     },
     null,
@@ -549,10 +549,6 @@
       "value": 1
     },
     {
-      "id": 108,
-      "value": 92
-    },
-    {
       "id": 122,
       "value": 1
     },
@@ -565,8 +561,8 @@
       "value": 1
     },
     {
-      "id": 173,
-      "value": 1
+      "id": 166,
+      "value": 3
     },
     {
       "id": 176,
@@ -586,11 +582,11 @@
     },
     {
       "id": 439,
-      "value": 1
+      "value": 2
     },
     {
       "id": 843,
-      "value": 18
+      "value": 20
     },
     {
       "id": 1050,
@@ -632,10 +628,6 @@
     },
     {
       "level": 99,
-      "xp": 1.30344443E7
-    },
-    {
-      "level": 99,
       "xp": 1.3034431E7
     },
     {
@@ -644,7 +636,11 @@
     },
     {
       "level": 99,
-      "xp": 1.3034531E7
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
@@ -716,9 +712,8 @@
     }
   ],
   "quickprayers": [],
-  "autocastSpell": "ICE_BARRAGE",
-  "autocastSpellChild": 69,
-  "lastCastedSpell": "ICE_BARRAGE",
-  "lastCastedSpellChild": 69,
-  "autocasting": true
+  "autocastSpellChild": 0,
+  "lastCastedSpellChild": 0,
+  "autocasting": false,
+  "lastHiscoresUpdate": 1468605645523
 }

@@ -395,9 +395,12 @@ public class Bank {
 			return;
 		}
 
-		if (player.getInventory().add(idToAdd, amount).success()) {
-			remove(id, amount);
-		}
+		int amountAdded = player.getInventory().addAndReturnAmount(idToAdd, amount);
+		//if (player.getInventory().add(idToAdd, amount).success()) {
+			//remove(id, amount);
+		//}
+		remove(id, amountAdded);
+		
 		makeDirty();
 	}
 

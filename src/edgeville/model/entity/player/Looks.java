@@ -22,13 +22,6 @@ public class Looks {
 	private int[] colors;
 
 	public void setClothes(int[] clothes) {
-		/*
-		 * this.looks[8] = clothes[0]; // hair this.looks[11] = clothes[1]; //
-		 * jaw this.looks[2] = clothes[2];// torso this.looks[3] = clothes[3];
-		 * // arms this.looks[4] = clothes[4]; // arms this.looks[10] =
-		 * clothes[5]; // legs this.looks[6] = clothes[6]; // feet
-		 */
-
 		this.looks[8] = clothes[0]; // hair
 		this.looks[11] = clothes[1]; // jaw
 		this.looks[4] = clothes[2];// torso
@@ -46,14 +39,6 @@ public class Looks {
 	public int[] getColors() {
 		return colors;
 	}
-
-	// private int[] looks = {1, 2, 3, 4, 18, 5, 26, 36, 7, 33, 42, 10};
-
-	/*
-	 * private int[] looks = { 0, 0, // niks 18, // 2. torso 26, // 3. arms *
-	 * 33, // 4. hands 0, // NIKS 42, // 6. feet 36, // NIKS 0, // 8. head 33,
-	 * // NIKS * 36, // 10. legs 10// 11. beard };
-	 */
 
 	private int[] looks = { 0, 0, 0, 0, 18/* torso */, 0, 27/* arms */, 37/* legs */, 8/* hair */, 33/* hands */,
 			42/* boots */, 10/* beard */ };
@@ -118,8 +103,8 @@ public class Looks {
 					hideHead = true;
 				}
 
-				player.messageDebug("HelmId: %d", helm.getId());
-				player.messageDebug("Helmtype: %d", helmType);
+				//player.messageDebug("HelmId: %d", helm.getId());
+				//player.messageDebug("Helmtype: %d", helmType);
 
 				int[] itemsThatHideBeards = { 4753, 11665, 11664 };
 				for (int itemBeard : itemsThatHideBeards) {

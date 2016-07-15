@@ -10,6 +10,7 @@ import edgeville.fs.MapDefinition;
 import edgeville.model.clanchat.ClanChatHandler;
 import edgeville.model.entity.Npc;
 import edgeville.model.entity.Player;
+import edgeville.model.entity.player.Punishments;
 import edgeville.model.map.MapObj;
 import edgeville.net.message.game.encoders.*;
 import edgeville.plugin.PluginHandler;
@@ -58,6 +59,8 @@ public class World {
     private int combatXpMult;
     private int skillingXpMult;
 
+    private Punishments punishments;
+    
     public World(GameServer server) {
         this.server = server;
         definitionRepository = new DefinitionRepository(server);
@@ -82,12 +85,12 @@ public class World {
         // Load object spawns
         loadObjectSpawns();
         
+        setPunishments(new Punishments());
+        
         this.clanChatHandler = new ClanChatHandler();
     }
-    
-    
 
-    public ClanChatHandler getClanChatHandler() {
+	public ClanChatHandler getClanChatHandler() {
 		return clanChatHandler;
 	}
 
@@ -426,5 +429,17 @@ public class World {
 
         return base;
     }
+
+
+
+	public Punishments getPunishments() {
+		return punishments;
+	}
+
+
+
+	public void setPunishments(Punishments punishments) {
+		this.punishments = punishments;
+	}
 
 }

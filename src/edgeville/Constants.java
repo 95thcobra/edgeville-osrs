@@ -49,4 +49,15 @@ public class Constants {
 	public static final int SKILLING_XP_RATE_MULTIPLIER = 1;
 
 	public static final boolean DROP_ITEMS_ON_DEATH = false;
+	
+	
+	
+	/**
+	 * File directories
+	 */
+	public static final String BANNED_PLAYERS = "./data/punishment/bannedplayers.txt";
+	public static final String MUTED_PLAYERS = "./data/punishment/mutedplayers.txt";
+	public static final String BANNED_IPS = "./data/punishment/bannedips.txt";
+	public static final String MUTED_IPS = "./data/punishment/mutedips.txt";
+	
 }

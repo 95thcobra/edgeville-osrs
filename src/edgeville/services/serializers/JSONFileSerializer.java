@@ -108,6 +108,11 @@ public class JSONFileSerializer extends PlayerSerializer {
 				if (!rootObject.get("password").getAsString().equals(password))
 					return PlayerLoadResult.INVALID_DETAILS;
 			}
+			
+			// Check if banned
+			if (player.world().getPunishments().getBannedPlayers().contains(player.getUsername())) { 
+				return PlayerLoadResult.BANNED;
+			}
 
 			/* Basic information */
 			String displayName = rootObject.get("displayName").getAsString();
@@ -123,12 +128,16 @@ public class JSONFileSerializer extends PlayerSerializer {
 			player.setKills(kills.getAsInt());
 			player.setDeaths(deaths.getAsInt());
 
+			JsonElement lastHiscoresUpdate = rootObject.get("lastHiscoresUpdate");
+			if (lastHiscoresUpdate != null)
+				player.setLastHiscoresUpdate(lastHiscoresUpdate.getAsLong());
+
 			// Debug
 			player.setDebug(rootObject.get("debug").getAsBoolean());
 
 			/* Construct the player */
 			player.displayName(displayName);
-			player.privilege(privilege);
+			player.setPrivilege(privilege);
 			player.migration(migration);
 			player.move(tile);
 
@@ -257,7 +266,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		if (!Constants.SAVE_PLAYERS) {
 			return;
 		}
-		
+
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("username", player.getUsername());
 		jsonObject.addProperty("displayName", player.getDisplayName());
@@ -369,6 +378,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 		// autocasting
 		jsonObject.addProperty("autocasting", player.isAutoCasting());
 
+		// last hiscores update
+		jsonObject.addProperty("lastHiscoresUpdate", player.getLastHiscoresUpdate());
+
 		// end
 
 		// File characterFile = new File(characterFolder, player.getUsername() +
@@ -380,7 +392,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		if (Constants.MYSQL_ENABLED) {
 			ForumIntegration.updateHiscores(player);
 		}

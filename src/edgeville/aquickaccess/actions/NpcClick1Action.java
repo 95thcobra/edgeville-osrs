@@ -26,7 +26,17 @@ public class NpcClick1Action {
                         "Nowhere");
                 player.setDialogueAction(1);
                 break;
-                
+            
+                // Healer nurse
+            case 3343:
+            	if (player.inCombat()) {
+            		player.message("You cannot do this in combat!");
+            		return;
+            	}
+            	player.resetSpecialEnergy();
+            	player.skills().resetStats();
+            	player.message("Your stats have been reset and special energy has been restored!");
+                break;
                
         }
     }

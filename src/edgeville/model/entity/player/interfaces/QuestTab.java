@@ -60,7 +60,7 @@ public class QuestTab {
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "Range gear");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "Hybrid gear");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 26, "Pure gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 27, "Food");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 27, "Dharok's gear");
 
 		for (int child = 28; child < 143; child++) {
 			player.write(new InterfaceText(questTabInterfaceId, child, ""));
@@ -111,6 +111,7 @@ public class QuestTab {
 		case 17:
 			try {
 				Desktop.getDesktop().browse(new URI("http://edgeville.org/hiscores"));
+				//player.write(new InterfaceText());
 			} catch (Exception e) {
 				player.message("Something went wrong, is website down?");
 			}
@@ -200,7 +201,7 @@ public class QuestTab {
 		
 
 		// Food
-		case 27:
+		/*case 27:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -212,6 +213,22 @@ public class QuestTab {
 
 			player.getInventory().add(391, 28);
 			player.message("You have spawned some food.");
+			break;*/
+			
+			// dharoks
+		case 27:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
+				return;
+			}
+
+			player.getPrayer().deactivateAllPrayers();
+			player.spawnDharoks();
+			player.message("You have spawned dharok's gear.");
 			break;
 		}
 	}

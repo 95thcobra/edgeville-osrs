@@ -469,8 +469,9 @@ public class PlayerVersusAnyCombat extends Combat {
 		player.animate(1667);
 		player.graphic(340, 92, 0);
 
-		double max = CombatFormula.maximumMeleeHit(player);
-		int hit = player.world().random().nextInt((int) Math.round(max));
+		int max = (int)Math.round(CombatFormula.maximumMeleeHit(player));
+		//int hit = player.world().random().nextInt((int) Math.round(max));
+		int hit = AccuracyFormula.calculateHit(player, target, max);
 		target.hit(player, hit);
 		player.timers().register(TimerKey.COMBAT_ATTACK, target.world().equipmentInfo().weaponSpeed(4153));
 	}

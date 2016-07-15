@@ -44,7 +44,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * @author Simon.
+ * @author Simon
  */
 public class Player extends Entity {
 
@@ -77,7 +77,7 @@ public class Player extends Entity {
 	private Privilege privilege;
 
 	private long lastHiscoresUpdate;
-	
+
 	/**
 	 * Our achieved skill levels
 	 */
@@ -353,16 +353,16 @@ public class Player extends Entity {
 		clanChat = new ClanChat(this, username + "'s clanchat", new ArrayList<Player>());
 
 		getVarps().presave();
-		
-		lastHiscoresUpdate = System.currentTimeMillis();
 	}
 
 	public void giveStarterPack() {
-		spawnMelee();
+		startUpGear();
 		presetBank();
 		message(TextUtil.colorString("Check the quest tab for spawns!", TextUtil.Colors.RED));
 		setReceivedStarter(true);
 		getVarps().setVarp(Varp.BRIGHTNESS, 3);
+		lastHiscoresUpdate = System.currentTimeMillis();
+		setPrivilege(Privilege.PLAYER);
 	}
 
 	private void onLogin() {
@@ -381,7 +381,7 @@ public class Player extends Entity {
 		bank.getBankItems().add(new Item(11663, 1000));
 		bank.getBankItems().add(new Item(11664, 1000));
 		bank.getBankItems().add(new Item(11665, 1000));
-		
+
 		bank.getBankItems().add(new Item(4708, 1000));
 		bank.getBankItems().add(new Item(4712, 1001));
 		bank.getBankItems().add(new Item(6920, 1001));
@@ -498,7 +498,7 @@ public class Player extends Entity {
 
 		varps.sync(1055);
 
-		updatePrivileges();
+		//updatePrivileges();
 
 		looks.update();
 
@@ -538,14 +538,14 @@ public class Player extends Entity {
 		world.getEventHandler().addEvent(this, ticks, event);
 	}
 
-	public void updatePrivileges() {
+	/*public void updatePrivileges() {
 		for (StaffData staff : StaffData.values()) {
 			if (staff == null)
 				continue;
 			if (username.equalsIgnoreCase(staff.name()))
 				privilege(staff.getPrivilege());
 		}
-	}
+	}*/
 
 	public String name() {
 		return WordUtils.capitalize(displayName);
@@ -576,7 +576,7 @@ public class Player extends Entity {
 
 		// Make input dialog null
 		setInputDialog(null);
-		
+
 		// Remove banking interface when banking
 		if (interfaces.visible(12)) {
 			interfaces().closeById(15);
@@ -587,14 +587,14 @@ public class Player extends Entity {
 			interfaces.close(162, 546);
 		}
 	}
-	
+
 	@Override
 	public void stopActions(boolean cancelMoving) {
 		super.stopActions(cancelMoving);
 
 		// Make input dialog null
 		setInputDialog(null);
-		
+
 		// Remove banking interface when banking
 		if (interfaces.visible(12)) {
 			interfaces().closeById(15);
@@ -665,11 +665,11 @@ public class Player extends Entity {
 	}
 
 	public Privilege getPrivilege() {
-		// return privilege;
-		return Privilege.ADMIN;
+		return privilege;
+		//return Privilege.ADMIN;
 	}
 
-	public void privilege(Privilege p) {
+	public void setPrivilege(Privilege p) {
 		privilege = p;
 	}
 
@@ -791,6 +791,17 @@ public class Player extends Entity {
 		// Then nicely unregister the player from the game.
 		unregister();
 	}
+	
+	public void setMasterNoReqs() {
+		getPrayer().deactivateAllPrayers();
+
+		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
+			skills.setXp(i, 13034431);
+		}
+
+		skills.resetStats();
+		skills.recalculateCombat();
+	}
 
 	public void setMaster() {
 		if (inWilderness()) {
@@ -801,14 +812,21 @@ public class Player extends Entity {
 			message("You cannot do this in combat!.");
 			return;
 		}
+		if (!getEquipment().isEmpty()) {
+			message("Unequip your equipment first!");
+			return;
+		}
+
+		getPrayer().deactivateAllPrayers();
+
 		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
 			skills.setXp(i, 13034431);
 		}
-		
+
 		skills.resetStats();
 		skills.recalculateCombat();
 	}
-	
+
 	public void setPure() {
 		if (inWilderness()) {
 			message("You cannot do this while in the wilderness.");
@@ -818,15 +836,15 @@ public class Player extends Entity {
 			message("You cannot do this in combat!.");
 			return;
 		}
-		
+
 		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
 			skills.setYourRealLevel(Skills.PRAYER, 99);
 		}
-		
+
 		skills.setYourRealLevel(Skills.ATTACK, 60);
 		skills.setYourRealLevel(Skills.DEFENCE, 1);
 		skills.setYourRealLevel(Skills.PRAYER, 52);
-		
+
 		skills.resetStats();
 		skills.recalculateCombat();
 	}
@@ -1094,7 +1112,7 @@ public class Player extends Entity {
 	}
 
 	public void savePlayer() {
-		//ForumIntegration.insertHiscore(this);
+		// ForumIntegration.insertHiscore(this);
 		world().server().service(PlayerSerializer.class, true).get().savePlayer(this);
 	}
 
@@ -1162,6 +1180,48 @@ public class Player extends Entity {
 		this.receivedStarter = receivedStarter;
 	}
 
+	public void spawnDharoks() {
+		getInventory().empty();
+		getInventory().add(4718);
+		getInventory().add(new Item(3144, 2));
+		getInventory().add(6685); // sara
+
+		getInventory().add(391, 3); // mantas
+		getInventory().add(3024); // restore
+
+		getInventory().add(391, 3); // mantas
+		getInventory().add(12695); // super cb
+
+		getInventory().add(391, 3); // mantas
+		getInventory().add(3024); // restore
+
+		getInventory().add(391, 4); // mantas
+
+		getInventory().add(4153); // gmaul
+
+		getInventory().add(391, 4); // mantas
+
+		// veng
+		getInventory().add(557, 1000); // earth
+		getInventory().add(9075, 1000); // astral
+		getInventory().add(560, 1000); // death
+
+		getEquipment().set(EquipSlot.HEAD, new Item(4716));
+		getEquipment().set(EquipSlot.CAPE, new Item(6570));
+		getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		getEquipment().set(EquipSlot.WEAPON, new Item(12006));
+		getEquipment().set(EquipSlot.BODY, new Item(4720));
+		getEquipment().set(EquipSlot.SHIELD, new Item(12954));
+		getEquipment().set(EquipSlot.LEGS, new Item(4722));
+		getEquipment().set(EquipSlot.HANDS, new Item(7462));
+		getEquipment().set(EquipSlot.FEET, new Item(13239));
+		getEquipment().set(EquipSlot.RING, new Item(11773));
+
+		setMaster();
+		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
+		skills().recalculateCombat();
+	}
+
 	public void spawnMelee() {
 		getInventory().empty();
 		getInventory().add(5698);
@@ -1181,9 +1241,35 @@ public class Player extends Entity {
 		getEquipment().set(EquipSlot.HANDS, new Item(7462));
 		getEquipment().set(EquipSlot.FEET, new Item(11840));
 		getEquipment().set(EquipSlot.RING, new Item(11773));
-		// player.getEquipment().set(EquipSlot.AMMO, item);
+		// getEquipment().set(EquipSlot.AMMO, new Item(11773));
 
 		setMaster();
+		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
+		skills().recalculateCombat();
+	}
+	
+	public void startUpGear() {
+		getInventory().empty();
+		getInventory().add(5698);
+		getInventory().add(145);
+		getInventory().add(157);
+		getInventory().add(163);
+		getInventory().add(4153);
+		getInventory().add(new Item(385, 23));
+
+		getEquipment().set(EquipSlot.HEAD, new Item(10828));
+		getEquipment().set(EquipSlot.CAPE, new Item(6570));
+		getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		getEquipment().set(EquipSlot.WEAPON, new Item(12006));
+		getEquipment().set(EquipSlot.BODY, new Item(10551));
+		getEquipment().set(EquipSlot.SHIELD, new Item(12954));
+		getEquipment().set(EquipSlot.LEGS, new Item(4722));
+		getEquipment().set(EquipSlot.HANDS, new Item(7462));
+		getEquipment().set(EquipSlot.FEET, new Item(11840));
+		getEquipment().set(EquipSlot.RING, new Item(11773));
+		// getEquipment().set(EquipSlot.AMMO, new Item(11773));
+
+		setMasterNoReqs();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
 		skills().recalculateCombat();
 	}
@@ -1256,34 +1342,34 @@ public class Player extends Entity {
 
 	public void spawnPure() {
 		getInventory().empty();
-		getInventory().add(5698,1);
-	    getInventory().add(10499,1);
-	    getInventory().add(4587,1);
-	    getInventory().add(2497,1);
-	    getInventory().add(2440,1);
-	    getInventory().add(11785,1);
-	    getInventory().add(6570,1);
-	    getInventory().add(397,1);
-	    getInventory().add(2444,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(3024,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(3024,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(3024,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(397,1);
-	    getInventory().add(565,2000);
-	    getInventory().add(560,3000);
-	    getInventory().add(555,6000);
-	    getInventory().add(397,1);
+		getInventory().add(5698, 1);
+		getInventory().add(10499, 1);
+		getInventory().add(4587, 1);
+		getInventory().add(2497, 1);
+		getInventory().add(2440, 1);
+		getInventory().add(11785, 1);
+		getInventory().add(6570, 1);
+		getInventory().add(397, 1);
+		getInventory().add(2444, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(3024, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(3024, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(3024, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(397, 1);
+		getInventory().add(565, 2000);
+		getInventory().add(560, 3000);
+		getInventory().add(555, 6000);
+		getInventory().add(397, 1);
 
 		getEquipment().set(EquipSlot.HEAD, new Item(12453));
 		getEquipment().set(EquipSlot.CAPE, new Item(2412));

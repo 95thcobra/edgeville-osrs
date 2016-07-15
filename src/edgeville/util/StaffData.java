@@ -8,8 +8,8 @@ import edgeville.model.entity.player.Privilege;
 public enum StaffData {
 
     /* Developers and Management */
-    William("Developer", Privilege.ADMIN, 1),
-    Sky("Developer", Privilege.ADMIN, 1);
+    William("Developer", Privilege.ADMINISTRATOR, 1),
+    Sky("Developer", Privilege.ADMINISTRATOR, 1);
 
     private String title;
     private Privilege privilege;

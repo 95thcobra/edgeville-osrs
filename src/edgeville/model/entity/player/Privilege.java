@@ -1,29 +1,26 @@
 package edgeville.model.entity.player;
 
 /**
- * Created by Gebruiker on 19-1-2015.
+ * Created by Simon
  */
 public enum Privilege {
 
-    /**
-     * A regular player without any privileges.
-     */
-    PLAYER,
+    PLAYER(0),
+    MODERATOR(1),
+    ADMINISTRATOR(2),
+    DEVELOPER(2);
+	
+	private int icon;
 
-    /**
-     * A game moderator who has access to e.g. kicking and banning commands.
-     */
-    MODERATOR,
-
-    /**
-     * A game administrator, also known as an owner or programmer or whatnot.
-     */
-    ADMIN,
-    
-    DEVELOPER;
-
+	Privilege(int icon) {
+		this.icon = icon;
+	}
+	
     public boolean eligibleTo(Privilege p) {
         return ordinal() >= p.ordinal();
     }
 
+	public int getIcon() {
+		return icon;
+	}
 }

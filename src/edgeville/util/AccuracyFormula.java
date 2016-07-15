@@ -381,6 +381,14 @@ public class AccuracyFormula {
 		return finalHit;
 	}
 
+	public static int calculateHit(Player player, Entity target, int maxHit) {
+		if (target instanceof Player) {
+			return calculateHit(player, (Player) target, maxHit);
+		} else {
+			return player.world().random().nextInt((int) Math.round(maxHit));
+		}
+	}
+
 	public static int calculateHit(Player player, Player target, int maxHit) {
 		int playerAttackLevel = player.skills().level(Skills.ATTACK);
 		int targetDefenceLevel = target.skills().level(Skills.DEFENCE);

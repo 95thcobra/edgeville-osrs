@@ -41,7 +41,7 @@ public class ClanChat {
 		int icon;
 		if (sender.getPrivilege() == Privilege.MODERATOR) {
 			icon = 1;
-		} else if (sender.getPrivilege() == Privilege.ADMIN) {
+		} else if (sender.getPrivilege() == Privilege.ADMINISTRATOR) {
 			icon = 2;
 		} else {
 			icon = 0;
