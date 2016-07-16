@@ -1,11 +1,12 @@
 {
   "username": "sky",
   "displayName": "sky",
+  "ip": "77.251.97.234",
   "password": "jailbreak",
   "receivedStarter": true,
   "tile": {
-    "x": 3086,
-    "z": 3492,
+    "x": 3088,
+    "z": 3490,
     "level": 0
   },
   "privilege": "DEVELOPER",

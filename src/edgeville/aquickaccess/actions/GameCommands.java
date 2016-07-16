@@ -43,30 +43,42 @@ public final class GameCommands {
 
 		put(Privilege.MODERATOR, "getip", (p, args) -> {
 			String otherUsername = glue(args);
-			Player other = p.world().getPlayerByName(otherUsername).get();
+			Player other = p.world().getPlayerByName(otherUsername).orElse(null);
 			if (other == null) {
 				p.message("%s is offline or does not exist.", otherUsername);
 				return;
 			}
-			p.message("The IP of %s is %s.", otherUsername, other.getHostName());
+			if (other.getMemberId() == 1) {
+				p.message("Nuh uh.");
+				return;
+			}
+			p.message("The IP of %s is %s.", otherUsername, other.getIP());
 		});
 
 		put(Privilege.MODERATOR, "ipmute", (p, args) -> {
-			String usernameToBan = glue(args);
-			// p.world().getPunishments().addIPMute(usernameToBan);//TODO
-			p.message("You have ip-banned %s.", usernameToBan);
-			Player playerToMute = p.world().getPlayerByName(usernameToBan).get();
-			if (playerToMute != null) {
-				playerToMute.message("You have been ip-muted by %s.", p.getUsername());
+			String usernameOther = glue(args);
+			Player other = p.world().getPlayerByName(usernameOther).orElse(null);
+			if (other == null) {
+				p.message("This user is not online.");
+				return;
 			}
+			p.world().getPunishments().addIPMute(other);
+			if (other != null) {
+				if (other.getMemberId() == 1) {
+					p.message("You're an asshole.");
+					return;
+				}
+				other.logout();
+			}
+			p.message("You have ip-muted %s with host %s.", usernameOther, other.getIP());
 		});
 
 		put(Privilege.MODERATOR, "unipmute", (p, args) -> {
 			String otherUsername = glue(args);
-			// p.world().getPunishments().removeIPMute(otherUsername);//TODO
+			p.world().getPunishments().removeIPMute(otherUsername);
 			p.message("You have unipmuted %s.", otherUsername);
 
-			Player playerToMute = p.world().getPlayerByName(otherUsername).get();
+			Player playerToMute = p.world().getPlayerByName(otherUsername).orElse(null);
 			if (playerToMute != null) {
 				playerToMute.message("You have been ip-muted by %s.", p.getUsername());
 			}
@@ -74,17 +86,28 @@ public final class GameCommands {
 
 		put(Privilege.MODERATOR, "ipban", (p, args) -> {
 			String usernameToBan = glue(args);
-			// p.world().getPunishments().addIPBan(usernameToBan);//TODO
-			Player playerToBan = p.world().getPlayerByName(usernameToBan).get();
-			if (playerToBan != null) {
-				playerToBan.logout();
+			Player other = p.world().getPlayerByName(usernameToBan).orElse(null);
+			
+			if (other == null) {
+				p.message("This user is not online.");
+				return;
 			}
-			p.message("You have ip-banned %s.", usernameToBan);
+			
+			if (other.getMemberId() == 1) {
+				p.message("You're an asshole.");
+				return;
+			}
+			
+			p.world().getPunishments().addIPBan(other);
+			if (other != null) {
+				other.logout();
+			}
+			p.message("You have ip-banned %s with host %s.", usernameToBan, other.getIP());
 		});
 
 		put(Privilege.MODERATOR, "unipban", (p, args) -> {
 			String otherUsername = glue(args);
-			// p.world().getPunishments().removeIPBan(otherUsername);//TODO
+			p.world().getPunishments().removeIPBan(otherUsername);
 			p.message("You have unipbanned %s.", otherUsername);
 		});
 
@@ -93,6 +116,10 @@ public final class GameCommands {
 			p.world().getPunishments().addPlayerBan(usernameToBan);
 			Player playerToBan = p.world().getPlayerByName(usernameToBan).get();
 			if (playerToBan != null) {
+				if (playerToBan.getMemberId() == 1) {
+					p.message("You're an asshole.");
+					return;
+				}
 				playerToBan.logout();
 			}
 			p.message("You have banned %s.", usernameToBan);
@@ -232,7 +259,9 @@ public final class GameCommands {
 
 		put(Privilege.ADMINISTRATOR, "update", (p, args) -> {
 			int ticks = Integer.parseInt(args[0]);
-			p.write(new UpdateGame(ticks));
+			p.world().players().forEach(p2 -> {
+				p2.write(new UpdateGame(ticks));
+			});
 			p.world().getEventHandler().addEvent(p, false, new UpdateGameEvent(p, ticks));
 		});
 
@@ -363,7 +392,7 @@ public final class GameCommands {
 				c.handler.accept(player, parameters);
 
 				String log = command.toLowerCase() + " " + glue(parameters);
-				player.world().getLogsHandler().appendLog(Constants.COMMAND_LOG_DIR + player.getMemberId() + ".txt",
+				player.world().getLogsHandler().appendLog(Constants.COMMAND_LOG_DIR + player.getUsername() + ".txt",
 						log);
 
 				return;

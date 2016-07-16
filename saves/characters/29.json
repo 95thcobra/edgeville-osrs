@@ -1,11 +1,12 @@
 {
   "username": "test",
   "displayName": "test",
+  "ip": "77.251.97.234",
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3097,
-    "z": 3499,
+    "x": 3093,
+    "z": 3494,
     "level": 0
   },
   "privilege": "PLAYER",

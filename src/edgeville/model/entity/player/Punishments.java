@@ -16,7 +16,7 @@ import edgeville.model.entity.Player;
 public class Punishments {
 
 	private List<String> bannedPlayers;
-	
+
 	public List<String> getBannedPlayers() {
 		return bannedPlayers;
 	}
@@ -36,17 +36,33 @@ public class Punishments {
 	public List<String> getBannedIps() {
 		return bannedIps;
 	}
-
-	public void setBannedIps(List<String> bannedIps) {
-		this.bannedIps = bannedIps;
+	
+	public boolean isIPBanned(String ip) {
+		
+		System.out.println("1-"+ip);
+		
+		for (int i = 0; i < bannedIps.size(); i++) {
+			String line = bannedIps.get(i);
+			String currentIp = line.substring(0,line.indexOf(':'));
+			System.out.println("2-"+currentIp);
+			if (currentIp.equalsIgnoreCase(ip)) {
+				return true;
+			}
+		}
+		
+		
+		/*for(String line : bannedIps) {
+			System.out.println("1-"+line);
+			System.out.println("2-"+ip);
+			if (line.contains(ip)) {
+				return true;
+			}
+		}*/
+		return false;
 	}
 
 	public List<String> getMutedIps() {
 		return mutedIps;
-	}
-
-	public void setMutedIps(List<String> mutedIps) {
-		this.mutedIps = mutedIps;
 	}
 
 	private List<String> mutedPlayers;
@@ -55,23 +71,54 @@ public class Punishments {
 	private List<String> mutedIps;
 
 	public Punishments() {
+		bannedPlayers = new ArrayList<>();
+		bannedIps = new ArrayList<>();
+		mutedPlayers = new ArrayList<>();
+		mutedIps = new ArrayList<>();
+		
 		loadBannedPlayers();
-		loadMutedPlayers();
 		loadBannedIps();
+		loadMutedPlayers();
 		loadMutedIps();
 	}
+	
+	private void loadBannedPlayers() {
+		bannedPlayers = new ArrayList<>();
 
-	private void loadMutedIps() {
-		// TODO Auto-generated method stub
+		try (BufferedReader br = new BufferedReader(new FileReader(Constants.BANNED_PLAYERS))) {
+			String line = br.readLine();
+
+			while (line != null) {
+				bannedPlayers.add(line);
+				line = br.readLine();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
 	private void loadBannedIps() {
-		// TODO Auto-generated method stub
-	}
+		bannedIps = new ArrayList<>();
 
+		try (BufferedReader br = new BufferedReader(new FileReader(Constants.BANNED_IPS))) {
+			String line = br.readLine();
+
+			while (line != null) {
+				bannedIps.add(line);
+				line = br.readLine();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void loadMutedPlayers() {
 		mutedPlayers = new ArrayList<>();
-		
+
 		try (BufferedReader br = new BufferedReader(new FileReader(Constants.MUTED_PLAYERS))) {
 			String line = br.readLine();
 
@@ -85,15 +132,14 @@ public class Punishments {
 			e.printStackTrace();
 		}
 	}
+	private void loadMutedIps() {
+		mutedIps = new ArrayList<>();
 
-	private void loadBannedPlayers() {
-		bannedPlayers = new ArrayList<>();
-		
-		try (BufferedReader br = new BufferedReader(new FileReader(Constants.BANNED_PLAYERS))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(Constants.MUTED_IPS))) {
 			String line = br.readLine();
 
 			while (line != null) {
-				bannedPlayers.add(line);
+				mutedIps.add(line);
 				line = br.readLine();
 			}
 		} catch (FileNotFoundException e) {
@@ -111,7 +157,7 @@ public class Punishments {
 		}
 		updateBannedPlayers();
 	}
-	
+
 	public void removePlayerMute(String username) {
 		for (int i = 0; i < mutedPlayers.size(); i++) {
 			if (mutedPlayers.get(i).equalsIgnoreCase(username)) {
@@ -120,7 +166,7 @@ public class Punishments {
 		}
 		updateMutedPlayers();
 	}
-	
+
 	public void addPlayerMute(String username) {
 		mutedPlayers.add(username);
 		updateMutedPlayers();
@@ -130,15 +176,23 @@ public class Punishments {
 		bannedPlayers.add(username);
 		updateBannedPlayers();
 	}
-	
+
 	private void updateMutedPlayers() {
 		updateFile(mutedPlayers, Constants.MUTED_PLAYERS);
 	}
-	
+
 	private void updateBannedPlayers() {
 		updateFile(bannedPlayers, Constants.BANNED_PLAYERS);
 	}
+
+	private void updateBannedIPs() {
+		updateFile(bannedIps, Constants.BANNED_IPS);
+	}
 	
+	private void updateMutedIPs() {
+		updateFile(mutedIps, Constants.MUTED_IPS);
+	}
+
 	private void updateFile(List<String> lines, String dir) {
 		try {
 			File file = new File(dir);
@@ -154,9 +208,41 @@ public class Punishments {
 				bw.write(username);
 			}
 			bw.close();
-			
+
 		} catch (Exception e) {
 			System.out.println("Couldn't update banned players.");
 		}
+	}
+
+	public void addIPBan(Player other) {
+		bannedIps.add(other.getIP() + ":" + other.getUsername());
+		updateBannedIPs();
+	}
+
+	public void removeIPBan(String otherUsername) {
+		for (int i = 0; i < bannedIps.size(); i++) {
+			String line = bannedIps.get(i);
+			String ip = line.substring(line.indexOf(':') + 1);
+			if (ip.equalsIgnoreCase(otherUsername)) {
+				bannedIps.remove(i);
+			}
+		}
+		updateBannedIPs();
+	}
+
+	public void addIPMute(Player other) {
+		mutedIps.add(other.getIP() + ":" + other.getUsername());
+		updateMutedIPs();
+	}
+
+	public void removeIPMute(String otherUsername) {
+		for (int i = 0; i < mutedIps.size(); i++) {
+			String line = mutedIps.get(i);
+			String ip = line.substring(line.indexOf(':') + 1);
+			if (ip.equalsIgnoreCase(otherUsername)) {
+				mutedIps.remove(i);
+			}
+		}
+		updateMutedIPs();
 	}
 }

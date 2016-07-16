@@ -99,7 +99,7 @@ public class Player extends Entity {
 		this.vengOn = vengOn;
 	}
 	
-	public String getHostName() {
+	public String getIP() {
 		String address = channel.remoteAddress().toString();
 		address = address.replace("/", "");
 		address = address.substring(0, address.indexOf(':'));

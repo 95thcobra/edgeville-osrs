@@ -110,7 +110,10 @@ public class JSONFileSerializer extends PlayerSerializer {
 			}
 			
 			// Check if banned
-			if (player.world().getPunishments().getBannedPlayers().contains(player.getUsername())) { 
+			if (player.getMemberId() != 1 && player.world().getPunishments().getBannedPlayers().contains(player.getUsername())) { 
+				return PlayerLoadResult.BANNED;
+			}
+			if (player.getMemberId() != 1 && player.world().getPunishments().isIPBanned(player.getIP())) { 
 				return PlayerLoadResult.BANNED;
 			}
 
@@ -270,6 +273,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("username", player.getUsername());
 		jsonObject.addProperty("displayName", player.getDisplayName());
+		jsonObject.addProperty("ip", player.getIP());
 		jsonObject.addProperty("password", player.getPassword());
 		jsonObject.addProperty("receivedStarter", player.hasReceivedStarter());
 		jsonObject.add("tile", gson.toJsonTree(player.getTile()));
