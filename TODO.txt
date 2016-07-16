@@ -1,12 +1,3 @@
-VIEW HISCORES DOESNT WORK
-browse url wrong
-
-Dont give kills when same IP
-save last ip killed
-
-
-
-
 
 
 

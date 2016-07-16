@@ -1,29 +1,29 @@
 {
-  "username": "test",
-  "displayName": "test",
+  "username": "test test",
+  "displayName": "test test",
   "ip": "77.251.97.234",
-  "password": "test",
+  "password": "test1",
   "receivedStarter": true,
   "tile": {
-    "x": 3090,
-    "z": 3501,
+    "x": 3093,
+    "z": 3498,
     "level": 0
   },
   "playTime": {
     "hours": 0,
-    "minutes": 22,
-    "seconds": 49,
-    "milliseconds": 200,
+    "minutes": 0,
+    "seconds": 6,
+    "milliseconds": 0,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "PLAYER",
   "migration": 0,
-  "skullIcon": 0,
+  "skullIcon": -1,
   "prayerIcon": -1,
   "debug": false,
   "kills": 0,
   "deaths": 0,
-  "lastKilled": 30,
+  "lastKilled": 0,
   "lastKilledAmount": 0,
   "gender": "MALE",
   "looks": [
@@ -535,60 +535,8 @@
   ],
   "varps": [
     {
-      "id": 29,
-      "value": 1
-    },
-    {
-      "id": 31,
-      "value": 1
-    },
-    {
-      "id": 32,
-      "value": 1
-    },
-    {
-      "id": 62,
-      "value": 1
-    },
-    {
-      "id": 71,
-      "value": 1
-    },
-    {
-      "id": 107,
-      "value": 1
-    },
-    {
-      "id": 122,
-      "value": 1
-    },
-    {
-      "id": 130,
-      "value": 1
-    },
-    {
-      "id": 144,
-      "value": 1
-    },
-    {
       "id": 166,
       "value": 3
-    },
-    {
-      "id": 173,
-      "value": 1
-    },
-    {
-      "id": 176,
-      "value": 1
-    },
-    {
-      "id": 222,
-      "value": 1
-    },
-    {
-      "id": 273,
-      "value": 1
     },
     {
       "id": 300,
@@ -630,7 +578,11 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034959E7
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
@@ -639,10 +591,6 @@
     {
       "level": 99,
       "xp": 1.3034431E7
-    },
-    {
-      "level": 97,
-      "xp": 1.303460656E7
     },
     {
       "level": 99,
@@ -729,5 +677,5 @@
   "autocastSpellChild": 0,
   "lastCastedSpellChild": 0,
   "autocasting": false,
-  "lastHiscoresUpdate": 1468668050464
+  "lastHiscoresUpdate": 1468672355169
 }

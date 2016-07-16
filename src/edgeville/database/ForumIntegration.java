@@ -98,7 +98,7 @@ public class ForumIntegration {
 		int response = -1;
 		try {
 			String urlString = "http://edgeville.org/game/login.php?security=" + CRYPTION_ID + "&name="
-					+ username.replace(" ", "_") + "&pass=" + password;
+					+ username.replace(" ", "%20") + "&pass=" + password;
 
 			System.out.println(urlString);
 

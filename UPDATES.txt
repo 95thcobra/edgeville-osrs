@@ -1,9 +1,14 @@
 Some last minute updates :)
-[16-7-2016]: 
-- Punishments system added. (bans/mutes)
-- Server uptime counter added.
-- Play time counter added.
-- Play time gets sent to hiscores as well now.
+
+
+[B][16-7-2016]: [/B]
+[16-07-2016]: Punishments system added. (bans/mutes)
+[16-07-2016]: Server uptime counter added.
+[16-07-2016]: Play time counter added.
+[16-07-2016]: Play time gets sent to hiscores as well now.
+[16-07-2016]: Add a packet that launches URLs.
+[16-07-2016]: View hiscores and forums from questtab.
+[16-07-2016]: Add kills-farming measures. (Same ip, and killing repeatedly)
 
 
 
