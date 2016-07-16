@@ -11,18 +11,18 @@
   },
   "playTime": {
     "hours": 0,
-    "minutes": 2,
-    "seconds": 11,
+    "minutes": 0,
+    "seconds": 5,
     "milliseconds": 400,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "PLAYER",
   "migration": 0,
-  "skullIcon": 0,
+  "skullIcon": -1,
   "prayerIcon": -1,
   "debug": false,
   "kills": 0,
-  "deaths": 1,
+  "deaths": 0,
   "lastKilled": 0,
   "lastKilledAmount": 0,
   "gender": "MALE",
@@ -539,10 +539,6 @@
       "value": 3
     },
     {
-      "id": 173,
-      "value": 1
-    },
-    {
       "id": 300,
       "value": 1000
     },
@@ -582,7 +578,11 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034451E7
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
@@ -591,10 +591,6 @@
     {
       "level": 99,
       "xp": 1.3034431E7
-    },
-    {
-      "level": 94,
-      "xp": 1.303443765E7
     },
     {
       "level": 99,
@@ -681,7 +677,8 @@
   "autocastSpellChild": 0,
   "lastCastedSpellChild": 0,
   "autocasting": false,
-  "lastHiscoresUpdate": 1468688989152,
-  "lastNurseUsed": 1468688989152,
-  "lastDfsUsed": 1468688989152
+  "lastHiscoresUpdate": 1468700271881,
+  "lastNurseUsed": 1468700271881,
+  "lastDfsUsed": 1468700271881,
+  "lastVengeanceUsed": 1468700271881
 }

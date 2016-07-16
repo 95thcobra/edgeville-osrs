@@ -203,8 +203,8 @@ public class Skills {
 			levels[skill] = 0;
 		}
 		
-		player.message("!!!Skill that changed: %d", skill);
-		player.message("Level - change is %d", levels[skill] - change);
+		//player.message("!!!Skill that changed: %d", skill);
+		//player.message("Level - change is %d", levels[skill] - change);
 		
 		// Makes sure you cant go higher than once.
 		if (levels[skill] - change > xpLevel(skill)) {
@@ -249,6 +249,11 @@ public class Skills {
 	}
 
 	public void replenishStats() {
+		
+		if (player.dead()) {
+			return;
+		}
+		
 		for (int i = 0; i < SKILL_COUNT; i++) {
 			if (i == PRAYER) // Hitpoints does not replenish
 												// this way

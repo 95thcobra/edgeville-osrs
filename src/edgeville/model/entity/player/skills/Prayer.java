@@ -63,7 +63,8 @@ public class Prayer {
 		}
 
 		if (!hasRequirements(prayer)) {
-			player.message("Your prayer level is too low, you need " + prayer.getPrayerLevelReq() + " to use this prayer.");
+			player.message(
+					"Your prayer level is too low, you need " + prayer.getPrayerLevelReq() + " to use this prayer.");
 			deactivatePrayer(prayer);
 			return;
 		}
@@ -77,14 +78,22 @@ public class Prayer {
 		player.world().getEventHandler().addEvent(player, prayer.getDrain(), false, new Event() {
 			@Override
 			public void execute(EventContainer container) {
+
+				if (player.dead()) {
+					container.stop();
+					return;
+				}
+				
 				player.skills().alterSkill(Skills.PRAYER, -1, true);
 
 				if (player.skills().level(Skills.PRAYER) <= 0) {
 					deactivatePrayer(prayer);
 					container.stop();
+					return;
 				}
 				if (!isPrayerOn(prayer.getVarbit())) {
 					container.stop();
+					return;
 				}
 			}
 		});

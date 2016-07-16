@@ -77,7 +77,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			// getEntity().message("meleeeing...");
 			handleMeleeCombat(weaponId);
 		}
- 
+
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGER, getEntity());
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
 
@@ -114,8 +114,6 @@ public class PlayerVersusAnyCombat extends Combat {
 				doMeleeSpecial(player, weaponId);
 				return;
 			}
-
-			
 
 			int max = CombatFormula.maximumMeleeHit(((Player) getEntity()));
 			int hit = 0;
@@ -196,7 +194,8 @@ public class PlayerVersusAnyCombat extends Combat {
 			triggerVeng(hit);
 
 			if (specialAttack.isDoubleHit()) {
-				//int hit2 = player.world().random().nextInt((int) Math.round(max));
+				// int hit2 = player.world().random().nextInt((int)
+				// Math.round(max));
 				int hit2;
 				if (target instanceof Player) {
 					hit2 = AccuracyFormula.calculateHit(player, (Player) target, (int) Math.round(max));
@@ -222,9 +221,11 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		// Are we in range?
-		if (currentTile.distance(target.getTile()) > maxDist && !player.frozen() && !player.stunned()) {
-			// currentTile = moveCloser();
-			player.stepTowards(target, 25);
+		if (currentTile.distance(target.getTile()) > maxDist) {
+			if (!player.frozen() && !player.stunned()) {
+				// currentTile = moveCloser();
+				player.stepTowards(target, 25);
+			}
 			return;
 		}
 
@@ -234,7 +235,9 @@ public class PlayerVersusAnyCombat extends Combat {
 		// }
 
 		if (player.getTile().equals(target.getTile())) {
-			currentTile = moveCloser();
+			if (!player.frozen()) {
+				currentTile = moveCloser();
+			}
 			return;
 		}
 		// player.pathQueue().clear();
@@ -463,16 +466,16 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (!player.touches(target, player.getTile())) {
 			return;
 		}
-		
-		//player.message("Gets here");
+
+		// player.message("Gets here");
 
 		player.setSpecialEnergyAmount(player.getSpecialEnergyAmount() - (50 * 10));
 
 		player.animate(1667);
 		player.graphic(340, 92, 0);
 
-		int max = (int)Math.round(CombatFormula.maximumMeleeHit(player));
-		//int hit = player.world().random().nextInt((int) Math.round(max));
+		int max = (int) Math.round(CombatFormula.maximumMeleeHit(player));
+		// int hit = player.world().random().nextInt((int) Math.round(max));
 		int hit = AccuracyFormula.calculateHit(player, target, max);
 		target.hit(player, hit);
 		player.timers().register(TimerKey.COMBAT_ATTACK, target.world().equipmentInfo().weaponSpeed(4153));

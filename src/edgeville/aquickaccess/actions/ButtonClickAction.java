@@ -684,13 +684,23 @@ public class ButtonClickAction {
 			player.message("Vengeance is already enabled!");
 			return;
 		}
-		if (player.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
+		
+    	long msLeft = System.currentTimeMillis() - player.getLastVengeanceUsed();
+    	//player.message("msLeft", msLeft);
+    	if (msLeft < 30000) {
+    		int secondsLeft = 30 -(int) (msLeft / 1000);
+    		player.message("You need to wait %d more seconds to cast vengeance!", secondsLeft);
+    		return;
+    	}
+    	player.setLastVengeanceUsed(System.currentTimeMillis());
+
+		/*if (player.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
 			player.message("Vengeance is on cooldown, wait %d seconds.", (int) Math.round(player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).ticks() / 0.6));
 			return;
-		}
+		}*/
 		player.graphic(726, 92, 0);
 		player.animate(4410);
-		player.timers().register(TimerKey.VENGEANCE_COOLDOWN, 50);
+		//player.timers().register(TimerKey.VENGEANCE_COOLDOWN, 50);
 		player.setVengOn(true);
 	}
 }

@@ -1,12 +1,16 @@
+- Fixed draining prayer after death.
+- Fixed restoring hp after death.
+
+
+
+
+
 [B][16-7-2016]: [/B]
-- Last damager will now receive the kills, instead of most damaged.
-- Potion overwriting fixed. Eg. drinking a sara brew and then super combat.
-- DFS recharge timer in chat added.
-- Hp, Prayer and spec now restores on kills.
-- Melee accuracy nerfed by 5%.
-- Annoying npcs at home removed.
-
-
+- Vengeance timer decreased to 30 secs.
+- On kill you will not have your stats un-boosted.
+- Kill/command logs added.
+- Chat logs added.
+- Ranging while frozen and out of distance is fixed.
 
 
 

@@ -82,6 +82,13 @@ public class PlayerDeathEvent extends Event {
 					
 					((Player) killer).resetSpecialEnergy();
 					((Player) killer).skills().restoreStats();
+					
+					
+					String log = String.format("killed %s(id:%d)", player.getUsername(), player.getMemberId());
+					player.world().getLogsHandler().appendLog(Constants.KILL_LOG_DIR + ((Player)killer).getUsername() + ".txt",log);
+					 log = String.format("killed by %s(id:%d)", ((Player)killer).getUsername(), ((Player)killer).getMemberId());
+					player.world().getLogsHandler().appendLog(Constants.KILL_LOG_DIR + player.getUsername() + ".txt",log);
+					
 				//}
 				if (Constants.DROP_ITEMS_ON_DEATH) {
 					ItemsOnDeath.dropItems((Player) killer, player);

@@ -13,7 +13,7 @@ import edgeville.services.serializers.PlayerSerializer;
 public class Constants {
 	
 	// Crucial settings
-	public static final boolean MYSQL_ENABLED = true;
+	public static final boolean MYSQL_ENABLED = false;
 	public static final boolean SAVE_PLAYERS = true;
 	
 	
@@ -61,5 +61,6 @@ public class Constants {
 	public static final String MUTED_IPS = "./saves/punishment/mutedips.txt";
 	
 	public static final String COMMAND_LOG_DIR = "./saves/logs/commands/";
-	
+	public static final String KILL_LOG_DIR = "./saves/logs/kills/";
+	public static final String CHAT_LOG_DIR = "./saves/logs/chat/";
 }

@@ -87,7 +87,8 @@ public class Player extends Entity {
 	private long lastHiscoresUpdate;
 	private long lastNurseUsed;
 	private long lastDfsUsed;
-
+	private long lastVengeanceUsed;
+	
 	/**
 	 * Our achieved skill levels
 	 */
@@ -559,6 +560,10 @@ public class Player extends Entity {
 		
 		if (this.getLastDfsUsed() == 0) {
 			this.setLastDfsUsed(System.currentTimeMillis());
+		}
+		
+		if (this.getLastVengeanceUsed() == 0) {
+			this.setLastVengeanceUsed(System.currentTimeMillis());
 		}
 	}
 
@@ -1531,5 +1536,13 @@ public class Player extends Entity {
 
 	public void setLastDfsUsed(long lastDfsUsed) {
 		this.lastDfsUsed = lastDfsUsed;
+	}
+
+	public long getLastVengeanceUsed() {
+		return lastVengeanceUsed;
+	}
+
+	public void setLastVengeanceUsed(long lastVengeanceUsed) {
+		this.lastVengeanceUsed = lastVengeanceUsed;
 	}
 }

@@ -155,6 +155,10 @@ public class JSONFileSerializer extends PlayerSerializer {
 			if (lastDfsUsed != null)
 				player.setLastNurseUsed(lastDfsUsed.getAsLong());
 
+			JsonElement lastVengeanceUsed = rootObject.get("lastVengeanceUsed");
+			if (lastVengeanceUsed != null)
+				player.setLastVengeanceUsed(lastVengeanceUsed.getAsLong());
+			
 			// Debug
 			player.setDebug(rootObject.get("debug").getAsBoolean());
 
@@ -410,6 +414,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("lastHiscoresUpdate", player.getLastHiscoresUpdate());
 		jsonObject.addProperty("lastNurseUsed", player.getLastNurseUsed());
 		jsonObject.addProperty("lastDfsUsed", player.getLastDfsUsed());
+		jsonObject.addProperty("lastVengeanceUsed", player.getLastVengeanceUsed());
 		
 		// end
 

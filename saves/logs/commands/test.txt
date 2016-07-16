@@ -1,2 +1,3 @@
 [Sat Jul 16 02:00:39 CEST 2016]:ipban sky
 [Sat Jul 16 02:00:44 CEST 2016]:getip sky
+[Sat Jul 16 20:26:24 CEST 2016]:%s(id:%d) has killed %s(id:%d)

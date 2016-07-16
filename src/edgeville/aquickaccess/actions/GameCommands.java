@@ -78,6 +78,8 @@ public final class GameCommands {
 			}
 			p.world().getPunishments().addIPMute(other);
 			p.message("You have ip-muted %s with host %s.", usernameOther, other.getIP());
+			other.message("You have been ip-muted by %s", p.getUsername());
+			other.setMuted(true);
 		});
 
 		put(Privilege.MODERATOR, "unipmute", (p, args) -> {
@@ -88,6 +90,7 @@ public final class GameCommands {
 			Player playerToMute = p.world().getPlayerByName(otherUsername).orElse(null);
 			if (playerToMute != null) {
 				playerToMute.message("You have been unipmuted by %s.", p.getUsername());
+				playerToMute.setMuted(false);
 			}
 		});
 
