@@ -55,11 +55,11 @@ public class Constants {
 	/**
 	 * File directories
 	 */
-	public static final String BANNED_PLAYERS = "./data/punishment/bannedplayers.txt";
-	public static final String MUTED_PLAYERS = "./data/punishment/mutedplayers.txt";
-	public static final String BANNED_IPS = "./data/punishment/bannedips.txt";
-	public static final String MUTED_IPS = "./data/punishment/mutedips.txt";
+	public static final String BANNED_PLAYERS = "./saves/punishment/bannedplayers.txt";
+	public static final String MUTED_PLAYERS = "./saves/punishment/mutedplayers.txt";
+	public static final String BANNED_IPS = "./saves/punishment/bannedips.txt";
+	public static final String MUTED_IPS = "./saves/punishment/mutedips.txt";
 	
-	public static final String COMMAND_LOG_DIR = "./data/logs/commands/";
+	public static final String COMMAND_LOG_DIR = "./saves/logs/commands/";
 	
 }

@@ -116,6 +116,11 @@ public class JSONFileSerializer extends PlayerSerializer {
 			if (player.getMemberId() != 1 && player.world().getPunishments().isIPBanned(player.getIP())) { 
 				return PlayerLoadResult.BANNED;
 			}
+			
+			// Set mute
+			if (player.world().getPunishments().isMuted(player)) { 
+				player.setMuted(true);
+			}
 
 			/* Basic information */
 			String displayName = rootObject.get("displayName").getAsString();

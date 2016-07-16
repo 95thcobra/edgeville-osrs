@@ -12,6 +12,7 @@ import java.util.List;
 
 import edgeville.Constants;
 import edgeville.model.entity.Player;
+import edgeville.services.serializers.PlayerLoadResult;
 
 public class Punishments {
 
@@ -36,28 +37,38 @@ public class Punishments {
 	public List<String> getBannedIps() {
 		return bannedIps;
 	}
-	
+
+	/**
+	 * Only use this on login, not for every chatmessage. Use player.ismuted for that	
+	 * @param player
+	 * @return
+	 */
+	public boolean isMuted(Player player) {
+		// Account mute
+		if (mutedPlayers.contains(player.getUsername())) {
+			return true;
+		}
+
+		// Check ip mute
+		for (int i = 0; i < mutedIps.size(); i++) {
+			String line = mutedIps.get(i);
+			String currentIp = line.substring(0, line.indexOf(':'));
+			if (currentIp.equalsIgnoreCase(player.getIP())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public boolean isIPBanned(String ip) {
-		
-		System.out.println("1-"+ip);
-		
 		for (int i = 0; i < bannedIps.size(); i++) {
 			String line = bannedIps.get(i);
-			String currentIp = line.substring(0,line.indexOf(':'));
-			System.out.println("2-"+currentIp);
+			String currentIp = line.substring(0, line.indexOf(':'));
+			System.out.println("2-" + currentIp);
 			if (currentIp.equalsIgnoreCase(ip)) {
 				return true;
 			}
 		}
-		
-		
-		/*for(String line : bannedIps) {
-			System.out.println("1-"+line);
-			System.out.println("2-"+ip);
-			if (line.contains(ip)) {
-				return true;
-			}
-		}*/
 		return false;
 	}
 
@@ -75,13 +86,13 @@ public class Punishments {
 		bannedIps = new ArrayList<>();
 		mutedPlayers = new ArrayList<>();
 		mutedIps = new ArrayList<>();
-		
+
 		loadBannedPlayers();
 		loadBannedIps();
 		loadMutedPlayers();
 		loadMutedIps();
 	}
-	
+
 	private void loadBannedPlayers() {
 		bannedPlayers = new ArrayList<>();
 
@@ -98,7 +109,7 @@ public class Punishments {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void loadBannedIps() {
 		bannedIps = new ArrayList<>();
 
@@ -115,7 +126,7 @@ public class Punishments {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void loadMutedPlayers() {
 		mutedPlayers = new ArrayList<>();
 
@@ -132,6 +143,7 @@ public class Punishments {
 			e.printStackTrace();
 		}
 	}
+
 	private void loadMutedIps() {
 		mutedIps = new ArrayList<>();
 
@@ -188,7 +200,7 @@ public class Punishments {
 	private void updateBannedIPs() {
 		updateFile(bannedIps, Constants.BANNED_IPS);
 	}
-	
+
 	private void updateMutedIPs() {
 		updateFile(mutedIps, Constants.MUTED_IPS);
 	}

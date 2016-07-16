@@ -77,6 +77,8 @@ public class Player extends Entity {
 	 * The privilege level of this player.
 	 */
 	private Privilege privilege;
+	
+	private boolean isMuted;
 
 	private long lastHiscoresUpdate;
 
@@ -372,6 +374,7 @@ public class Player extends Entity {
 		getVarps().setVarp(Varp.BRIGHTNESS, 3);
 		lastHiscoresUpdate = System.currentTimeMillis();
 		setPrivilege(Privilege.PLAYER);
+		this.isMuted = false;
 	}
 
 	private void onLogin() {
@@ -1439,5 +1442,13 @@ public class Player extends Entity {
 
 	public void setLastHiscoresUpdate(long lastHiscoresUpdate) {
 		this.lastHiscoresUpdate = lastHiscoresUpdate;
+	}
+
+	public boolean isMuted() {
+		return isMuted;
+	}
+
+	public void setMuted(boolean isMuted) {
+		this.isMuted = isMuted;
 	}
 }

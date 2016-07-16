@@ -5,8 +5,8 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3093,
-    "z": 3494,
+    "x": 3094,
+    "z": 3492,
     "level": 0
   },
   "privilege": "PLAYER",
@@ -716,5 +716,5 @@
   "autocastSpellChild": 0,
   "lastCastedSpellChild": 0,
   "autocasting": false,
-  "lastHiscoresUpdate": 1468605645523
+  "lastHiscoresUpdate": 1468661281024
 }

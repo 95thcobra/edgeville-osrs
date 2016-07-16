@@ -41,6 +41,16 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 
+		put(Privilege.MODERATOR, "kick", (p, args) -> {
+			String otherUsername = glue(args);
+			Player other = p.world().getPlayerByName(otherUsername).orElse(null);
+			if (other == null) {
+				p.message("%s is offline or does not exist.", otherUsername);
+				return;
+			}
+			other.logout();
+		});
+		
 		put(Privilege.MODERATOR, "getip", (p, args) -> {
 			String otherUsername = glue(args);
 			Player other = p.world().getPlayerByName(otherUsername).orElse(null);
@@ -62,14 +72,11 @@ public final class GameCommands {
 				p.message("This user is not online.");
 				return;
 			}
-			p.world().getPunishments().addIPMute(other);
-			if (other != null) {
-				if (other.getMemberId() == 1) {
-					p.message("You're an asshole.");
-					return;
-				}
-				other.logout();
+			if (other.getMemberId() == 1) {
+				p.message("You're an asshole.");
+				return;
 			}
+			p.world().getPunishments().addIPMute(other);
 			p.message("You have ip-muted %s with host %s.", usernameOther, other.getIP());
 		});
 
@@ -80,24 +87,24 @@ public final class GameCommands {
 
 			Player playerToMute = p.world().getPlayerByName(otherUsername).orElse(null);
 			if (playerToMute != null) {
-				playerToMute.message("You have been ip-muted by %s.", p.getUsername());
+				playerToMute.message("You have been unipmuted by %s.", p.getUsername());
 			}
 		});
 
 		put(Privilege.MODERATOR, "ipban", (p, args) -> {
 			String usernameToBan = glue(args);
 			Player other = p.world().getPlayerByName(usernameToBan).orElse(null);
-			
+
 			if (other == null) {
 				p.message("This user is not online.");
 				return;
 			}
-			
+
 			if (other.getMemberId() == 1) {
 				p.message("You're an asshole.");
 				return;
 			}
-			
+
 			p.world().getPunishments().addIPBan(other);
 			if (other != null) {
 				other.logout();
@@ -133,12 +140,13 @@ public final class GameCommands {
 
 		put(Privilege.MODERATOR, "mute", (p, args) -> {
 			String usernameToPunish = glue(args);
-			p.world().getPunishments().addPlayerBan(usernameToPunish);
+			p.world().getPunishments().addPlayerMute(usernameToPunish);
 			p.message("You have muted %s.", usernameToPunish);
 
 			Player playerToPunish = p.world().getPlayerByName(usernameToPunish).get();
 			if (playerToPunish != null) {
 				playerToPunish.message("You have been muted by %s.", p.getUsername());
+				playerToPunish.setMuted(true);
 			}
 		});
 
@@ -147,9 +155,10 @@ public final class GameCommands {
 			p.world().getPunishments().removePlayerMute(otherUsername);
 			p.message("You have unmuted %s.", otherUsername);
 
-			Player playerToUnmute = p.world().getPlayerByName(otherUsername).get();
-			if (playerToUnmute != null) {
-				playerToUnmute.message("You have been unmuted by %s.", p.getUsername());
+			Player other = p.world().getPlayerByName(otherUsername).get();
+			if (other != null) {
+				other.message("You have been unmuted by %s.", p.getUsername());
+				other.setMuted(false);
 			}
 		});
 
@@ -224,8 +233,16 @@ public final class GameCommands {
 		put(Privilege.ADMINISTRATOR, "anim", (p, args) -> p.animate(Integer.parseInt(args[0])));
 		put(Privilege.ADMINISTRATOR, "gfx", (p, args) -> p.graphic(Integer.parseInt(args[0])));
 		put(Privilege.ADMINISTRATOR, "graphic", (p, args) -> p.graphic(Integer.parseInt(args[0])));
-		put(Privilege.ADMINISTRATOR, "yell",
-				(p, args) -> p.world().players().forEach(p2 -> p2.message("[%s] %s", p.name(), glue(args))));
+
+		put(Privilege.ADMINISTRATOR, "yell", (p, args) -> {
+			if (p.isMuted()) {
+				p.message("You are muted!");
+				return;
+			}
+			p.world().players().forEach(p2 -> {
+				p2.message("[%s] %s", p.name(), glue(args));
+			});
+		});
 
 		put(Privilege.PLAYER, "empty", (p, args) -> p.getInventory().empty());
 
@@ -322,6 +339,8 @@ public final class GameCommands {
 			p.message("::master - maxes your combat stats.");
 			p.message("::pure - get the stats of a pure.");
 			p.message("::empty - clears your inventory.");
+			p.message("::find - find the id of an item.");
+			p.message("::item - spawn item.");
 		});
 
 		put(Privilege.MODERATOR, "modcommands", (p, args) -> {
@@ -346,6 +365,7 @@ public final class GameCommands {
 		put(Privilege.ADMINISTRATOR, "kickall", (p, args) -> {
 			p.world().players().forEach(Player::logout);
 		});
+		
 
 		put(Privilege.ADMINISTRATOR, "pnpc", (p, args) -> p.looks().transmog(Integer.parseInt(args[0])));
 		return commands;
