@@ -51,6 +51,12 @@ public class SpellOnPlayer implements Action {
 			player.message("This player is in combat.");
 			return;
 		}
+		
+		if (Math.abs(player.skills().combatLevel() - other.skills().combatLevel()) > 5) {
+			player.message("The difference in combat level should be 5 or lower.");
+			return;
+		}
+		
 		if (!player.locked() && !player.dead() && !other.dead()) {
 			player.face(other);
 			player.putAttribute(AttributeKey.TARGET, targetIndex);

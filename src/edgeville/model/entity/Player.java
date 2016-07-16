@@ -75,6 +75,7 @@ public class Player extends Entity {
 	
 	private int lastKilledMemberId;
 	private int amountLastKilled;
+	
 
 	/**
 	 * The privilege level of this player.
@@ -84,6 +85,8 @@ public class Player extends Entity {
 	private boolean isMuted;
 
 	private long lastHiscoresUpdate;
+	private long lastNurseUsed;
+	private long lastDfsUsed;
 
 	/**
 	 * Our achieved skill levels
@@ -381,6 +384,7 @@ public class Player extends Entity {
 		setReceivedStarter(true);
 		getVarps().setVarp(Varp.BRIGHTNESS, 3);
 		lastHiscoresUpdate = System.currentTimeMillis();
+		setLastNurseUsed(System.currentTimeMillis());
 		setPrivilege(Privilege.PLAYER);
 		this.isMuted = false;
 	}
@@ -548,6 +552,14 @@ public class Player extends Entity {
 
 		onLogin();
 		// new Panel(this);
+		
+		if (getLastNurseUsed() == 0) {
+			setLastNurseUsed(System.currentTimeMillis());
+		}
+		
+		if (this.getLastDfsUsed() == 0) {
+			this.setLastDfsUsed(System.currentTimeMillis());
+		}
 	}
 
 	public void event(Event event) {
@@ -1206,7 +1218,7 @@ public class Player extends Entity {
 		getInventory().add(new Item(3144, 2));
 		getInventory().add(6685); // sara
 
-		getInventory().add(391, 3); // mantas
+		getInventory().add(new Item(3144, 3));
 		getInventory().add(3024); // restore
 
 		getInventory().add(391, 3); // mantas
@@ -1218,8 +1230,9 @@ public class Player extends Entity {
 		getInventory().add(391, 4); // mantas
 
 		getInventory().add(4153); // gmaul
-
-		getInventory().add(391, 4); // mantas
+		getInventory().add(11802); // ags
+		
+		getInventory().add(391, 3); // mantas
 
 		// veng
 		getInventory().add(557, 1000); // earth
@@ -1244,12 +1257,21 @@ public class Player extends Entity {
 
 	public void spawnMelee() {
 		getInventory().empty();
-		getInventory().add(5698);
-		getInventory().add(145);
-		getInventory().add(157);
-		getInventory().add(163);
-		getInventory().add(4153);
-		getInventory().add(new Item(385, 23));
+		
+		getInventory().add(11802);
+		getInventory().add(12695);
+
+		getInventory().add(3024, 2);
+		getInventory().add(6685);
+		
+		// veng
+		getInventory().add(557, 1000); // earth
+		getInventory().add(9075, 1000); // astral
+		getInventory().add(560, 1000); // death
+
+		getInventory().add(new Item(3144, 4));
+		
+		getInventory().add(new Item(391, 16));
 
 		getEquipment().set(EquipSlot.HEAD, new Item(10828));
 		getEquipment().set(EquipSlot.CAPE, new Item(6570));
@@ -1297,16 +1319,15 @@ public class Player extends Entity {
 	public void spawnRanged() {
 		getInventory().empty();
 		getInventory().add(11802);
-		getInventory().add(2442);
-		getInventory().add(169);
+		getInventory().add(12695);
+		getInventory().add(6685);
 		getInventory().add(2444);
 		getInventory().add(new Item(560, 1000));
 		getInventory().add(new Item(557, 1000));
 		getInventory().add(new Item(9075, 1000));
-		getInventory().add(2434);
-		getInventory().add(2434);
-		getInventory().add(163);
-		getInventory().add(new Item(391, 18));
+		getInventory().add(3024, 2);
+		//getInventory().add(163);
+		getInventory().add(new Item(391, 19));
 
 		getEquipment().set(EquipSlot.HEAD, new Item(4753));
 		getEquipment().set(EquipSlot.CAPE, new Item(10499));
@@ -1372,14 +1393,14 @@ public class Player extends Entity {
         getInventory().add(12695);
         getInventory().add(new Item(3144, 2));
         getInventory().add(new Item(391, 10));    
-        getInventory().add(new Item(555, 10000));
-        getInventory().add(new Item(560, 10000));
-        getInventory().add(new Item(565, 10000));
+        getInventory().add(new Item(555, 1000));
+        getInventory().add(new Item(560, 1000));
+        getInventory().add(new Item(565, 1000));
         
         getEquipment().set(EquipSlot.HEAD, new Item(13197));
         getEquipment().set(EquipSlot.CAPE, new Item(2412));
         getEquipment().set(EquipSlot.AMULET, new Item(12002));
-        getEquipment().set(EquipSlot.WEAPON, new Item(6914));
+        getEquipment().set(EquipSlot.WEAPON, new Item(4675));
         getEquipment().set(EquipSlot.BODY, new Item(4712));
         getEquipment().set(EquipSlot.SHIELD, new Item(12825));
         getEquipment().set(EquipSlot.LEGS, new Item(4714));
@@ -1398,7 +1419,7 @@ public class Player extends Entity {
 		getInventory().add(10499, 1);
 		getInventory().add(4587, 1);
 		getInventory().add(2497, 1);
-		getInventory().add(2440, 1);
+		getInventory().add(12695, 1);
 		getInventory().add(11785, 1);
 		getInventory().add(6570, 1);
 		getInventory().add(397, 1);
@@ -1406,11 +1427,11 @@ public class Player extends Entity {
 		getInventory().add(397, 1);
 		getInventory().add(397, 1);
 		getInventory().add(397, 1);
-		getInventory().add(3024, 1);
+		getInventory().add(6685, 1);//restore
 		getInventory().add(397, 1);
 		getInventory().add(397, 1);
 		getInventory().add(397, 1);
-		getInventory().add(3024, 1);
+		getInventory().add(3024, 1); // restore
 		getInventory().add(397, 1);
 		getInventory().add(397, 1);
 		getInventory().add(397, 1);
@@ -1490,5 +1511,21 @@ public class Player extends Entity {
 	
 	public void incrementAmountLastKilled() {
 		this.amountLastKilled++;
+	}
+
+	public long getLastNurseUsed() {
+		return lastNurseUsed;
+	}
+
+	public void setLastNurseUsed(long lastNurseUsed) {
+		this.lastNurseUsed = lastNurseUsed;
+	}
+
+	public long getLastDfsUsed() {
+		return lastDfsUsed;
+	}
+
+	public void setLastDfsUsed(long lastDfsUsed) {
+		this.lastDfsUsed = lastDfsUsed;
 	}
 }

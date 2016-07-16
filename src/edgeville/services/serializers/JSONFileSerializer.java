@@ -146,6 +146,14 @@ public class JSONFileSerializer extends PlayerSerializer {
 			JsonElement lastHiscoresUpdate = rootObject.get("lastHiscoresUpdate");
 			if (lastHiscoresUpdate != null)
 				player.setLastHiscoresUpdate(lastHiscoresUpdate.getAsLong());
+			
+			JsonElement lastNurseUsed = rootObject.get("lastNurseUsed");
+			if (lastNurseUsed != null)
+				player.setLastNurseUsed(lastNurseUsed.getAsLong());
+			
+			JsonElement lastDfsUsed = rootObject.get("lastDfsUsed");
+			if (lastDfsUsed != null)
+				player.setLastNurseUsed(lastDfsUsed.getAsLong());
 
 			// Debug
 			player.setDebug(rootObject.get("debug").getAsBoolean());
@@ -400,7 +408,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 		// last hiscores update
 		jsonObject.addProperty("lastHiscoresUpdate", player.getLastHiscoresUpdate());
-
+		jsonObject.addProperty("lastNurseUsed", player.getLastNurseUsed());
+		jsonObject.addProperty("lastDfsUsed", player.getLastDfsUsed());
+		
 		// end
 
 		// File characterFile = new File(characterFolder, player.getUsername() +

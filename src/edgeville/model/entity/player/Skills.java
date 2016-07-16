@@ -155,10 +155,15 @@ public class Skills {
 	 * @param change
 	 */
 	public void increaseLeftLevel(int skill, int change) {
+		if (levels[skill] >= xpLevel(skill) + change) {
+			return;
+		}
+		
 		levels[skill] += change;
 		if (levels[skill] <= 0) {
 			levels[skill] = 0;
 		}
+		
 		//player.message("Level - change is %d", levels[skill] - change);
 		if (levels[skill] - change > xpLevel(skill)) {
 			levels[skill] = xpLevel(skill) + change;

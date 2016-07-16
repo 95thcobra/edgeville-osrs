@@ -338,7 +338,7 @@ public class AccuracyFormula {
 		int EA = playerAttackLevel + playerAttackBonus + 8;
 		int a = (int) ((EA * (64 + 0)) / 10.0);
 
-		player.message("attackbonus:%d", a);
+		//player.message("attackbonus:%d", a);
 
 		/*
 		 * Generate defenders effective defense.
@@ -346,7 +346,7 @@ public class AccuracyFormula {
 		int ED = targetDefenceLevel + targetDefenceBonus + 8;
 		int d = (int) ((ED * (64 + 0)) / 10.0);
 
-		player.message("a:%d, d:%d", a, d);
+		//player.message("a:%d, d:%d", a, d);
 
 		/*
 		 * generate final accuracy rating between 0-1 and then multiply by 100
@@ -368,7 +368,7 @@ public class AccuracyFormula {
 			accuracy *= 1.1;
 
 		accuracy += 15;
-		player.message("Accuracy: %d", (int) accuracy);
+		player.messageDebug("Accuracy: %d", (int) accuracy);
 
 		/*
 		 * Using the accuracy value we can then generate a reducing value which
@@ -378,7 +378,7 @@ public class AccuracyFormula {
 		if (maxReducer <= 0)
 			maxReducer = 1;
 
-		player.message("Max reducer: %d", maxReducer);
+		//player.message("Max reducer: %d", maxReducer);
 
 		/*
 		 * Generate a random hit using the max hit and a random defense/accuracy
@@ -500,7 +500,7 @@ public class AccuracyFormula {
 
 		accuracy *= 100;
 
-		player.message("Accuracy: %d", (int) accuracy);
+		player.messageDebug("Accuracy: %d", (int) accuracy);
 
 		/*
 		 * Generate the attackers max hit.
@@ -515,7 +515,7 @@ public class AccuracyFormula {
 		if (maxReducer <= 0)
 			maxReducer = 1;
 
-		player.message("Max reducer: %d", maxReducer);
+		//player.message("Max reducer: %d", maxReducer);
 
 		/*
 		 * Generate a random hit using the max hit and a random defense/accuracy

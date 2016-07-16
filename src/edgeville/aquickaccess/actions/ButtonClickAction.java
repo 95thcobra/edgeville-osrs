@@ -1,6 +1,7 @@
 package edgeville.aquickaccess.actions;
 
 import edgeville.combat.Combat;
+import edgeville.combat.CombatUtil;
 import edgeville.combat.PlayerVersusAnyCombat;
 import edgeville.combat.magic.AncientSpell;
 import edgeville.combat.magic.RegularDamageSpell;
@@ -262,10 +263,24 @@ public class ButtonClickAction {
 			player.message("Find a target first!");
 			return;
 		}
-		if (player.timers().has(TimerKey.DFS_COOLDOWN)) {
-			player.message("Dragonfire shield hasn't recharged yet.");
+		
+		if (!CombatUtil.canAttack(player, target)) {
 			return;
 		}
+		
+    	long msLeft = System.currentTimeMillis() - player.getLastDfsUsed();
+    	//player.message("msLeft", msLeft);
+    	if (msLeft < 30000) {
+    		int secondsLeft = 30 -(int) (msLeft / 1000);
+    		player.message("You need to wait %d more seconds to use dfs!", secondsLeft);
+    		return;
+    	}
+    	player.setLastDfsUsed(System.currentTimeMillis());
+		//if (player.timers().has(TimerKey.DFS_COOLDOWN)) {
+			//int secondsLeft = player.timers().timers().get(TimerKey.DFS_COOLDOWN)
+			//player.message("Wait %d seconds before using again.");
+			//return;
+		//}
 		int max = 25;
 		int hit = player.world().random().nextInt((int) Math.round(max));
 
@@ -275,7 +290,7 @@ public class ButtonClickAction {
 
 		target.hit(player, hit, 3);
 
-		player.timers().register(TimerKey.DFS_COOLDOWN, 50);
+		//player.timers().register(TimerKey.DFS_COOLDOWN, 50);
 	}
 
 	private void quickPrayers() {

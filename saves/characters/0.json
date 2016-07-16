@@ -1,28 +1,28 @@
 {
-  "username": "test_test",
-  "displayName": "test_test",
-  "ip": "77.251.97.234",
-  "password": "Test",
+  "username": "sky",
+  "displayName": "sky",
+  "ip": "192.168.0.17",
+  "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3094,
-    "z": 3496,
+    "x": 3097,
+    "z": 3499,
     "level": 0
   },
   "playTime": {
     "hours": 0,
-    "minutes": 0,
-    "seconds": 7,
-    "milliseconds": 200,
+    "minutes": 2,
+    "seconds": 11,
+    "milliseconds": 400,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "PLAYER",
   "migration": 0,
-  "skullIcon": -1,
+  "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
   "kills": 0,
-  "deaths": 0,
+  "deaths": 1,
   "lastKilled": 0,
   "lastKilledAmount": 0,
   "gender": "MALE",
@@ -539,6 +539,10 @@
       "value": 3
     },
     {
+      "id": 173,
+      "value": 1
+    },
+    {
       "id": 300,
       "value": 1000
     },
@@ -578,7 +582,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3034451E7
     },
     {
       "level": 99,
@@ -589,8 +593,8 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 99,
-      "xp": 1.3034431E7
+      "level": 94,
+      "xp": 1.303443765E7
     },
     {
       "level": 99,
@@ -677,5 +681,7 @@
   "autocastSpellChild": 0,
   "lastCastedSpellChild": 0,
   "autocasting": false,
-  "lastHiscoresUpdate": 1468672370179
+  "lastHiscoresUpdate": 1468688989152,
+  "lastNurseUsed": 1468688989152,
+  "lastDfsUsed": 1468688989152
 }

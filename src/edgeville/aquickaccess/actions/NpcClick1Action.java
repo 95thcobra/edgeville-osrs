@@ -33,6 +33,18 @@ public class NpcClick1Action {
             		player.message("You cannot do this in combat!");
             		return;
             	}
+            	
+            	//player.message("1 %d", System.currentTimeMillis());
+            	//player.message("2 %d", player.getLastNurseUsed());
+            	long msLeft = System.currentTimeMillis() - player.getLastNurseUsed();
+            	//player.message("msLeft", msLeft);
+            	if (msLeft < 60000) {
+            		int secondsLeft = 60 -(int) (msLeft / 1000);
+            		player.message("You need to wait %d more seconds to use the free restore!", secondsLeft);
+            		return;
+            	}
+            	player.setLastNurseUsed(System.currentTimeMillis());
+            	
             	player.resetSpecialEnergy();
             	player.skills().resetStats();
             	player.message("Your stats have been reset and special energy has been restored!");
