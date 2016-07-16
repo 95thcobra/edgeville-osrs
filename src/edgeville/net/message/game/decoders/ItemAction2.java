@@ -41,10 +41,12 @@ public class ItemAction2 extends ItemAction {
 		if (player.locked() || player.dead())
 			return;
 
-		// Stop player actions
-		player.stopActionsWithoutRemovingMainInterface(false);
-
 		Item item = player.getInventory().get(slot);
+		
+		// Stop player actions
+		boolean gmaul = item != null && item.getId() == 4153;
+		player.stopActionsWithoutRemovingMainInterface(false, gmaul);
+
 		if (item == null || item.getId() != this.item) {// Avoid reclicking
 			player.messageDebug("item is null artm");
 			return;

@@ -77,7 +77,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			// getEntity().message("meleeeing...");
 			handleMeleeCombat(weaponId);
 		}
-
+ 
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGER, getEntity());
 		getTarget().putAttribute(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
 
@@ -463,6 +463,8 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (!player.touches(target, player.getTile())) {
 			return;
 		}
+		
+		//player.message("Gets here");
 
 		player.setSpecialEnergyAmount(player.getSpecialEnergyAmount() - (50 * 10));
 

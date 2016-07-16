@@ -270,6 +270,19 @@ public class Skills {
 		}
 		update();
 	}
+
+	/**
+	 * These don't ever lower your stats.
+	 */
+	public void restoreStats() {
+		for (int i = 0; i < SKILL_COUNT; i++) {
+			if (levels[i] >= xpLevel(i)) {
+				continue;
+			}
+			levels[i] = xpLevel(i);
+		}
+		update();
+	}
 	
 	public int getXPForLevel(int level)
 	{

@@ -53,7 +53,7 @@ public class Bank {
 				return;
 			}
 			draggingToTabs(slot, slotOther);
-			player.message("Draggin to tab");
+			//player.message("Draggin to tab");
 			return;
 		}
 
@@ -143,7 +143,7 @@ public class Bank {
 		if (bankFull()) {
 			return;
 		}
-		player.message("slot: %d, slot2: %d", slot, slotOther);
+		//player.message("slot: %d, slot2: %d", slot, slotOther);
 
 		if (slotOther == 10) {
 			Item itemToPutToFirst = bankItems.get(slot);
@@ -154,7 +154,7 @@ public class Bank {
 			}
 
 			int bankTabFrom = getBankTabOfSlot(slot);
-			player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
+			//player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
 			this.changeBankTabSize(bankTabFrom, -1);
 
 			bankItems.remove(slot);
@@ -172,7 +172,7 @@ public class Bank {
 		}
 
 		int bankTabFrom = this.getBankTabOfSlot(slot);
-		player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
+		//player.message("ITEM COMES FROM BANK TAB: %d", bankTabFrom);
 		changeBankTabSize(bankTabFrom, -1);
 
 		bankItems.remove(slot);

@@ -77,7 +77,11 @@ public class PlayerDeathEvent extends Event {
 
 					((Player) killer).incrementKills();
 					((Player) killer).setLastKilled(player.getMemberId());
+					
 					player.incrementDeaths();
+					
+					((Player) killer).resetSpecialEnergy();
+					((Player) killer).skills().restoreStats();
 				//}
 				if (Constants.DROP_ITEMS_ON_DEATH) {
 					ItemsOnDeath.dropItems((Player) killer, player);

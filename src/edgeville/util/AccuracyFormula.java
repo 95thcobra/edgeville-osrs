@@ -367,7 +367,7 @@ public class AccuracyFormula {
 		if (CombatFormula.wearingVoidMelee(player))
 			accuracy *= 1.1;
 
-		accuracy += 15;
+		accuracy += 10;//15 !!!!
 		player.messageDebug("Accuracy: %d", (int) accuracy);
 
 		/*

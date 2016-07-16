@@ -1,7 +1,8 @@
-Fix ags to gmaul in 1 tick
+
 running/kiting is bad
-dying with 1 hp
-attacking same guy with 2 guys, bug?
+
+blowpipe
+
 
 
 

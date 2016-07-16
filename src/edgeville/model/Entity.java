@@ -578,6 +578,10 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void stopActions(boolean cancelMoving) {
+		stopActions(cancelMoving, false);
+	}
+
+	public void stopActions(boolean cancelMoving, boolean gmaul) {
 		// this.message("stopping actions...");
 		world.getEventHandler().stopCancellableEvents(this);
 		// world.server().scriptExecutor().interruptFor(this);
@@ -587,7 +591,8 @@ public abstract class Entity implements HitOrigin {
 		if (cancelMoving)
 			pathQueue.clear();
 
-		clearattrib(AttributeKey.TARGET);
+		if (!gmaul)
+			clearattrib(AttributeKey.TARGET);
 	}
 
 	public void face(Entity e) {

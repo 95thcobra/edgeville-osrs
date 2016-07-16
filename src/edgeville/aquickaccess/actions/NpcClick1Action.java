@@ -46,7 +46,7 @@ public class NpcClick1Action {
             	player.setLastNurseUsed(System.currentTimeMillis());
             	
             	player.resetSpecialEnergy();
-            	player.skills().resetStats();
+            	player.skills().restoreStats();
             	player.message("Your stats have been reset and special energy has been restored!");
                 break;
                

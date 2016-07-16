@@ -602,9 +602,13 @@ public class Player extends Entity {
 	public void message(String format, Object... params) {
 		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format));
 	}
-
+	
 	public void stopActionsWithoutRemovingMainInterface(boolean cancelMoving) {
-		super.stopActions(cancelMoving);
+		stopActionsWithoutRemovingMainInterface(cancelMoving, false);
+	}
+
+	public void stopActionsWithoutRemovingMainInterface(boolean cancelMoving, boolean gmaul) {
+		super.stopActions(cancelMoving, gmaul);
 
 		// Make input dialog null
 		setInputDialog(null);
