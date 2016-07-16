@@ -13,6 +13,8 @@ import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.Loadout;
 import edgeville.model.item.Item;
 import edgeville.net.message.game.encoders.InterfaceText;
+import edgeville.net.message.game.encoders.OpenForums;
+import edgeville.net.message.game.encoders.OpenHiscores;
 import edgeville.util.CombatFormula;
 import edgeville.util.TextUtil;
 import edgeville.util.Varbit;
@@ -35,19 +37,19 @@ public class QuestTab {
 	}
 
 	public void updateTimePlayed() {
-		player.interfaces().sendInterfaceString(274, 19, "<col=ffffff>Time played: " + player.getPlayTime().toString());
+		player.interfaces().sendInterfaceString(274, 20, "<col=ffffff>Time played: " + player.getPlayTime().toString());
 	}
 	
 	public void updateKills() {
-		player.interfaces().sendInterfaceString(274, 20, "<col=ffffff>Kills: <col=00ff00>" + player.getKills());
+		player.interfaces().sendInterfaceString(274, 21, "<col=ffffff>Kills: <col=00ff00>" + player.getKills());
 	}
 
 	public void updateDeaths() {
-		player.interfaces().sendInterfaceString(274, 21, "<col=ffffff>Deaths: <col=00ff00>" + player.getDeaths());
+		player.interfaces().sendInterfaceString(274, 22, "<col=ffffff>Deaths: <col=00ff00>" + player.getDeaths());
 	}
 
 	public void updateMaxHit(int maxHit) {
-		player.interfaces().sendInterfaceString(274, 22, "<col=ffffff>Max hit: <col=00ff00>" + maxHit);
+		player.interfaces().sendInterfaceString(274, 23, "<col=ffffff>Max hit: <col=00ff00>" + maxHit);
 	}
 
 	public void prepareQuestTab() {
@@ -60,35 +62,37 @@ public class QuestTab {
 
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 15, "<col=ffffff>Save loadout");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 16, "<col=ffffff>Load loadout");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "<col=ffffff>View hiscores");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "<col=ffffff>Update hiscores");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "<col=ffffff>View forum");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "<col=ffffff>View hiscores");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 19, "<col=ffffff>Update hiscores");
 		
-		updateTimePlayed();// 19
-		updateKills();// 20
-		updateDeaths();// 21
-		updateMaxHit(-1);// 22
+		updateTimePlayed();// 20
+		updateKills();// 21
+		updateDeaths();// 22
+		updateMaxHit(-1);// 23
 
 		// BLACK("000000"), BLUE("0066ff"), RED("FF0000");
 
 		// Small strings start. COLORS <col=00AEDB>
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 23, "");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "");
 
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "<col=ffffff>Food");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "<col=ffffff>Potions");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "<col=ffffff>Food");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 26, "<col=ffffff>Potions");
 
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 26, "<col=ffffff>Melee gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 27, "<col=ffffff>Range gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 28, "<col=ffffff>Hybrid gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 29, "<col=ffffff>Pure gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 30, "<col=ffffff>Dharok's gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 27, "<col=ffffff>Melee gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 28, "<col=ffffff>Range gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 29, "<col=ffffff>Hybrid gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 30, "<col=ffffff>Pure gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 31, "<col=ffffff>Dharok's gear");
 
-		for (int child = 30; child < 143; child++) {
+		for (int child = 32; child < 143; child++) {
 			player.write(new InterfaceText(questTabInterfaceId, child, ""));
 		}
 
-		makeLinesYellow();
+		//makeLinesYellow();
 	}
 
+	// NOT USED SINCE I COLOR THEM MANUALLY
 	private void makeLinesYellow() {
 		int[] varps = { 29, 31, 62, 71, 107, 122, 130, 144, 222, 273, 176, 32 };
 		for (int varp : varps) {
@@ -127,18 +131,18 @@ public class QuestTab {
 			player.message("Loaded loadout.");
 			break;
 
+			// view forum
+			case 17:
+				player.write(new OpenForums());
+				break;
+			
 		// view hiscores
-		case 17:
-			try {
-				Desktop.getDesktop().browse(new URI("http://edgeville.org/hiscores"));
-				// player.write(new InterfaceText());
-			} catch (Exception e) {
-				player.message("Something went wrong, is website down?");
-			}
+		case 18:
+			player.write(new OpenHiscores());
 			break;
 
 		// update hiscores
-		case 18:
+		case 19:
 			if (!ForumIntegration.updateHiscores(player)) {
 				int minutesLeft = (int) (10 - ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) / 60000));
 				player.message("You can update the hiscores in %d minutes!", minutesLeft);
@@ -148,7 +152,7 @@ public class QuestTab {
 			break;
 
 		// Food
-		case 24:
+		case 25:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -163,7 +167,7 @@ public class QuestTab {
 			break;
 
 		// Potions
-		case 25:
+		case 26:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -180,7 +184,7 @@ public class QuestTab {
 			break;
 
 		// Melee
-		case 26:
+		case 27:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -196,7 +200,7 @@ public class QuestTab {
 			break;
 
 		// Range
-		case 27:
+		case 28:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -212,7 +216,7 @@ public class QuestTab {
 			break;
 
 		// Hybrid
-		case 28:
+		case 29:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -228,7 +232,7 @@ public class QuestTab {
 			break;
 
 		// Pure
-		case 29:
+		case 30:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -249,7 +253,7 @@ public class QuestTab {
 			break;
 
 		// dharoks
-		case 30:
+		case 31:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;

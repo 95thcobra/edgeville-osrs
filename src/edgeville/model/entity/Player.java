@@ -72,6 +72,9 @@ public class Player extends Entity {
 	 * The player's Netty connection channel
 	 */
 	private Channel channel;
+	
+	private int lastKilledMemberId;
+	private int amountLastKilled;
 
 	/**
 	 * The privilege level of this player.
@@ -1467,5 +1470,25 @@ public class Player extends Entity {
 
 	public void setPlayTime(Uptime playTime) {
 		this.playTime = playTime;
+	}
+
+	public int getLastKilledMemberId() {
+		return lastKilledMemberId;
+	}
+
+	public void setLastKilled(int lastKilledMemberId) {
+		this.lastKilledMemberId = lastKilledMemberId;
+	}
+
+	public int getAmountLastKilled() {
+		return amountLastKilled;
+	}
+
+	public void setAmountLastKilled(int amountLastKilled) {
+		this.amountLastKilled = amountLastKilled;
+	}
+	
+	public void incrementAmountLastKilled() {
+		this.amountLastKilled++;
 	}
 }

@@ -1,29 +1,20 @@
-
-AND time played, 10 hours played means beta rank!
-
-timer for uptime, timed mutes idk
-
-SHOULD SWITCHING ITEMS STOP COMBAT?!
-
-
-
-add last time server reset INSTEAD OF information and spawn
-
-
-
 VIEW HISCORES DOESNT WORK
 browse url wrong
-
 
 Dont give kills when same IP
 save last ip killed
 
-WITHDRAW BANK BUG!!!!!!!
-disable all commands, just ::item and ::finditem
 
 
 
 
+
+
+
+
+
+
+------------------------------------------ NOT IMPORTANT FOR BETA -------------------------------------
 packetdecoder run energy
 equipment requirements
 

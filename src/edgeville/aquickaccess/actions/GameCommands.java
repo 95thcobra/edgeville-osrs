@@ -40,7 +40,7 @@ public final class GameCommands {
 
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
-
+		
 		put(Privilege.MODERATOR, "kick", (p, args) -> {
 			String otherUsername = glue(args);
 			Player other = p.world().getPlayerByName(otherUsername).orElse(null);

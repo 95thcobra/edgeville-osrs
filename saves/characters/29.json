@@ -1,29 +1,29 @@
 {
-  "username": "sky",
-  "displayName": "sky",
+  "username": "test",
+  "displayName": "test",
   "ip": "77.251.97.234",
-  "password": "jailbreak",
+  "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3094,
-    "z": 3503,
+    "x": 3090,
+    "z": 3501,
     "level": 0
   },
   "playTime": {
     "hours": 0,
-    "minutes": 35,
-    "seconds": 45,
-    "milliseconds": 600,
+    "minutes": 22,
+    "seconds": 49,
+    "milliseconds": 200,
     "color": "\u003ccol\u003dffffff\u003e"
   },
-  "privilege": "DEVELOPER",
+  "privilege": "PLAYER",
   "migration": 0,
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
   "kills": 0,
   "deaths": 0,
-  "lastKilled": 29,
+  "lastKilled": 30,
   "lastKilledAmount": 0,
   "gender": "MALE",
   "looks": [
@@ -53,11 +53,11 @@
       "amount": 1
     },
     {
-      "id": 147,
+      "id": 145,
       "amount": 1
     },
     {
-      "id": 159,
+      "id": 157,
       "amount": 1
     },
     {
@@ -80,7 +80,6 @@
       "id": 385,
       "amount": 1
     },
-    null,
     {
       "id": 385,
       "amount": 1
@@ -101,7 +100,14 @@
       "id": 385,
       "amount": 1
     },
-    null,
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
     {
       "id": 385,
       "amount": 1
@@ -569,6 +575,10 @@
       "value": 3
     },
     {
+      "id": 173,
+      "value": 1
+    },
+    {
       "id": 176,
       "value": 1
     },
@@ -620,7 +630,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3035183E7
+      "xp": 1.3034959E7
     },
     {
       "level": 99,
@@ -631,15 +641,15 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 56,
-      "xp": 1.3034681E7
+      "level": 97,
+      "xp": 1.303460656E7
     },
     {
       "level": 99,
       "xp": 1.3034431E7
     },
     {
-      "level": 0,
+      "level": 99,
       "xp": 1.3034431E7
     },
     {
@@ -719,5 +729,5 @@
   "autocastSpellChild": 0,
   "lastCastedSpellChild": 0,
   "autocasting": false,
-  "lastHiscoresUpdate": 1468667109264
+  "lastHiscoresUpdate": 1468668050464
 }

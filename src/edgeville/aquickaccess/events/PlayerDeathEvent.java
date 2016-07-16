@@ -54,9 +54,29 @@ public class PlayerDeathEvent extends Event {
 
 		case 5:
 			if (killer instanceof Player) {
+				((Player) killer).setLastKilled(player.getMemberId());
 				killer.message(TextUtil.colorString("You wrecked " + player.getDisplayName() + ".", Colors.RED));
-				((Player) killer).incrementKills();
-				player.incrementDeaths();
+
+				boolean sameHost = ((Player) killer).getIP().equalsIgnoreCase(player.getIP());
+				boolean killedLastTime = ((Player) killer).getLastKilledMemberId() == player.getMemberId();
+				int amountKilledLast = ((Player) killer).getAmountLastKilled();
+				if (sameHost) {
+					((Player) killer).message("You do not receive kills nor deaths for fighting someone on the same IP.");
+				} else if (killedLastTime && amountKilledLast > 2) {
+					((Player) killer).message("You will not receive kills nor deaths for fighting someone 3rd time in a row.");
+				} else {
+					
+					// If not killed last time, reset amount. If killed last time increment.
+					if (!killedLastTime) {
+						((Player) killer).setAmountLastKilled(0);
+					} else {
+						((Player) killer).incrementAmountLastKilled();
+					}
+
+					((Player) killer).incrementKills();
+					((Player) killer).setLastKilled(player.getMemberId());
+					player.incrementDeaths();
+				}
 				if (Constants.DROP_ITEMS_ON_DEATH) {
 					ItemsOnDeath.dropItems((Player) killer, player);
 				}

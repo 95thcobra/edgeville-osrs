@@ -137,6 +137,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 			player.setKills(kills.getAsInt());
 			player.setDeaths(deaths.getAsInt());
 			
+			player.setLastKilled(rootObject.get("lastKilled").getAsInt());
+			player.setAmountLastKilled(rootObject.get("lastKilledAmount").getAsInt());
+			
 			Uptime playTime = gson.fromJson(rootObject.get("playTime"), Uptime.class);
 			player.setPlayTime(playTime);
 
@@ -294,6 +297,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("debug", player.isDebug());
 		jsonObject.addProperty("kills", player.getKills());
 		jsonObject.addProperty("deaths", player.getDeaths());
+		
+		jsonObject.addProperty("lastKilled", player.getLastKilledMemberId());
+		jsonObject.addProperty("lastKilledAmount", player.getAmountLastKilled());
 
 		/* look clothes */
 		jsonObject.addProperty("gender", player.looks().getGender().toString());
