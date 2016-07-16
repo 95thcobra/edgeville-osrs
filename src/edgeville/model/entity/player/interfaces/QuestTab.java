@@ -25,28 +25,36 @@ public class QuestTab {
 		this.player = player;
 	}
 
-	public void sendQuestTabTitle() {
+	public void updatePlayersOnline() {
 		player.interfaces().sendInterfaceString(274, 10,
 				"Players online: <col=00ff00>" + player.world().getPlayersOnline());
 	}
+	
+	public void updateServerUptime() {
+		player.interfaces().sendInterfaceString(274, 14, "<col=EB981F>Uptime: " + player.world().getUptime().toString());
+	}
 
+	public void updateTimePlayed() {
+		player.interfaces().sendInterfaceString(274, 19, "<col=ffffff>Time played: " + player.getPlayTime().toString());
+	}
+	
 	public void updateKills() {
-		player.interfaces().sendInterfaceString(274, 19, "<col=ffffff>Kills: <col=00ff00>" + player.getKills());
+		player.interfaces().sendInterfaceString(274, 20, "<col=ffffff>Kills: <col=00ff00>" + player.getKills());
 	}
 
 	public void updateDeaths() {
-		player.interfaces().sendInterfaceString(274, 20, "<col=ffffff>Deaths: <col=00ff00>" + player.getDeaths());
+		player.interfaces().sendInterfaceString(274, 21, "<col=ffffff>Deaths: <col=00ff00>" + player.getDeaths());
 	}
 
 	public void updateMaxHit(int maxHit) {
-		player.interfaces().sendInterfaceString(274, 21, "<col=ffffff>Max hit: <col=00ff00>" + maxHit);
+		player.interfaces().sendInterfaceString(274, 22, "<col=ffffff>Max hit: <col=00ff00>" + maxHit);
 	}
 
 	public void prepareQuestTab() {
 		final int questTabInterfaceId = 274;
 
-		sendQuestTabTitle();
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 14, "Information & Spawn"); // Second
+		updatePlayersOnline();
+		updateServerUptime();
 		// big
 		// string
 
@@ -54,23 +62,25 @@ public class QuestTab {
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 16, "<col=ffffff>Load loadout");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "<col=ffffff>View hiscores");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "<col=ffffff>Update hiscores");
-		updateKills();// 19
-		updateDeaths();// 20
-		updateMaxHit(-1);// 21
+		
+		updateTimePlayed();// 19
+		updateKills();// 20
+		updateDeaths();// 21
+		updateMaxHit(-1);// 22
 
 		// BLACK("000000"), BLUE("0066ff"), RED("FF0000");
 
 		// Small strings start. COLORS <col=00AEDB>
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 22, "");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 23, "");
 
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 23, "<col=ffffff>Food");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "<col=ffffff>Potions");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 24, "<col=ffffff>Food");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "<col=ffffff>Potions");
 
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 25, "<col=ffffff>Melee gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 26, "<col=ffffff>Range gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 27, "<col=ffffff>Hybrid gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 28, "<col=ffffff>Pure gear");
-		player.interfaces().sendInterfaceString(questTabInterfaceId, 29, "<col=ffffff>Dharok's gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 26, "<col=ffffff>Melee gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 27, "<col=ffffff>Range gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 28, "<col=ffffff>Hybrid gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 29, "<col=ffffff>Pure gear");
+		player.interfaces().sendInterfaceString(questTabInterfaceId, 30, "<col=ffffff>Dharok's gear");
 
 		for (int child = 30; child < 143; child++) {
 			player.write(new InterfaceText(questTabInterfaceId, child, ""));
@@ -129,10 +139,7 @@ public class QuestTab {
 
 		// update hiscores
 		case 18:
-			// if (!ForumIntegration.insertHiscore(player)) {
 			if (!ForumIntegration.updateHiscores(player)) {
-				// player.message("1."+System.currentTimeMillis());
-				// player.message("2."+ player.getLastHiscoresUpdate());
 				int minutesLeft = (int) (10 - ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) / 60000));
 				player.message("You can update the hiscores in %d minutes!", minutesLeft);
 				return;
@@ -141,7 +148,7 @@ public class QuestTab {
 			break;
 
 		// Food
-		case 23:
+		case 24:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -156,7 +163,7 @@ public class QuestTab {
 			break;
 
 		// Potions
-		case 24:
+		case 25:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -173,7 +180,7 @@ public class QuestTab {
 			break;
 
 		// Melee
-		case 25:
+		case 26:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -189,7 +196,7 @@ public class QuestTab {
 			break;
 
 		// Range
-		case 26:
+		case 27:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -205,7 +212,7 @@ public class QuestTab {
 			break;
 
 		// Hybrid
-		case 27:
+		case 28:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -221,7 +228,7 @@ public class QuestTab {
 			break;
 
 		// Pure
-		case 28:
+		case 29:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
@@ -242,7 +249,7 @@ public class QuestTab {
 			break;
 
 		// dharoks
-		case 29:
+		case 30:
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;

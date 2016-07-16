@@ -273,6 +273,8 @@ public class Player extends Entity {
 		return bank;
 	}
 
+	private Uptime playTime;
+	
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
@@ -337,6 +339,9 @@ public class Player extends Entity {
 		this.sync = new PlayerSyncInfo(this);
 		this.skills = new Skills(this);
 		this.looks = new Looks(this);
+		
+		this.playTime = new Uptime("<col=ffffff>");
+		
 		this.interfaces = new Interfaces(this);
 		this.inventory = new ItemContainer(world, 28, ItemContainer.Type.REGULAR);
 		this.equipment = new ItemContainer(world, 14, ItemContainer.Type.REGULAR);
@@ -861,6 +866,8 @@ public class Player extends Entity {
 	public void cycle() {
 		super.cycle();
 
+		playTime.incrementTick();
+		
 		// Are we requested to be logged out?
 		if ((boolean) attribute(AttributeKey.LOGOUT, false)) {
 			putAttribute(AttributeKey.LOGOUT, false);
@@ -918,7 +925,9 @@ public class Player extends Entity {
 		 */
 
 		// Players online in questtab
-		questTab.sendQuestTabTitle();
+		questTab.updatePlayersOnline();
+		questTab.updateServerUptime();
+		questTab.updateTimePlayed();
 
 		// Region enter and leave triggers
 		int lastregion = attribute(AttributeKey.LAST_REGION, -1);
@@ -1450,5 +1459,13 @@ public class Player extends Entity {
 
 	public void setMuted(boolean isMuted) {
 		this.isMuted = isMuted;
+	}
+
+	public Uptime getPlayTime() {
+		return playTime;
+	}
+
+	public void setPlayTime(Uptime playTime) {
+		this.playTime = playTime;
 	}
 }

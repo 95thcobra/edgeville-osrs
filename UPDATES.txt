@@ -1,8 +1,9 @@
 Some last minute updates :)
 [16-7-2016]: 
 - Punishments system added. (bans/mutes)
-- Uptime counter added.
-
+- Server uptime counter added.
+- Play time counter added.
+- Play time gets sent to hiscores as well now.
 
 
 

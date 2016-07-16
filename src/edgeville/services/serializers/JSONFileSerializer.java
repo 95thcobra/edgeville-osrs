@@ -11,6 +11,7 @@ import edgeville.combat.magic.Spell;
 import edgeville.database.ForumIntegration;
 import edgeville.model.AttributeKey;
 import edgeville.model.Tile;
+import edgeville.model.Uptime;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Bank;
 import edgeville.model.entity.player.Privilege;
@@ -135,6 +136,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 			JsonElement deaths = rootObject.get("deaths");
 			player.setKills(kills.getAsInt());
 			player.setDeaths(deaths.getAsInt());
+			
+			Uptime playTime = gson.fromJson(rootObject.get("playTime"), Uptime.class);
+			player.setPlayTime(playTime);
 
 			JsonElement lastHiscoresUpdate = rootObject.get("lastHiscoresUpdate");
 			if (lastHiscoresUpdate != null)
@@ -282,6 +286,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("password", player.getPassword());
 		jsonObject.addProperty("receivedStarter", player.hasReceivedStarter());
 		jsonObject.add("tile", gson.toJsonTree(player.getTile()));
+		jsonObject.add("playTime", gson.toJsonTree(player.getPlayTime()));
 		jsonObject.add("privilege", gson.toJsonTree(player.getPrivilege()));
 		jsonObject.addProperty("migration", player.migration());
 		jsonObject.addProperty("skullIcon", player.getSkullHeadIcon());

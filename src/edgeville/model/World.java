@@ -63,6 +63,11 @@ public class World {
     private Punishments punishments;
     private LogsHandler logsHandler;
     
+    private Uptime uptime;
+    public Uptime getUptime() {
+    	return uptime;
+    }
+    
     public World(GameServer server) {
         this.server = server;
         definitionRepository = new DefinitionRepository(server);
@@ -91,6 +96,8 @@ public class World {
         setLogsHandler(new LogsHandler());
         
         this.clanChatHandler = new ClanChatHandler();
+        
+        uptime = new Uptime();
     }
 
 	public ClanChatHandler getClanChatHandler() {
@@ -220,6 +227,9 @@ public class World {
         // Ground items which need removal..
         groundItems.stream().filter(GroundItem::shouldBeRemoved).forEach(this::despawnItem);
         groundItems.removeIf(GroundItem::shouldBeRemoved);
+        
+        // Update uptime
+        uptime.incrementTick();
 
         eventHandler.process();
     }
@@ -452,5 +462,4 @@ public class World {
 	public void setLogsHandler(LogsHandler logsHandler) {
 		this.logsHandler = logsHandler;
 	}
-
 }

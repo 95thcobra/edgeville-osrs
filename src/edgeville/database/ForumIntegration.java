@@ -17,6 +17,7 @@ import edgeville.model.entity.Player;
 
 public class ForumIntegration {
 
+	// NOT USED
 	public static boolean insertHiscore(Player player) {
 		if ((System.currentTimeMillis() - player.getLastHiscoresUpdate()) < (10 * 60 * 1000)) {
 			return false;
@@ -31,6 +32,7 @@ public class ForumIntegration {
 		return true;
 	}
 
+	// NOT USED
 	public static boolean insertHiscore2(Player player) {
 		try {
 			// Connect to database
@@ -66,7 +68,8 @@ public class ForumIntegration {
 			String urlString = "http://edgeville.org/game/updatehiscores.php?security=" + CRYPTION_ID_HISCORES
 					+ "&memberid=" + player.getMemberId()
 					+ "&kills=" + player.getKills() 
-					+ "&deaths=" + player.getDeaths();
+					+ "&deaths=" + player.getDeaths()
+					+ "&timeplayed=" + player.getPlayTime().toTicks();
 
 			System.out.println(urlString);
 
