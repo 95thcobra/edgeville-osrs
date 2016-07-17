@@ -1,3 +1,6 @@
 [Sat Jul 16 02:00:39 CEST 2016]:ipban sky
 [Sat Jul 16 02:00:44 CEST 2016]:getip sky
 [Sat Jul 16 20:26:24 CEST 2016]:%s(id:%d) has killed %s(id:%d)
+[Sun Jul 17 20:37:55 CEST 2016]:find toxic bl
+[Sun Jul 17 20:37:59 CEST 2016]:item 12926 1
+[Sun Jul 17 20:38:10 CEST 2016]:item 11230 111

@@ -122,10 +122,10 @@ public class QuestTab {
 				return;
 			}
 
-			if (!player.getEquipment().isEmpty()) {
+			/*if (!player.getEquipment().isEmpty()) {
 				player.message("Unequip your equipment!");
 				return;
-			}
+			}*/
 
 			player.getPrayer().deactivateAllPrayers();
 			player.getLoadout().load(player);

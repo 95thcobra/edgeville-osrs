@@ -20,7 +20,7 @@ public enum SpecialAttacks {
 	DRAGON_HALBERD(3204, 1203, new Graphic(1232, 100, 0), null, 25, 1, false, false),
 	DRAGON_LONGSWORD(1305, 1058, new Graphic(248, 92, 0), 25, 1.15, false),
 	ABYSSAL_WHIP(4151, 1658, null, new Graphic(341, 100, 0), 25, 1.15, false),
-	TENTACLE_WHIP(12006, 1658, null, new Graphic(341, 100, 0), 25, 1.15, false),
+	TENTACLE_WHIP(12006, 1658, null, new Graphic(341, 100, 0), 50, 1.15, false),
 	DRAGON_MACE(1434, 1060, new Graphic(251, 100, 0), null, 25, 1.15, false),
 	DRAGON_2H(7158, 3157, null, null, 60, 1, false),
 	
@@ -28,7 +28,9 @@ public enum SpecialAttacks {
 	
 	DARK_BOW(11235, 426, null, new Graphic(1100, 92, 60), 55, 1, true, 1099, true),//projectile id, doubleprojectile
 	
-	ARMADYL_CROSSBOW(11785, 4230, null, null, 40, 1.2, false, 301, false)
+	ARMADYL_CROSSBOW(11785, 4230, null, null, 40, 1.2, false, 301, false),
+	
+	TOXIC_BLOWPIPE(12926, 5061, null, null, 50, 1.4, false, 1043, false)
 	;
 
 	private int weaponId;
@@ -141,6 +143,9 @@ public enum SpecialAttacks {
 		}
 		if (this == SpecialAttacks.ABYSSAL_WHIP || this == SpecialAttacks.TENTACLE_WHIP) {
 			//TODO drain 10% run
+		}
+		if (this == SpecialAttacks.TOXIC_BLOWPIPE) {
+			player.heal((int)(damage * 0.5));
 		}
 		if (this == SpecialAttacks.DARK_BOW) {
 			int tileDist = player.getTile().distance(target.getTile());

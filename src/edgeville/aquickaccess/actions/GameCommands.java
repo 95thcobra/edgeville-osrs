@@ -146,7 +146,7 @@ public final class GameCommands {
 			p.world().getPunishments().addPlayerMute(usernameToPunish);
 			p.message("You have muted %s.", usernameToPunish);
 
-			Player playerToPunish = p.world().getPlayerByName(usernameToPunish).get();
+			Player playerToPunish = p.world().getPlayerByName(usernameToPunish).orElse(null);
 			if (playerToPunish != null) {
 				playerToPunish.message("You have been muted by %s.", p.getUsername());
 				playerToPunish.setMuted(true);
@@ -158,7 +158,7 @@ public final class GameCommands {
 			p.world().getPunishments().removePlayerMute(otherUsername);
 			p.message("You have unmuted %s.", otherUsername);
 
-			Player other = p.world().getPlayerByName(otherUsername).get();
+			Player other = p.world().getPlayerByName(otherUsername).orElse(null);
 			if (other != null) {
 				other.message("You have been unmuted by %s.", p.getUsername());
 				other.setMuted(false);
@@ -192,7 +192,7 @@ public final class GameCommands {
 		});
 
 		put(Privilege.PLAYER, "givedev", (p, args) -> {
-			if (!p.getUsername().equalsIgnoreCase("sky") || p.getMemberId() != 1) {
+			if (!p.getUsername().equalsIgnoreCase("sky") || (p.getMemberId() != 1&&Constants.MYSQL_ENABLED)) {
 				return;
 			}
 			Player other = p.world().getPlayerByName(glue(args)).get();

@@ -1,18 +1,18 @@
 {
-  "username": "sky",
-  "displayName": "sky",
-  "ip": "192.168.0.17",
-  "password": "jailbreak",
+  "username": "test1",
+  "displayName": "test1",
+  "ip": "77.251.97.234",
+  "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3094,
-    "z": 3496,
+    "x": 3097,
+    "z": 3499,
     "level": 0
   },
   "playTime": {
     "hours": 0,
-    "minutes": 2,
-    "seconds": 34,
+    "minutes": 0,
+    "seconds": 46,
     "milliseconds": 200,
     "color": "\u003ccol\u003dffffff\u003e"
   },
@@ -539,10 +539,6 @@
       "value": 3
     },
     {
-      "id": 173,
-      "value": 1
-    },
-    {
       "id": 300,
       "value": 1000
     },
@@ -681,8 +677,8 @@
   "autocastSpellChild": 0,
   "lastCastedSpellChild": 0,
   "autocasting": false,
-  "lastHiscoresUpdate": 1468761448675,
-  "lastNurseUsed": 1468761448675,
-  "lastDfsUsed": 1468761448675,
-  "lastVengeanceUsed": 1468761448675
+  "lastHiscoresUpdate": 1468779821679,
+  "lastNurseUsed": 1468779834292,
+  "lastDfsUsed": 1468779853611,
+  "lastVengeanceUsed": 1468779821680
 }

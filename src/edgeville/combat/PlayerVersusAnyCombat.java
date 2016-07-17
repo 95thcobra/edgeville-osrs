@@ -103,8 +103,10 @@ public class PlayerVersusAnyCombat extends Combat {
 				currentTile = moveCloser();
 				// player.stepTowardsPlayerNotBugged(target, target.getTile(),
 				// 2);
+			} else {
+				return;
 			}
-			return;
+			//return;
 		}
 
 		// Check timer.
@@ -210,6 +212,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		specialAttack.action(player, target, hit);
 	}
 
+
 	@Override
 	public void handleRangeCombat(int weaponId, String ammoName, int weaponType, EventContainer container) {
 		Tile currentTile = player.getTile();
@@ -246,7 +249,15 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (player.timers().has(TimerKey.COMBAT_ATTACK)) {
 			return;
 		}
-
+		
+		final int BLOWPIPE_ID = 12926;
+		final int CRYSTAL_BOW_ID = 4212;
+		if (weaponId == BLOWPIPE_ID && player.getBlowpipeAmmo() == null) {
+			player.message("You need to load the blowpipe with darts!");
+			container.stop();
+			return;
+		}
+		
 		// Do we have ammo?
 		if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA && ammoName.equals("")
 				&& weaponId != 4212) {
@@ -270,9 +281,9 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Remove the ammo
 		Projectile projectile = null;
-
+		
 		// crystal bow doesnt use ammo
-		if (weaponId != 4212) {
+		if (weaponId != CRYSTAL_BOW_ID && weaponId != BLOWPIPE_ID) {
 
 			if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA) {
 				Item ammo = player.getEquipment().get(EquipSlot.AMMO);
@@ -334,6 +345,11 @@ public class PlayerVersusAnyCombat extends Combat {
 			endHeight = 50;
 		}
 
+		if (weaponId == BLOWPIPE_ID) {
+			projectile = Projectile.getProjectileForAmmoName(player.getBlowpipeAmmo().definition(player.world()).name);
+			
+		}
+		
 		if (projectile != null) {
 			graphic = projectile.getProjectileId();
 			startHeight = 50;
@@ -360,6 +376,12 @@ public class PlayerVersusAnyCombat extends Combat {
 			startHeight = 25;
 			endHeight = 30;
 		}
+		
+		if (weaponId == BLOWPIPE_ID) {
+			startHeight = 35;
+			endHeight = 33;
+			curve = 5;
+		}
 
 		// crystal bow projectileand gfx
 		if (weaponId == 4212) {
@@ -381,6 +403,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
 
 		int maxHit = CombatFormula.maximumRangedHit(player);
+		player.getQuestTab().updateMaxHit(maxHit);
 		int hit = player.world().random(maxHit);
 
 		triggerVeng(success ? hit : 0);
@@ -439,7 +462,8 @@ public class PlayerVersusAnyCombat extends Combat {
 			}
 		}
 
-		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
+		double max = CombatFormula.maximumRangedHit(player) * specialAttack.getMaxHitMultiplier();
+		player.getQuestTab().updateMaxHit((int)max);
 		int hit = player.world().random().nextInt((int) Math.round(max));
 		triggerVeng(hit);
 
@@ -458,6 +482,10 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	public static void handleGraniteMaul(Player player, Entity target) {
+		if (player.dead() || target.dead()) {
+			return;
+		}
+		
 		if (player.getSpecialEnergyAmount() < 50 * 10) {
 			player.message("You do not have enough special energy.");
 			return;

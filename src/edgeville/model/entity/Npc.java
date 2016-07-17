@@ -97,7 +97,7 @@ public class Npc extends Entity {
 
 	@Override
 	public int maxHp() {
-		return id == 1306 ? Integer.MAX_VALUE : 500;
+		return Integer.MAX_VALUE;// id == 1306 ? Integer.MAX_VALUE : 500;
 	}
 	
 	public void setHp(int hp) {

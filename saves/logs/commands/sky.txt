@@ -117,3 +117,123 @@
 [Sat Jul 16 18:12:29 CEST 2016]:givedev sky
 [Sat Jul 16 18:12:35 CEST 2016]:givedev sky
 [Sat Jul 16 18:12:39 CEST 2016]:givedev sky
+[Sun Jul 17 15:22:22 CEST 2016]:givedev sky
+[Sun Jul 17 15:23:43 CEST 2016]:find blowpip
+[Sun Jul 17 15:23:46 CEST 2016]:item 12926 1
+[Sun Jul 17 15:27:27 CEST 2016]:givedev sky
+[Sun Jul 17 15:28:16 CEST 2016]:givedev sky
+[Sun Jul 17 15:28:55 CEST 2016]:anim 5061 1
+[Sun Jul 17 15:30:08 CEST 2016]:find blowpip
+[Sun Jul 17 15:32:36 CEST 2016]:item 4212 1
+[Sun Jul 17 15:32:41 CEST 2016]:item 4212 1
+[Sun Jul 17 15:33:14 CEST 2016]:item 12926 1
+[Sun Jul 17 15:33:18 CEST 2016]:item 12926 1
+[Sun Jul 17 15:34:53 CEST 2016]:update 0
+[Sun Jul 17 15:36:11 CEST 2016]:update 0
+[Sun Jul 17 15:38:02 CEST 2016]:update 0
+[Sun Jul 17 15:39:00 CEST 2016]:update 0
+[Sun Jul 17 15:39:37 CEST 2016]:update 0
+[Sun Jul 17 15:40:27 CEST 2016]:update 0
+[Sun Jul 17 15:57:12 CEST 2016]:update 0
+[Sun Jul 17 15:57:19 CEST 2016]:find dart
+[Sun Jul 17 15:57:22 CEST 2016]:item 11230 1
+[Sun Jul 17 15:57:58 CEST 2016]:update 0
+[Sun Jul 17 16:00:05 CEST 2016]:update 0
+[Sun Jul 17 16:01:26 CEST 2016]:find bronze d
+[Sun Jul 17 16:02:14 CEST 2016]:update 0
+[Sun Jul 17 16:08:47 CEST 2016]:update 0
+[Sun Jul 17 16:10:24 CEST 2016]:find bronze d
+[Sun Jul 17 16:10:28 CEST 2016]:item 806 1
+[Sun Jul 17 16:10:38 CEST 2016]:item 806 125123
+[Sun Jul 17 16:11:41 CEST 2016]:update 0
+[Sun Jul 17 16:15:41 CEST 2016]:update 0
+[Sun Jul 17 16:21:30 CEST 2016]:update 0
+[Sun Jul 17 16:22:42 CEST 2016]:update 0
+[Sun Jul 17 16:27:55 CEST 2016]:update 0
+[Sun Jul 17 16:34:50 CEST 2016]:givedev jared
+[Sun Jul 17 16:37:53 CEST 2016]:update 0
+[Sun Jul 17 16:38:17 CEST 2016]:update 0
+[Sun Jul 17 16:39:12 CEST 2016]:damageoff 
+[Sun Jul 17 16:40:51 CEST 2016]:update 0
+[Sun Jul 17 16:41:02 CEST 2016]:damageoff 
+[Sun Jul 17 16:42:13 CEST 2016]:damageon 
+[Sun Jul 17 16:49:41 CEST 2016]:projectile 100
+[Sun Jul 17 16:49:44 CEST 2016]:projectile 500
+[Sun Jul 17 16:49:47 CEST 2016]:projectile 1000
+[Sun Jul 17 16:49:50 CEST 2016]:projectile 2000
+[Sun Jul 17 16:49:54 CEST 2016]:projectile 1500
+[Sun Jul 17 16:49:59 CEST 2016]:projectile 1600
+[Sun Jul 17 16:50:02 CEST 2016]:projectile 1400
+[Sun Jul 17 16:50:05 CEST 2016]:projectile 1300
+[Sun Jul 17 16:50:11 CEST 2016]:projectile 1200
+[Sun Jul 17 16:50:15 CEST 2016]:projectile 1250
+[Sun Jul 17 16:50:20 CEST 2016]:projectile 1290
+[Sun Jul 17 16:50:22 CEST 2016]:projectile 1280
+[Sun Jul 17 16:50:26 CEST 2016]:projectile 1270
+[Sun Jul 17 16:50:29 CEST 2016]:projectile 1250
+[Sun Jul 17 16:50:32 CEST 2016]:projectile 1230
+[Sun Jul 17 16:50:43 CEST 2016]:projectile 1200
+[Sun Jul 17 16:51:39 CEST 2016]:gfx 1043
+[Sun Jul 17 16:51:43 CEST 2016]:projectile 1043
+[Sun Jul 17 16:53:17 CEST 2016]:update 0
+[Sun Jul 17 16:54:07 CEST 2016]:update 0
+[Sun Jul 17 16:54:12 CEST 2016]:spec 
+[Sun Jul 17 16:54:31 CEST 2016]:update 0
+[Sun Jul 17 16:54:38 CEST 2016]:spec 
+[Sun Jul 17 16:55:07 CEST 2016]:spec 
+[Sun Jul 17 16:55:24 CEST 2016]:spec 
+[Sun Jul 17 16:56:25 CEST 2016]:update 0
+[Sun Jul 17 16:58:08 CEST 2016]:update 0
+[Sun Jul 17 16:59:31 CEST 2016]:update 0
+[Sun Jul 17 16:59:37 CEST 2016]:spec 
+[Sun Jul 17 16:59:56 CEST 2016]:update 0
+[Sun Jul 17 17:00:02 CEST 2016]:teletome jared
+[Sun Jul 17 18:18:24 CEST 2016]:teleto jared
+[Sun Jul 17 18:20:25 CEST 2016]:update 0
+[Sun Jul 17 18:20:42 CEST 2016]:spec 
+[Sun Jul 17 18:21:00 CEST 2016]:update 0
+[Sun Jul 17 18:21:20 CEST 2016]:spec 
+[Sun Jul 17 18:23:04 CEST 2016]:spec 
+[Sun Jul 17 18:24:06 CEST 2016]:spec 
+[Sun Jul 17 18:24:30 CEST 2016]:spec 
+[Sun Jul 17 18:25:12 CEST 2016]:spec 
+[Sun Jul 17 18:26:24 CEST 2016]:update 0
+[Sun Jul 17 18:26:29 CEST 2016]:spec 
+[Sun Jul 17 18:27:19 CEST 2016]:update 0
+[Sun Jul 17 18:27:40 CEST 2016]:spec 
+[Sun Jul 17 18:28:19 CEST 2016]:update 0
+[Sun Jul 17 18:36:38 CEST 2016]:update 0
+[Sun Jul 17 18:39:44 CEST 2016]:update 0
+[Sun Jul 17 18:40:37 CEST 2016]:item 12926 1
+[Sun Jul 17 18:43:12 CEST 2016]:teletome jared
+[Sun Jul 17 18:43:35 CEST 2016]:teletome jared
+[Sun Jul 17 18:44:14 CEST 2016]:update 0
+[Sun Jul 17 18:46:02 CEST 2016]:npc 1306
+[Sun Jul 17 18:48:28 CEST 2016]:teletome jared
+[Sun Jul 17 18:50:11 CEST 2016]:update 0
+[Sun Jul 17 18:50:33 CEST 2016]:update 0
+[Sun Jul 17 18:51:11 CEST 2016]:update 0
+[Sun Jul 17 18:53:18 CEST 2016]:update 0
+[Sun Jul 17 18:53:27 CEST 2016]:teletome jared
+[Sun Jul 17 18:55:12 CEST 2016]:update 0
+[Sun Jul 17 18:56:04 CEST 2016]:update 0
+[Sun Jul 17 18:59:50 CEST 2016]:teletome jared
+[Sun Jul 17 19:34:47 CEST 2016]:update 0
+[Sun Jul 17 19:39:18 CEST 2016]:debugon 
+[Sun Jul 17 19:48:33 CEST 2016]:update 0
+[Sun Jul 17 19:49:35 CEST 2016]:update 0
+[Sun Jul 17 19:52:24 CEST 2016]:update 0
+[Sun Jul 17 19:56:26 CEST 2016]:update 0
+[Sun Jul 17 19:56:59 CEST 2016]:update 0
+[Sun Jul 17 20:22:21 CEST 2016]:mute test
+[Sun Jul 17 20:23:45 CEST 2016]:mute test
+[Sun Jul 17 20:23:49 CEST 2016]:mute test1
+[Sun Jul 17 20:24:11 CEST 2016]:update 0
+[Sun Jul 17 20:24:32 CEST 2016]:update 0
+[Sun Jul 17 20:24:36 CEST 2016]:unmute test
+[Sun Jul 17 20:37:07 CEST 2016]:mute test
+[Sun Jul 17 21:05:44 CEST 2016]:update 0
+[Sun Jul 17 21:08:14 CEST 2016]:update 0
+[Sun Jul 17 21:09:50 CEST 2016]:update 0
+[Sun Jul 17 21:13:02 CEST 2016]:update 0
+[Sun Jul 17 21:21:32 CEST 2016]:update 0

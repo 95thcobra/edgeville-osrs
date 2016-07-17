@@ -109,17 +109,18 @@ public class JSONFileSerializer extends PlayerSerializer {
 				if (!rootObject.get("password").getAsString().equals(password))
 					return PlayerLoadResult.INVALID_DETAILS;
 			}
-			
+
 			// Check if banned
-			if (player.getMemberId() != 1 && player.world().getPunishments().getBannedPlayers().contains(player.getUsername())) { 
+			if (player.getMemberId() != 1
+					&& player.world().getPunishments().getBannedPlayers().contains(player.getUsername())) {
 				return PlayerLoadResult.BANNED;
 			}
-			if (player.getMemberId() != 1 && player.world().getPunishments().isIPBanned(player.getIP())) { 
+			if (player.getMemberId() != 1 && player.world().getPunishments().isIPBanned(player.getIP())) {
 				return PlayerLoadResult.BANNED;
 			}
-			
+
 			// Set mute
-			if (player.world().getPunishments().isMuted(player)) { 
+			if (player.world().getPunishments().isMuted(player)) {
 				player.setMuted(true);
 			}
 
@@ -136,21 +137,21 @@ public class JSONFileSerializer extends PlayerSerializer {
 			JsonElement deaths = rootObject.get("deaths");
 			player.setKills(kills.getAsInt());
 			player.setDeaths(deaths.getAsInt());
-			
+
 			player.setLastKilled(rootObject.get("lastKilled").getAsInt());
 			player.setAmountLastKilled(rootObject.get("lastKilledAmount").getAsInt());
-			
+
 			Uptime playTime = gson.fromJson(rootObject.get("playTime"), Uptime.class);
 			player.setPlayTime(playTime);
 
 			JsonElement lastHiscoresUpdate = rootObject.get("lastHiscoresUpdate");
 			if (lastHiscoresUpdate != null)
 				player.setLastHiscoresUpdate(lastHiscoresUpdate.getAsLong());
-			
+
 			JsonElement lastNurseUsed = rootObject.get("lastNurseUsed");
 			if (lastNurseUsed != null)
 				player.setLastNurseUsed(lastNurseUsed.getAsLong());
-			
+
 			JsonElement lastDfsUsed = rootObject.get("lastDfsUsed");
 			if (lastDfsUsed != null)
 				player.setLastNurseUsed(lastDfsUsed.getAsLong());
@@ -158,7 +159,12 @@ public class JSONFileSerializer extends PlayerSerializer {
 			JsonElement lastVengeanceUsed = rootObject.get("lastVengeanceUsed");
 			if (lastVengeanceUsed != null)
 				player.setLastVengeanceUsed(lastVengeanceUsed.getAsLong());
-			
+
+			JsonElement blowpipeAmmo = rootObject.get("blowpipeAmmo");
+			if (blowpipeAmmo != null) {
+				player.setBlowpipeAmmo(gson.fromJson(blowpipeAmmo, Item.class));
+			}
+
 			// Debug
 			player.setDebug(rootObject.get("debug").getAsBoolean());
 
@@ -216,6 +222,13 @@ public class JSONFileSerializer extends PlayerSerializer {
 			JsonArray equip = loadout.get("equipment").getAsJsonArray();
 			for (int i = 0; i < player.getLoadout().getEquipment().length; i++) {
 				player.getLoadout().getEquipment()[i] = gson.fromJson(equip.get(i), Item.class);
+			}
+			JsonElement levels = loadout.get("levels");
+			if (levels != null) {
+				JsonArray levelsArray = levels.getAsJsonArray();
+				for (int i = 0; i < levelsArray.size(); i++) {
+					player.getLoadout().getLevels()[i] = levelsArray.get(i).getAsInt();
+				}
 			}
 
 			// bank
@@ -309,7 +322,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("debug", player.isDebug());
 		jsonObject.addProperty("kills", player.getKills());
 		jsonObject.addProperty("deaths", player.getDeaths());
-		
+
 		jsonObject.addProperty("lastKilled", player.getLastKilledMemberId());
 		jsonObject.addProperty("lastKilledAmount", player.getAmountLastKilled());
 
@@ -354,8 +367,15 @@ public class JSONFileSerializer extends PlayerSerializer {
 		for (int i = 0; i < player.getEquipment().size(); i++) {
 			equip.add(gson.toJsonTree(player.getLoadout().getEquipment()[i]));
 		}
+
+		JsonArray levels = new JsonArray();
+		for (int i = 0; i < player.getLoadout().getLevels().length; i++) {
+			levels.add(player.getLoadout().getLevels()[i]);
+		}
+
 		loadout.add("inventory", inv);
 		loadout.add("equipment", equip);
+		loadout.add("levels", levels);
 		jsonObject.add("loadout", loadout);
 
 		// Bank
@@ -415,12 +435,22 @@ public class JSONFileSerializer extends PlayerSerializer {
 		jsonObject.addProperty("lastNurseUsed", player.getLastNurseUsed());
 		jsonObject.addProperty("lastDfsUsed", player.getLastDfsUsed());
 		jsonObject.addProperty("lastVengeanceUsed", player.getLastVengeanceUsed());
-		
+
+		// blowpipe
+		jsonObject.add("blowpipeAmmo", gson.toJsonTree(player.getBlowpipeAmmo()));
+
 		// end
 
 		// File characterFile = new File(characterFolder, player.getUsername() +
 		// ".json");
-		File characterFile = new File(characterFolder, player.getMemberId() + ".json");
+
+		File characterFile;
+		if (Constants.MYSQL_ENABLED) {
+			characterFile = new File(characterFolder, player.getMemberId() + ".json");
+		} else {
+			characterFile = new File(characterFolder, player.getUsername() + ".json");
+		}
+
 		try (FileWriter out = new FileWriter(characterFile)) {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			out.write(gson.toJson(jsonObject));

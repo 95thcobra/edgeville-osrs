@@ -3,3 +3,229 @@
 [Sat Jul 16 23:02:19 CEST 2016]:1
 [Sat Jul 16 23:02:20 CEST 2016]:2
 [Sat Jul 16 23:02:20 CEST 2016]:3
+[Sun Jul 17 15:22:18 CEST 2016]:ohai
+[Sun Jul 17 15:22:22 CEST 2016]:g
+[Sun Jul 17 15:22:43 CEST 2016]:yh
+[Sun Jul 17 15:22:48 CEST 2016]:letss see
+[Sun Jul 17 15:23:24 CEST 2016]:ill save that too last, havent added the packet yet
+[Sun Jul 17 15:23:34 CEST 2016]:ok so blowpipe i guewss
+[Sun Jul 17 15:24:06 CEST 2016]:this one's gonna be hard :S
+[Sun Jul 17 15:24:21 CEST 2016]:you use darts on the pipe
+[Sun Jul 17 15:24:25 CEST 2016]:and it loads them
+[Sun Jul 17 15:27:28 CEST 2016]:gwera
+[Sun Jul 17 15:28:14 CEST 2016]:fewa
+[Sun Jul 17 15:28:17 CEST 2016]:hres
+[Sun Jul 17 15:28:52 CEST 2016]:gerw
+[Sun Jul 17 15:32:37 CEST 2016]:yo
+[Sun Jul 17 15:33:38 CEST 2016]:ok the projectile
+[Sun Jul 17 15:35:19 CEST 2016]:too slow
+[Sun Jul 17 15:35:22 CEST 2016]:lol ikr
+[Sun Jul 17 15:35:35 CEST 2016]:does it have stats
+[Sun Jul 17 15:35:46 CEST 2016]:yap
+[Sun Jul 17 15:36:26 CEST 2016]:ok good
+[Sun Jul 17 15:37:10 CEST 2016]:lol dart projectile is actually good lmao
+[Sun Jul 17 15:38:35 CEST 2016]:idk
+[Sun Jul 17 15:38:41 CEST 2016]:it may be blow pipe
+[Sun Jul 17 15:38:45 CEST 2016]:but i cant find any other
+[Sun Jul 17 15:39:10 CEST 2016]:it flies up
+[Sun Jul 17 15:39:11 CEST 2016]::D
+[Sun Jul 17 15:39:51 CEST 2016]:wait
+[Sun Jul 17 15:39:54 CEST 2016]:why is yours fucked up
+[Sun Jul 17 15:40:15 CEST 2016]:nvm mine is too low either
+[Sun Jul 17 15:40:45 CEST 2016]:seems good
+[Sun Jul 17 15:40:54 CEST 2016]:now uhm
+[Sun Jul 17 15:40:59 CEST 2016]:saving of darts
+[Sun Jul 17 15:43:02 CEST 2016]:ye thats normal
+[Sun Jul 17 15:58:02 CEST 2016]:hm?
+[Sun Jul 17 15:58:12 CEST 2016]:ye it has no drop button
+[Sun Jul 17 15:58:12 CEST 2016]::S
+[Sun Jul 17 16:02:49 CEST 2016]:yep
+[Sun Jul 17 16:04:11 CEST 2016]:no idea 
+[Sun Jul 17 16:04:13 CEST 2016]:like 14k i believe
+[Sun Jul 17 16:04:25 CEST 2016]:i remember completely filling my blowpipe on osrs
+[Sun Jul 17 16:04:33 CEST 2016]:cost me like 10m
+[Sun Jul 17 16:04:52 CEST 2016]:think so
+[Sun Jul 17 16:05:04 CEST 2016]:maybe rune
+[Sun Jul 17 16:06:04 CEST 2016]:really?
+[Sun Jul 17 16:06:06 CEST 2016]:god damn
+[Sun Jul 17 16:06:21 CEST 2016]:thats so much work .-.
+[Sun Jul 17 16:06:54 CEST 2016]:i think ima leave the ammo out 
+[Sun Jul 17 16:07:05 CEST 2016]:just make it so you use a dart on it and it loads them and increases your stats
+[Sun Jul 17 16:07:56 CEST 2016]:yeah
+[Sun Jul 17 16:10:18 CEST 2016]:havent i?
+[Sun Jul 17 16:11:03 CEST 2016]:not loading for me
+[Sun Jul 17 16:16:10 CEST 2016]:darts even uhave that funky projectile
+[Sun Jul 17 16:16:15 CEST 2016]:d darts
+[Sun Jul 17 16:16:24 CEST 2016]:awesome :)
+[Sun Jul 17 16:19:29 CEST 2016]:darts only give range ?
+[Sun Jul 17 16:19:30 CEST 2016]:stats
+[Sun Jul 17 16:21:27 CEST 2016]:ok
+[Sun Jul 17 16:22:13 CEST 2016]:l0l
+[Sun Jul 17 16:22:25 CEST 2016]:that aint right
+[Sun Jul 17 16:23:22 CEST 2016]:eh
+[Sun Jul 17 16:23:31 CEST 2016]:my range is +93...
+[Sun Jul 17 16:23:39 CEST 2016]:tyler is feeling lonely
+[Sun Jul 17 16:24:36 CEST 2016]:why is it so bad
+[Sun Jul 17 16:24:52 CEST 2016]:idk it just feels bad
+[Sun Jul 17 16:26:19 CEST 2016]:lol
+[Sun Jul 17 16:26:46 CEST 2016]:yeah i dont really like it
+[Sun Jul 17 16:26:59 CEST 2016]:.-.
+[Sun Jul 17 16:27:31 CEST 2016]:jeez
+[Sun Jul 17 16:28:50 CEST 2016]:maybe i need to rewrite ranging after all
+[Sun Jul 17 16:32:54 CEST 2016]:what we gonna do with blowpipe?
+[Sun Jul 17 16:33:24 CEST 2016]:ok
+[Sun Jul 17 16:33:26 CEST 2016]:u ok
+[Sun Jul 17 16:33:38 CEST 2016]:lol.
+[Sun Jul 17 16:34:47 CEST 2016]:lol
+[Sun Jul 17 16:35:58 CEST 2016]:its part of the weapon tho
+[Sun Jul 17 16:36:21 CEST 2016]:hm ye
+[Sun Jul 17 16:36:32 CEST 2016]:shall i just lower maxhit of this thing?
+[Sun Jul 17 16:39:13 CEST 2016]:k
+[Sun Jul 17 16:40:29 CEST 2016]::o
+[Sun Jul 17 16:41:08 CEST 2016]:better?
+[Sun Jul 17 16:41:43 CEST 2016]:good?
+[Sun Jul 17 16:41:46 CEST 2016]:or more
+[Sun Jul 17 16:42:00 CEST 2016]:do we leave it like this?
+[Sun Jul 17 16:42:16 CEST 2016]:and pray
+[Sun Jul 17 16:42:20 CEST 2016]:and pot
+[Sun Jul 17 16:42:32 CEST 2016]:lol
+[Sun Jul 17 16:43:40 CEST 2016]:o
+[Sun Jul 17 16:43:48 CEST 2016]:i dont want to get fat
+[Sun Jul 17 16:44:08 CEST 2016]:kek
+[Sun Jul 17 16:44:12 CEST 2016]:gf
+[Sun Jul 17 16:44:20 CEST 2016]:the blowpipe is gonna be the item for pures
+[Sun Jul 17 16:44:45 CEST 2016]:wo
+[Sun Jul 17 16:44:53 CEST 2016]:this thing combos so well
+[Sun Jul 17 16:45:07 CEST 2016]:also restoring on kill is such a good suggestion
+[Sun Jul 17 16:45:30 CEST 2016]::DD
+[Sun Jul 17 16:45:35 CEST 2016]:that kiting is so bad
+[Sun Jul 17 16:45:40 CEST 2016]:cotzy
+[Sun Jul 17 16:45:41 CEST 2016]:i think
+[Sun Jul 17 16:46:15 CEST 2016]:this is good
+[Sun Jul 17 16:46:16 CEST 2016]:now the spec
+[Sun Jul 17 16:46:37 CEST 2016]:ye k
+[Sun Jul 17 16:47:00 CEST 2016]:well it isnt
+[Sun Jul 17 16:47:12 CEST 2016]:but i dont think darts are either
+[Sun Jul 17 16:47:39 CEST 2016]:well its not bad
+[Sun Jul 17 16:48:05 CEST 2016]:gf
+[Sun Jul 17 16:48:10 CEST 2016]:seems fine
+[Sun Jul 17 16:48:39 CEST 2016]:cant find blowpipe gfx >.>
+[Sun Jul 17 16:48:47 CEST 2016]:actually its a projectile
+[Sun Jul 17 16:50:08 CEST 2016]:maybe i get lucky
+[Sun Jul 17 16:50:35 CEST 2016]:ugh
+[Sun Jul 17 16:51:17 CEST 2016]:wow the blowpipe gfx looks funky as hell
+[Sun Jul 17 16:51:20 CEST 2016]:like a pokemon flying at u
+[Sun Jul 17 16:51:46 CEST 2016]:yeesssssssssss
+[Sun Jul 17 16:51:48 CEST 2016]:this is it!
+[Sun Jul 17 16:52:00 CEST 2016]:ye its amazing
+[Sun Jul 17 16:53:24 CEST 2016]:boom
+[Sun Jul 17 16:53:32 CEST 2016]:well thats it
+[Sun Jul 17 16:53:35 CEST 2016]:what does spec do again?
+[Sun Jul 17 16:54:19 CEST 2016]:done
+[Sun Jul 17 16:55:48 CEST 2016]:mhm
+[Sun Jul 17 16:56:38 CEST 2016]:lemme c
+[Sun Jul 17 16:59:29 CEST 2016]:l00l
+[Sun Jul 17 18:18:23 CEST 2016]:::
+[Sun Jul 17 18:18:26 CEST 2016]:h
+[Sun Jul 17 18:20:10 CEST 2016]:yo
+[Sun Jul 17 18:20:13 CEST 2016]:im buffing toxic spec
+[Sun Jul 17 18:21:37 CEST 2016]:2much?
+[Sun Jul 17 18:21:49 CEST 2016]:max hit 40
+[Sun Jul 17 18:22:01 CEST 2016]:aight
+[Sun Jul 17 18:22:03 CEST 2016]:try on maxed
+[Sun Jul 17 18:23:10 CEST 2016]:l0l
+[Sun Jul 17 18:23:32 CEST 2016]:maybe a little less
+[Sun Jul 17 18:23:40 CEST 2016]:i mean the toxic blowpipe isnt really for dmg
+[Sun Jul 17 18:23:43 CEST 2016]:the spec
+[Sun Jul 17 18:23:45 CEST 2016]:its a heal spec
+[Sun Jul 17 18:24:14 CEST 2016]:like these 45s
+[Sun Jul 17 18:24:18 CEST 2016]:arent they gonna piss ppl off?
+[Sun Jul 17 18:24:43 CEST 2016]:mhm
+[Sun Jul 17 18:24:51 CEST 2016]:i guess ags would still be better
+[Sun Jul 17 18:25:07 CEST 2016]:alright then
+[Sun Jul 17 18:25:31 CEST 2016]:eh
+[Sun Jul 17 18:25:37 CEST 2016]:yeah
+[Sun Jul 17 18:25:42 CEST 2016]:these 40s are quite frequent
+[Sun Jul 17 18:25:49 CEST 2016]:i do
+[Sun Jul 17 18:25:52 CEST 2016]::(
+[Sun Jul 17 18:26:10 CEST 2016]:yeah i dont really take them off
+[Sun Jul 17 18:26:18 CEST 2016]:cant handle not seeing clear :P
+[Sun Jul 17 18:26:50 CEST 2016]:.-.
+[Sun Jul 17 18:27:07 CEST 2016]:44 max
+[Sun Jul 17 18:27:12 CEST 2016]:still a little steep
+[Sun Jul 17 18:27:33 CEST 2016]:this is good
+[Sun Jul 17 18:27:34 CEST 2016]:39
+[Sun Jul 17 18:28:07 CEST 2016]:ugh
+[Sun Jul 17 18:28:30 CEST 2016]:ok
+[Sun Jul 17 18:31:02 CEST 2016]:gf
+[Sun Jul 17 18:31:09 CEST 2016]:honestly i dont see ppl using this spec anyway
+[Sun Jul 17 18:32:15 CEST 2016]:oh
+[Sun Jul 17 18:32:16 CEST 2016]:ye
+[Sun Jul 17 18:34:12 CEST 2016]:whys that
+[Sun Jul 17 18:34:21 CEST 2016]:but yeah they are lol
+[Sun Jul 17 18:34:49 CEST 2016]:oh you mean on the server
+[Sun Jul 17 18:35:07 CEST 2016]:ye idk whats up with that
+[Sun Jul 17 18:36:53 CEST 2016]:lemme try blowpipe again
+[Sun Jul 17 18:37:03 CEST 2016]:i forgot to add back the darts
+[Sun Jul 17 18:38:22 CEST 2016]:does it seem weaker?
+[Sun Jul 17 18:38:40 CEST 2016]:weird i havent changed anything
+[Sun Jul 17 18:38:43 CEST 2016]:.-.
+[Sun Jul 17 18:39:01 CEST 2016]:u super combat potted didnt u
+[Sun Jul 17 18:39:17 CEST 2016]:ok ima buff again
+[Sun Jul 17 18:39:20 CEST 2016]:>.>
+[Sun Jul 17 18:40:50 CEST 2016]:yah i saw
+[Sun Jul 17 18:41:19 CEST 2016]:.-.
+[Sun Jul 17 18:41:20 CEST 2016]:is it good now
+[Sun Jul 17 18:41:39 CEST 2016]:lets check
+[Sun Jul 17 18:43:06 CEST 2016]:bring it on
+[Sun Jul 17 18:43:45 CEST 2016]:nice
+[Sun Jul 17 18:44:07 CEST 2016]:op
+[Sun Jul 17 18:45:24 CEST 2016]:yah :D
+[Sun Jul 17 18:45:29 CEST 2016]:dont worry it has like infinite hp
+[Sun Jul 17 18:45:32 CEST 2016]:i hope
+[Sun Jul 17 18:46:09 CEST 2016]:oops
+[Sun Jul 17 18:46:10 CEST 2016]:it hasnt
+[Sun Jul 17 18:47:17 CEST 2016]:ya
+[Sun Jul 17 18:48:48 CEST 2016]:range formula sucks
+[Sun Jul 17 18:49:38 CEST 2016]:too op?
+[Sun Jul 17 18:50:59 CEST 2016]:someone just tried ::bank
+[Sun Jul 17 18:51:01 CEST 2016]:lmfao
+[Sun Jul 17 18:51:28 CEST 2016]:im dying
+[Sun Jul 17 18:51:29 CEST 2016]:xD
+[Sun Jul 17 18:52:57 CEST 2016]:jeeez
+[Sun Jul 17 18:53:04 CEST 2016]:idk bro
+[Sun Jul 17 18:53:40 CEST 2016]:cuz it has no accuracy formula
+[Sun Jul 17 18:54:00 CEST 2016]:its just random
+[Sun Jul 17 18:54:04 CEST 2016]:based on max hit
+[Sun Jul 17 18:54:16 CEST 2016]:this is good
+[Sun Jul 17 18:54:18 CEST 2016]:ima leave it like this
+[Sun Jul 17 18:55:16 CEST 2016]:yah
+[Sun Jul 17 18:55:23 CEST 2016]:i plan to make it like mage and melee
+[Sun Jul 17 18:55:32 CEST 2016]:but ppl think its fine so i left it like this
+[Sun Jul 17 18:55:43 CEST 2016]:did the veng thing
+[Sun Jul 17 18:56:58 CEST 2016]:12 pm
+[Sun Jul 17 18:56:59 CEST 2016]:is that
+[Sun Jul 17 18:57:02 CEST 2016]:like
+[Sun Jul 17 18:57:03 CEST 2016]:morning
+[Sun Jul 17 18:57:22 CEST 2016]:alright
+[Sun Jul 17 18:57:24 CEST 2016]:i still think
+[Sun Jul 17 18:57:27 CEST 2016]:12pm doesnt make sense
+[Sun Jul 17 18:58:14 CEST 2016]:12 pm
+[Sun Jul 17 18:58:23 CEST 2016]:pm sounds like evening
+[Sun Jul 17 18:58:40 CEST 2016]:it doesnt make sense
+[Sun Jul 17 18:58:44 CEST 2016]:that it goes from 12 pm
+[Sun Jul 17 18:58:45 CEST 2016]:to 1 pm
+[Sun Jul 17 18:58:48 CEST 2016]:get me?
+[Sun Jul 17 18:58:56 CEST 2016]:11 am -> 12 am -> 1 pm
+[Sun Jul 17 18:59:10 CEST 2016]:i know its right the way you said it
+[Sun Jul 17 18:59:18 CEST 2016]:just doesnt feel right to me :(
+[Sun Jul 17 18:59:32 CEST 2016]:oh?
+[Sun Jul 17 19:00:32 CEST 2016]:ok
+[Sun Jul 17 19:00:36 CEST 2016]:im gonna make food too then
+[Sun Jul 17 19:00:47 CEST 2016]:uh no
+[Sun Jul 17 19:00:52 CEST 2016]:that was like 12 pm
+[Sun Jul 17 19:00:58 CEST 2016]:or 1
+[Sun Jul 17 19:00:59 CEST 2016]:or 2
+[Sun Jul 17 19:01:09 CEST 2016]:m8 thats 5 hours
+[Sun Jul 17 19:01:37 CEST 2016]:gainz bruh
+[Sun Jul 17 19:49:34 CEST 2016]:L::

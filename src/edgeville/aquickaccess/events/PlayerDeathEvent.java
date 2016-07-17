@@ -84,6 +84,15 @@ public class PlayerDeathEvent extends Event {
 					((Player) killer).skills().restoreStats();
 					
 					
+					
+					
+					player.setLastDfsUsed(0);
+					player.setLastVengeanceUsed(0);
+					
+					player.getVarps().setVarbit(Varbit.PRAYER_ORB, 0);
+					
+					
+					
 					String log = String.format("killed %s(id:%d)", player.getUsername(), player.getMemberId());
 					player.world().getLogsHandler().appendLog(Constants.KILL_LOG_DIR + ((Player)killer).getUsername() + ".txt",log);
 					 log = String.format("killed by %s(id:%d)", ((Player)killer).getUsername(), ((Player)killer).getMemberId());

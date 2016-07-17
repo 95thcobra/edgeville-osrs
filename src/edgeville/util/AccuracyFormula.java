@@ -367,7 +367,7 @@ public class AccuracyFormula {
 		if (CombatFormula.wearingVoidMelee(player))
 			accuracy *= 1.1;
 
-		accuracy += 10;//15 !!!!
+		accuracy += 5;//15 !!!!
 		player.messageDebug("Accuracy: %d", (int) accuracy);
 
 		/*
@@ -401,7 +401,7 @@ public class AccuracyFormula {
 		if (finalHit > maxHit)
 			finalHit = (int) maxHit;
 
-		System.out.println(finalHit + " " + maxReducer);
+		//System.out.println(finalHit + " " + maxReducer);
 		// player.shout("AttackLevel:"+playerAttackLevel+" Maxhit:" + maxHit + "
 		// Final hit:" + finalHit + " Attackbonus:"+playerAttackBonus + "
 		// TargetDefencedbonus:"+targetDefenceBonus);
@@ -538,7 +538,7 @@ public class AccuracyFormula {
 		if (finalHit > maxHit)
 			finalHit = (int) maxHit;
 
-		System.out.println(finalHit + " " + maxReducer);
+		//System.out.println(finalHit + " " + maxReducer);
 
 		return finalHit;
 	}

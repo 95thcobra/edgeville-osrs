@@ -72,13 +72,13 @@ public class ButtonClickAction {
 				player.interfaces().setQuickPrayers(false);
 			}
 			break;
-			
-			// unequip in equipment interface
+
+		// unequip in equipment interface
 		case 84:
 			handleEquipmentInterface();
 			break;
-			
-			// keybindings
+
+		// keybindings
 		case 121:
 			setupKeybindings();
 			break;
@@ -119,7 +119,7 @@ public class ButtonClickAction {
 
 		// Run toggle, in settings
 		case 261:
-			
+
 			if (buttonId == 57) {
 				player.interfaces().sendMain(121);
 				return;
@@ -132,21 +132,20 @@ public class ButtonClickAction {
 				player.interfaces().sendMain(60);
 				return;
 			}
-			
-			
-			if (buttonId == 15) { 
+
+			if (buttonId == 15) {
 				player.getVarps().setVarp(Varp.BRIGHTNESS, 1);
 				return;
 			}
-			if (buttonId == 16) { 
+			if (buttonId == 16) {
 				player.getVarps().setVarp(Varp.BRIGHTNESS, 2);
 				return;
 			}
-			if (buttonId == 17) { 
+			if (buttonId == 17) {
 				player.getVarps().setVarp(Varp.BRIGHTNESS, 3);
 				return;
 			}
-			if (buttonId == 18) { 
+			if (buttonId == 18) {
 				player.getVarps().setVarp(Varp.BRIGHTNESS, 4);
 				return;
 			}
@@ -162,10 +161,10 @@ public class ButtonClickAction {
 			// handleQuestTab();
 			player.getQuestTab().clickButton(buttonId);
 			break;
-			
+
 		case 320:
 			int skillId = -1;
-			switch(buttonId) {
+			switch (buttonId) {
 			case 1:
 				skillId = Skills.ATTACK;
 				break;
@@ -190,19 +189,19 @@ public class ButtonClickAction {
 			}
 			if (skillId == -1)
 				return;
-			
+
 			if (player.inCombat()) {
 				player.message("You cannot do this in combat!");
 				return;
 			}
-			
+
 			if (!player.getEquipment().isEmpty()) {
 				player.message("Unequip your equipment before setting your levels!");
 				return;
 			}
-			
+
 			player.getPrayer().deactivateAllPrayers();
-			
+
 			final int skillToSet = skillId;
 			NumberInputDialog dialog = new NumberInputDialog(player) {
 
@@ -211,7 +210,7 @@ public class ButtonClickAction {
 					player.skills().setYourRealLevel(skillToSet, value);
 					player.skills().recalculateCombat();
 				}
-				
+
 			};
 			dialog.send();
 			break;
@@ -240,21 +239,25 @@ public class ButtonClickAction {
 	////////////////
 
 	private void setupKeybindings() {
-			//player.write(new InvokeScript(917, -1, -1));
-			player.interfaces().sendMain(121);
+		// player.write(new InvokeScript(917, -1, -1));
+		player.interfaces().sendMain(121);
 
-			SettingsBuilder settingsBuilder = new SettingsBuilder();
-			player.interfaces().setting(121, 21, 1, 14, settingsBuilder.option(0));
-			player.interfaces().setting(121, 22, 1, 14, settingsBuilder.option(0));
-			player.interfaces().setting(121, 23, 1, 14, settingsBuilder.option(0));
-			/*player.interfaces().setting(121, 51, 1, 3, settingsBuilder.option(0));
-			player.interfaces().setting(121, 52, 1, 4, settingsBuilder.option(0));
-			player.interfaces().setting(121, 53, 1, 32, settingsBuilder.option(0));
-			player.interfaces().setting(121, 54, 1, 32, settingsBuilder.option(0));
-			player.interfaces().setting(121, 55, 1, 8, settingsBuilder.option(0));
-			player.interfaces().setting(121, 56, 1, 2, settingsBuilder.option(0));
-			player.interfaces().setting(121, 57, 1, 3, settingsBuilder.option(0));
-			player.interfaces().setting(121, 16, 0, 24, settingsBuilder.option(0));*/
+		SettingsBuilder settingsBuilder = new SettingsBuilder();
+		player.interfaces().setting(121, 21, 1, 14, settingsBuilder.option(0));
+		player.interfaces().setting(121, 22, 1, 14, settingsBuilder.option(0));
+		player.interfaces().setting(121, 23, 1, 14, settingsBuilder.option(0));
+		/*
+		 * player.interfaces().setting(121, 51, 1, 3,
+		 * settingsBuilder.option(0)); player.interfaces().setting(121, 52, 1,
+		 * 4, settingsBuilder.option(0)); player.interfaces().setting(121, 53,
+		 * 1, 32, settingsBuilder.option(0)); player.interfaces().setting(121,
+		 * 54, 1, 32, settingsBuilder.option(0));
+		 * player.interfaces().setting(121, 55, 1, 8,
+		 * settingsBuilder.option(0)); player.interfaces().setting(121, 56, 1,
+		 * 2, settingsBuilder.option(0)); player.interfaces().setting(121, 57,
+		 * 1, 3, settingsBuilder.option(0)); player.interfaces().setting(121,
+		 * 16, 0, 24, settingsBuilder.option(0));
+		 */
 	}
 
 	private void handleDfs() {
@@ -263,25 +266,25 @@ public class ButtonClickAction {
 			player.message("Find a target first!");
 			return;
 		}
-		
+
 		if (!CombatUtil.canAttack(player, target)) {
 			return;
 		}
-		
-    	long msLeft = System.currentTimeMillis() - player.getLastDfsUsed();
-    	//player.message("msLeft", msLeft);
-    	if (msLeft < 30000) {
-    		int secondsLeft = 30 -(int) (msLeft / 1000);
-    		player.message("You need to wait %d more seconds to use dfs!", secondsLeft);
-    		return;
-    	}
-    	player.setLastDfsUsed(System.currentTimeMillis());
-		//if (player.timers().has(TimerKey.DFS_COOLDOWN)) {
-			//int secondsLeft = player.timers().timers().get(TimerKey.DFS_COOLDOWN)
-			//player.message("Wait %d seconds before using again.");
-			//return;
-		//}
-		int max = 25;
+
+		long msLeft = System.currentTimeMillis() - player.getLastDfsUsed();
+		// player.message("msLeft", msLeft);
+		if (msLeft < 30000) {
+			int secondsLeft = 30 - (int) (msLeft / 1000);
+			player.message("You need to wait %d more seconds to use dfs!", secondsLeft);
+			return;
+		}
+		player.setLastDfsUsed(System.currentTimeMillis());
+		// if (player.timers().has(TimerKey.DFS_COOLDOWN)) {
+		// int secondsLeft = player.timers().timers().get(TimerKey.DFS_COOLDOWN)
+		// player.message("Wait %d seconds before using again.");
+		// return;
+		// }
+		int max = 20;
 		int hit = player.world().random().nextInt((int) Math.round(max));
 
 		player.graphic(1165, 92, 0);
@@ -290,7 +293,7 @@ public class ButtonClickAction {
 
 		target.hit(player, hit, 3);
 
-		//player.timers().register(TimerKey.DFS_COOLDOWN, 50);
+		// player.timers().register(TimerKey.DFS_COOLDOWN, 50);
 	}
 
 	private void quickPrayers() {
@@ -327,7 +330,7 @@ public class ButtonClickAction {
 	}
 
 	private void handleEquipmentInterface() {
-		switch(buttonId) {
+		switch (buttonId) {
 
 		// Unequip
 		case 11:
@@ -372,7 +375,7 @@ public class ButtonClickAction {
 			break;
 		}
 	}
-	
+
 	private void handleOptionsTabs() {
 		switch (buttonId) {
 
@@ -497,18 +500,20 @@ public class ButtonClickAction {
 			return;
 		}
 
-		if (player.getVarps().getVarbit(Varbit.SPELLBOOK) == SpellBook.ANCIENTS && player.getLastCastedSpell() instanceof AncientSpell) {
+		if (player.getVarps().getVarbit(Varbit.SPELLBOOK) == SpellBook.ANCIENTS
+				&& player.getLastCastedSpell() instanceof AncientSpell) {
 			player.setAutoCastingSpell(player.getLastCastedSpell());
 			player.setAutoCastingSpellChild(player.getLastSpellCastChild());
-		} else if (player.getVarps().getVarbit(Varbit.SPELLBOOK) == SpellBook.REGULAR && player.getLastCastedSpell() instanceof RegularDamageSpell) {
+		} else if (player.getVarps().getVarbit(Varbit.SPELLBOOK) == SpellBook.REGULAR
+				&& player.getLastCastedSpell() instanceof RegularDamageSpell) {
 			player.setAutoCastingSpell(player.getLastCastedSpell());
 			player.setAutoCastingSpellChild(player.getLastSpellCastChild());
 		} else {
 			player.message("Your last casted spell was from a different spellbook!");
 			return;
 		}
-		//player.setAutoCastingSpell(player.getLastCastedSpell());
-		//player.setAutoCastingSpellChild(player.getLastSpellCastChild());
+		// player.setAutoCastingSpell(player.getLastCastedSpell());
+		// player.setAutoCastingSpellChild(player.getLastSpellCastChild());
 
 		player.getVarps().setVarbit(Varbit.AUTOCAST_SPELL, getAutoCastSpellId(player.getAutoCastingSpell()));
 		player.getVarps().setVarbit(Varbit.AUTOCAST, buttonId == 20 ? 1 : 2);
@@ -563,7 +568,7 @@ public class ButtonClickAction {
 		}
 		Entity target = player.getAttribute(AttributeKey.TARGET);
 		if (target != null) {
-			//player.message("getshreer1");
+			// player.message("getshreer1");
 			PlayerVersusAnyCombat.handleGraniteMaul(player, target);
 		}
 		return true;
@@ -673,34 +678,42 @@ public class ButtonClickAction {
 			player.message("You need a magic level of %d to cast %s.", levelReq, "Vengeance");
 			return;
 		}
-		Item[] requiredRunes = new Item[] { new Item(Runes.ASTRAL_RUNE, 4), new Item(Runes.DEATH_RUNE, 2), new Item(Runes.EARTH_RUNE, 10) };
+		Item[] requiredRunes = new Item[] { new Item(Runes.ASTRAL_RUNE, 4), new Item(Runes.DEATH_RUNE, 2),
+				new Item(Runes.EARTH_RUNE, 10) };
 		for (Item item : requiredRunes) {
 			if (!player.getInventory().contains(item.getId(), item.getAmount())) {
 				player.message("You do not have the required runes to cast Vengeance!");
 				return;
 			}
 		}
+
 		if (player.isVengOn()) {
 			player.message("Vengeance is already enabled!");
 			return;
 		}
-		
-    	long msLeft = System.currentTimeMillis() - player.getLastVengeanceUsed();
-    	//player.message("msLeft", msLeft);
-    	if (msLeft < 30000) {
-    		int secondsLeft = 30 -(int) (msLeft / 1000);
-    		player.message("You need to wait %d more seconds to cast vengeance!", secondsLeft);
-    		return;
-    	}
-    	player.setLastVengeanceUsed(System.currentTimeMillis());
 
-		/*if (player.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
-			player.message("Vengeance is on cooldown, wait %d seconds.", (int) Math.round(player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).ticks() / 0.6));
+		long msLeft = System.currentTimeMillis() - player.getLastVengeanceUsed();
+		// player.message("msLeft", msLeft);
+		if (msLeft < 30000) {
+			int secondsLeft = 30 - (int) (msLeft / 1000);
+			player.message("You need to wait %d more seconds to cast vengeance!", secondsLeft);
 			return;
-		}*/
+		}
+		player.setLastVengeanceUsed(System.currentTimeMillis());
+
+		/*
+		 * if (player.timers().has(TimerKey.VENGEANCE_COOLDOWN)) {
+		 * player.message("Vengeance is on cooldown, wait %d seconds.", (int)
+		 * Math.round(player.timers().timers().get(TimerKey.VENGEANCE_COOLDOWN).
+		 * ticks() / 0.6)); return; }
+		 */
 		player.graphic(726, 92, 0);
 		player.animate(4410);
-		//player.timers().register(TimerKey.VENGEANCE_COOLDOWN, 50);
+
+		for (Item item : requiredRunes) {
+			player.getInventory().remove(item);
+		}
+		// player.timers().register(TimerKey.VENGEANCE_COOLDOWN, 50);
 		player.setVengOn(true);
 	}
 }

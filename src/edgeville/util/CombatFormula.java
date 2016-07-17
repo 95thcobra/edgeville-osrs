@@ -66,42 +66,6 @@ public class CombatFormula {
 		return false;
 	}
 
-	/**
-	 * Not used!
-	 * 
-	 * @param player
-	 * @param combatStyle
-	 * @return
-	 */
-	public static int siminMaxHit(Player player, CombatStyle combatStyle) {
-		double strength = Math.floor(player.skills().level(Skills.STRENGTH));
-		double base = 1.00;
-
-		// Prayer multipliers
-		if (combatStyle == CombatStyle.MELEE) {
-			base *= prayerMeleeMultiplier(player);
-			// Black mask: slayer only
-			// Salve amulet: vs undead
-			// Salve amulet (e) : vs undead
-			// void knight melee
-		} else if (combatStyle == CombatStyle.RANGED) {
-			base *= prayerRangedMultiplier(player);
-			// void knight ranged
-		}
-
-		int effectiveStrength = (int) Math.floor(strength * base);
-
-		if (combatStyle == CombatStyle.MELEE) {
-			effectiveStrength += extraDamageBasedOnAttackStyleMelee(player);
-		} else if (combatStyle == CombatStyle.RANGED) {
-			effectiveStrength += extraDamageBasedOnAttackStyleRanged(player);
-		}
-
-		// TODO DHAROK
-
-		return effectiveStrength;
-	}
-
 	public static int maximumMeleeHit(Player player) {
 		EquipmentInfo.Bonuses bonuses = totalBonuses(player, player.world().equipmentInfo());
 
@@ -221,6 +185,10 @@ public class CombatFormula {
 		if (wearingVoidRange(player))
 			baseDamage *= 1.2;
 
+		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+		if (weapon !=null && weapon.getId() == 12926) { // blowpipe
+			baseDamage /= 2.8;
+		}
 		return (int) baseDamage;
 	}
 
@@ -252,6 +220,12 @@ public class CombatFormula {
 					bonuses.magestr += equip.magestr;
 					bonuses.pray += equip.pray;
 				}
+			}
+			
+			Item dart = player.getBlowpipeAmmo();
+			if (dart != null && player.getEquipment().get(EquipSlot.WEAPON) != null && player.getEquipment().get(EquipSlot.WEAPON).getId() == 12926) {
+				bonuses.range += info.bonuses(dart.getId()).range;
+				bonuses.rangestr += info.bonuses(dart.getId()).rangestr;
 			}
 		} else {
 			/* Nothing as of right now. */

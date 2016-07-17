@@ -56,7 +56,8 @@ public class EquipmentInfo {
 	// private Map<Integer, List<EquipmentRequirement>> equipmentRequirements =
 	// new HashMap<>();
 
-	public EquipmentInfo(DefinitionRepository repo, File typeSlotFile, File renderPairs, File bonuses, File weaponTypes, File weaponSpeeds, File equipmentRequirements) {
+	public EquipmentInfo(DefinitionRepository repo, File typeSlotFile, File renderPairs, File bonuses, File weaponTypes,
+			File weaponSpeeds, File equipmentRequirements) {
 		int numItems = repo.total(ItemDefinition.class);
 		slots = new byte[numItems];
 		types = new byte[numItems];
@@ -196,8 +197,10 @@ public class EquipmentInfo {
 	 */
 	private void loadEquipmentRequirements(File file) {
 
-		String[] skills = { "ATTACK", "DEFENCE ", "STRENGTH ", "HITPOINTS ", "RANGED ", "PRAYER ", "MAGIC ", "COOKING ", "WOODCUTTING ", "FLETCHING ", "FISHING ", "FIREMAKING ", "CRAFTING", "SMITHING ", "MINING", "HERBLORE", "AGILITY", "THIEVING ", "SLAYER", "FARMING ", "RUNECRAFTING ", "HUNTER ",
-				"CONSTRUCTION ", "SUMMONING" };
+		String[] skills = { "ATTACK", "DEFENCE ", "STRENGTH ", "HITPOINTS ", "RANGED ", "PRAYER ", "MAGIC ", "COOKING ",
+				"WOODCUTTING ", "FLETCHING ", "FISHING ", "FIREMAKING ", "CRAFTING", "SMITHING ", "MINING", "HERBLORE",
+				"AGILITY", "THIEVING ", "SLAYER", "FARMING ", "RUNECRAFTING ", "HUNTER ", "CONSTRUCTION ",
+				"SUMMONING" };
 
 		try (InputStream inputStream = new FileInputStream(file)) {
 			JsonElement element = new JsonParser().parse(new InputStreamReader(inputStream));
@@ -264,7 +267,7 @@ public class EquipmentInfo {
 		List<EquipmentRequirement> reqs = new ArrayList<EquipmentRequirement>();
 
 		boolean attackRequirementFound = false;
-		
+
 		// Mithril
 		if (!attackRequirementFound) {
 			if (StringUtils.containsIgnoreCase(itemName, "mithril")) {
@@ -275,7 +278,7 @@ public class EquipmentInfo {
 				attackRequirementFound = true;
 			}
 		}
-		
+
 		// Adamant
 		if (!attackRequirementFound) {
 			if (StringUtils.containsIgnoreCase(itemName, "adamant")) {
@@ -286,7 +289,7 @@ public class EquipmentInfo {
 				attackRequirementFound = true;
 			}
 		}
-		
+
 		// Rune
 		if (!attackRequirementFound) {
 			if (StringUtils.containsIgnoreCase(itemName, "rune")) {
@@ -297,7 +300,7 @@ public class EquipmentInfo {
 				attackRequirementFound = true;
 			}
 		}
-		
+
 		// Dragon
 		if (!attackRequirementFound) {
 			if (StringUtils.containsIgnoreCase(itemName, "dragon")) {
@@ -329,7 +332,7 @@ public class EquipmentInfo {
 				}
 			}
 		}
-		
+
 		// All items that require 20 defence.
 		if (!attackRequirementFound) {
 			String[] require20def = { "infinity" };
@@ -339,32 +342,57 @@ public class EquipmentInfo {
 				}
 			}
 		}
-		
+
 		// All items that require 65 defence.
 		if (!attackRequirementFound) {
 			String[] items = { "bandos" };
 			for (String name : items) {
-				if (StringUtils.containsIgnoreCase(itemName, name) && targetSlot != EquipSlot.WEAPON && targetSlot != EquipSlot.AMULET && targetSlot != EquipSlot.RING) {
+				if (StringUtils.containsIgnoreCase(itemName, name) && targetSlot != EquipSlot.WEAPON
+						&& targetSlot != EquipSlot.AMULET && targetSlot != EquipSlot.RING) {
 					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 65));
 				}
 			}
 		}
-		
+
 		// All items that require 75 defence.
 		if (!attackRequirementFound) {
-			//String[] require75Attack = { "primordial boots", "abyssal tentacle" };
-			int[] require75Attack = {12825,13239};
-			/*for (String name : require75Attack) {
-				if (StringUtils.containsIgnoreCase(itemName, name)) {
-					reqs.add(new EquipmentRequirement(Skill.ATTACK, 75));
-				}
-			}*/
-			for(int id : require75Attack) {
-				if (item.getId()==id) {
+			// String[] require75Attack = { "primordial boots", "abyssal
+			// tentacle" };
+			int[] require75Attack = { 12825, 13239 };
+			/*
+			 * for (String name : require75Attack) { if
+			 * (StringUtils.containsIgnoreCase(itemName, name)) { reqs.add(new
+			 * EquipmentRequirement(Skill.ATTACK, 75)); } }
+			 */
+			for (int id : require75Attack) {
+				if (item.getId() == id) {
 					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 75));
 				}
 			}
 		}
+
+		// Void
+		if (!attackRequirementFound) {
+			if (StringUtils.containsIgnoreCase(itemName, "void knight")) {
+				reqs.add(new EquipmentRequirement(Skill.ATTACK, 42));
+				reqs.add(new EquipmentRequirement(Skill.STRENGTH, 42));
+				reqs.add(new EquipmentRequirement(Skill.DEFENCE, 42));
+				attackRequirementFound = true;
+			}
+		}
+
+		// dharok
+		if (!attackRequirementFound) {
+			if (StringUtils.containsIgnoreCase(itemName, "dharok")) {
+				if (targetSlot == EquipSlot.WEAPON) {
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
+					reqs.add(new EquipmentRequirement(Skill.STRENGTH, 70));
+				} else
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 70));
+				attackRequirementFound = true;
+			}
+		}
+
 		return reqs;
 	}
 
@@ -382,9 +410,14 @@ public class EquipmentInfo {
 		int style = player.getVarps().getVarp(43);
 
 		// Handle individual cases first
-		int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).getId() : 0;
+		int weapon = player.getEquipment().hasAt(EquipSlot.WEAPON) ? player.getEquipment().get(EquipSlot.WEAPON).getId()
+				: 0;
 		if (weapon != 0) {
 			switch (weapon) {
+
+			case 12926:
+				return 5061;
+
 			case 11802:
 			case 11804:
 			case 11806:
@@ -483,36 +516,36 @@ public class EquipmentInfo {
 	public int weaponSpeed(int id) {
 		return weaponSpeeds.getOrDefault(id, 5);
 	}
-	
+
 	public int getDefenceBonus(Player player, Player attackedBy) {
 		SlashStabCrunch slashStabCrunch = CombatUtil.getSlashStabCrunch(attackedBy);
-		switch(slashStabCrunch) {
+		switch (slashStabCrunch) {
 		case STAB:
 			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).stabdef;
 		case SLASH:
 			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slashdef;
 		case CRUNCH:
-			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).crushdef;	
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).crushdef;
 		}
 		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slashdef;
 	}
 
 	public int getAttackBonus(Player player) {
 		SlashStabCrunch slashStabCrunch = CombatUtil.getSlashStabCrunch(player);
-		
-		//player.message("Attackbonus for:"+slashStabCrunch.toString());
-		
-		switch(slashStabCrunch) {
+
+		// player.message("Attackbonus for:"+slashStabCrunch.toString());
+
+		switch (slashStabCrunch) {
 		case STAB:
 			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).stab;
 		case SLASH:
 			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slash;
 		case CRUNCH:
-			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).crush;	
+			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).crush;
 		}
 		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slash;
 	}
-	
+
 	public static class Bonuses {
 		public int stab;
 		public int slash;

@@ -13,6 +13,9 @@ public class CombatUtil {
 	private Player player;
 
 	public static boolean canAttack(Player player, Entity target) {
+		if (player.dead() || player.locked()) {
+			return false;
+		}
 		if (!(target instanceof Player)) {
 			return true;
 		}

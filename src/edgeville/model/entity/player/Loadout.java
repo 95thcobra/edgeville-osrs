@@ -7,10 +7,20 @@ import edgeville.model.item.ItemContainer;
 public class Loadout {
 	private Item[] inventory;
 	private Item[] equipment;
+	private int[] levels;
+	
+	public int[] getLevels() {
+		return levels;
+	}
+
+	public void setLevels(int[] levels) {
+		this.levels = levels;
+	}
 
 	public Loadout() {
 		inventory = new Item[28];
 		equipment = new Item[14];
+		levels = new int[6];
 	}
 
 	public Item[] getInventory() {
@@ -39,6 +49,11 @@ public class Loadout {
 		for (int i = 0; i < equip.size(); i++) {
 			equipment[i] = equip.get(i);
 		}
+		
+		for(int i = 0 ; i < 6; i++) {
+			levels[i] = player.skills().xpLevel(i);
+		}
+		
 	}
 
 	public void load(Player player) {
@@ -50,6 +65,10 @@ public class Loadout {
 		ItemContainer equip = player.getEquipment();
 		for (int i = 0; i < equip.size(); i++) {
 			equip.set(i, equipment[i]);
+		}
+		
+		for(int i = 0 ; i < levels.length; i++) {
+			player.skills().setYourRealLevel(i, levels[i]);
 		}
 	}
 }

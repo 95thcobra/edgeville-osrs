@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.aquickaccess.actions.ItemOnItemAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.entity.Player;
 import edgeville.net.message.game.encoders.Action;
@@ -43,10 +44,12 @@ public class ItemOnItem implements Action {
     @Override
     public void process(Player player) {
         logger.info("[ItemOnItem]: interfaceId:{} itemUsedId:{} itemUsedWithId{}", (hash1 >> 16), itemUsedId, itemUsedWithId);
-
+        int interfaceId = (hash1 >> 16);
         if (player.getInventory().has(itemUsedId) && player.getInventory().has(itemUsedWithId)) {
             //player.world().server().scriptRepository().triggerItemOnItem(player, itemUsedId, itemUsedWithId);
         	//TODO item on item
+        	
+        	new ItemOnItemAction(player, interfaceId, fromSlot, itemUsedId, toSlot, itemUsedWithId).start();
         }
     }
 }

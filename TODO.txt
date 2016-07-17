@@ -1,27 +1,20 @@
+REPLACE DATA FOLDER
 
-running/kiting is bad
+fix dying after teleport!!!! getting hit after teleport!
 
-blowpipe
 
-rearrange inven while banking
+
+
 
 
 copy other player gear command
 Fix the attacking people with 2 ppl!
 
 view players online actual nmes
-
-
-combat dharoks brioken
-
-
 fix logging in by email
+message when running out of prayer potions
 
-
-restore to 97 prayer?
-
-
-
+loadout do skills too
 
 
 

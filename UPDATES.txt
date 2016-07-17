@@ -1,5 +1,27 @@
+- Leather body goes into right slot now.
+- Vengeance and DFS timer reset on death now.
+- Prayer orb not turning off after dying fixed.
+- Loadout saves skills too now.
+
+
+Today's updates!
+[17-07-2016]
+
+- Fixed running while being attacked, if the enemy is close enough he will hit you now.
 - Fixed draining prayer after death.
 - Fixed restoring hp after death.
+- Ranged specials are improved.
+- Fixed gmaul special on death.
+- Blowpipe added.
+- Vengeance runes now disappear on usage.
+- Melee accuracy nerfed once again.
+- Dharok's equipment requirement added.
+- Void equipment requirement added.
+- Re-arranging of inventory while banking is added!
+- Whip spec energy usage fixed.
+- DFS can't be used anymore after dying.
+- DFS has been nerfed slightly.
+
 
 
 

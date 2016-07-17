@@ -76,6 +76,8 @@ public class Player extends Entity {
 	private int lastKilledMemberId;
 	private int amountLastKilled;
 	
+	private Item blowpipeAmmo;
+	
 
 	/**
 	 * The privilege level of this player.
@@ -388,6 +390,7 @@ public class Player extends Entity {
 		setLastNurseUsed(System.currentTimeMillis());
 		setPrivilege(Privilege.PLAYER);
 		this.isMuted = false;
+		setBlowpipeAmmo(null);
 	}
 
 	private void onLogin() {
@@ -554,17 +557,17 @@ public class Player extends Entity {
 		onLogin();
 		// new Panel(this);
 		
-		if (getLastNurseUsed() == 0) {
-			setLastNurseUsed(System.currentTimeMillis());
-		}
+		//if (getLastNurseUsed() == 0) {
+		//	setLastNurseUsed(System.currentTimeMillis());
+		//}
 		
-		if (this.getLastDfsUsed() == 0) {
-			this.setLastDfsUsed(System.currentTimeMillis());
-		}
+		//if (this.getLastDfsUsed() == 0) {
+		//	this.setLastDfsUsed(System.currentTimeMillis());
+		//}
 		
-		if (this.getLastVengeanceUsed() == 0) {
-			this.setLastVengeanceUsed(System.currentTimeMillis());
-		}
+		//if (this.getLastVengeanceUsed() == 0) {
+		//	this.setLastVengeanceUsed(System.currentTimeMillis());
+		//}
 	}
 
 	public void event(Event event) {
@@ -1544,5 +1547,13 @@ public class Player extends Entity {
 
 	public void setLastVengeanceUsed(long lastVengeanceUsed) {
 		this.lastVengeanceUsed = lastVengeanceUsed;
+	}
+
+	public Item getBlowpipeAmmo() {
+		return blowpipeAmmo;
+	}
+
+	public void setBlowpipeAmmo(Item blowpipeAmmo) {
+		this.blowpipeAmmo = blowpipeAmmo;
 	}
 }

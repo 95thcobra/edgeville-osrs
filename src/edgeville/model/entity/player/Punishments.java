@@ -217,7 +217,7 @@ public class Punishments {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			for (String username : lines) {
-				bw.write(username);
+				bw.write(username+"\n");
 			}
 			bw.close();
 

@@ -103,4 +103,5 @@ public enum Projectile {
 	public Graphic getGfx() {
 		return gfx;
 	}
+
 }
