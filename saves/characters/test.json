@@ -5,15 +5,15 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3086,
-    "z": 3499,
+    "x": 3093,
+    "z": 3494,
     "level": 0
   },
   "playTime": {
-    "hours": 0,
-    "minutes": 51,
-    "seconds": 43,
-    "milliseconds": 200,
+    "hours": 1,
+    "minutes": 13,
+    "seconds": 48,
+    "milliseconds": 0,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "PLAYER",
@@ -53,111 +53,23 @@
       "amount": 1
     },
     {
-      "id": 149,
+      "id": 10499,
       "amount": 1
     },
     {
-      "id": 161,
+      "id": 4587,
       "amount": 1
     },
     {
-      "id": 163,
+      "id": 2497,
       "amount": 1
     },
     {
-      "id": 4153,
+      "id": 12695,
       "amount": 1
     },
     {
-      "id": 12006,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 12954,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    null,
-    null,
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    },
-    {
-      "id": 385,
-      "amount": 1
-    }
-  ],
-  "equipment": [
-    {
-      "id": 10828,
+      "id": 11785,
       "amount": 1
     },
     {
@@ -165,21 +77,118 @@
       "amount": 1
     },
     {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 2444,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 6685,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 397,
+      "amount": 1
+    },
+    {
+      "id": 565,
+      "amount": 2000
+    },
+    {
+      "id": 560,
+      "amount": 3000
+    },
+    {
+      "id": 555,
+      "amount": 6000
+    },
+    {
+      "id": 397,
+      "amount": 1
+    }
+  ],
+  "equipment": [
+    {
+      "id": 12453,
+      "amount": 1
+    },
+    {
+      "id": 2412,
+      "amount": 1
+    },
+    {
       "id": 6585,
       "amount": 1
     },
     {
-      "id": 12926,
+      "id": 4675,
       "amount": 1
     },
     {
-      "id": 10551,
+      "id": 577,
+      "amount": 1
+    },
+    {
+      "id": 3842,
       "amount": 1
     },
     null,
-    null,
     {
-      "id": 4722,
+      "id": 6108,
       "amount": 1
     },
     null,
@@ -188,15 +197,18 @@
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 3105,
       "amount": 1
     },
     null,
     {
-      "id": 11773,
+      "id": 6737,
       "amount": 1
     },
-    null
+    {
+      "id": 9244,
+      "amount": 500
+    }
   ],
   "loadout": {
     "inventory": [
@@ -244,6 +256,14 @@
       null,
       null,
       null
+    ],
+    "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
     ]
   },
   "bank": [
@@ -547,7 +567,7 @@
     },
     {
       "id": 843,
-      "value": 19
+      "value": 18
     },
     {
       "id": 1050,
@@ -576,28 +596,28 @@
   ],
   "skills": [
     {
-      "level": 99,
-      "xp": 1.3035934E7
+      "level": 60,
+      "xp": 273742.0
+    },
+    {
+      "level": 1,
+      "xp": 0.0
     },
     {
       "level": 99,
-      "xp": 1.3034458E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034458E7
-    },
-    {
-      "level": 95,
-      "xp": 1.303496099E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3034471E7
-    },
-    {
-      "level": 18,
       "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 52,
+      "xp": 123660.0
     },
     {
       "level": 99,
@@ -677,7 +697,7 @@
   "lastCastedSpellChild": 0,
   "autocasting": false,
   "lastHiscoresUpdate": 1468776844077,
-  "lastNurseUsed": 1468780623747,
+  "lastNurseUsed": 0,
   "lastDfsUsed": 0,
   "lastVengeanceUsed": 1468776844077,
   "blowpipeAmmo": {

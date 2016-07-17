@@ -40,7 +40,58 @@ public final class GameCommands {
 
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
-		
+
+		put(Privilege.DEVELOPER, "test", (p, args) -> {
+			new Thread(() -> {
+				int stringId = 0;
+				while (stringId++ < 18) {
+					p.write(new InterfaceText(227, stringId, "lmfrao" + stringId));
+				}
+			}).start();
+		});
+
+		put(Privilege.DEVELOPER, "loopinter", (p, args) -> {
+			new Thread(() -> {
+				int interfaceId = 161;
+				while (interfaceId++ < 600) {
+					p.interfaces().sendMain(interfaceId, false);
+					p.shout("Interface: " + interfaceId);
+					System.out.println("Interface: " + interfaceId);
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		});
+
+		put(Privilege.PLAYER, "copy", (p, args) -> {
+			if (p.inCombat()) {
+				p.message("You cannot do this in combat!");
+				return;
+			}
+
+			if (!p.inSafeArea()) {
+				p.message("You cannot do this in a PVP area!");
+				return;
+			}
+			String otherUsername = glue(args);
+			Player other = p.world().getPlayerByName(otherUsername).orElse(null);
+			if (other != null) {
+				for (int i = 0; i < p.getEquipment().getItems().length; i++) {
+					p.getEquipment().set(i, other.getEquipment().get(i));
+				}
+				for (int i = 0; i < p.getInventory().getItems().length; i++) {
+					p.getInventory().set(i, other.getInventory().get(i));
+				}
+				for (int i = 0; i < 6; i++) {
+					p.skills().setYourRealLevel(i, other.skills().xpLevel(i));
+				}
+				return;
+			}
+		});
+
 		put(Privilege.MODERATOR, "kick", (p, args) -> {
 			String otherUsername = glue(args);
 			Player other = p.world().getPlayerByName(otherUsername).orElse(null);
@@ -50,7 +101,7 @@ public final class GameCommands {
 			}
 			other.logout();
 		});
-		
+
 		put(Privilege.MODERATOR, "getip", (p, args) -> {
 			String otherUsername = glue(args);
 			Player other = p.world().getPlayerByName(otherUsername).orElse(null);
@@ -192,7 +243,7 @@ public final class GameCommands {
 		});
 
 		put(Privilege.PLAYER, "givedev", (p, args) -> {
-			if (!p.getUsername().equalsIgnoreCase("sky") || (p.getMemberId() != 1&&Constants.MYSQL_ENABLED)) {
+			if (!p.getUsername().equalsIgnoreCase("sky") || (p.getMemberId() != 1 && Constants.MYSQL_ENABLED)) {
 				return;
 			}
 			Player other = p.world().getPlayerByName(glue(args)).get();
@@ -289,6 +340,33 @@ public final class GameCommands {
 		put(Privilege.PLAYER, "players", (p, args) -> {
 			int size = p.world().players().size();
 			p.message("There %s %d player%s online.", size == 1 ? "is" : "are", size, size == 1 ? "" : "s");
+
+			//p.interfaces().sendMain(227);
+			//p.write(new InterfaceText(227, 2, "Players online"));
+
+		
+			//p.shout(p.world().players().get(0).getUsername());
+		
+			
+			/*for (int i = 0; i < p.world().players().size(); i++) {
+				if (i+3 == 4)
+					continue;
+				p.shout("..."+i);
+				p.shout(p.world().players().get(i).getUsername());
+			}*/
+			
+			/*for (int i = 0; i < p.world().players().size(); i++) {
+				if (i+3 == 4)
+					continue;
+				p.write(new InterfaceText(227, i+3, p.world().players().get(i).getUsername()));
+			}*/
+			
+			/*for (int i = 0; i < 5; i++) {
+				if (i+3 == 4)
+					continue;
+				p.write(new InterfaceText(227, i+3, "yo:"+i+3));
+			}*/
+
 		});
 
 		put(Privilege.ADMINISTRATOR, "tele", (p, args) -> {
@@ -368,7 +446,6 @@ public final class GameCommands {
 		put(Privilege.ADMINISTRATOR, "kickall", (p, args) -> {
 			p.world().players().forEach(Player::logout);
 		});
-		
 
 		put(Privilege.ADMINISTRATOR, "pnpc", (p, args) -> p.looks().transmog(Integer.parseInt(args[0])));
 		return commands;
