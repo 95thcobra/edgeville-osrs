@@ -7,6 +7,7 @@ import edgeville.model.Entity;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.item.Item;
+import edgeville.script.TimerKey;
 import edgeville.util.Varp;
 
 public class CombatUtil {
@@ -20,16 +21,38 @@ public class CombatUtil {
 			return true;
 		}
 		Player targetP = (Player) target;
+		
+		if (player.inCombat() && targetP != player.getTarget() && player.getLastAttackedBy() != targetP) {
+			player.message("You are already fighting someone else!");
+			return false;
+		}
+		
+		//player.message("bool1=%b, bool2=%b",  player != target.getLastAttackedBy(), target.getTarget() != player);
+		
+		player.setLastAttackedBy(null);
+		/*
+		if (target.timers().has(TimerKey.IN_COMBAT)) {
+			if (target.getTarget() != player && target.getLastAttackedBy() != player) {
+				player.message("This player is in combat!");
+				return false;
+			}
+		}
+		*/
+		if (targetP.timers().has(TimerKey.IN_COMBAT) && player != target.getLastAttackedBy() && target.getTarget() != player) {	
+			player.message("This player is in combat!");	
+			return false;
+		}
+		
+		targetP.timers().register(TimerKey.IN_COMBAT, 5);
+		player.setTarget(target);
+		target.setLastAttackedBy(player);
+		
 		if (!Constants.ALL_PVP) {
 			if (!player.inWilderness() || !((Player) target).inWilderness()) {
 				player.message("You or your target are not in wild.");
 				return false;
 			}
 		} else {
-			/*
-			 * if (player.inSafeArea() && player.canBeAttackInSafeArea()) {
-			 * return true; }
-			 */
 			if (player.inSafeArea() && !targetP.canBeAttackInSafeArea()) {
 				player.message("You or your target are in a safe area!");
 				return false;

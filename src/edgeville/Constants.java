@@ -60,7 +60,11 @@ public class Constants {
 	public static final String BANNED_IPS = "./saves/punishment/bannedips.txt";
 	public static final String MUTED_IPS = "./saves/punishment/mutedips.txt";
 	
+	/**
+	 * Log dirs
+	 */
 	public static final String COMMAND_LOG_DIR = "./saves/logs/commands/";
 	public static final String KILL_LOG_DIR = "./saves/logs/kills/";
 	public static final String CHAT_LOG_DIR = "./saves/logs/chat/";
+	public static final String DROP_LOG_DIR = "./saves/logs/drops/";
 }

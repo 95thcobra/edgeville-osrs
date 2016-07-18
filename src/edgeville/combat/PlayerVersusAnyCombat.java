@@ -53,7 +53,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			 * if (!player.timers().has(TimerKey.IN_COMBAT)) {
 			 * player.interfaces().setBountyInterface(true); }
 			 */
-			player.timers().register(TimerKey.IN_COMBAT, 10);
+			player.timers().register(TimerKey.IN_COMBAT, 5);
 			if (!player.inSafeArea()) {
 				player.timers().register(TimerKey.AFTER_COMBAT, 5);
 			}
@@ -62,7 +62,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			 * if (!target.timers().has(TimerKey.IN_COMBAT)) { ((Player)
 			 * target).interfaces().setBountyInterface(true); }
 			 */
-			target.timers().register(TimerKey.IN_COMBAT, 10);
+			target.timers().register(TimerKey.IN_COMBAT, 5);
 			if (!((Player) target).inSafeArea()) {
 				target.timers().register(TimerKey.AFTER_COMBAT, 5);
 			}
@@ -71,15 +71,10 @@ public class PlayerVersusAnyCombat extends Combat {
 		// Combat type?
 		if (weaponType == WeaponType.BOW || weaponType == WeaponType.CROSSBOW || weaponType == WeaponType.THROWN
 				|| weaponType == WeaponType.CHINCHOMPA) {
-			// getEntity().message("ranging...");
 			handleRangeCombat(weaponId, ammoName, weaponType, container);
 		} else {
-			// getEntity().message("meleeeing...");
 			handleMeleeCombat(weaponId);
 		}
-
-		getTarget().putAttribute(AttributeKey.LAST_DAMAGER, getEntity());
-		getTarget().putAttribute(AttributeKey.LAST_DAMAGE, System.currentTimeMillis());
 
 		target.setLastDamagedMillis(System.currentTimeMillis());
 	}
@@ -106,9 +101,9 @@ public class PlayerVersusAnyCombat extends Combat {
 			} else {
 				return;
 			}
-			//return;
+			// return;
 		}
-		
+
 		if (player.getTile().distance(target.getTile()) > 3) {
 			return;
 		}
@@ -187,15 +182,16 @@ public class PlayerVersusAnyCombat extends Combat {
 		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
 		// int hit = player.world().random().nextInt((int) Math.round(max));
 		int hit;
-		
-		/*if (target instanceof Player) {
-			hit = AccuracyFormula.calculateHit(player, (Player) target, (int) Math.round(max));
-		} else {
-			hit = player.world().random().nextInt((int) Math.round(max));
-		}*/
-		
+
+		/*
+		 * if (target instanceof Player) { hit =
+		 * AccuracyFormula.calculateHit(player, (Player) target, (int)
+		 * Math.round(max)); } else { hit =
+		 * player.world().random().nextInt((int) Math.round(max)); }
+		 */
+
 		hit = AccuracyFormula.calculateHit(player, target, (int) Math.round(max), specialAttack);
-		
+
 		if (specialAttack.isHits()) {
 			// double max = CombatFormula.maximumMeleeHit(player) *
 			// specialAttack.getMaxHitMultiplier();
@@ -219,7 +215,6 @@ public class PlayerVersusAnyCombat extends Combat {
 		// Do extra action
 		specialAttack.action(player, target, hit);
 	}
-
 
 	@Override
 	public void handleRangeCombat(int weaponId, String ammoName, int weaponType, EventContainer container) {
@@ -257,7 +252,14 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (player.timers().has(TimerKey.COMBAT_ATTACK)) {
 			return;
 		}
-		
+
+		final int DARK_BOW = 11235;
+		if (weaponId != DARK_BOW && ammoName.contains("Dragon arrow")) {
+			player.message("You can only use dragon arrows with dark bow.");
+			container.stop();
+			return;
+		}
+
 		final int BLOWPIPE_ID = 12926;
 		final int CRYSTAL_BOW_ID = 4212;
 		if (weaponId == BLOWPIPE_ID && player.getBlowpipeAmmo() == null) {
@@ -265,7 +267,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			container.stop();
 			return;
 		}
-		
+
 		// Do we have ammo?
 		if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA && ammoName.equals("")
 				&& weaponId != 4212) {
@@ -289,7 +291,7 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		// Remove the ammo
 		Projectile projectile = null;
-		
+
 		// crystal bow doesnt use ammo
 		if (weaponId != CRYSTAL_BOW_ID && weaponId != BLOWPIPE_ID) {
 
@@ -355,9 +357,9 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		if (weaponId == BLOWPIPE_ID) {
 			projectile = Projectile.getProjectileForAmmoName(player.getBlowpipeAmmo().definition(player.world()).name);
-			
+
 		}
-		
+
 		if (projectile != null) {
 			graphic = projectile.getProjectileId();
 			startHeight = 50;
@@ -384,7 +386,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			startHeight = 25;
 			endHeight = 30;
 		}
-		
+
 		if (weaponId == BLOWPIPE_ID) {
 			startHeight = 35;
 			endHeight = 33;
@@ -408,11 +410,12 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		long delay = Math.round(Math.floor(baseDelay / 30.0) + (distance * (cyclesPerTile * 0.020) / 0.6));
 
-		//boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
+		// boolean success = AccuracyFormula.doesHit(player, target,
+		// CombatStyle.RANGED);
 
 		int maxHit = CombatFormula.maximumRangedHit(player);
 		player.getQuestTab().updateMaxHit(maxHit);
-		int hit = AccuracyFormula.calcRangeHit(player, target, maxHit);//player.world().random(maxHit);
+		int hit = AccuracyFormula.calcRangeHit(player, target, maxHit);// player.world().random(maxHit);
 
 		triggerVeng(hit);
 
@@ -422,9 +425,14 @@ public class PlayerVersusAnyCombat extends Combat {
 		target.hit(player, hit, (int) delay, CombatStyle.RANGED);
 		// if dark bow then another hit
 		if (weaponId == 11235) {
-			boolean success2 = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
-			int hit2 = player.world().random(maxHit);
-			target.hit(player, success2 ? hit2 : 0, (int) delay, CombatStyle.RANGED);
+			// boolean success2 = AccuracyFormula.doesHit(player, target,
+			// CombatStyle.RANGED);
+			// int hit2 = player.world().random(maxHit);
+			// target.hit(player, success2 ? hit2 : 0, (int) delay,
+			// CombatStyle.RANGED);
+
+			int hit2 = AccuracyFormula.calcRangeHit(player, target, maxHit);// player.world().random(maxHit);
+			target.hit(player, hit2, (int) delay, CombatStyle.RANGED);
 		}
 
 		// explode chin on target
@@ -471,8 +479,9 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		double max = CombatFormula.maximumRangedHit(player) * specialAttack.getMaxHitMultiplier();
-		player.getQuestTab().updateMaxHit((int)max);
-		int hit = AccuracyFormula.calcRangeHit(player, target, (int)Math.round(max), specialAttack);//player.world().random().nextInt((int) Math.round(max));
+		player.getQuestTab().updateMaxHit((int) max);
+		int hit = AccuracyFormula.calcRangeHit(player, target, (int) Math.round(max), specialAttack);// player.world().random().nextInt((int)
+																										// Math.round(max));
 		triggerVeng(hit);
 
 		if (specialAttack.isHits()) {
@@ -480,9 +489,11 @@ public class PlayerVersusAnyCombat extends Combat {
 			target.hit(player, hit, delay, CombatStyle.RANGED);
 
 			if (specialAttack.isDoubleHit()) {
-				//int hit2 = player.world().random().nextInt((int) Math.round(max));
-				int hit2 = AccuracyFormula.calcRangeHit(player, target, (int)Math.round(max), specialAttack);//player.world().random().nextInt((int) Math.round(max));
-				
+				// int hit2 = player.world().random().nextInt((int)
+				// Math.round(max));
+				int hit2 = AccuracyFormula.calcRangeHit(player, target, (int) Math.round(max), specialAttack);// player.world().random().nextInt((int)
+																												// Math.round(max));
+
 				target.hit(player, hit2, delay, CombatStyle.RANGED);
 			}
 		}
@@ -495,15 +506,15 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (player.dead() || target.dead()) {
 			return;
 		}
-		
+
 		if (player.getSpecialEnergyAmount() < 50 * 10) {
 			player.message("You do not have enough special energy.");
 			return;
 		}
 
-		//if (!player.touches(target, player.getTile())) {
-		//	return;
-		//}
+		// if (!player.touches(target, player.getTile())) {
+		// return;
+		// }
 		if (player.getTile().distance(target.getTile()) > 3) {
 			return;
 		}

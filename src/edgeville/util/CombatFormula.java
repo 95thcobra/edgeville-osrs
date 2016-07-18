@@ -172,7 +172,26 @@ public class CombatFormula {
 		return base;
 	}
 
+	public static int calculateRangeMaxHit(Player player) {
+		int rangeLevel = player.skills().level(Skills.RANGED);
+
+		double maxHit = 0;
+		double A = 0;
+		double B = 1; // Use this for prayer, void, etc...
+		double C = 0;
+		double rangeStr = 0;
+
+		rangeLevel *= 1;// multipliers;
+
+		rangeStr = totalBonuses(player, player.world().equipmentInfo()).rangestr;
+
+		maxHit = 0.8 + rangeLevel / 10 + rangeStr / 80 + rangeLevel * rangeStr / 640;
+
+		return (int) Math.floor(maxHit);
+	}
+
 	public static int maximumRangedHit(Player player) {
+
 		EquipmentInfo.Bonuses bonuses = totalBonuses(player, player.world().equipmentInfo());
 
 		double effectiveStr = Math.floor(player.skills().level(Skills.RANGED));
@@ -185,10 +204,10 @@ public class CombatFormula {
 		if (wearingVoidRange(player))
 			baseDamage *= 1.2;
 
-		Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
-		if (weapon !=null && weapon.getId() == 12926) { // blowpipe
-			baseDamage /= 2.8;
-		}
+		//Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+		//if (weapon != null && weapon.getId() == 12926) { // blowpipe
+			//baseDamage /= 2.8;
+		//}
 		return (int) baseDamage;
 	}
 
@@ -216,14 +235,30 @@ public class CombatFormula {
 					bonuses.magedef += equip.magedef;
 
 					bonuses.str += equip.str;
-					bonuses.rangestr += equip.rangestr;
+
+					// Only increase range str ammo with bow and cbow
+					if (i == 13) {
+						Item wep = player.getEquipment().get(EquipSlot.WEAPON);
+						if (wep != null) {
+							if (player.world().equipmentInfo().weaponType(wep.getId()) == WeaponType.CROSSBOW
+									|| player.world().equipmentInfo().weaponType(wep.getId()) == WeaponType.BOW) {
+								bonuses.rangestr += equip.rangestr;
+							}
+						} else {
+							bonuses.rangestr += equip.rangestr;
+						}
+					} else {
+						bonuses.rangestr += equip.rangestr;
+					}
+
 					bonuses.magestr += equip.magestr;
 					bonuses.pray += equip.pray;
 				}
 			}
-			
+
 			Item dart = player.getBlowpipeAmmo();
-			if (dart != null && player.getEquipment().get(EquipSlot.WEAPON) != null && player.getEquipment().get(EquipSlot.WEAPON).getId() == 12926) {
+			if (dart != null && player.getEquipment().get(EquipSlot.WEAPON) != null
+					&& player.getEquipment().get(EquipSlot.WEAPON).getId() == 12926) {
 				bonuses.range += info.bonuses(dart.getId()).range;
 				bonuses.rangestr += info.bonuses(dart.getId()).rangestr;
 			}
@@ -246,13 +281,18 @@ public class CombatFormula {
 	}
 
 	private static boolean wearingVoidNoHelm(Player player) {
-		if (player.getEquipment().get(EquipSlot.BODY) != null && player.getEquipment().get(EquipSlot.BODY).getId() != 8839 && player.getEquipment().get(EquipSlot.BODY).getId() != 13072) {
+		if (player.getEquipment().get(EquipSlot.BODY) != null
+				&& player.getEquipment().get(EquipSlot.BODY).getId() != 8839
+				&& player.getEquipment().get(EquipSlot.BODY).getId() != 13072) {
 			return false;
 		}
-		if (player.getEquipment().get(EquipSlot.BODY) != null && player.getEquipment().get(EquipSlot.LEGS).getId() != 8840 && player.getEquipment().get(EquipSlot.LEGS).getId() != 13073) {
+		if (player.getEquipment().get(EquipSlot.BODY) != null
+				&& player.getEquipment().get(EquipSlot.LEGS).getId() != 8840
+				&& player.getEquipment().get(EquipSlot.LEGS).getId() != 13073) {
 			return false;
 		}
-		if (player.getEquipment().get(EquipSlot.BODY) != null && player.getEquipment().get(EquipSlot.HANDS).getId() != 8842) {
+		if (player.getEquipment().get(EquipSlot.BODY) != null
+				&& player.getEquipment().get(EquipSlot.HANDS).getId() != 8842) {
 			return false;
 		}
 

@@ -566,7 +566,8 @@ public class ButtonClickAction {
 		if (weaponId != 4153) {
 			return false;
 		}
-		Entity target = player.getAttribute(AttributeKey.TARGET);
+		//Entity target = player.getAttribute(AttributeKey.TARGET);
+		Entity target = player.getTarget();
 		if (target != null) {
 			// player.message("getshreer1");
 			PlayerVersusAnyCombat.handleGraniteMaul(player, target);

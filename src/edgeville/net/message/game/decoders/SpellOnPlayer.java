@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edgeville.combat.CombatUtil;
 import edgeville.combat.magic.SpellOnTargetAction;
 import edgeville.io.RSBuffer;
 import edgeville.model.AttributeKey;
@@ -47,10 +48,15 @@ public class SpellOnPlayer implements Action {
 			player.message("Unable to find player.");
 			return;
 		}
-		if (other.inCombat() && player.getTarget() != other && player.getLastAttackedBy() != other) {
+		
+		if (!CombatUtil.canAttack(player, other)) {
+			return;
+		}	
+		
+		/*if (other.inCombat() && player.getTarget() != other && player.getLastAttackedBy() != other) {
 			player.message("This player is in combat.");
 			return;
-		}
+		}*/
 		
 		if (Math.abs(player.skills().combatLevel() - other.skills().combatLevel()) > 5) {
 			player.message("The difference in combat level should be 5 or lower.");

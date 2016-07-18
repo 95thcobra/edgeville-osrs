@@ -32,10 +32,6 @@ public class PlayerAction1 implements Action {
 			player.message("Unable to find player.");
 			return;
 		}
-		if (other.inCombat() && other.getLastAttackedBy() != player && other.getTarget() != player) {
-			player.message("This player is in combat.");
-			return;
-		}
 
 		if (!player.locked() && !player.dead() && !other.dead()) {
 			player.face(other);
@@ -52,10 +48,6 @@ public class PlayerAction1 implements Action {
 				player.message("The difference in combat level should be 5 or lower.");
 				return;
 			}
-
-			player.putAttribute(AttributeKey.TARGET_TYPE, 0);
-			player.putAttribute(AttributeKey.TARGET, /* index */other);
-			other.putAttribute(AttributeKey.LAST_ATTACKED_BY, player);
 
 			new PvPCombat(player, other).start();
 		}

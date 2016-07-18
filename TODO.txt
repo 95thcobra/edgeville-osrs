@@ -1,9 +1,12 @@
-DROP LOGS
+IMPORTANT
+fix pjing
+fix 2v1ing
+^^^^^^^^^^^^^^^^^^
+
 
 
 
 range is still too op, max hits mainly..
-
 blowpipe is too weak
 
 magic shortbow should not have d arrows

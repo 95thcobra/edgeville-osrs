@@ -5,15 +5,15 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3091,
-    "z": 3502,
+    "x": 3086,
+    "z": 3495,
     "level": 0
   },
   "playTime": {
-    "hours": 1,
+    "hours": 5,
     "minutes": 2,
-    "seconds": 16,
-    "milliseconds": 200,
+    "seconds": 3,
+    "milliseconds": 600,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
@@ -21,8 +21,8 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 0,
-  "deaths": 4,
+  "kills": 5,
+  "deaths": 26,
   "lastKilled": 0,
   "lastKilledAmount": 0,
   "gender": "MALE",
@@ -49,47 +49,7 @@
   ],
   "inventory": [
     {
-      "id": 4718,
-      "amount": 1
-    },
-    {
-      "id": 3144,
-      "amount": 1
-    },
-    {
-      "id": 3144,
-      "amount": 1
-    },
-    {
-      "id": 6685,
-      "amount": 1
-    },
-    {
-      "id": 3144,
-      "amount": 1
-    },
-    {
-      "id": 3144,
-      "amount": 1
-    },
-    {
-      "id": 3144,
-      "amount": 1
-    },
-    {
-      "id": 3024,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
+      "id": 9185,
       "amount": 1
     },
     {
@@ -97,56 +57,16 @@
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 6685,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 2444,
       "amount": 1
     },
     {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 3024,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 4153,
-      "amount": 1
-    },
-    {
-      "id": 11802,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
+      "id": 560,
+      "amount": 1000
     },
     {
       "id": 557,
@@ -157,17 +77,94 @@
       "amount": 1000
     },
     {
-      "id": 560,
-      "amount": 1000
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 11283,
+      "amount": 1
+    },
+    null,
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
     }
   ],
   "equipment": [
     {
-      "id": 4716,
+      "id": 4753,
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 10499,
       "amount": 1
     },
     {
@@ -175,20 +172,17 @@
       "amount": 1
     },
     {
-      "id": 12006,
+      "id": 11802,
       "amount": 1
     },
     {
-      "id": 4720,
-      "amount": 1
-    },
-    {
-      "id": 12954,
+      "id": 2503,
       "amount": 1
     },
     null,
+    null,
     {
-      "id": 4722,
+      "id": 4759,
       "amount": 1
     },
     null,
@@ -197,17 +191,17 @@
       "amount": 1
     },
     {
-      "id": 13239,
+      "id": 2577,
       "amount": 1
     },
     null,
     {
-      "id": 11773,
+      "id": 6733,
       "amount": 1
     },
     {
       "id": 9244,
-      "amount": 500
+      "amount": 883
     }
   ],
   "loadout": {
@@ -567,7 +561,7 @@
     },
     {
       "id": 843,
-      "value": 20
+      "value": 10
     },
     {
       "id": 1050,
@@ -605,15 +599,15 @@
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3035987E7
     },
     {
-      "level": 37,
-      "xp": 1.3034431E7
+      "level": 69,
+      "xp": 1.3036369E7
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3038735E7
     },
     {
       "level": 99,

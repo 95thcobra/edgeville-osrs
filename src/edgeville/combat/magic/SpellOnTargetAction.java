@@ -46,7 +46,7 @@ public class SpellOnTargetAction {
 				 * if (!player.timers().has(TimerKey.IN_COMBAT)) {
 				 * player.interfaces().setBountyInterface(true); }
 				 */
-				player.timers().register(TimerKey.IN_COMBAT, 10);
+				player.timers().register(TimerKey.IN_COMBAT, 5);
 				if (!player.inSafeArea()) {
 					player.timers().register(TimerKey.AFTER_COMBAT, 5);
 				}
@@ -54,7 +54,7 @@ public class SpellOnTargetAction {
 				 * if (!target.timers().has(TimerKey.IN_COMBAT)) { ((Player)
 				 * target).interfaces().setBountyInterface(true); }
 				 */
-				target.timers().register(TimerKey.IN_COMBAT, 10);
+				target.timers().register(TimerKey.IN_COMBAT, 5);
 				if (!((Player) target).inSafeArea()) {
 					target.timers().register(TimerKey.AFTER_COMBAT, 5);
 				}

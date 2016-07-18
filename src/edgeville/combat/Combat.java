@@ -41,6 +41,10 @@ public abstract class Combat {
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
 
+			if (!CombatUtil.canAttack(player, target)) {
+				return;
+			}
+
 			Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
 			if (player.isAutoCasting()) {
 				if (weapon != null
@@ -52,7 +56,6 @@ public abstract class Combat {
 			}
 		}
 
-		// ((Player)entity).message("gothere sigh");
 		entity.world().getEventHandler().addEvent(entity, new Event() {
 			@Override
 			public void execute(EventContainer container) {

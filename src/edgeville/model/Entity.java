@@ -588,11 +588,20 @@ public abstract class Entity implements HitOrigin {
 		sync.faceEntity(null);
 		// animate(-1);
 		// graphic(-1);
+		
+		//if (!gmaul)
+			//setTarget(null);
+		
+		//if (getTarget() != null)
+			//getTarget().setLastAttackedBy(null);
+		//if (!gmaul)
+			//setTarget(null);
+		
 		if (cancelMoving)
 			pathQueue.clear();
 
-		if (!gmaul)
-			clearattrib(AttributeKey.TARGET);
+		//if (!gmaul)
+			//clearattrib(AttributeKey.TARGET);
 	}
 
 	public void face(Entity e) {

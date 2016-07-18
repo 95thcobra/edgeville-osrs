@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import edgeville.Constants;
 import edgeville.fs.ItemDefinition;
 import edgeville.model.GroundItem;
 import edgeville.model.entity.Player;
@@ -45,11 +46,15 @@ public class ItemsOnDeath {
 			}
 		}
 
-		//killer.message("SIZE:"+items.size());
+		// killer.message("SIZE:"+items.size());
 
 		items.stream().filter(i -> i != null && !keptItems.contains(i)).forEach(i -> {
 			killer.world().spawnGroundItem(new GroundItem(i, target.getTile(), killer));
-			//killer.message("ITEM"+i.id());
+
+			target.world().getLogsHandler().appendLog(Constants.DROP_LOG_DIR + target.getUsername() + ".txt", String.format(
+					"dropped by death: %s (killer: %s,%d)", i.toString(), killer.getUsername(), killer.getMemberId()));
+
+			// killer.message("ITEM"+i.id());
 		});
 
 		killer.world().spawnGroundItem(new GroundItem(new Item(526), target.getTile(), killer));

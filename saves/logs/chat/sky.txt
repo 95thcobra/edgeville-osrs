@@ -320,3 +320,160 @@
 [Mon Jul 18 12:28:43 CEST 2016]:makes no sense
 [Mon Jul 18 12:29:54 CEST 2016]:alright
 [Mon Jul 18 12:29:56 CEST 2016]:so what has to change
+[Mon Jul 18 23:10:25 CEST 2016]:yo
+[Mon Jul 18 23:10:35 CEST 2016]:alright
+[Mon Jul 18 23:10:38 CEST 2016]:so if i attack u
+[Mon Jul 18 23:10:43 CEST 2016]:someone else can hit me
+[Mon Jul 18 23:19:22 CEST 2016]:that
+[Mon Jul 18 23:19:26 CEST 2016]:test attacked you
+[Mon Jul 18 23:19:27 CEST 2016]:i attack test
+[Mon Jul 18 23:19:29 CEST 2016]:is that right?
+[Mon Jul 18 23:27:48 CEST 2016]:ugh
+[Mon Jul 18 23:30:34 CEST 2016]:fk
+[Mon Jul 18 23:30:35 CEST 2016]:do ::damageoff
+[Mon Jul 18 23:30:53 CEST 2016]:nop
+[Mon Jul 18 23:31:08 CEST 2016]:this is really hard
+[Mon Jul 18 23:31:09 CEST 2016]:u have no idea
+[Mon Jul 18 23:31:22 CEST 2016]:ok wait a sec
+[Mon Jul 18 23:31:28 CEST 2016]:3
+[Mon Jul 18 23:31:29 CEST 2016]:2
+[Mon Jul 18 23:31:31 CEST 2016]:1
+[Mon Jul 18 23:31:50 CEST 2016]:i fixed it
+[Mon Jul 18 23:31:58 CEST 2016]:after we did it on you
+[Mon Jul 18 23:32:27 CEST 2016]:?
+[Mon Jul 18 23:32:53 CEST 2016]:ok
+[Mon Jul 18 23:32:56 CEST 2016]:3
+[Mon Jul 18 23:32:58 CEST 2016]:2
+[Mon Jul 18 23:32:59 CEST 2016]:1
+[Mon Jul 18 23:33:10 CEST 2016]:3
+[Mon Jul 18 23:33:11 CEST 2016]:2
+[Mon Jul 18 23:33:13 CEST 2016]:1
+[Mon Jul 18 23:33:35 CEST 2016]:tho there might be something else wrong now
+[Mon Jul 18 23:33:58 CEST 2016]:not sure
+[Mon Jul 18 23:34:04 CEST 2016]:just test a bit if all works correctly now
+[Mon Jul 18 23:34:26 CEST 2016]:can u atta me
+[Mon Jul 18 23:34:41 CEST 2016]:ima update this to main server
+[Mon Jul 18 23:34:49 CEST 2016]:we'll see if its good 
+[Mon Jul 18 23:45:53 CEST 2016]:ok first 2v1
+[Mon Jul 18 23:45:57 CEST 2016]:on test
+[Mon Jul 18 23:45:58 CEST 2016]:3
+[Mon Jul 18 23:45:59 CEST 2016]:2
+[Mon Jul 18 23:46:01 CEST 2016]:1
+[Mon Jul 18 23:46:08 CEST 2016]:3
+[Mon Jul 18 23:46:10 CEST 2016]:2
+[Mon Jul 18 23:46:11 CEST 2016]:1
+[Mon Jul 18 23:47:40 CEST 2016]:3
+[Mon Jul 18 23:47:41 CEST 2016]:2
+[Mon Jul 18 23:47:41 CEST 2016]:1
+[Mon Jul 18 23:48:43 CEST 2016]:ok
+[Mon Jul 18 23:49:28 CEST 2016]:ur good with names
+[Mon Jul 18 23:57:17 CEST 2016]:3
+[Mon Jul 18 23:57:24 CEST 2016]:3
+[Mon Jul 18 23:57:26 CEST 2016]:2
+[Mon Jul 18 23:57:27 CEST 2016]:1
+[Mon Jul 18 23:57:33 CEST 2016]:3
+[Mon Jul 18 23:57:35 CEST 2016]:2
+[Mon Jul 18 23:57:36 CEST 2016]:1
+[Mon Jul 18 23:57:42 CEST 2016]:3
+[Mon Jul 18 23:57:43 CEST 2016]:2
+[Mon Jul 18 23:57:44 CEST 2016]:1
+[Mon Jul 18 23:58:06 CEST 2016]:dont mage tho, i didnt patch it yet i think
+[Mon Jul 18 23:58:15 CEST 2016]:3
+[Mon Jul 18 23:58:17 CEST 2016]:2
+[Mon Jul 18 23:58:18 CEST 2016]:1
+[Mon Jul 18 23:58:30 CEST 2016]:did u click again?
+[Mon Jul 18 23:58:41 CEST 2016]:try clicking only once
+[Mon Jul 18 23:58:46 CEST 2016]:3
+[Mon Jul 18 23:58:47 CEST 2016]:2
+[Mon Jul 18 23:58:49 CEST 2016]:1
+[Mon Jul 18 23:58:57 CEST 2016]:it just stops?
+[Mon Jul 18 23:59:04 CEST 2016]:hmmm
+[Mon Jul 18 23:59:10 CEST 2016]:3
+[Mon Jul 18 23:59:11 CEST 2016]:2
+[Mon Jul 18 23:59:12 CEST 2016]:1
+[Mon Jul 18 23:59:16 CEST 2016]:3
+[Mon Jul 18 23:59:18 CEST 2016]:2
+[Mon Jul 18 23:59:20 CEST 2016]:1
+[Mon Jul 18 23:59:28 CEST 2016]:3
+[Mon Jul 18 23:59:29 CEST 2016]:2
+[Mon Jul 18 23:59:31 CEST 2016]:1
+[Mon Jul 18 23:59:35 CEST 2016]:bruh
+[Mon Jul 18 23:59:38 CEST 2016]:3
+[Mon Jul 18 23:59:40 CEST 2016]:2
+[Mon Jul 18 23:59:41 CEST 2016]:1
+[Mon Jul 18 23:59:47 CEST 2016]:3
+[Mon Jul 18 23:59:49 CEST 2016]:2
+[Mon Jul 18 23:59:50 CEST 2016]:1
+[Mon Jul 18 23:59:54 CEST 2016]:couldnt
+[Tue Jul 19 00:00:45 CEST 2016]:ok on test
+[Tue Jul 19 00:00:46 CEST 2016]:should be fixed
+[Tue Jul 19 00:00:52 CEST 2016]:3
+[Tue Jul 19 00:00:53 CEST 2016]:2
+[Tue Jul 19 00:00:54 CEST 2016]:1
+[Tue Jul 19 00:00:59 CEST 2016]:couldnt
+[Tue Jul 19 00:01:04 CEST 2016]:again
+[Tue Jul 19 00:01:05 CEST 2016]:on test
+[Tue Jul 19 00:01:09 CEST 2016]:3
+[Tue Jul 19 00:01:10 CEST 2016]:2
+[Tue Jul 19 00:01:11 CEST 2016]:1
+[Tue Jul 19 00:01:23 CEST 2016]:3
+[Tue Jul 19 00:01:25 CEST 2016]:2
+[Tue Jul 19 00:01:27 CEST 2016]:1
+[Tue Jul 19 00:01:31 CEST 2016]:couldnt
+[Tue Jul 19 00:01:34 CEST 2016]:timing was perfect
+[Tue Jul 19 00:02:31 CEST 2016]:only that i cant attack u
+[Tue Jul 19 00:02:34 CEST 2016]:may be a prob
+[Tue Jul 19 00:03:28 CEST 2016]:hmm
+[Tue Jul 19 00:03:44 CEST 2016]:yeah
+[Tue Jul 19 00:06:48 CEST 2016]:?
+[Tue Jul 19 00:10:10 CEST 2016]:oh cmon
+[Tue Jul 19 00:11:09 CEST 2016]:attack test
+[Tue Jul 19 00:11:26 CEST 2016]:st
+[Tue Jul 19 00:11:35 CEST 2016]:stop
+[Tue Jul 19 00:11:50 CEST 2016]:lul
+[Tue Jul 19 00:11:51 CEST 2016]:3
+[Tue Jul 19 00:11:53 CEST 2016]:2
+[Tue Jul 19 00:11:54 CEST 2016]:1
+[Tue Jul 19 00:11:59 CEST 2016]:3
+[Tue Jul 19 00:12:00 CEST 2016]:2
+[Tue Jul 19 00:12:01 CEST 2016]:1
+[Tue Jul 19 00:12:17 CEST 2016]:3
+[Tue Jul 19 00:12:18 CEST 2016]:2
+[Tue Jul 19 00:12:20 CEST 2016]:1
+[Tue Jul 19 00:12:25 CEST 2016]:3
+[Tue Jul 19 00:12:27 CEST 2016]:2
+[Tue Jul 19 00:12:28 CEST 2016]:1
+[Tue Jul 19 00:12:33 CEST 2016]:3
+[Tue Jul 19 00:12:35 CEST 2016]:2
+[Tue Jul 19 00:12:36 CEST 2016]:1
+[Tue Jul 19 00:12:40 CEST 2016]:3
+[Tue Jul 19 00:12:41 CEST 2016]:2
+[Tue Jul 19 00:12:43 CEST 2016]:1
+[Tue Jul 19 00:12:54 CEST 2016]:cant 
+[Tue Jul 19 00:12:57 CEST 2016]:3
+[Tue Jul 19 00:13:00 CEST 2016]:3
+[Tue Jul 19 00:13:10 CEST 2016]:3
+[Tue Jul 19 00:13:11 CEST 2016]:2
+[Tue Jul 19 00:13:13 CEST 2016]:1
+[Tue Jul 19 00:13:20 CEST 2016]:u try on me
+[Tue Jul 19 00:15:06 CEST 2016]:hmm
+[Tue Jul 19 00:15:08 CEST 2016]:what do we do now
+[Tue Jul 19 00:15:47 CEST 2016]:me 2
+[Tue Jul 19 00:16:00 CEST 2016]:can u attack me if i attack someone?
+[Tue Jul 19 00:17:09 CEST 2016]:wtf
+[Tue Jul 19 00:17:41 CEST 2016]:m8 this is fucking with my mind
+[Tue Jul 19 00:18:08 CEST 2016]:ok lets see if we can 2v1
+[Tue Jul 19 00:18:25 CEST 2016]:stop
+[Tue Jul 19 00:18:27 CEST 2016]:l0l
+[Tue Jul 19 00:18:35 CEST 2016]:3
+[Tue Jul 19 00:18:36 CEST 2016]:2
+[Tue Jul 19 00:18:37 CEST 2016]:1
+[Tue Jul 19 00:18:44 CEST 2016]:3
+[Tue Jul 19 00:18:45 CEST 2016]:2
+[Tue Jul 19 00:18:47 CEST 2016]:1
+[Tue Jul 19 00:19:11 CEST 2016]::S
+[Tue Jul 19 00:21:14 CEST 2016]:im so confused man
+[Tue Jul 19 00:22:19 CEST 2016]:yeah
+[Tue Jul 19 00:22:22 CEST 2016]:what did u do
+[Tue Jul 19 00:24:10 CEST 2016]:lolll
+[Tue Jul 19 00:25:09 CEST 2016]:ima fight this guy on main 

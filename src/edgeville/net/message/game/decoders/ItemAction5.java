@@ -1,5 +1,6 @@
 package edgeville.net.message.game.decoders;
 
+import edgeville.Constants;
 import edgeville.io.RSBuffer;
 import edgeville.model.GroundItem;
 import edgeville.model.entity.Player;
@@ -34,6 +35,9 @@ public class ItemAction5 extends ItemAction {
 			player.getInventory().set(slot, null);
 			player.world().spawnGroundItem(new GroundItem(item, player.getTile(), player));
 			player.sound(2739, 0);
+
+			player.world().getLogsHandler().appendLog(Constants.DROP_LOG_DIR  + player.getUsername() + ".txt",
+					String.format("dropped: %s", item.toString()));
 		}
 	}
 }

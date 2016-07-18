@@ -640,7 +640,7 @@ public class Player extends Entity {
 	@Override
 	public void stopActions(boolean cancelMoving) {
 		super.stopActions(cancelMoving);
-
+		
 		// Make input dialog null
 		setInputDialog(null);
 
@@ -1073,6 +1073,8 @@ public class Player extends Entity {
 	public boolean inCombat() {
 		return timers.has(TimerKey.IN_COMBAT);
 	}
+	
+	public boolean inCombat = false;
 
 	public boolean canBeAttackInSafeArea() {
 		return timers.has(TimerKey.AFTER_COMBAT);
