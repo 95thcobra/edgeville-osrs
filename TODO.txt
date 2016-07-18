@@ -1,3 +1,20 @@
+DROP LOGS
+
+
+
+range is still too op, max hits mainly..
+
+blowpipe is too weak
+
+magic shortbow should not have d arrows
+
+add npc 300 2x east of bank and make hp 200.
+
+buff mage
+
+
+
+
 fix platebody showing arms
 cotzy cant run launcher see if can fix
 Fix the attacking people with 2 ppl!

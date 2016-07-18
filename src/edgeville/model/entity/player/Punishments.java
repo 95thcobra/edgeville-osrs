@@ -184,9 +184,13 @@ public class Punishments {
 		updateMutedPlayers();
 	}
 
-	public void addPlayerBan(String username) {
+	public boolean addPlayerBan(String username) {
+		if (bannedPlayers.contains(username)) {
+			return false;
+		}
 		bannedPlayers.add(username);
 		updateBannedPlayers();
+		return true;
 	}
 
 	private void updateMutedPlayers() {

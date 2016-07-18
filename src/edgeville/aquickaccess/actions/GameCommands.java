@@ -175,8 +175,11 @@ public final class GameCommands {
 
 		put(Privilege.MODERATOR, "ban", (p, args) -> {
 			String usernameToBan = glue(args);
-			p.world().getPunishments().addPlayerBan(usernameToBan);
-			Player playerToBan = p.world().getPlayerByName(usernameToBan).get();
+			if (!p.world().getPunishments().addPlayerBan(usernameToBan)) {
+				p.message("%s is already banned!", usernameToBan);
+				return;
+			}
+			Player playerToBan = p.world().getPlayerByName(usernameToBan).orElse(null);
 			if (playerToBan != null) {
 				if (playerToBan.getMemberId() == 1) {
 					p.message("You're an asshole.");
