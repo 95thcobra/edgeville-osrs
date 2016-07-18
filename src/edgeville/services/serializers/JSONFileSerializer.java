@@ -9,6 +9,7 @@ import edgeville.combat.magic.AncientSpell;
 import edgeville.combat.magic.RegularDamageSpell;
 import edgeville.combat.magic.Spell;
 import edgeville.database.ForumIntegration;
+import edgeville.database.IdAndUsername;
 import edgeville.model.AttributeKey;
 import edgeville.model.Tile;
 import edgeville.model.Uptime;
@@ -59,19 +60,21 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 	@Override
 	public boolean loadPlayer(Player player, Object uid, String password, Consumer<PlayerLoadResult> fn) {
-		// File characterFile = new File(characterFolder, player.getUsername() +
-		// ".json");
-
 		// Check if login matches a forum account.
 		File characterFile;
 		if (Constants.MYSQL_ENABLED) {
-			int memberId = ForumIntegration.checkUser(player.getUsername(), password);
-			if (memberId <= 0) {
+			
+			//int memberId = ForumIntegration.checkUser(player.getUsername(), password);
+			IdAndUsername member = ForumIntegration.checkUser(player.getUsername(), password);
+			//if (memberId <= 0) {
+			if (member == null) {
 				fn.accept(PlayerLoadResult.INVALID_DETAILS);
 				return true;
 			}
-			player.setMemberId(memberId);
-			characterFile = new File(characterFolder, memberId + ".json");
+			player.setMemberId(member.getMemberId());
+			player.setUsername(member.getMemberName());
+			player.setDisplayName(member.getMemberName());
+			characterFile = new File(characterFolder, member.getMemberId() + ".json");
 		} else {
 			characterFile = new File(characterFolder, player.getUsername() + ".json");
 		}
@@ -169,7 +172,7 @@ public class JSONFileSerializer extends PlayerSerializer {
 			player.setDebug(rootObject.get("debug").getAsBoolean());
 
 			/* Construct the player */
-			player.displayName(displayName);
+			player.setDisplayName(displayName);
 			player.setPrivilege(privilege);
 			player.migration(migration);
 			player.move(tile);

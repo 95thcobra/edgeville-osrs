@@ -122,6 +122,11 @@ public class ItemAction2 extends ItemAction {
 		// Finally, equip the item we had in mind.
 		player.getEquipment().set(targetSlot, item);
 		refreshEquipStats(player);
+		
+		//final int BLESSED_SS;
+		//if (targetSlot == EquipSlot.WEAPON && item.getId() == BLESSED_SS) {
+		//	player.getVarps().setVarp(843, v);
+		//}
 	}
 
 	public void refreshEquipStats(Player p) {

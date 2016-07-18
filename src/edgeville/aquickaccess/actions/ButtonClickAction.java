@@ -655,13 +655,11 @@ public class ButtonClickAction {
 		case 1:
 		case 91:// ancient
 		case 93:// lunar
-			player.message("Teleporting to edgeville...");
 			player.teleport(Locations.EDGEVILLE.getTile());
 			break;
 
 		// Varrock teleport
 		case 16:
-			player.message("Teleporting to varrock...");
 			player.teleport(Locations.VARROCK.getTile());
 			break;
 

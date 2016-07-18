@@ -633,6 +633,10 @@ public abstract class Entity implements HitOrigin {
 	public void cycle() {
 		timers.cycle();
 
+		if (locked()) {
+			hits.clear();
+		}
+		
 		// Only process hits if not locked!
 		if (!locked() && hp() > 0) {
 			for (Iterator<Hit> it = hits.iterator(); it.hasNext() && hp() > 0;) {

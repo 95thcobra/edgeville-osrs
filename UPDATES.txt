@@ -1,6 +1,8 @@
-
-
-
+- copy command now updates combat level too.
+- Fixed bug where you get hit after you teleported.
+- Add saradomin sword and blessed ss attack interface and animations.
+- Added logging in with email.
+- Granite maul special range fixed.
 
 
 posted, not on r-s yet

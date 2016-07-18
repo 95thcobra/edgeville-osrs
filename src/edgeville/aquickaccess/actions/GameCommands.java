@@ -88,6 +88,7 @@ public final class GameCommands {
 				for (int i = 0; i < 6; i++) {
 					p.skills().setYourRealLevel(i, other.skills().xpLevel(i));
 				}
+				p.skills().recalculateCombat();
 				return;
 			}
 		});

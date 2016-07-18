@@ -1,13 +1,8 @@
-REPLACE DATA FOLDER
-
+fix platebody showing arms
 cotzy cant run launcher see if can fix
-
-fix dying after teleport!!!! getting hit after teleport!
-
 Fix the attacking people with 2 ppl!
 
-fix logging in by email
-message when running out of prayer points
+
 
 
 rewrite range
@@ -27,6 +22,11 @@ view players online actual nmes
 2 is titel
 3, 5 tm 100
 
+
+
+
+
+message when running out of prayer points
 
 
 

@@ -108,6 +108,10 @@ public class PlayerVersusAnyCombat extends Combat {
 			}
 			//return;
 		}
+		
+		if (player.getTile().distance(target.getTile()) > 3) {
+			return;
+		}
 
 		// Check timer.
 		if (!getEntity().timers().has(TimerKey.COMBAT_ATTACK)) {
@@ -404,7 +408,7 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		int maxHit = CombatFormula.maximumRangedHit(player);
 		player.getQuestTab().updateMaxHit(maxHit);
-		int hit = player.world().random(maxHit);
+		int hit = AccuracyFormula.calcRangeHit(player, target, maxHit);//player.world().random(maxHit);
 
 		triggerVeng(success ? hit : 0);
 
@@ -491,7 +495,10 @@ public class PlayerVersusAnyCombat extends Combat {
 			return;
 		}
 
-		if (!player.touches(target, player.getTile())) {
+		//if (!player.touches(target, player.getTile())) {
+		//	return;
+		//}
+		if (player.getTile().distance(target.getTile()) > 3) {
 			return;
 		}
 

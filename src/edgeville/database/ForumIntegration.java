@@ -94,8 +94,7 @@ public class ForumIntegration {
 	 * @param password
 	 * @return
 	 */
-	public static int checkUser(String username, String password) {
-		int response = -1;
+	public static IdAndUsername checkUser(String username, String password) {
 		try {
 			String urlString = "http://edgeville.org/game/login.php?security=" + CRYPTION_ID + "&name="
 					+ username.replace(" ", "%20") + "&pass=" + password;
@@ -109,12 +108,23 @@ public class ForumIntegration {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 			String line = br.readLine();
+			
+			// Error codes
+			if (line.equals("-2") || line.equals("-1") || line.equals("0")) {
+				return null;
+			}
+			
 			System.out.println(line);
-			response = Integer.parseInt(line);
+			
+			int indexOfSplit = line.indexOf(':');
+			int memberId = Integer.parseInt(line.substring(0, indexOfSplit));
+			String memberName = line.substring(indexOfSplit + 1);
+			
+			return new IdAndUsername(memberId, memberName);//Integer.parseInt(line);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return response;
+		return null;
 	}
 }

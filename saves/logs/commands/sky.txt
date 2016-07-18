@@ -312,3 +312,24 @@
 [Sun Jul 17 22:11:42 CEST 2016]:update 0
 [Sun Jul 17 22:13:31 CEST 2016]:update 0
 [Sun Jul 17 22:15:14 CEST 2016]:update 0
+[Mon Jul 18 10:40:53 CEST 2016]:item 11838 1
+[Mon Jul 18 10:40:58 CEST 2016]:item 11838 1
+[Mon Jul 18 10:42:24 CEST 2016]:find dragon 2
+[Mon Jul 18 10:42:27 CEST 2016]:item 7158 1
+[Mon Jul 18 10:44:16 CEST 2016]:varp 843 11
+[Mon Jul 18 10:44:20 CEST 2016]:teletome test
+[Mon Jul 18 10:44:27 CEST 2016]:varp 843 12
+[Mon Jul 18 10:44:28 CEST 2016]:varp 843 13
+[Mon Jul 18 10:44:46 CEST 2016]:varp 843 10
+[Mon Jul 18 10:48:07 CEST 2016]:item 11802 1
+[Mon Jul 18 10:49:15 CEST 2016]:update 0
+[Mon Jul 18 10:49:29 CEST 2016]:item 11838 1
+[Mon Jul 18 11:48:44 CEST 2016]:givedev sky
+[Mon Jul 18 11:48:45 CEST 2016]:update 0
+[Mon Jul 18 11:48:51 CEST 2016]:debugon 
+[Mon Jul 18 11:55:22 CEST 2016]:spec 
+[Mon Jul 18 11:55:35 CEST 2016]:spec 
+[Mon Jul 18 11:58:18 CEST 2016]:debugon 
+[Mon Jul 18 11:59:41 CEST 2016]:debugon 
+[Mon Jul 18 11:59:43 CEST 2016]:item 861 1
+[Mon Jul 18 11:59:45 CEST 2016]:item 887 12532

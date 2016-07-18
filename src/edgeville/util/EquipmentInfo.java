@@ -418,6 +418,8 @@ public class EquipmentInfo {
 			case 12926:
 				return 5061;
 
+			case 11838:
+			case 12809:
 			case 11802:
 			case 11804:
 			case 11806:
@@ -544,6 +546,14 @@ public class EquipmentInfo {
 			return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).crush;
 		}
 		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slash;
+	}
+	
+	public int getRangedBonus(Player player) {
+		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).range;
+	}
+	
+	public int getRangedDefenceBonus(Player player) {
+		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).rangedef;
 	}
 
 	public static class Bonuses {
