@@ -454,6 +454,7 @@ public class Player extends Entity {
 		bank.getBankItems().add(new Item(8850, 20));
 		bank.getBankItems().add(new Item(3105, 1000));
 		bank.getBankItems().add(new Item(2503, 1000));
+		bank.getBankItems().add(new Item(12695, 1000));
 		bank.getBankItems().add(new Item(6685, 1000));
 		bank.getBankItems().add(new Item(3024, 1000));
 		bank.getBankItems().add(new Item(2440, 1000));

@@ -52,3 +52,14 @@
 [Sun Jul 17 18:27:36 CEST 2016]:spec 
 [Sun Jul 17 18:27:57 CEST 2016]:spec 
 [Sun Jul 17 18:52:52 CEST 2016]:spec 
+[Mon Jul 18 12:06:49 CEST 2016]:find tok
+[Mon Jul 18 12:07:09 CEST 2016]:item 6526 1
+[Mon Jul 18 12:07:20 CEST 2016]:item 6522 1
+[Mon Jul 18 12:07:28 CEST 2016]:item 6522 5000
+[Mon Jul 18 12:11:15 CEST 2016]:debugon 
+[Mon Jul 18 12:13:30 CEST 2016]:damageoff 
+[Mon Jul 18 12:15:21 CEST 2016]:find magic short
+[Mon Jul 18 12:15:26 CEST 2016]:item 861 1
+[Mon Jul 18 12:15:32 CEST 2016]:item 861 1
+[Mon Jul 18 12:15:36 CEST 2016]:find rune arrow
+[Mon Jul 18 12:15:40 CEST 2016]:item 892 5000

@@ -187,11 +187,15 @@ public class PlayerVersusAnyCombat extends Combat {
 		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
 		// int hit = player.world().random().nextInt((int) Math.round(max));
 		int hit;
-		if (target instanceof Player) {
+		
+		/*if (target instanceof Player) {
 			hit = AccuracyFormula.calculateHit(player, (Player) target, (int) Math.round(max));
 		} else {
 			hit = player.world().random().nextInt((int) Math.round(max));
-		}
+		}*/
+		
+		hit = AccuracyFormula.calculateHit(player, target, (int) Math.round(max), specialAttack);
+		
 		if (specialAttack.isHits()) {
 			// double max = CombatFormula.maximumMeleeHit(player) *
 			// specialAttack.getMaxHitMultiplier();
@@ -204,7 +208,7 @@ public class PlayerVersusAnyCombat extends Combat {
 				// Math.round(max));
 				int hit2;
 				if (target instanceof Player) {
-					hit2 = AccuracyFormula.calculateHit(player, (Player) target, (int) Math.round(max));
+					hit2 = AccuracyFormula.calculateHit(player, (Player) target, (int) Math.round(max), specialAttack);
 				} else {
 					hit2 = player.world().random().nextInt((int) Math.round(max));
 				}
@@ -404,18 +408,18 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		long delay = Math.round(Math.floor(baseDelay / 30.0) + (distance * (cyclesPerTile * 0.020) / 0.6));
 
-		boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
+		//boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
 
 		int maxHit = CombatFormula.maximumRangedHit(player);
 		player.getQuestTab().updateMaxHit(maxHit);
 		int hit = AccuracyFormula.calcRangeHit(player, target, maxHit);//player.world().random(maxHit);
 
-		triggerVeng(success ? hit : 0);
+		triggerVeng(hit);
 
 		// target.hit(player, success ? hit : 0,
 		// delay).combatStyle(CombatStyle.RANGE);
 
-		target.hit(player, success ? hit : 0, (int) delay, CombatStyle.RANGED);
+		target.hit(player, hit, (int) delay, CombatStyle.RANGED);
 		// if dark bow then another hit
 		if (weaponId == 11235) {
 			boolean success2 = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
@@ -468,7 +472,7 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		double max = CombatFormula.maximumRangedHit(player) * specialAttack.getMaxHitMultiplier();
 		player.getQuestTab().updateMaxHit((int)max);
-		int hit = player.world().random().nextInt((int) Math.round(max));
+		int hit = AccuracyFormula.calcRangeHit(player, target, (int)Math.round(max), specialAttack);//player.world().random().nextInt((int) Math.round(max));
 		triggerVeng(hit);
 
 		if (specialAttack.isHits()) {
@@ -476,7 +480,9 @@ public class PlayerVersusAnyCombat extends Combat {
 			target.hit(player, hit, delay, CombatStyle.RANGED);
 
 			if (specialAttack.isDoubleHit()) {
-				int hit2 = player.world().random().nextInt((int) Math.round(max));
+				//int hit2 = player.world().random().nextInt((int) Math.round(max));
+				int hit2 = AccuracyFormula.calcRangeHit(player, target, (int)Math.round(max), specialAttack);//player.world().random().nextInt((int) Math.round(max));
+				
 				target.hit(player, hit2, delay, CombatStyle.RANGED);
 			}
 		}

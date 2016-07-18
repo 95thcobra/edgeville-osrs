@@ -5,24 +5,24 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3097,
-    "z": 3503,
+    "x": 3091,
+    "z": 3502,
     "level": 0
   },
   "playTime": {
-    "hours": 0,
-    "minutes": 1,
-    "seconds": 38,
-    "milliseconds": 400,
+    "hours": 1,
+    "minutes": 2,
+    "seconds": 16,
+    "milliseconds": 200,
     "color": "\u003ccol\u003dffffff\u003e"
   },
-  "privilege": "PLAYER",
+  "privilege": "DEVELOPER",
   "migration": 0,
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
   "kills": 0,
-  "deaths": 0,
+  "deaths": 4,
   "lastKilled": 0,
   "lastKilledAmount": 0,
   "gender": "MALE",
@@ -33,12 +33,12 @@
     0,
     18,
     0,
-    27,
-    37,
-    8,
+    26,
+    36,
+    0,
     33,
     42,
-    10
+    117
   ],
   "colors": [
     0,
@@ -49,11 +49,15 @@
   ],
   "inventory": [
     {
-      "id": 11802,
+      "id": 4718,
       "amount": 1
     },
     {
-      "id": 12695,
+      "id": 3144,
+      "amount": 1
+    },
+    {
+      "id": 3144,
       "amount": 1
     },
     {
@@ -61,12 +65,88 @@
       "amount": 1
     },
     {
-      "id": 2444,
+      "id": 3144,
       "amount": 1
     },
     {
-      "id": 560,
-      "amount": 1000
+      "id": 3144,
+      "amount": 1
+    },
+    {
+      "id": 3144,
+      "amount": 1
+    },
+    {
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 12695,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 4153,
+      "amount": 1
+    },
+    {
+      "id": 11802,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
     },
     {
       "id": 557,
@@ -77,97 +157,17 @@
       "amount": 1000
     },
     {
-      "id": 3024,
-      "amount": 1
-    },
-    {
-      "id": 3024,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
+      "id": 560,
+      "amount": 1000
     }
   ],
   "equipment": [
     {
-      "id": 4753,
+      "id": 4716,
       "amount": 1
     },
     {
-      "id": 10499,
+      "id": 6570,
       "amount": 1
     },
     {
@@ -175,20 +175,20 @@
       "amount": 1
     },
     {
-      "id": 9185,
+      "id": 12006,
       "amount": 1
     },
     {
-      "id": 2503,
+      "id": 4720,
       "amount": 1
     },
     {
-      "id": 11283,
+      "id": 12954,
       "amount": 1
     },
     null,
     {
-      "id": 4759,
+      "id": 4722,
       "amount": 1
     },
     null,
@@ -197,17 +197,17 @@
       "amount": 1
     },
     {
-      "id": 2577,
+      "id": 13239,
       "amount": 1
     },
     null,
     {
-      "id": 6733,
+      "id": 11773,
       "amount": 1
     },
     {
       "id": 9244,
-      "amount": 996
+      "amount": 500
     }
   ],
   "loadout": {
@@ -567,7 +567,7 @@
     },
     {
       "id": 843,
-      "value": 5
+      "value": 20
     },
     {
       "id": 1050,
@@ -608,12 +608,12 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 82,
-      "xp": 1.303443898E7
+      "level": 37,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
-      "xp": 1.3034455E7
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
@@ -697,7 +697,7 @@
   "lastCastedSpellChild": 0,
   "autocasting": false,
   "lastHiscoresUpdate": 1468835227614,
-  "lastNurseUsed": 1468835227614,
+  "lastNurseUsed": 0,
   "lastDfsUsed": 0,
   "lastVengeanceUsed": 0
 }

@@ -9,28 +9,28 @@ public enum SpecialAttacks {
 	
 	// ITEMID - ANIMATION - MYGFX - OPPGFX - SPECIALDRAIN - MULTIPLIER - DOUBLEHIT? - HITSATALL?    (projectile, doubleprojectile)
 	
-	DDS(5698, 1062, new Graphic(252, 92, 0), 25, 1.15, true),
-	ABYSSAL_DAGGER(13265, 1062, new Graphic(1283, 92, 0), 50, 1.35, true),
-	AGS(11802, 7061, new Graphic(1211), 50, 1.25, false),
-	BGS(11804, 7060, new Graphic(1212), 65, 1.21, false),
-	SGS(11806, 7058, new Graphic(1209), 50, 1.10, false),
-	ZGS(11808, 7057, new Graphic(1210), 60, 1.10, false),
-	DRAGON_SCIMITAR(4587, 1872, new Graphic(347, 100, 0), 55, 1, false),
-	DRAGON_SPEAR(1249, 1064, new Graphic(253, 100, 0), null, 25, 1, false, false),
-	DRAGON_HALBERD(3204, 1203, new Graphic(1232, 100, 0), null, 25, 1, false, false),
-	DRAGON_LONGSWORD(1305, 1058, new Graphic(248, 92, 0), 25, 1.15, false),
-	ABYSSAL_WHIP(4151, 1658, null, new Graphic(341, 100, 0), 25, 1.15, false),
-	TENTACLE_WHIP(12006, 1658, null, new Graphic(341, 100, 0), 50, 1.15, false),
-	DRAGON_MACE(1434, 1060, new Graphic(251, 100, 0), null, 25, 1.15, false),
-	DRAGON_2H(7158, 3157, null, null, 60, 1, false),
+	DDS(5698, 1062, new Graphic(252, 92, 0), 25, 1.15, 1.25, true),
+	ABYSSAL_DAGGER(13265, 1062, new Graphic(1283, 92, 0), 50, 1.35, 1.25, true),
+	AGS(11802, 7061, new Graphic(1211), 50, 1.25,2, false),
+	BGS(11804, 7060, new Graphic(1212), 65, 1.21,2, false),
+	SGS(11806, 7058, new Graphic(1209), 50, 1.10,2, false),
+	ZGS(11808, 7057, new Graphic(1210), 60, 1.10,2, false),
+	DRAGON_SCIMITAR(4587, 1872, new Graphic(347, 100, 0), 55, 1,1, false),
+	DRAGON_SPEAR(1249, 1064, new Graphic(253, 100, 0), null, 25, 1,1, false, false),
+	DRAGON_HALBERD(3204, 1203, new Graphic(1232, 100, 0), null, 25, 1,1, false, false),
+	DRAGON_LONGSWORD(1305, 1058, new Graphic(248, 92, 0), 25, 1.15,1, false),
+	ABYSSAL_WHIP(4151, 1658, null, new Graphic(341, 100, 0), 25, 1.15,1.25, false),
+	TENTACLE_WHIP(12006, 1658, null, new Graphic(341, 100, 0), 50, 1.15,1.25, false),
+	DRAGON_MACE(1434, 1060, new Graphic(251, 100, 0), null, 25, 1.5,1.25, false),
+	DRAGON_2H(7158, 3157, null, null, 60, 1,1, false),
 	
-	MAGIC_SHORTBOW(861, 1074, new Graphic(256, 92, 0), null, 55, 1, true, 249, true),//projectile id, doubleprojectile
+	MAGIC_SHORTBOW(861, 1074, new Graphic(256, 92, 0), null, 55, 1,1, true, 249, true),//projectile id, doubleprojectile
 	
-	DARK_BOW(11235, 426, null, new Graphic(1100, 92, 60), 55, 1, true, 1099, true),//projectile id, doubleprojectile
+	DARK_BOW(11235, 426, null, new Graphic(1100, 92, 60), 55, 1.5,1, true, 1099, true),//projectile id, doubleprojectile
 	
-	ARMADYL_CROSSBOW(11785, 4230, null, null, 40, 1.2, false, 301, false),
+	ARMADYL_CROSSBOW(11785, 4230, null, null, 40, 1,2, false, 301, false),
 	
-	TOXIC_BLOWPIPE(12926, 5061, null, null, 50, 1.4, false, 1043, false)
+	TOXIC_BLOWPIPE(12926, 5061, null, null, 50, 1.4, 1.5, false, 1043, false)
 	;
 
 	private int weaponId;
@@ -39,28 +39,30 @@ public enum SpecialAttacks {
 	private Graphic opponentGfx;
 	private int specialDrain;
 	private double maxHitMultiplier;
+	private double accuracyMultiplier;
 	private boolean doubleHit;
 	private boolean hits;
 	
 	private int projectileId;
 	private boolean doubleProjectile;
 
-	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, boolean doubleHit) {
-		this(weaponId, animationId, gfx, opponentGfx, specialDrain, maxHitMultiplier, doubleHit, true);
+	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, double accuracyMultiplier, boolean doubleHit) {
+		this(weaponId, animationId, gfx, opponentGfx, specialDrain, maxHitMultiplier,accuracyMultiplier, doubleHit, true);
 	}
 	
-	SpecialAttacks(int weaponId, int animationId, Graphic gfx, int specialDrain, double maxHitMultiplier, boolean doubleHit) {
-		this(weaponId, animationId, gfx, null, specialDrain, maxHitMultiplier, doubleHit, true);
+	SpecialAttacks(int weaponId, int animationId, Graphic gfx, int specialDrain, double maxHitMultiplier, double accuracyMultiplier, boolean doubleHit) {
+		this(weaponId, animationId, gfx, null, specialDrain, maxHitMultiplier, accuracyMultiplier, doubleHit, true);
 	}
 	
 	// this is for ranged.
-	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, boolean doubleHit, int projectileId, boolean doubleProjectile) {
+	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, double accuracyMultiplier,boolean doubleHit, int projectileId, boolean doubleProjectile) {
 		this.weaponId = weaponId;
 		this.animationId = animationId;
 		this.gfx = gfx;
 		this.opponentGfx = opponentGfx;
 		this.specialDrain = specialDrain;
 		this.maxHitMultiplier = maxHitMultiplier;
+		this.accuracyMultiplier = accuracyMultiplier;
 		this.doubleHit = doubleHit;
 		this.hits = true;
 		
@@ -68,13 +70,14 @@ public enum SpecialAttacks {
 		this.doubleProjectile = doubleProjectile;
 	}
 
-	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, boolean doubleHit, boolean hits) {
+	SpecialAttacks(int weaponId, int animationId, Graphic gfx, Graphic opponentGfx, int specialDrain, double maxHitMultiplier, double accuracyMultiplier, boolean doubleHit, boolean hits) {
 		this.weaponId = weaponId;
 		this.animationId = animationId;
 		this.gfx = gfx;
 		this.opponentGfx = opponentGfx;
 		this.specialDrain = specialDrain;
 		this.maxHitMultiplier = maxHitMultiplier;
+		this.accuracyMultiplier = accuracyMultiplier;
 		this.doubleHit = doubleHit;
 		this.hits = hits;
 	}
@@ -124,6 +127,10 @@ public enum SpecialAttacks {
 
 	public double getMaxHitMultiplier() {
 		return maxHitMultiplier;
+	}
+	
+	public double getAccuracyMultiplier() {
+		return accuracyMultiplier;
 	}
 
 	public boolean isDoubleHit() {

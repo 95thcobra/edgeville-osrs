@@ -3,6 +3,7 @@ package edgeville.util;
 import java.security.SecureRandom;
 import java.util.Random;
 
+import edgeville.combat.SpecialAttacks;
 import edgeville.model.Entity;
 import edgeville.model.entity.Player;
 import edgeville.model.entity.player.Skills;
@@ -295,6 +296,9 @@ public class AccuracyFormula {
 		magicAttack *= prayerMagicAccuracyMultiplier(player);
 		if (CombatFormula.wearingVoidMage(player))
 			magicAttack *= 1.3;
+		
+		magicAttack *= 1.2; // random buff.
+		
 		player.messageDebug("Accuracy: %d", (int) accuracy);
 
 		int maxReducer = (int) (100 - (accuracy));
@@ -316,16 +320,28 @@ public class AccuracyFormula {
 
 		return finalHit;
 	}
-
+	
 	public static int calculateHit(Player player, Entity target, int maxHit) {
 		if (target instanceof Player) {
-			return calculateHit(player, (Player) target, maxHit);
+			return calculateHit(player, (Player) target, maxHit, null);
 		} else {
 			return player.world().random().nextInt((int) Math.round(maxHit));
 		}
 	}
 
-	public static int calculateHit(Player player, Player target, int maxHit) {
+	public static int calculateHit(Player player, Entity target, int maxHit, SpecialAttacks specialAttack) {
+		if (target instanceof Player) {
+			return calculateHit(player, (Player) target, maxHit, specialAttack);
+		} else {
+			return player.world().random().nextInt((int) Math.round(maxHit));
+		}
+	}
+	
+	/*public static int calculateHit(Player player, Player target, int maxHit) {
+		return calculateHit(player, target, maxHit, null);
+	}*/
+
+	public static int calculateHit(Player player, Player target, int maxHit,SpecialAttacks specialAttack) {
 		int playerAttackLevel = player.skills().level(Skills.ATTACK);
 		int targetDefenceLevel = target.skills().level(Skills.DEFENCE);
 
@@ -364,6 +380,10 @@ public class AccuracyFormula {
 
 		accuracy *= prayerMeleeAccuracyMultiplier(player);
 		accuracy /= prayerMeleeDefenceMultiplier(target);
+		
+		if (specialAttack != null) 
+			accuracy *= specialAttack.getAccuracyMultiplier();
+		
 		if (CombatFormula.wearingVoidMelee(player))
 			accuracy *= 1.1;
 
@@ -419,6 +439,21 @@ public class AccuracyFormula {
 			base *= 1.10;
 		}
 		if (player.getPrayer().isPrayerOn(Prayers.MYSTIC_MIGHT)) {
+			base *= 1.15;
+		}
+		return base;
+	}
+	
+	private static double prayerRangedAccuracyMultiplier(Player player) {
+		double base = 1.00;
+		// Prayer multipliers
+		if (player.getPrayer().isPrayerOn(Prayers.SHARP_EYE)) {
+			base *= 1.05;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.HAWK_EYE)) {
+			base *= 1.10;
+		}
+		if (player.getPrayer().isPrayerOn(Prayers.EAGLE_EYE)) {
 			base *= 1.15;
 		}
 		return base;
@@ -544,14 +579,19 @@ public class AccuracyFormula {
 	}
 	
 	public static int calcRangeHit(Player player, Entity target, int maxHit) {
+		return calcRangeHit(player, target, maxHit, null);
+	}
+	
+	public static int calcRangeHit(Player player, Entity target, int maxHit, SpecialAttacks specialAttack) {
 		if (target instanceof Player) {
-			return calcRangeHitPlayer(player, (Player)target, maxHit);
+			return calcRangeHitPlayer(player, (Player)target, maxHit, specialAttack);
 		} else {
-			return player.world().random(maxHit);
+			boolean success = AccuracyFormula.doesHit(player, target, CombatStyle.RANGED);
+			return success ? player.world().random(maxHit) : 0;
 		}
 	}
 
-	public static int calcRangeHitPlayer(Player player, Player target, int maxHit) {
+	public static int calcRangeHitPlayer(Player player, Player target, int maxHit, SpecialAttacks specialAttack) {
 		int playerRangeLevel = player.skills().level(Skills.RANGED);
 		int targetDefenceLevel = target.skills().level(Skills.DEFENCE);
 
@@ -589,12 +629,18 @@ public class AccuracyFormula {
 		accuracy *= 100;
 
 		// TODO
-		//accuracy *= prayerRangedAttackMultiplier(player);
-		//accuracy /= prayerMeleeDefenceMultiplier(target);
+		accuracy *= prayerRangedAccuracyMultiplier(player);
+		accuracy /= prayerMeleeDefenceMultiplier(target);
+		
+		if (specialAttack != null) 
+			accuracy *= specialAttack.getAccuracyMultiplier();
+		
 		if (CombatFormula.wearingVoidRange(player))
 			accuracy *= 1.1;
 
-		accuracy += 5;//15 !!!!
+		//accuracy += 30;//15 !!!!
+		accuracy *= 1.2;
+		
 		player.messageDebug("Accuracy: %d", (int) accuracy);
 
 		/*

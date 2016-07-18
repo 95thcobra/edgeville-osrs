@@ -333,3 +333,21 @@
 [Mon Jul 18 11:59:41 CEST 2016]:debugon 
 [Mon Jul 18 11:59:43 CEST 2016]:item 861 1
 [Mon Jul 18 11:59:45 CEST 2016]:item 887 12532
+[Mon Jul 18 12:09:43 CEST 2016]:update 0
+[Mon Jul 18 12:11:08 CEST 2016]:givedev jared
+[Mon Jul 18 12:13:30 CEST 2016]:damageoff 
+[Mon Jul 18 12:20:27 CEST 2016]:copy jared
+[Mon Jul 18 12:22:41 CEST 2016]:update 0
+[Mon Jul 18 12:24:15 CEST 2016]:damageoff 
+[Mon Jul 18 12:26:24 CEST 2016]:update 0
+[Mon Jul 18 12:44:47 CEST 2016]:update 0
+[Mon Jul 18 12:44:59 CEST 2016]:givedev test
+[Mon Jul 18 12:45:00 CEST 2016]:unmute test
+[Mon Jul 18 12:47:18 CEST 2016]:update 0
+[Mon Jul 18 12:47:45 CEST 2016]:update 0
+[Mon Jul 18 13:04:01 CEST 2016]:spec 
+[Mon Jul 18 13:04:22 CEST 2016]:spec 
+[Mon Jul 18 13:05:21 CEST 2016]:update 0
+[Mon Jul 18 13:05:27 CEST 2016]:spec 
+[Mon Jul 18 13:06:50 CEST 2016]:update 0
+[Mon Jul 18 13:07:03 CEST 2016]:update 0

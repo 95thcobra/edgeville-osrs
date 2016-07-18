@@ -1,17 +1,31 @@
+
+
+
+
+
+
+
+
+- Vengeance requires 40 defence now.
+- Melee special attack accuracy improved.
+- New ranged accuracy formulas, less random and more based on stats now.
+- Improved range special hits.
+- Mage slightly buffed.
+
+
+
+
+
 - copy command now updates combat level too.
 - Fixed bug where you get hit after you teleported.
 - Add saradomin sword and blessed ss attack interface and animations.
 - Added logging in with email.
 - Granite maul special range fixed.
-
-
-posted, not on r-s yet
 - Leather body goes into right slot now.
 - Vengeance and DFS timer reset on death now.
 - Prayer orb not turning off after dying fixed.
 - Loadout saves skills too now.
 - Copy command added (Usage: copy playername).
-
 
 
 Today's updates!
