@@ -1,5 +1,37 @@
-- Drop logs
-- Pjing fixed
+- Staff of the dead & toxic staff of the dead have reqs now.
+
+
+
+
+
+
+
+
+
+
+
+
+Today's updates :)
+
+- Fixed a bug where you don't get the kill on death of enemy.
+- DFS timer is now reset on kill.
+- Vengeance timer is now reset on kill.
+- Combat level is now reset when loading a gear loadout.
+- Abyssal Bludgeon & special added.
+- Abyssal dagger stats have been added.
+- Magic accuracy buffed.
+- Crystal bow max hit fixed.
+- Added verac's effect.
+
+[img]https://i.gyazo.com/9d00340f7bf6564c41c91c0a1327902b.gif[/img]
+
+
+
+
+
+
+
+
 
 
 

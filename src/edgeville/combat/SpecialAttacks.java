@@ -10,7 +10,8 @@ public enum SpecialAttacks {
 	// ITEMID - ANIMATION - MYGFX - OPPGFX - SPECIALDRAIN - MULTIPLIER - DOUBLEHIT? - HITSATALL?    (projectile, doubleprojectile)
 	
 	DDS(5698, 1062, new Graphic(252, 92, 0), 25, 1.15, 1.25, true),
-	ABYSSAL_DAGGER(13265, 1062, new Graphic(1283, 92, 0), 50, 1.35, 1.25, true),
+	ABYSSAL_DAGGER(13265, 1062, new Graphic(1283, 92, 0), 50, 1.15, 1.25, true),
+	ABYSSAL_BLUDGEON(13263, 7010, null, new Graphic(1284), 50, 1.2, 1.5, false),
 	AGS(11802, 7061, new Graphic(1211), 50, 1.25,2, false),
 	BGS(11804, 7060, new Graphic(1212), 65, 1.21,2, false),
 	SGS(11806, 7058, new Graphic(1209), 50, 1.10,2, false),

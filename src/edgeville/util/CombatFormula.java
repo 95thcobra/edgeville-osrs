@@ -204,10 +204,10 @@ public class CombatFormula {
 		if (wearingVoidRange(player))
 			baseDamage *= 1.2;
 
-		//Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
-		//if (weapon != null && weapon.getId() == 12926) { // blowpipe
-			//baseDamage /= 2.8;
-		//}
+		// Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+		// if (weapon != null && weapon.getId() == 12926) { // blowpipe
+		// baseDamage /= 2.8;
+		// }
 		return (int) baseDamage;
 	}
 
@@ -242,7 +242,10 @@ public class CombatFormula {
 						if (wep != null) {
 							if (player.world().equipmentInfo().weaponType(wep.getId()) == WeaponType.CROSSBOW
 									|| player.world().equipmentInfo().weaponType(wep.getId()) == WeaponType.BOW) {
-								bonuses.rangestr += equip.rangestr;
+								final int CRYSTAL_BOW = 4212;
+								if (wep.getId() != CRYSTAL_BOW) {
+									bonuses.rangestr += equip.rangestr;
+								}
 							}
 						} else {
 							bonuses.rangestr += equip.rangestr;
@@ -274,6 +277,13 @@ public class CombatFormula {
 				player.getEquipment().hasAny(4716, 4880, 4881, 4882, 4883) && // Helm
 				player.getEquipment().hasAny(4720, 4892, 4893, 4894, 4895) && // Body
 				player.getEquipment().hasAny(4722, 4898, 4899, 4900, 4901); // Legs
+	}
+	
+	public static boolean fullVerac(Player player) {
+		return player.getEquipment().hasAny(4753, 4976, 4977, 4978, 4979) && // helm
+				player.getEquipment().hasAny(4755, 4982, 4983, 4984, 4985) && // flail
+				player.getEquipment().hasAny(4757, 4988, 4989, 4990, 4991) && // Body
+				player.getEquipment().hasAny(4759, 4994, 4995, 4996, 4997); // skirt
 	}
 
 	private static boolean hasGodSword(Player player) {

@@ -853,6 +853,10 @@ public class Player extends Entity {
 	}
 
 	public void setMaster() {
+		if (Constants.ALL_PVP && !inSafeArea()) {
+			message("You cannot do this while in a PVP area.");
+			return;
+		}
 		if (inWilderness()) {
 			message("You cannot do this while in the wilderness.");
 			return;
@@ -873,6 +877,10 @@ public class Player extends Entity {
 	}
 
 	public void setPure() {
+		if (Constants.ALL_PVP && !inSafeArea()) {
+			message("You cannot do this while in a PVP area.");
+			return;
+		}
 		if (inWilderness()) {
 			message("You cannot do this while in the wilderness.");
 			return;

@@ -5,15 +5,15 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3085,
-    "z": 3491,
+    "x": 3086,
+    "z": 3494,
     "level": 0
   },
   "playTime": {
     "hours": 3,
-    "minutes": 9,
-    "seconds": 42,
-    "milliseconds": 0,
+    "minutes": 20,
+    "seconds": 30,
+    "milliseconds": 600,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
@@ -21,7 +21,7 @@
   "skullIcon": 0,
   "prayerIcon": -1,
   "debug": false,
-  "kills": 16,
+  "kills": 17,
   "deaths": 9,
   "lastKilled": 0,
   "lastKilledAmount": 0,
@@ -600,11 +600,11 @@
     },
     {
       "level": 99,
-      "xp": 1.3034623E7
+      "xp": 1.3034843E7
     },
     {
       "level": 99,
-      "xp": 1.303452323E7
+      "xp": 1.30345956E7
     },
     {
       "level": 99,

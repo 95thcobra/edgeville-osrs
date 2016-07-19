@@ -392,7 +392,36 @@ public class EquipmentInfo {
 				attackRequirementFound = true;
 			}
 		}
+		// verac
+		if (!attackRequirementFound) {
+			if (StringUtils.containsIgnoreCase(itemName, "verac")) {
+				if (targetSlot == EquipSlot.WEAPON) {
+					reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
+				} else
+					reqs.add(new EquipmentRequirement(Skill.DEFENCE, 70));
+				attackRequirementFound = true;
+			}
+		}
 
+		// Others by id.
+		if (!attackRequirementFound) {
+			switch (item.getId()) {
+			
+			// Abyssal weapons
+			case 13263:
+			case 13265:
+				reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
+				break;
+			
+				// Toxic staffs
+			case 11791:
+			case 12904:
+				reqs.add(new EquipmentRequirement(Skill.ATTACK, 75));
+				reqs.add(new EquipmentRequirement(Skill.MAGIC, 75));
+				break;
+			}
+		}
+		
 		return reqs;
 	}
 
@@ -547,11 +576,11 @@ public class EquipmentInfo {
 		}
 		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).slash;
 	}
-	
+
 	public int getRangedBonus(Player player) {
 		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).range;
 	}
-	
+
 	public int getRangedDefenceBonus(Player player) {
 		return CombatFormula.totalBonuses(player, player.world().equipmentInfo()).rangedef;
 	}

@@ -5,7 +5,7 @@ import edgeville.model.entity.Player;
 import edgeville.model.item.Item;
 
 /**
- * @author William Talleur <talleurw@gmail.com>
+ * @author Simon
  * @date November 01, 2015
  */
 public class InterfaceItem implements Command {

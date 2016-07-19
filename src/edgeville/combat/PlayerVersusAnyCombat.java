@@ -196,6 +196,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			// double max = CombatFormula.maximumMeleeHit(player) *
 			// specialAttack.getMaxHitMultiplier();
 			// int hit = player.world().random().nextInt((int) Math.round(max));
+			
 			target.hit(player, hit, CombatStyle.MELEE);
 			triggerVeng(hit);
 

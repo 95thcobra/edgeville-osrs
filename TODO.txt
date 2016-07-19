@@ -1,53 +1,18 @@
-IMPORTANT
+CONVERT to 83
+
+IMPORTANT, needs more testing...
 fix pjing
 fix 2v1ing
 ^^^^^^^^^^^^^^^^^^
 
+zooming disable in banking.
 
-
-
-range is still too op, max hits mainly..
-blowpipe is too weak
-
-magic shortbow should not have d arrows
-
-add npc 300 2x east of bank and make hp 200.
-
-buff mage
-
-
-
-
-fix platebody showing arms
-cotzy cant run launcher see if can fix
-Fix the attacking people with 2 ppl!
-
-
-
-
-rewrite range
-
-
-
-
-view players online actual nmes
-
-
-220 // INTERFACE WITHOUT SCROLL
-1 tm 15
-
-
-
-227 // SCROLL INTERFACE
-2 is titel
-3, 5 tm 100
-
-
-
-
-
-message when running out of prayer points
-
+3rd age requirements
+range boot req
+3rd age reqs
+eternal boots req
+black dhide req
+65 def bonus for rune bandos should be 40
 
 
 ------------------------------------------ NOT IMPORTANT FOR BETA -------------------------------------

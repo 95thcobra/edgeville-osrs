@@ -3,12 +3,11 @@ package edgeville.util;
 import edgeville.model.entity.player.Privilege;
 
 /**
- * @author William Talleur <talleurw@gmail.com>
+ * @author Simon
  */
 public enum StaffData {
 
     /* Developers and Management */
-    William("Developer", Privilege.ADMINISTRATOR, 1),
     Sky("Developer", Privilege.ADMINISTRATOR, 1);
 
     private String title;

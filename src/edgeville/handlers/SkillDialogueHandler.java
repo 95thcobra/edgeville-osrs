@@ -6,7 +6,7 @@ import edgeville.net.message.game.encoders.InterfaceItem;
 import edgeville.net.message.game.encoders.InterfaceText;
 
 /**
- * @author William Talleur <talleurw@gmail.com>
+ * @author Simon
  * @date 11/14/2015
  */
 public class SkillDialogueHandler {

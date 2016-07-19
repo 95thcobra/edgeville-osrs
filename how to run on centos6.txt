@@ -50,3 +50,8 @@ killall java
 Make all files 777
 chmod -R 777 dir
 chmod -R 777 .
+
+
+
+http://edgeville.org/game/updatehiscores.php?security=6Jsh689y&memberid=1&kills=59&deaths=96&timeplayed=203700
+

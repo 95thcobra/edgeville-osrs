@@ -32,15 +32,16 @@ public class QuestTab {
 		player.interfaces().sendInterfaceString(274, 10,
 				"Players online: <col=00ff00>" + player.world().getPlayersOnline());
 	}
-	
+
 	public void updateServerUptime() {
-		player.interfaces().sendInterfaceString(274, 14, "<col=EB981F>Uptime: " + player.world().getUptime().toString());
+		player.interfaces().sendInterfaceString(274, 14,
+				"<col=EB981F>Uptime: " + player.world().getUptime().toString());
 	}
 
 	public void updateTimePlayed() {
 		player.interfaces().sendInterfaceString(274, 20, "<col=ffffff>Time played: " + player.getPlayTime().toString());
 	}
-	
+
 	public void updateKills() {
 		player.interfaces().sendInterfaceString(274, 21, "<col=ffffff>Kills: <col=00ff00>" + player.getKills());
 	}
@@ -66,7 +67,7 @@ public class QuestTab {
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 17, "<col=ffffff>View forum");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 18, "<col=ffffff>View hiscores");
 		player.interfaces().sendInterfaceString(questTabInterfaceId, 19, "<col=ffffff>Update hiscores");
-		
+
 		updateTimePlayed();// 20
 		updateKills();// 21
 		updateDeaths();// 22
@@ -90,7 +91,7 @@ public class QuestTab {
 			player.write(new InterfaceText(questTabInterfaceId, child, ""));
 		}
 
-		//makeLinesYellow();
+		// makeLinesYellow();
 	}
 
 	// NOT USED SINCE I COLOR THEM MANUALLY
@@ -121,22 +122,17 @@ public class QuestTab {
 				player.message("You cannot do this in a PVP area!");
 				return;
 			}
-
-			/*if (!player.getEquipment().isEmpty()) {
-				player.message("Unequip your equipment!");
-				return;
-			}*/
-
+			
 			player.getPrayer().deactivateAllPrayers();
 			player.getLoadout().load(player);
 			player.message("Loaded loadout.");
 			break;
 
-			// view forum
-			case 17:
-				player.write(new OpenForums());
-				break;
-			
+		// view forum
+		case 17:
+			player.write(new OpenForums());
+			break;
+
 		// view hiscores
 		case 18:
 			player.write(new OpenHiscores());
@@ -186,40 +182,35 @@ public class QuestTab {
 			player.getInventory().add(12695, 1); // super combat
 			player.message("You have spawned a set of potions.");
 			break;
-			
-			// Barrage
-			/*case 27:
-				if (player.inCombat()) {
-					player.message("You cannot do this in combat!");
-					return;
-				}
-				if (!player.inSafeArea()) {
-					player.message("You cannot do this in a PVP area!");
-					return;
-				}
 
-		        player.getInventory().add(new Item(555, 1000));
-		      player.  getInventory().add(new Item(560, 1000));
-		        player. getInventory().add(new Item(565, 1000));
-				player.message("You have spawned barrage runes.");
-				break;*/
-			
-			// Veng
-			case 27:
-				if (player.inCombat()) {
-					player.message("You cannot do this in combat!");
-					return;
-				}
-				if (!player.inSafeArea()) {
-					player.message("You cannot do this in a PVP area!");
-					return;
-				}
+		// Barrage
+		/*
+		 * case 27: if (player.inCombat()) { player.message(
+		 * "You cannot do this in combat!"); return; } if (!player.inSafeArea())
+		 * { player.message("You cannot do this in a PVP area!"); return; }
+		 * 
+		 * player.getInventory().add(new Item(555, 1000)); player.
+		 * getInventory().add(new Item(560, 1000)); player.
+		 * getInventory().add(new Item(565, 1000)); player.message(
+		 * "You have spawned barrage runes."); break;
+		 */
 
-				player.getInventory().add(557, 1000); // earth
-				player.getInventory().add(9075, 1000); // astral
-				player.getInventory().add(560, 1000); // death
-				player.message("You have spawned veng runes.");
-				break;
+		// Veng
+		case 27:
+			if (player.inCombat()) {
+				player.message("You cannot do this in combat!");
+				return;
+			}
+			if (!player.inSafeArea()) {
+				player.message("You cannot do this in a PVP area!");
+				return;
+			}
+
+			player.getInventory().add(557, 1000); // earth
+			player.getInventory().add(9075, 1000); // astral
+			player.getInventory().add(560, 1000); // death
+			player.message("You have spawned veng runes.");
+			break;
 
 		// Melee
 		case 28:
@@ -280,10 +271,10 @@ public class QuestTab {
 				return;
 			}
 
-			/*if (!player.getEquipment().isEmpty()) {
-				player.message("Unequip your equipment before spawning!");
-				return;
-			}*/
+			/*
+			 * if (!player.getEquipment().isEmpty()) { player.message(
+			 * "Unequip your equipment before spawning!"); return; }
+			 */
 
 			player.getPrayer().deactivateAllPrayers();
 			player.spawnPure();

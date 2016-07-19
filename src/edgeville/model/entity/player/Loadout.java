@@ -70,5 +70,6 @@ public class Loadout {
 		for(int i = 0 ; i < levels.length; i++) {
 			player.skills().setYourRealLevel(i, levels[i]);
 		}
+		player.skills().recalculateCombat();
 	}
 }

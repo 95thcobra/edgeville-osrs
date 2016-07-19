@@ -339,6 +339,10 @@ public final class GameCommands {
 			});
 			p.world().getEventHandler().addEvent(p, false, new UpdateGameEvent(p, ticks));
 		});
+		
+		put(Privilege.PLAYER, "mypos", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.getTile().x, p.getTile().z, p.getTile().region()));
+		put(Privilege.PLAYER, "pos", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.getTile().x, p.getTile().z, p.getTile().region()));
+		put(Privilege.PLAYER, "coords", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.getTile().x, p.getTile().z, p.getTile().region()));
 
 		/* Player commands */
 		put(Privilege.PLAYER, "players", (p, args) -> {
@@ -347,10 +351,6 @@ public final class GameCommands {
 
 			//p.interfaces().sendMain(227);
 			//p.write(new InterfaceText(227, 2, "Players online"));
-
-		
-			//p.shout(p.world().players().get(0).getUsername());
-		
 			
 			/*for (int i = 0; i < p.world().players().size(); i++) {
 				if (i+3 == 4)

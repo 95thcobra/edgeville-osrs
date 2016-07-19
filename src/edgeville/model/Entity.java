@@ -19,6 +19,7 @@ import edgeville.model.map.*;
 import edgeville.net.message.game.encoders.PlaySound;
 import edgeville.script.TimerKey;
 import edgeville.script.TimerRepository;
+import edgeville.util.CombatFormula;
 import edgeville.util.CombatStyle;
 import edgeville.util.Varbit;
 
@@ -451,7 +452,9 @@ public abstract class Entity implements HitOrigin {
 				if (origin instanceof Npc) {
 					oghit = 0;
 				} else {
-					oghit *= 0.6;
+					if (!(origin instanceof Player && CombatFormula.fullVerac((Player) origin))) {
+						oghit *= 0.6;
+					}
 				}
 			}
 		}
@@ -588,20 +591,20 @@ public abstract class Entity implements HitOrigin {
 		sync.faceEntity(null);
 		// animate(-1);
 		// graphic(-1);
-		
-		//if (!gmaul)
-			//setTarget(null);
-		
-		//if (getTarget() != null)
-			//getTarget().setLastAttackedBy(null);
-		//if (!gmaul)
-			//setTarget(null);
-		
+
+		// if (!gmaul)
+		// setTarget(null);
+
+		// if (getTarget() != null)
+		// getTarget().setLastAttackedBy(null);
+		// if (!gmaul)
+		// setTarget(null);
+
 		if (cancelMoving)
 			pathQueue.clear();
 
-		//if (!gmaul)
-			//clearattrib(AttributeKey.TARGET);
+		// if (!gmaul)
+		// clearattrib(AttributeKey.TARGET);
 	}
 
 	public void face(Entity e) {
@@ -645,7 +648,7 @@ public abstract class Entity implements HitOrigin {
 		if (locked()) {
 			hits.clear();
 		}
-		
+
 		// Only process hits if not locked!
 		if (!locked() && hp() > 0) {
 			for (Iterator<Hit> it = hits.iterator(); it.hasNext() && hp() > 0;) {

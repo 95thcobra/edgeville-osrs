@@ -28,7 +28,7 @@ public class PlayerDeathEvent extends Event {
 
 	public PlayerDeathEvent(Player player) {
 		this.player = player;
-		this.killer = player.getLastAttackedBy();//player.killer();
+		this.killer = player.getLastAttackedBy();// player.killer();
 	}
 
 	@Override
@@ -57,48 +57,31 @@ public class PlayerDeathEvent extends Event {
 				((Player) killer).setLastKilled(player.getMemberId());
 				killer.message(TextUtil.colorString("You wrecked " + player.getDisplayName() + ".", Colors.RED));
 
-				//boolean sameHost = ((Player) killer).getIP().equalsIgnoreCase(player.getIP());
-				//boolean killedLastTime = ((Player) killer).getLastKilledMemberId() == player.getMemberId();
-
-				//int amountKilledLast = ((Player) killer).getAmountLastKilled();
-				
-				/*if (sameHost) {
-					((Player) killer).message("You do not receive kills nor deaths for fighting someone on the same IP.");
-				} else if (killedLastTime && amountKilledLast > 2) {
-					((Player) killer).message("You will not receive kills nor deaths for fighting someone 3rd time in a row.");
-				} else {
-					
-					// If not killed last time, reset amount. If killed last time increment.
-					if (!killedLastTime) {
-						((Player) killer).setAmountLastKilled(0);
-					} else {
-						((Player) killer).incrementAmountLastKilled();
-					}*/
-
+				if (!((Player) killer).getIP().equals(player.getIP())) {
 					((Player) killer).incrementKills();
-					((Player) killer).setLastKilled(player.getMemberId());
-					
-					player.incrementDeaths();
-					
 					((Player) killer).resetSpecialEnergy();
 					((Player) killer).skills().restoreStats();
-					
-					
-					
-					
-					player.setLastDfsUsed(0);
-					player.setLastVengeanceUsed(0);
-					
-					player.getVarps().setVarbit(Varbit.PRAYER_ORB, 0);
-					
-					
-					
-					String log = String.format("killed %s(id:%d)", player.getUsername(), player.getMemberId());
-					player.world().getLogsHandler().appendLog(Constants.KILL_LOG_DIR + ((Player)killer).getUsername() + ".txt",log);
-					 log = String.format("killed by %s(id:%d)", ((Player)killer).getUsername(), ((Player)killer).getMemberId());
-					player.world().getLogsHandler().appendLog(Constants.KILL_LOG_DIR + player.getUsername() + ".txt",log);
-					
-				//}
+					((Player) killer).setLastDfsUsed(0);
+					((Player) killer).setLastVengeanceUsed(0);
+					player.incrementDeaths();
+				} else {
+					((Player) killer).message("You do not receive a kill for killing someone on your own ip.");
+				}
+
+				player.setLastDfsUsed(0);
+				player.setLastVengeanceUsed(0);
+				player.getVarps().setVarbit(Varbit.PRAYER_ORB, 0);
+
+				((Player) killer).setLastKilled(player.getMemberId());
+				String log = String.format("killed %s(id:%d)", player.getUsername(), player.getMemberId());
+				player.world().getLogsHandler()
+						.appendLog(Constants.KILL_LOG_DIR + ((Player) killer).getUsername() + ".txt", log);
+
+				log = String.format("killed by %s(id:%d)", ((Player) killer).getUsername(),
+						((Player) killer).getMemberId());
+				player.world().getLogsHandler().appendLog(Constants.KILL_LOG_DIR + player.getUsername() + ".txt", log);
+
+				// }
 				if (Constants.DROP_ITEMS_ON_DEATH) {
 					ItemsOnDeath.dropItems((Player) killer, player);
 				}

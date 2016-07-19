@@ -22,22 +22,11 @@ public class CombatUtil {
 		}
 		Player targetP = (Player) target;
 		
-		if (player.inCombat() && targetP != player.getTarget() && player.getLastAttackedBy() != targetP) {
+		if (player.inCombat() && target != player.getTarget() && player.getLastAttackedBy() != target) {
 			player.message("You are already fighting someone else!");
 			return false;
 		}
 		
-		//player.message("bool1=%b, bool2=%b",  player != target.getLastAttackedBy(), target.getTarget() != player);
-		
-		player.setLastAttackedBy(null);
-		/*
-		if (target.timers().has(TimerKey.IN_COMBAT)) {
-			if (target.getTarget() != player && target.getLastAttackedBy() != player) {
-				player.message("This player is in combat!");
-				return false;
-			}
-		}
-		*/
 		if (targetP.timers().has(TimerKey.IN_COMBAT) && player != target.getLastAttackedBy() && target.getTarget() != player) {	
 			player.message("This player is in combat!");	
 			return false;

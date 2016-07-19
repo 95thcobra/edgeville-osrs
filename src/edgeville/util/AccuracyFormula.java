@@ -297,7 +297,7 @@ public class AccuracyFormula {
 		if (CombatFormula.wearingVoidMage(player))
 			magicAttack *= 1.3;
 		
-		magicAttack *= 1.2; // random buff.
+		magicAttack *= 1.5; // random buff.
 		
 		player.messageDebug("Accuracy: %d", (int) accuracy);
 
