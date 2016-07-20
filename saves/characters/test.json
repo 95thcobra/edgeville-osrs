@@ -10,17 +10,17 @@
     "level": 0
   },
   "playTime": {
-    "hours": 6,
-    "minutes": 21,
-    "seconds": 34,
-    "milliseconds": 800,
+    "hours": 8,
+    "minutes": 58,
+    "seconds": 46,
+    "milliseconds": 200,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
   "migration": 0,
   "skullIcon": 0,
   "prayerIcon": -1,
-  "debug": false,
+  "debug": true,
   "kills": 6,
   "deaths": 30,
   "lastKilled": 0,
@@ -53,20 +53,20 @@
       "amount": 1
     },
     {
-      "id": 12695,
+      "id": 12697,
+      "amount": 1
+    },
+    {
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 3024,
       "amount": 1
     },
     {
       "id": 6685,
       "amount": 1
-    },
-    {
-      "id": 2444,
-      "amount": 1
-    },
-    {
-      "id": 560,
-      "amount": 1000
     },
     {
       "id": 557,
@@ -77,83 +77,128 @@
       "amount": 1000
     },
     {
-      "id": 3026,
+      "id": 560,
+      "amount": 1000
+    },
+    {
+      "id": 3144,
       "amount": 1
     },
     {
-      "id": 3024,
+      "id": 3144,
       "amount": 1
     },
     {
-      "id": 9185,
+      "id": 3144,
       "amount": 1
     },
     {
-      "id": 11283,
+      "id": 3144,
+      "amount": 1
+    },
+    null,
+    null,
+    {
+      "id": 391,
       "amount": 1
     },
     {
-      "id": 9244,
-      "amount": 880
-    },
-    {
-      "id": 7462,
+      "id": 391,
       "amount": 1
     },
     {
-      "id": 4753,
+      "id": 391,
       "amount": 1
     },
     {
-      "id": 2503,
+      "id": 391,
       "amount": 1
     },
     {
-      "id": 4759,
+      "id": 391,
       "amount": 1
     },
     {
-      "id": 2577,
+      "id": 391,
       "amount": 1
     },
     {
-      "id": 10499,
+      "id": 391,
       "amount": 1
     },
     {
-      "id": 4212,
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    }
+  ],
+  "equipment": [
+    {
+      "id": 10828,
+      "amount": 1
+    },
+    {
+      "id": 6570,
       "amount": 1
     },
     {
       "id": 6585,
       "amount": 1
     },
-    null,
     {
-      "id": 6733,
+      "id": 12006,
+      "amount": 1
+    },
+    {
+      "id": 10551,
+      "amount": 1
+    },
+    {
+      "id": 12954,
       "amount": 1
     },
     null,
+    {
+      "id": 4722,
+      "amount": 1
+    },
     null,
+    {
+      "id": 7462,
+      "amount": 1
+    },
+    {
+      "id": 11840,
+      "amount": 1
+    },
     null,
-    null,
-    null,
-    null
-  ],
-  "equipment": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "id": 11773,
+      "amount": 1
+    },
     null
   ],
   "loadout": {
@@ -492,12 +537,8 @@
   ],
   "varps": [
     {
-      "id": 43,
+      "id": 172,
       "value": 1
-    },
-    {
-      "id": 166,
-      "value": 3
     },
     {
       "id": 173,
@@ -508,8 +549,8 @@
       "value": 1000
     },
     {
-      "id": 439,
-      "value": 2
+      "id": 843,
+      "value": 20
     },
     {
       "id": 1050,
@@ -539,23 +580,23 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3042518E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034938E7
+    },
+    {
+      "level": 99,
+      "xp": 1.303523E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3037543519999998E7
     },
     {
       "level": 99,
       "xp": 1.3034431E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3036711E7
-    },
-    {
-      "level": 99,
-      "xp": 1.303667196E7
-    },
-    {
-      "level": 99,
-      "xp": 1.3038931E7
     },
     {
       "level": 99,
@@ -641,5 +682,6 @@
   "lastHiscoresUpdate": 1468835227614,
   "lastNurseUsed": 0,
   "lastDfsUsed": 0,
-  "lastVengeanceUsed": 0
+  "lastVengeanceUsed": 0,
+  "autoRetaliateEnabled": false
 }

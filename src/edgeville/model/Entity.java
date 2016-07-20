@@ -4,9 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import edgeville.combat.Graphic;
+import edgeville.combat.PlayerVersusAnyCombat;
+import edgeville.combat.PvPCombat;
 import edgeville.combat.magic.AncientSpell;
 import edgeville.combat.magic.RegularDamageSpell;
 import edgeville.combat.magic.Spell;
+import edgeville.event.Event;
+import edgeville.event.EventContainer;
 import edgeville.model.entity.*;
 import edgeville.model.entity.player.EquipSlot;
 import edgeville.model.entity.player.NpcSyncInfo;
@@ -534,12 +538,26 @@ public abstract class Entity implements HitOrigin {
 		}
 
 		if (this instanceof Player) {
-			((Player) this).sound(((Entity) origin).getAttackSound());
+			Player player = (Player) this;
+			player.sound(((Entity) origin).getAttackSound());
+
+			// auto retaliate
+			if (origin instanceof Player) {
+				Player attackedBy = (Player) origin;
+
+				if (player.isAutoRetaliateEnabled()/* && !player.currentlyAttacking*/ && player.pathQueue().empty()) {
+					face(attackedBy);
+					new PvPCombat(player, attackedBy).start();
+				}
+			}
+			///
 		}
 
 		return h;
 
 	}
+
+	//public boolean currentlyAttacking = false;
 
 	public Hit hit(HitOrigin origin, int hit, Hit.Type type, CombatStyle combatStyle) {
 		return hit(origin, hit, 0, type, combatStyle);
@@ -585,26 +603,16 @@ public abstract class Entity implements HitOrigin {
 	}
 
 	public void stopActions(boolean cancelMoving, boolean gmaul) {
-		// this.message("stopping actions...");
 		world.getEventHandler().stopCancellableEvents(this);
-		// world.server().scriptExecutor().interruptFor(this);
 		sync.faceEntity(null);
-		// animate(-1);
-		// graphic(-1);
 
 		// if (!gmaul)
 		// setTarget(null);
 
-		// if (getTarget() != null)
-		// getTarget().setLastAttackedBy(null);
-		// if (!gmaul)
-		// setTarget(null);
+		//currentlyAttacking = false;
 
 		if (cancelMoving)
 			pathQueue.clear();
-
-		// if (!gmaul)
-		// clearattrib(AttributeKey.TARGET);
 	}
 
 	public void face(Entity e) {

@@ -425,3 +425,65 @@
 [Tue Jul 19 23:53:48 CEST 2016]:spec 
 [Wed Jul 20 00:04:27 CEST 2016]:update 0
 [Wed Jul 20 00:07:34 CEST 2016]:item 11791 1
+[Wed Jul 20 09:38:49 CEST 2016]:damageoff 
+[Wed Jul 20 10:46:55 CEST 2016]:item 11802 1
+[Wed Jul 20 10:48:54 CEST 2016]:varbit 26 0
+[Wed Jul 20 10:48:59 CEST 2016]:varbit 287 0
+[Wed Jul 20 10:49:02 CEST 2016]:varbit 287 0
+[Wed Jul 20 10:49:10 CEST 2016]:varp 287 0
+[Wed Jul 20 10:49:22 CEST 2016]:varp 301 0
+[Wed Jul 20 10:49:24 CEST 2016]:varp 301 1
+[Wed Jul 20 10:49:26 CEST 2016]:varp 301 0
+[Wed Jul 20 10:49:29 CEST 2016]:varp 300 0
+[Wed Jul 20 10:49:32 CEST 2016]:varp 302 1
+[Wed Jul 20 10:49:34 CEST 2016]:varp 302 0
+[Wed Jul 20 10:49:59 CEST 2016]:varbit 1054 0
+[Wed Jul 20 10:51:26 CEST 2016]:varp 1054 1
+[Wed Jul 20 10:51:28 CEST 2016]:varbit 1054 1
+[Wed Jul 20 10:51:34 CEST 2016]:varbit 26 1
+[Wed Jul 20 10:51:37 CEST 2016]:varbit 26 1
+[Wed Jul 20 10:51:43 CEST 2016]:varp 287 1
+[Wed Jul 20 10:52:09 CEST 2016]:varp 287 1
+[Wed Jul 20 10:52:11 CEST 2016]:loopvarp 1
+[Wed Jul 20 10:52:14 CEST 2016]:loopvarp 0
+[Wed Jul 20 10:52:22 CEST 2016]:lv 0 1000 0
+[Wed Jul 20 10:52:26 CEST 2016]:lv 0 500 1
+[Wed Jul 20 10:52:31 CEST 2016]:lv 0 100 0
+[Wed Jul 20 10:52:35 CEST 2016]:lv 100 200 0
+[Wed Jul 20 10:52:43 CEST 2016]:lv 100 150 1
+[Wed Jul 20 10:52:47 CEST 2016]:lv 150 200 1
+[Wed Jul 20 10:52:53 CEST 2016]:lv 175 200 0
+[Wed Jul 20 10:53:01 CEST 2016]:lv 150 160 0
+[Wed Jul 20 10:53:04 CEST 2016]:lv 160 170 0
+[Wed Jul 20 10:53:10 CEST 2016]:lv 160 180 0
+[Wed Jul 20 10:53:17 CEST 2016]:lv 170 180 1
+[Wed Jul 20 10:53:21 CEST 2016]:lv 175 180 0
+[Wed Jul 20 10:53:26 CEST 2016]:lv 170 172 0
+[Wed Jul 20 10:53:34 CEST 2016]:lv 172 174 0
+[Wed Jul 20 10:53:41 CEST 2016]:varp 173 1
+[Wed Jul 20 10:53:44 CEST 2016]:varp 172 1
+[Wed Jul 20 11:17:44 CEST 2016]:update 0
+[Wed Jul 20 11:17:54 CEST 2016]:loopvarp 0
+[Wed Jul 20 11:19:43 CEST 2016]:update 0
+[Wed Jul 20 11:21:38 CEST 2016]:update 0
+[Wed Jul 20 11:34:34 CEST 2016]:teletome test
+[Wed Jul 20 11:39:13 CEST 2016]:update 0
+[Wed Jul 20 11:40:18 CEST 2016]:update 0
+[Wed Jul 20 11:44:08 CEST 2016]:update 0
+[Wed Jul 20 11:44:26 CEST 2016]:update 0
+[Wed Jul 20 11:47:08 CEST 2016]:update 0
+[Wed Jul 20 11:48:39 CEST 2016]:damageoff 
+[Wed Jul 20 11:48:41 CEST 2016]:teletome test
+[Wed Jul 20 11:49:23 CEST 2016]:update 0
+[Wed Jul 20 11:51:13 CEST 2016]:update 0
+[Wed Jul 20 12:15:56 CEST 2016]:update 0
+[Wed Jul 20 12:23:05 CEST 2016]:update 0
+[Wed Jul 20 12:23:33 CEST 2016]:update 0
+[Wed Jul 20 12:26:45 CEST 2016]:update 0
+[Wed Jul 20 12:29:38 CEST 2016]:update 0
+[Wed Jul 20 12:30:28 CEST 2016]:update 0
+[Wed Jul 20 12:30:50 CEST 2016]:damageoff 
+[Wed Jul 20 12:31:40 CEST 2016]:update 0
+[Wed Jul 20 12:32:15 CEST 2016]:update 0
+[Wed Jul 20 12:33:00 CEST 2016]:update 0
+[Wed Jul 20 12:33:20 CEST 2016]:update 0

@@ -51,3 +51,33 @@
 [Tue Jul 19 23:46:45 CEST 2016]:update 0
 [Tue Jul 19 23:50:21 CEST 2016]:damageoff 
 [Tue Jul 19 23:53:46 CEST 2016]:damageon 
+[Wed Jul 20 10:50:50 CEST 2016]:update 0
+[Wed Jul 20 10:50:56 CEST 2016]:loopvarp 0
+[Wed Jul 20 10:50:59 CEST 2016]:loopvarbit 0
+[Wed Jul 20 10:51:05 CEST 2016]:loopvarbit 1
+[Wed Jul 20 10:51:07 CEST 2016]:loopvarbit 2
+[Wed Jul 20 10:51:10 CEST 2016]:loopvarbit 3
+[Wed Jul 20 10:51:12 CEST 2016]:loopvarp 1
+[Wed Jul 20 10:51:14 CEST 2016]:loopvarp 1
+[Wed Jul 20 11:01:20 CEST 2016]:debugon 
+[Wed Jul 20 11:17:57 CEST 2016]:loopvarp 0
+[Wed Jul 20 11:28:27 CEST 2016]:update 0
+[Wed Jul 20 11:32:07 CEST 2016]:update 0
+[Wed Jul 20 11:32:54 CEST 2016]:update 0
+[Wed Jul 20 11:33:37 CEST 2016]:teletome sky
+[Wed Jul 20 11:34:22 CEST 2016]:update 0
+[Wed Jul 20 11:38:24 CEST 2016]:update 0
+[Wed Jul 20 11:40:38 CEST 2016]:update 0
+[Wed Jul 20 11:41:42 CEST 2016]:update 0
+[Wed Jul 20 11:45:28 CEST 2016]:update 0
+[Wed Jul 20 11:48:43 CEST 2016]:damageoff 
+[Wed Jul 20 11:50:30 CEST 2016]:update 0
+[Wed Jul 20 11:53:03 CEST 2016]:update 0
+[Wed Jul 20 11:55:41 CEST 2016]:update 0
+[Wed Jul 20 12:12:37 CEST 2016]:update 0
+[Wed Jul 20 12:16:49 CEST 2016]:update 0
+[Wed Jul 20 12:17:07 CEST 2016]:update 0
+[Wed Jul 20 12:17:59 CEST 2016]:update 0
+[Wed Jul 20 12:19:23 CEST 2016]:update 0
+[Wed Jul 20 12:28:05 CEST 2016]:update 0
+[Wed Jul 20 12:36:16 CEST 2016]:update 0

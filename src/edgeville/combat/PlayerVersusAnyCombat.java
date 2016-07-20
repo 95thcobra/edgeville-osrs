@@ -66,6 +66,21 @@ public class PlayerVersusAnyCombat extends Combat {
 			if (!((Player) target).inSafeArea()) {
 				target.timers().register(TimerKey.AFTER_COMBAT, 5);
 			}
+			
+			/*if (((Player) target).isAutoRetaliateEnabled()) {
+				target.face(player);
+				new PvPCombat((Player)target, player).start();
+			}*/
+			
+			// auto retaliate
+			/*if (target instanceof Player) {
+				Player targetP = (Player) target;
+				if (targetP.isAutoRetaliateEnabled() && !targetP.currentlyAttacking) {
+					targetP.face(player);
+					new PvPCombat(targetP, player).start();
+				}
+			}*/
+			///
 		}
 
 		// Combat type?
@@ -180,6 +195,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
+		player.getQuestTab().updateMaxHit((int)Math.round(max));
 		// int hit = player.world().random().nextInt((int) Math.round(max));
 		int hit;
 

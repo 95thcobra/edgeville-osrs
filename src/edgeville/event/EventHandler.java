@@ -32,12 +32,12 @@ public class EventHandler {
 		addEvent(entity, 0, cancellable, event);
 	}
 
-	public void addEvent(Entity entity, int ticks, Event event) {
-		addEvent(entity, ticks, true, event);
+	public void addEvent(Entity entity, int delay, Event event) {
+		addEvent(entity, delay, true, event);
 	}
 
-	public void addEvent(Entity entity, int ticks, boolean cancellable, Event event) {
-		addEvent(new EventContainer(entity, ticks, cancellable, event));
+	public void addEvent(Entity entity, int delay, boolean cancellable, Event event) {
+		addEvent(new EventContainer(entity, delay, cancellable, event));
 	}
 
 	public void addEvent(EventContainer event) {

@@ -14,28 +14,35 @@ public class CombatUtil {
 	private Player player;
 
 	public static boolean canAttack(Player player, Entity target) {
-		if (player.dead() || player.locked()) {
+		if (player.dead() || player.locked() || target.dead()) {
 			return false;
 		}
+
 		if (!(target instanceof Player)) {
 			return true;
 		}
 		Player targetP = (Player) target;
-		
+
+		if (Math.abs(player.skills().combatLevel() - targetP.skills().combatLevel()) > 5) {
+			player.message("The difference in combat level should be 5 or lower.");
+			return false;
+		}
+
 		if (player.inCombat() && target != player.getTarget() && player.getLastAttackedBy() != target) {
 			player.message("You are already fighting someone else!");
 			return false;
 		}
-		
-		if (targetP.timers().has(TimerKey.IN_COMBAT) && player != target.getLastAttackedBy() && target.getTarget() != player) {	
-			player.message("This player is in combat!");	
+
+		if (targetP.timers().has(TimerKey.IN_COMBAT) && player != target.getLastAttackedBy()
+				&& target.getTarget() != player) {
+			player.message("This player is in combat!");
 			return false;
 		}
-		
+
 		targetP.timers().register(TimerKey.IN_COMBAT, 5);
 		player.setTarget(target);
 		target.setLastAttackedBy(player);
-		
+
 		if (!Constants.ALL_PVP) {
 			if (!player.inWilderness() || !((Player) target).inWilderness()) {
 				player.message("You or your target are not in wild.");

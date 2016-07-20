@@ -40,6 +40,47 @@ public final class GameCommands {
 
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
+		
+		
+		
+		
+		
+		put(Privilege.DEVELOPER, "loopvarbit", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 20000; i++) {
+					p.getVarps().setVarbit(i, Integer.parseInt(args[0]));
+				}
+			}).start();
+		});
+
+		put(Privilege.DEVELOPER, "loopvarp", (p, args) -> {
+			new Thread(() -> {
+				for (int i = 0; i < 2001; i++) {
+					p.getVarps().setVarp(i, Integer.parseInt(args[0]));
+				}
+			}).start();
+		});
+
+		put(Privilege.DEVELOPER, "lv", (p, args) -> {
+			new Thread(() -> {
+				for (int i = Integer.parseInt(args[0]); i < Integer.parseInt(args[1]); i++) {
+					p.getVarps().setVarp(i, Integer.parseInt(args[2]));
+				}
+			}).start();
+		});
+
+		put(Privilege.DEVELOPER, "lvb", (p, args) -> {
+			new Thread(() -> {
+				for (int i = Integer.parseInt(args[0]); i < Integer.parseInt(args[1]); i++) {
+					p.getVarps().setVarbit(i, Integer.parseInt(args[2]));
+				}
+			}).start();
+		});
+		
+		
+		
+		
+		
 
 		put(Privilege.DEVELOPER, "test", (p, args) -> {
 			new Thread(() -> {

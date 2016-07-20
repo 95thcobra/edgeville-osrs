@@ -36,19 +36,10 @@ public class NpcAttack implements Action {
 		// player.message("npc attack --- npcindex:" + index + " run:" + run);
 		Npc other = player.world().npcs().get(index);
 
-			player.messageDebug("npcid:" + other.id() + " run:" + run);
+		player.messageDebug("npcid:" + other.id() + " run:" + run);
 
-		if (!player.locked() && !player.dead() && !other.dead()) {
-			// player.stepTowards(other, 20);
-			player.face(other);
-
-			player.putAttribute(AttributeKey.TARGET_TYPE, 1);
-			player.putAttribute(AttributeKey.TARGET, /* index */ other);
-			other.putAttribute(AttributeKey.LAST_ATTACKED_BY, player);
-
-			// player.world().server().scriptExecutor().executeScript(player,
-			// PlayerCombat.script);
-			new PvMCombat(player, other).start();
-		}
+		// player.stepTowards(other, 20);
+		player.face(other);
+		new PvMCombat(player, other).start();
 	}
 }

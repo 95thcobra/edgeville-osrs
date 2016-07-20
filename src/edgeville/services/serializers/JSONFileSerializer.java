@@ -167,6 +167,11 @@ public class JSONFileSerializer extends PlayerSerializer {
 			if (blowpipeAmmo != null) {
 				player.setBlowpipeAmmo(gson.fromJson(blowpipeAmmo, Item.class));
 			}
+			
+			JsonElement autoRetaliateEnabled = rootObject.get("autoRetaliateEnabled");
+			if (autoRetaliateEnabled != null) {
+				player.setAutoRetaliateEnabled(autoRetaliateEnabled.getAsBoolean());
+			}
 
 			// Debug
 			player.setDebug(rootObject.get("debug").getAsBoolean());
@@ -441,6 +446,9 @@ public class JSONFileSerializer extends PlayerSerializer {
 
 		// blowpipe
 		jsonObject.add("blowpipeAmmo", gson.toJsonTree(player.getBlowpipeAmmo()));
+		
+		// Auto retal
+		jsonObject.addProperty("autoRetaliateEnabled", player.isAutoRetaliateEnabled());
 
 		// end
 

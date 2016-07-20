@@ -37,15 +37,18 @@ public abstract class Combat {
 	}
 
 	public void start() {
-		// autocasting
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
 
 			if (!CombatUtil.canAttack(player, target)) {
 				return;
 			}
+			
+			//player.currentlyAttacking = true;
 
 			Item weapon = player.getEquipment().get(EquipSlot.WEAPON);
+
+			// autocasting
 			if (player.isAutoCasting()) {
 				if (weapon != null
 						&& player.world().equipmentInfo().weaponType(weapon.getId()) == WeaponType.MAGIC_STAFF

@@ -474,6 +474,20 @@ public class ButtonClickAction {
 			handleAutoCast();
 			break;
 
+			// auto retal
+		case 27:
+			boolean currentlyEnabled = player.getVarps().getVarp(Varp.AUTO_RETALIATE_ENABLED) == 0;//0 of on, 1 is off
+			player.setAutoRetaliateEnabled(currentlyEnabled ? false : true);
+			
+			if (currentlyEnabled) {
+				player.setAutoRetaliateEnabled(false);
+				player.getVarps().setVarp(Varp.AUTO_RETALIATE_ENABLED, 1);
+			} else {
+				player.setAutoRetaliateEnabled(true);
+				player.getVarps().setVarp(Varp.AUTO_RETALIATE_ENABLED, 0);
+			}
+			break;
+			
 		// Special attack
 		case 30:
 			if (isGmaulAttack()) {

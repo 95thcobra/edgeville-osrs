@@ -5,15 +5,15 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3087,
-    "z": 3494,
+    "x": 3088,
+    "z": 3492,
     "level": 0
   },
   "playTime": {
-    "hours": 6,
-    "minutes": 11,
-    "seconds": 54,
-    "milliseconds": 600,
+    "hours": 8,
+    "minutes": 50,
+    "seconds": 40,
+    "milliseconds": 800,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
@@ -49,19 +49,39 @@
   ],
   "inventory": [
     {
+      "id": 12825,
+      "amount": 1
+    },
+    {
+      "id": 13239,
+      "amount": 1
+    },
+    {
+      "id": 6570,
+      "amount": 1
+    },
+    {
+      "id": 4736,
+      "amount": 1
+    },
+    {
       "id": 12006,
       "amount": 1
     },
     {
-      "id": 229,
+      "id": 4712,
       "amount": 1
     },
     {
-      "id": 3026,
+      "id": 12002,
       "amount": 1
     },
     {
-      "id": 3024,
+      "id": 4714,
+      "amount": 1
+    },
+    {
+      "id": 5698,
       "amount": 1
     },
     {
@@ -69,23 +89,15 @@
       "amount": 1
     },
     {
-      "id": 557,
-      "amount": 1000
-    },
-    {
-      "id": 9075,
-      "amount": 1000
-    },
-    {
-      "id": 560,
-      "amount": 1000
-    },
-    {
-      "id": 3144,
+      "id": 3024,
       "amount": 1
     },
     {
-      "id": 4755,
+      "id": 3024,
+      "amount": 1
+    },
+    {
+      "id": 12695,
       "amount": 1
     },
     {
@@ -101,36 +113,13 @@
       "amount": 1
     },
     {
-      "id": 3204,
-      "amount": 1
-    },
-    {
-      "id": 11802,
-      "amount": 1
-    },
-    {
-      "id": 10828,
-      "amount": 1
-    },
-    {
-      "id": 13265,
-      "amount": 1
-    },
-    {
-      "id": 10551,
-      "amount": 1
-    },
-    {
-      "id": 4722,
-      "amount": 1
-    },
-    {
       "id": 391,
       "amount": 1
     },
-    null,
-    null,
-    null,
+    {
+      "id": 4675,
+      "amount": 1
+    },
     null,
     {
       "id": 391,
@@ -147,15 +136,35 @@
     {
       "id": 391,
       "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 391,
+      "amount": 1
+    },
+    {
+      "id": 555,
+      "amount": 973
+    },
+    {
+      "id": 560,
+      "amount": 982
+    },
+    {
+      "id": 565,
+      "amount": 986
     }
   ],
   "equipment": [
     {
-      "id": 4753,
+      "id": 13197,
       "amount": 1
     },
     {
-      "id": 6570,
+      "id": 2412,
       "amount": 1
     },
     {
@@ -163,17 +172,17 @@
       "amount": 1
     },
     {
-      "id": 13263,
+      "id": 11802,
       "amount": 1
     },
     {
-      "id": 4757,
+      "id": 11832,
       "amount": 1
     },
     null,
     null,
     {
-      "id": 4759,
+      "id": 11834,
       "amount": 1
     },
     null,
@@ -182,7 +191,7 @@
       "amount": 1
     },
     {
-      "id": 11840,
+      "id": 13235,
       "amount": 1
     },
     null,
@@ -531,28 +540,16 @@
   ],
   "varps": [
     {
-      "id": 43,
-      "value": 1
-    },
-    {
-      "id": 166,
-      "value": 3
-    },
-    {
       "id": 173,
       "value": 1
     },
     {
       "id": 300,
-      "value": 1000
-    },
-    {
-      "id": 439,
-      "value": 2
+      "value": 600
     },
     {
       "id": 843,
-      "value": 2
+      "value": 10
     },
     {
       "id": 1050,
@@ -581,32 +578,32 @@
   ],
   "skills": [
     {
-      "level": 102,
-      "xp": 1.3036522E7
-    },
-    {
-      "level": 102,
-      "xp": 1.3036522E7
-    },
-    {
-      "level": 102,
-      "xp": 1.3045142E7
+      "level": 99,
+      "xp": 1.304097E7
     },
     {
       "level": 99,
-      "xp": 1.303938E7
+      "xp": 1.303453E7
     },
     {
       "level": 99,
-      "xp": 1.3034431E7
+      "xp": 1.3034606E7
     },
     {
-      "level": 0,
+      "level": 72,
+      "xp": 1.3036720430000002E7
+    },
+    {
+      "level": 99,
       "xp": 1.3034431E7
     },
     {
       "level": 99,
       "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034535E7
     },
     {
       "level": 99,
@@ -678,11 +675,14 @@
     }
   ],
   "quickprayers": [],
-  "autocastSpellChild": 0,
-  "lastCastedSpellChild": 0,
+  "autocastSpell": "ICE_BLITZ",
+  "autocastSpellChild": 67,
+  "lastCastedSpell": "ICE_BARRAGE",
+  "lastCastedSpellChild": 69,
   "autocasting": false,
   "lastHiscoresUpdate": 1468835225860,
   "lastNurseUsed": 0,
   "lastDfsUsed": 0,
-  "lastVengeanceUsed": 0
+  "lastVengeanceUsed": 0,
+  "autoRetaliateEnabled": true
 }

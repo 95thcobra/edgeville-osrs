@@ -101,6 +101,8 @@ public class Player extends Entity {
 	private CombatUtil combatUtil;
 
 	private boolean vengOn;
+	
+	private boolean autoRetaliateEnabled;
 
 	public boolean isVengOn() {
 		return vengOn;
@@ -391,6 +393,7 @@ public class Player extends Entity {
 		setPrivilege(Privilege.PLAYER);
 		this.isMuted = false;
 		setBlowpipeAmmo(null);
+		setAutoRetaliateEnabled(false);
 	}
 
 	private void onLogin() {
@@ -400,6 +403,7 @@ public class Player extends Entity {
 			getVarps().setVarbit(Varbit.AUTOCAST_SPELL, 0);
 		}
 		prayer.deactivateAllPrayers();
+		getVarps().setVarp(Varp.AUTO_RETALIATE_ENABLED, autoRetaliateEnabled ? 0 : 1);
 	}
 
 	private void presetBank() {
@@ -1570,5 +1574,13 @@ public class Player extends Entity {
 
 	public void setBlowpipeAmmo(Item blowpipeAmmo) {
 		this.blowpipeAmmo = blowpipeAmmo;
+	}
+
+	public boolean isAutoRetaliateEnabled() {
+		return autoRetaliateEnabled;
+	}
+
+	public void setAutoRetaliateEnabled(boolean autoRetaliateEnabled) {
+		this.autoRetaliateEnabled = autoRetaliateEnabled;
 	}
 }

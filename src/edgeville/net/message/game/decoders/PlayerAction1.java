@@ -32,24 +32,8 @@ public class PlayerAction1 implements Action {
 			player.message("Unable to find player.");
 			return;
 		}
-
-		if (!player.locked() && !player.dead() && !other.dead()) {
-			player.face(other);
-
-			if (player.inWilderness() && !other.inWilderness()) {
-				player.message("Your target is not in the wilderness.");
-				return;
-			} else if (other.inWilderness() && !player.inWilderness()) {
-				player.message("You are not in the wilderness.");
-				return;
-			}
-			
-			if (Math.abs(player.skills().combatLevel() - other.skills().combatLevel()) > 5) {
-				player.message("The difference in combat level should be 5 or lower.");
-				return;
-			}
-
-			new PvPCombat(player, other).start();
-		}
+		
+		player.face(other);
+		new PvPCombat(player, other).start();
 	}
 }
