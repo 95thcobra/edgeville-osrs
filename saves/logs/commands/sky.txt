@@ -596,3 +596,41 @@
 [Wed Jul 20 18:16:34 CEST 2016]:varbit 542 0
 [Wed Jul 20 18:16:38 CEST 2016]:loopvarbit 1
 [Wed Jul 20 18:16:56 CEST 2016]:loopvarbit 0
+[Thu Jul 21 19:23:26 CEST 2016]:update 0
+[Thu Jul 21 22:33:10 CEST 2016]:givedev sky
+[Thu Jul 21 22:47:42 CEST 2016]:givedev sky
+[Thu Jul 21 22:47:44 CEST 2016]:graphic 398
+[Thu Jul 21 22:48:12 CEST 2016]:update 0
+[Thu Jul 21 22:48:46 CEST 2016]:find guth
+[Thu Jul 21 22:48:49 CEST 2016]:find guthan
+[Thu Jul 21 22:48:54 CEST 2016]:item 4724 1
+[Thu Jul 21 22:48:57 CEST 2016]:item 4726 1
+[Thu Jul 21 22:48:58 CEST 2016]:item 4728 1
+[Thu Jul 21 22:49:00 CEST 2016]:item 4730 1
+[Thu Jul 21 22:49:21 CEST 2016]:find dragon s
+[Thu Jul 21 22:49:29 CEST 2016]:item 1249 1
+[Thu Jul 21 22:50:13 CEST 2016]:anim 2080
+[Thu Jul 21 22:50:16 CEST 2016]:anim 2080
+[Thu Jul 21 22:51:30 CEST 2016]:anim 1210
+[Thu Jul 21 22:51:34 CEST 2016]:anim 1210
+[Thu Jul 21 22:52:05 CEST 2016]:varp 843 0
+[Thu Jul 21 22:52:06 CEST 2016]:varp 843 1
+[Thu Jul 21 22:52:09 CEST 2016]:varp 843 3
+[Thu Jul 21 22:52:11 CEST 2016]:varp 843 4
+[Thu Jul 21 22:52:14 CEST 2016]:varp 843 5
+[Thu Jul 21 22:52:15 CEST 2016]:varp 843 6
+[Thu Jul 21 22:52:19 CEST 2016]:varp 843 7
+[Thu Jul 21 22:52:21 CEST 2016]:varp 843 8
+[Thu Jul 21 22:52:24 CEST 2016]:varp 843 9
+[Thu Jul 21 22:52:26 CEST 2016]:varp 843 10
+[Thu Jul 21 22:52:28 CEST 2016]:varp 843 11
+[Thu Jul 21 22:52:30 CEST 2016]:varp 843 12
+[Thu Jul 21 22:52:32 CEST 2016]:varp 843 13
+[Thu Jul 21 22:52:36 CEST 2016]:varp 843 14
+[Thu Jul 21 22:52:38 CEST 2016]:varp 843 15
+[Thu Jul 21 22:57:23 CEST 2016]:item 4726 1
+[Thu Jul 21 22:57:25 CEST 2016]:item 4724 1
+[Thu Jul 21 22:57:27 CEST 2016]:item 4730 1
+[Thu Jul 21 22:57:30 CEST 2016]:item 4724 1
+[Thu Jul 21 22:57:35 CEST 2016]:item 4728 1
+[Thu Jul 21 22:57:57 CEST 2016]:anim 1146

@@ -392,9 +392,9 @@ public class EquipmentInfo {
 				attackRequirementFound = true;
 			}
 		}
-		// verac
+		// verac/guthan
 		if (!attackRequirementFound) {
-			if (StringUtils.containsIgnoreCase(itemName, "verac")) {
+			if (StringUtils.containsIgnoreCase(itemName, "verac")||StringUtils.containsIgnoreCase(itemName, "guthan")) {
 				if (targetSlot == EquipSlot.WEAPON) {
 					reqs.add(new EquipmentRequirement(Skill.ATTACK, 70));
 				} else
@@ -518,6 +518,8 @@ public class EquipmentInfo {
 			return 401;
 		case WeaponType.BOW:
 			return 426;
+		case WeaponType.SPEAR:
+			return 2080;
 		case WeaponType.CROSSBOW:
 			return 4230;
 		case WeaponType.LONGSWORD:

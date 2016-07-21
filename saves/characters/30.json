@@ -1,28 +1,28 @@
 {
-  "username": "test",
-  "displayName": "test",
-  "ip": "192.168.43.191",
+  "username": "Sky1",
+  "displayName": "Sky1",
+  "ip": "192.168.100.167",
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3087,
-    "z": 3493,
+    "x": 3090,
+    "z": 3490,
     "level": 0
   },
   "playTime": {
-    "hours": 9,
-    "minutes": 11,
-    "seconds": 45,
+    "hours": 0,
+    "minutes": 0,
+    "seconds": 27,
     "milliseconds": 600,
     "color": "\u003ccol\u003dffffff\u003e"
   },
-  "privilege": "DEVELOPER",
+  "privilege": "PLAYER",
   "migration": 0,
-  "skullIcon": 0,
+  "skullIcon": -1,
   "prayerIcon": -1,
-  "debug": true,
-  "kills": 6,
-  "deaths": 30,
+  "debug": false,
+  "kills": 0,
+  "deaths": 0,
   "lastKilled": 0,
   "lastKilledAmount": 0,
   "gender": "MALE",
@@ -33,12 +33,12 @@
     0,
     18,
     0,
-    26,
-    36,
-    0,
+    27,
+    37,
+    8,
     33,
     42,
-    117
+    10
   ],
   "colors": [
     0,
@@ -49,118 +49,121 @@
   ],
   "inventory": [
     {
-      "id": 4718,
+      "id": 5698,
       "amount": 1
     },
     {
-      "id": 3144,
+      "id": 145,
       "amount": 1
     },
     {
-      "id": 3144,
+      "id": 157,
       "amount": 1
     },
     {
-      "id": 6685,
+      "id": 163,
       "amount": 1
     },
     {
-      "id": 3144,
+      "id": 4153,
       "amount": 1
     },
     {
-      "id": 3144,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 3144,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 3024,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
-      "amount": 1
-    },
-    null,
-    {
-      "id": 12695,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 12954,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 3024,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 12006,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 11802,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 391,
+      "id": 385,
       "amount": 1
     },
     {
-      "id": 557,
-      "amount": 1000
+      "id": 385,
+      "amount": 1
     },
     {
-      "id": 9075,
-      "amount": 1000
+      "id": 385,
+      "amount": 1
     },
     {
-      "id": 560,
-      "amount": 1000
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
+    },
+    {
+      "id": 385,
+      "amount": 1
     }
   ],
   "equipment": [
     {
-      "id": 4716,
+      "id": 10828,
       "amount": 1
     },
     {
@@ -172,14 +175,17 @@
       "amount": 1
     },
     {
-      "id": 4153,
+      "id": 12006,
       "amount": 1
     },
     {
-      "id": 4720,
+      "id": 10551,
       "amount": 1
     },
-    null,
+    {
+      "id": 12954,
+      "amount": 1
+    },
     null,
     {
       "id": 4722,
@@ -191,7 +197,7 @@
       "amount": 1
     },
     {
-      "id": 13239,
+      "id": 11840,
       "amount": 1
     },
     null,
@@ -459,6 +465,10 @@
       "amount": 1000
     },
     {
+      "id": 12695,
+      "amount": 1000
+    },
+    {
       "id": 6685,
       "amount": 1000
     },
@@ -537,11 +547,11 @@
   ],
   "varps": [
     {
-      "id": 172,
-      "value": 1
+      "id": 166,
+      "value": 3
     },
     {
-      "id": 173,
+      "id": 172,
       "value": 1
     },
     {
@@ -554,7 +564,7 @@
     },
     {
       "id": 843,
-      "value": 2
+      "value": 20
     },
     {
       "id": 1050,
@@ -584,7 +594,11 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3034663E7
+      "xp": 1.3034431E7
+    },
+    {
+      "level": 99,
+      "xp": 1.3034431E7
     },
     {
       "level": 99,
@@ -593,10 +607,6 @@
     {
       "level": 99,
       "xp": 1.3034431E7
-    },
-    {
-      "level": 31,
-      "xp": 1.3034569790000001E7
     },
     {
       "level": 99,
@@ -683,8 +693,8 @@
   "autocastSpellChild": 0,
   "lastCastedSpellChild": 0,
   "autocasting": false,
-  "lastHiscoresUpdate": 1468835227614,
-  "lastNurseUsed": 0,
+  "lastHiscoresUpdate": 1469133249562,
+  "lastNurseUsed": 1469133249562,
   "lastDfsUsed": 0,
   "lastVengeanceUsed": 0,
   "autoRetaliateEnabled": false

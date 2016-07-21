@@ -285,6 +285,13 @@ public class CombatFormula {
 				player.getEquipment().hasAny(4757, 4988, 4989, 4990, 4991) && // Body
 				player.getEquipment().hasAny(4759, 4994, 4995, 4996, 4997); // skirt
 	}
+	
+	public static boolean fullGuthan(Player player) {
+		return player.getEquipment().hasAny(4724, 4904, 4905, 4906, 4907) && // helm
+				player.getEquipment().hasAny(4726, 4910, 4911, 4912, 4913) && // spear
+				player.getEquipment().hasAny(4728, 4916, 4917, 4918, 4919) && // Body
+				player.getEquipment().hasAny(4730, 4922, 4923, 4924, 4925); // skirt
+	}
 
 	private static boolean hasGodSword(Player player) {
 		return player.getEquipment().hasAny(11802, 11804, 11806, 11808);

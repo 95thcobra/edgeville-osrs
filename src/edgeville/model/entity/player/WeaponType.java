@@ -16,6 +16,7 @@ public class WeaponType {
 	public static final int TWOHANDED = 10;
 	public static final int PICKAXE = 11;
 	public static final int HALBERD = 12;
+	public static final int SPEAR = 15;
 	public static final int MACE = 16;
 	public static final int DAGGER = 17;
 	public static final int MAGIC_STAFF = 18;

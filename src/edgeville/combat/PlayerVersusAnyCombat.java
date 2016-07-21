@@ -158,13 +158,24 @@ public class PlayerVersusAnyCombat extends Combat {
 			// triggerVeng(success ? hit : 0);
 
 			getTarget().hit(getEntity(), hit, CombatStyle.MELEE);
-			if (hit > 0)
+			if (hit > 0) {
 				triggerVeng(hit);
+			}
+			
+			//guthan effect
+			if (CombatFormula.fullGuthan(player) && player.world().random(4) == 0) {
+				handleGuthan(player, target, hit);
+			}
 
 			getEntity().animate(EquipmentInfo.attackAnimationFor(((Player) getEntity())));
 			getEntity().timers().register(TimerKey.COMBAT_ATTACK,
 					getEntity().world().equipmentInfo().weaponSpeed(weaponId));
 		}
+	}
+
+	private void handleGuthan(Player attacker, Entity attacked, int damage) {
+		attacker.heal(damage);
+		attacked.graphic(398);
 	}
 
 	private void triggerVeng(int hit) {
@@ -520,7 +531,11 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	public static void handleGraniteMaul(Player player, Entity target) {
-		if (player.dead() || target.dead()) {
+		/*if (player.dead() || target.dead()) {
+			return;
+		}*/
+		
+		if (!CombatUtil.canAttack(player, target)) {
 			return;
 		}
 

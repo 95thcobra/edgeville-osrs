@@ -1,19 +1,19 @@
 {
   "username": "sky",
   "displayName": "sky",
-  "ip": "77.251.97.234",
+  "ip": "192.168.43.191",
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3086,
-    "z": 3498,
+    "x": 3097,
+    "z": 3499,
     "level": 0
   },
   "playTime": {
     "hours": 9,
-    "minutes": 10,
-    "seconds": 13,
-    "milliseconds": 200,
+    "minutes": 20,
+    "seconds": 10,
+    "milliseconds": 800,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
@@ -580,10 +580,6 @@
       "value": 19136512
     },
     {
-      "id": 83,
-      "value": 117440511
-    },
-    {
       "id": 84,
       "value": 1
     },
@@ -713,7 +709,7 @@
     },
     {
       "id": 300,
-      "value": 400
+      "value": 1000
     },
     {
       "id": 304,
@@ -765,7 +761,7 @@
     },
     {
       "id": 375,
-      "value": 31
+      "value": 30
     },
     {
       "id": 383,
@@ -801,7 +797,7 @@
     },
     {
       "id": 439,
-      "value": 1989
+      "value": 1733
     },
     {
       "id": 452,
@@ -1594,6 +1590,10 @@
     {
       "id": 842,
       "value": 5
+    },
+    {
+      "id": 843,
+      "value": 20
     },
     {
       "id": 844,
@@ -2449,15 +2449,15 @@
     },
     {
       "id": 1224,
-      "value": -2112846815
+      "value": 102793221
     },
     {
       "id": 1225,
-      "value": 34636833
+      "value": 379887844
     },
     {
       "id": 1226,
-      "value": 1057
+      "value": 12
     },
     {
       "id": 1227,
@@ -2535,7 +2535,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.304139E7
+      "xp": 1.3041694E7
     },
     {
       "level": 99,
@@ -2547,7 +2547,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3036859E7
+      "xp": 1.3036960079999998E7
     },
     {
       "level": 99,
