@@ -10,10 +10,10 @@
     "level": 0
   },
   "playTime": {
-    "hours": 8,
-    "minutes": 58,
-    "seconds": 46,
-    "milliseconds": 200,
+    "hours": 9,
+    "minutes": 1,
+    "seconds": 47,
+    "milliseconds": 400,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
@@ -580,7 +580,7 @@
   "skills": [
     {
       "level": 99,
-      "xp": 1.3042518E7
+      "xp": 1.3042774E7
     },
     {
       "level": 99,
@@ -592,7 +592,7 @@
     },
     {
       "level": 99,
-      "xp": 1.3037543519999998E7
+      "xp": 1.3037628120000001E7
     },
     {
       "level": 99,

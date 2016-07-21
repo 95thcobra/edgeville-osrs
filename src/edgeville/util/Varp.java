@@ -24,4 +24,5 @@ public class Varp {
 	
 	public static final int PIETY_AND_CHILVALRY_GLOW = 1050;
 
+	public static final int HP_ORB_POISON = 102;
 }

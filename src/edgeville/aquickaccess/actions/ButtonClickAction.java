@@ -693,7 +693,7 @@ public class ButtonClickAction {
 		}
 		int defLevelReq = 40;
 		if (defLevelReq > player.skills().level(Skills.DEFENCE)) {
-			player.message("You need a defence level of %d to cast %s.", levelReq, "Vengeance");
+			player.message("You need a defence level of %d to cast %s.", defLevelReq, "Vengeance");
 			return;
 		}
 		Item[] requiredRunes = new Item[] { new Item(Runes.ASTRAL_RUNE, 4), new Item(Runes.DEATH_RUNE, 2),

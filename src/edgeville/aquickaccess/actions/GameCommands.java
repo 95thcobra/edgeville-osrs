@@ -48,6 +48,8 @@ public final class GameCommands {
 		put(Privilege.DEVELOPER, "loopvarbit", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 20000; i++) {
+					if (i==542)
+						continue;
 					p.getVarps().setVarbit(i, Integer.parseInt(args[0]));
 				}
 			}).start();
@@ -56,6 +58,8 @@ public final class GameCommands {
 		put(Privilege.DEVELOPER, "loopvarp", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 2001; i++) {
+					if (i == 456 || i == 102)
+						continue;
 					p.getVarps().setVarp(i, Integer.parseInt(args[0]));
 				}
 			}).start();

@@ -545,7 +545,7 @@ public abstract class Entity implements HitOrigin {
 			if (origin instanceof Player) {
 				Player attackedBy = (Player) origin;
 
-				if (player.isAutoRetaliateEnabled()/* && !player.currentlyAttacking*/ && player.pathQueue().empty()) {
+				if (player.isAutoRetaliateEnabled() && player.pathQueue().empty()) {
 					face(attackedBy);
 					new PvPCombat(player, attackedBy).start();
 				}

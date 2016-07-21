@@ -1112,7 +1112,7 @@ public class Player extends Entity {
 		if (locked()) {
 			return;
 		}
-		world().getEventHandler().addEvent(this, new TeleportEvent(this, tile));
+		world().getEventHandler().addEvent(this, false, new TeleportEvent(this, tile));
 	}
 
 	@Override
