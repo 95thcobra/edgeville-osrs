@@ -500,7 +500,7 @@ public abstract class Entity implements HitOrigin {
 					break;
 				}
 			} else if (combatStyle == CombatStyle.RANGED) {
-				player.messageDebug("Range hit");
+				//player.messageDebug("Range hit");
 				((Player) origin).skills().addXp(Skills.RANGED, hit * 4);
 			} else if (combatStyle == CombatStyle.MAGIC) {
 				double baseXp;

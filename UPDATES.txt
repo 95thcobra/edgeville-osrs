@@ -1,4 +1,36 @@
+[25-7-2016]
+Enchanted bolt effects!
+
+Opal: 25% extra damage.
+[img]https://i.gyazo.com/8510abb35a12878dff89f7d797f8bbb8.gif[/img]
+
+Sapphire: Target loses 1/20th of his prayer points, attacker will receive half of that.
+[img]https://i.gyazo.com/7c062d001bff4abcd7417e64b6a5f539.gif[/img]
+
+Ruby: Damages the target for 20% of his hp, but also damages you for 10%.
+[img]https://i.gyazo.com/2f3843d2ff549c67c90ec2bc45bb36d1.gif[/img]
+
+Emerald: poison target(will be added once poisoning system is done).
+[img]https://i.gyazo.com/e460e1c0cdfb4844bc2c9b1239044bb0.gif[/img]
+
+Diamond: 15% higher max hit.
+[img]https://i.gyazo.com/e1a2687014d151409eb2b91787594230.gif[/img]
+
+Onyx: 20% extra damage and heals the player for 25% of damage dealt.
+[img]https://i.gyazo.com/bcb516d00d42c74e78e08d90474ea0dc.gif[/img]
+
+Dragon: 45% extra damage.
+[img]https://i.gyazo.com/1d0c5d32133dd1879006a2bdaf19df0a.gif[/img]
+
+
+
+
+
+
+
+
 - Fixed dc bug.
+- Better start gear.
 
 
 

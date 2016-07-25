@@ -178,6 +178,8 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	private void triggerVeng(int hit) {
+		if (hit <= 0)
+			return;
 		if (target instanceof Player) {
 			if (((Player) target).isVengOn()) {
 				player.hit(target, (int) (0.75 * hit));
@@ -442,20 +444,35 @@ public class PlayerVersusAnyCombat extends Combat {
 		player.getQuestTab().updateMaxHit(maxHit);
 		int hit = AccuracyFormula.calcRangeHit(player, target, maxHit);// player.world().random(maxHit);
 
+		// Handle enchanted bolts.
+		if (hit > 0 && weaponType == WeaponType.CROSSBOW) {
+			for (BoltEffects boltEffect : BoltEffects.values()) {
+				if (boltEffect.getBoltId() == ammo.getId()) {
+
+					// random(3) = 25% chance (0,1,2,3)
+					int randomNumber = player.world().random(4);
+					player.messageDebug("Bolt special roll: %d", randomNumber);
+					if (randomNumber == 0) {
+						int extraDamage = (int)Math.round(hit * (boltEffect.getPercentageExtraDamage() / 100.0));
+						hit += extraDamage;
+						maxHit += (int)Math.round(boltEffect.getPercentageMaxHitIncrease() / 100.0);
+						player.messageDebug("Extra damage: %d", extraDamage);
+						boltEffect.doSpecialAction(player, target, hit);
+						target.graphic(boltEffect.getEnemyGraphic());
+					}
+					
+				}
+			}
+		}
+		
+		// Trigger vengeance
 		triggerVeng(hit);
 
-		// target.hit(player, success ? hit : 0,
-		// delay).combatStyle(CombatStyle.RANGE);
-
+		// Hit target
 		target.hit(player, hit, (int) delay, CombatStyle.RANGED);
+		
 		// if dark bow then another hit
 		if (weaponId == 11235) {
-			// boolean success2 = AccuracyFormula.doesHit(player, target,
-			// CombatStyle.RANGED);
-			// int hit2 = player.world().random(maxHit);
-			// target.hit(player, success2 ? hit2 : 0, (int) delay,
-			// CombatStyle.RANGED);
-
 			int hit2 = AccuracyFormula.calcRangeHit(player, target, maxHit);// player.world().random(maxHit);
 			target.hit(player, hit2, (int) delay, CombatStyle.RANGED);
 		}
@@ -463,23 +480,6 @@ public class PlayerVersusAnyCombat extends Combat {
 		// explode chin on target
 		if (weaponType == WeaponType.CHINCHOMPA) {
 			target.graphic(new Graphic(157, 92, 50));
-		}
-
-		// Crossbow
-		if (weaponType == WeaponType.CROSSBOW) {
-			for (BoltEffects boltEffect : BoltEffects.values()) {
-				if (boltEffect.getBoltId() == ammo.getId()) {
-
-					// random(3) = 25% chance (0,1,2,3)
-					int randomNumber = player.world().random(3);
-					player.messageDebug("Bolt special roll: %d", randomNumber);
-					if (randomNumber == 1) {
-						boltEffect.doSpecialAction(player, target);
-						target.graphic(boltEffect.getEnemyGraphic());
-					}
-					
-				}
-			}
 		}
 
 		// Timer is downtime.

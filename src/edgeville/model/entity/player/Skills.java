@@ -250,8 +250,29 @@ public class Skills {
 		update(skill);
 	}
 
+	/**
+	 * Not relative, meaning it will only stack once.
+	 * This uses a decimal number, EG if 90% then parameter is 0.9
+	 */
 	public void alterSkill(int skill, double changePercentage) {
 		levels[skill] = (int) Math.round(xpLevel(skill) * changePercentage);
+		update(skill);
+	}
+	
+	/**
+	 * Relative, so it keeps stacking up.
+	 * @param skill
+	 * @param changePercentage This is the actual percentage, so for 90%, you pass 90 as a parameter.
+	 * @param minLevel This is the lowest level of the alter.
+	 */
+	public void alterSkillPercentageRelative(int skill, double changePercentage, int minLevel) {
+		int newLevel = (int) Math.round(level(skill) * (1 + (changePercentage / 100.0))); // 100% + change percentage
+		
+		if (newLevel < minLevel) {
+			newLevel = minLevel;
+		}
+		
+		levels[skill] = newLevel;
 		update(skill);
 	}
 

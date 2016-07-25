@@ -821,17 +821,6 @@ public class Player extends Entity {
 		unregister();
 	}
 
-	public void setMasterNoReqs() {
-		getPrayer().deactivateAllPrayers();
-
-		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
-			skills.setXp(i, 13034431);
-		}
-
-		skills.resetStats();
-		skills.recalculateCombat();
-	}
-
 	public void setMaster() {
 		if (Constants.ALL_PVP && !inSafeArea()) {
 			message("You cannot do this while in a PVP area.");
@@ -1297,29 +1286,7 @@ public class Player extends Entity {
 	}
 
 	public void startUpGear() {
-		getInventory().empty();
-		getInventory().add(5698);
-		getInventory().add(145);
-		getInventory().add(157);
-		getInventory().add(163);
-		getInventory().add(4153);
-		getInventory().add(new Item(385, 23));
-
-		getEquipment().set(EquipSlot.HEAD, new Item(10828));
-		getEquipment().set(EquipSlot.CAPE, new Item(6570));
-		getEquipment().set(EquipSlot.AMULET, new Item(6585));
-		getEquipment().set(EquipSlot.WEAPON, new Item(12006));
-		getEquipment().set(EquipSlot.BODY, new Item(10551));
-		getEquipment().set(EquipSlot.SHIELD, new Item(12954));
-		getEquipment().set(EquipSlot.LEGS, new Item(4722));
-		getEquipment().set(EquipSlot.HANDS, new Item(7462));
-		getEquipment().set(EquipSlot.FEET, new Item(11840));
-		getEquipment().set(EquipSlot.RING, new Item(11773));
-		// getEquipment().set(EquipSlot.AMMO, new Item(11773));
-
-		setMasterNoReqs();
-		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
-		skills().recalculateCombat();
+		spawnMelee();
 	}
 
 	public void spawnRanged() {
