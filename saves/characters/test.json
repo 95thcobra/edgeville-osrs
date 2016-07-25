@@ -5,15 +5,15 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3097,
-    "z": 3499,
+    "x": 3086,
+    "z": 3493,
     "level": 0
   },
   "playTime": {
-    "hours": 9,
-    "minutes": 17,
-    "seconds": 3,
-    "milliseconds": 600,
+    "hours": 10,
+    "minutes": 52,
+    "seconds": 41,
+    "milliseconds": 400,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
@@ -77,61 +77,31 @@
       "amount": 1000
     },
     {
-      "id": 3024,
+      "id": 229,
       "amount": 1
     },
     {
-      "id": 3024,
+      "id": 3028,
       "amount": 1
     },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "id": 391,
       "amount": 1
     },
+    null,
+    null,
+    null,
     {
       "id": 391,
       "amount": 1
     },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
-    {
-      "id": 391,
-      "amount": 1
-    },
+    null,
     {
       "id": 391,
       "amount": 1
@@ -636,7 +606,7 @@
       "xp": 1.3034431E7
     },
     {
-      "level": 99,
+      "level": -495,
       "xp": 1.3034431E7
     },
     {

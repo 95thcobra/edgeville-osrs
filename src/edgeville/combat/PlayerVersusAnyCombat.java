@@ -246,7 +246,7 @@ public class PlayerVersusAnyCombat extends Combat {
 	@Override
 	public void handleRangeCombat(int weaponId, String ammoName, int weaponType, EventContainer container) {
 		Tile currentTile = player.getTile();
-		player.messageDebug("ranging...");
+		//player.messageDebug("ranging...");
 
 		int maxDist = 7;
 		if (weaponType == WeaponType.CHINCHOMPA) {
@@ -474,7 +474,7 @@ public class PlayerVersusAnyCombat extends Combat {
 					int randomNumber = player.world().random(3);
 					player.messageDebug("Bolt special roll: %d", randomNumber);
 					if (randomNumber == 1) {
-						boltEffect.doSpecialAction();
+						boltEffect.doSpecialAction(player, target);
 						target.graphic(boltEffect.getEnemyGraphic());
 					}
 					

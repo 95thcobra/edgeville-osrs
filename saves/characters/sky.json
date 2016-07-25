@@ -5,15 +5,15 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3089,
-    "z": 3491,
+    "x": 3086,
+    "z": 3486,
     "level": 0
   },
   "playTime": {
-    "hours": 9,
-    "minutes": 24,
-    "seconds": 10,
-    "milliseconds": 800,
+    "hours": 10,
+    "minutes": 59,
+    "seconds": 48,
+    "milliseconds": 0,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",
@@ -207,7 +207,7 @@
     },
     {
       "id": 9240,
-      "amount": 21451184
+      "amount": 21451141
     }
   ],
   "loadout": {
@@ -2557,14 +2557,14 @@
     },
     {
       "level": 99,
-      "xp": 1.3034719500000004E7
+      "xp": 1.303510853E7
     },
     {
       "level": 99,
-      "xp": 1.3035299E7
+      "xp": 1.3036475E7
     },
     {
-      "level": 99,
+      "level": 71,
       "xp": 1.3034431E7
     },
     {

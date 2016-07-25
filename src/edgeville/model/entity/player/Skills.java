@@ -127,6 +127,12 @@ public class Skills {
 		return first + " You have reached level " + level + ".";
 	}
 
+	/**
+	 * If relative is true, everything adds up. If relative is false, it only goes up once.
+	 * @param skill
+	 * @param change
+	 * @param relative
+	 */
 	public void alterSkillUnder99(int skill, int change, boolean relative) {
 		if (relative) {
 			levels[skill] += change;
@@ -193,6 +199,7 @@ public class Skills {
 	/**
 	 * Decreases levels ONCE(so drinking multiple times does not have effect!)
 	 * Used for saradomin brew decreasing of stats.
+	 * You need to use a minus sign(-) to decrease.
 	 * @param skill
 	 * @param change
 	 */
