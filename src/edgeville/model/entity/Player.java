@@ -42,6 +42,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -72,25 +73,24 @@ public class Player extends Entity {
 	 * The player's Netty connection channel
 	 */
 	private Channel channel;
-	
+
 	private int lastKilledMemberId;
 	private int amountLastKilled;
-	
+
 	private Item blowpipeAmmo;
-	
 
 	/**
 	 * The privilege level of this player.
 	 */
 	private Privilege privilege;
-	
+
 	private boolean isMuted;
 
 	private long lastHiscoresUpdate;
 	private long lastNurseUsed;
 	private long lastDfsUsed;
 	private long lastVengeanceUsed;
-	
+
 	/**
 	 * Our achieved skill levels
 	 */
@@ -101,7 +101,7 @@ public class Player extends Entity {
 	private CombatUtil combatUtil;
 
 	private boolean vengOn;
-	
+
 	private boolean autoRetaliateEnabled;
 
 	public boolean isVengOn() {
@@ -111,12 +111,12 @@ public class Player extends Entity {
 	public void setVengOn(boolean vengOn) {
 		this.vengOn = vengOn;
 	}
-	
+
 	public String getIP() {
 		String address = channel.remoteAddress().toString();
 		address = address.replace("/", "");
 		address = address.substring(0, address.indexOf(':'));
-		return address; 
+		return address;
 	}
 
 	public CombatUtil getCombatUtil() {
@@ -285,7 +285,7 @@ public class Player extends Entity {
 	}
 
 	private Uptime playTime;
-	
+
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
@@ -336,8 +336,7 @@ public class Player extends Entity {
 		this.isAutoCasting = isAutoCasting;
 	}
 
-	public Player(Channel channel, String username, String password, World world, Tile tile, IsaacRand inrand,
-			IsaacRand outrand) {
+	public Player(Channel channel, String username, String password, World world, Tile tile, IsaacRand inrand, IsaacRand outrand) {
 		super(world, tile);
 
 		this.channel = channel;
@@ -350,9 +349,9 @@ public class Player extends Entity {
 		this.sync = new PlayerSyncInfo(this);
 		this.skills = new Skills(this);
 		this.looks = new Looks(this);
-		
+
 		this.playTime = new Uptime("<col=ffffff>");
-		
+
 		this.interfaces = new Interfaces(this);
 		this.inventory = new ItemContainer(world, 28, ItemContainer.Type.REGULAR);
 		this.equipment = new ItemContainer(world, 14, ItemContainer.Type.REGULAR);
@@ -407,77 +406,77 @@ public class Player extends Entity {
 	}
 
 	private void presetBank() {
-		bank.getBankItems().add(new Item(8839, 1000));
-		bank.getBankItems().add(new Item(8840, 1000));
-		bank.getBankItems().add(new Item(8842, 1000));
-		bank.getBankItems().add(new Item(11663, 1000));
-		bank.getBankItems().add(new Item(11664, 1000));
-		bank.getBankItems().add(new Item(11665, 1000));
+		bank.add(new Item(8839, 1000));
+		bank.add(new Item(8840, 1000));
+		bank.add(new Item(8842, 1000));
+		bank.add(new Item(11663, 1000));
+		bank.add(new Item(11664, 1000));
+		bank.add(new Item(11665, 1000));
 
-		bank.getBankItems().add(new Item(4708, 1000));
-		bank.getBankItems().add(new Item(4712, 1001));
-		bank.getBankItems().add(new Item(6920, 1001));
-		bank.getBankItems().add(new Item(4714, 1001));
-		bank.getBankItems().add(new Item(6585, 1001));
-		bank.getBankItems().add(new Item(7462, 41));
-		bank.getBankItems().add(new Item(6914, 1000));
-		bank.getBankItems().add(new Item(6889, 1001));
-		bank.getBankItems().add(new Item(2414, 20));
-		bank.getBankItems().add(new Item(4736, 1002));
-		bank.getBankItems().add(new Item(12006, 22));
-		bank.getBankItems().add(new Item(6570, 22));
-		bank.getBankItems().add(new Item(12954, 22));
-		bank.getBankItems().add(new Item(11840, 1002));
-		bank.getBankItems().add(new Item(11832, 20));
-		bank.getBankItems().add(new Item(11834, 1000));
-		bank.getBankItems().add(new Item(11802, 20));
-		bank.getBankItems().add(new Item(10828, 21));
-		bank.getBankItems().add(new Item(6737, 1000));
-		bank.getBankItems().add(new Item(5698, 1003));
-		bank.getBankItems().add(new Item(4753, 1000));
-		bank.getBankItems().add(new Item(10370, 1000));
-		bank.getBankItems().add(new Item(10372, 1000));
-		bank.getBankItems().add(new Item(4759, 1000));
-		bank.getBankItems().add(new Item(2577, 20));
-		bank.getBankItems().add(new Item(6733, 20));
-		bank.getBankItems().add(new Item(11785, 20));
-		bank.getBankItems().add(new Item(9244, 1000000));
-		bank.getBankItems().add(new Item(11284, 20));
-		bank.getBankItems().add(new Item(10499, 20));
-		bank.getBankItems().add(new Item(4716, 1000));
-		bank.getBankItems().add(new Item(4720, 1000));
-		bank.getBankItems().add(new Item(4722, 1002));
-		bank.getBankItems().add(new Item(4718, 1000));
-		bank.getBankItems().add(new Item(4153, 1001));
-		bank.getBankItems().add(new Item(4675, 1001));
-		bank.getBankItems().add(new Item(6918, 1000));
-		bank.getBankItems().add(new Item(6916, 1000));
-		bank.getBankItems().add(new Item(6924, 1000));
-		bank.getBankItems().add(new Item(10551, 22));
-		bank.getBankItems().add(new Item(2617, 1000));
-		bank.getBankItems().add(new Item(8850, 20));
-		bank.getBankItems().add(new Item(3105, 1000));
-		bank.getBankItems().add(new Item(2503, 1000));
-		bank.getBankItems().add(new Item(12695, 1000));
-		bank.getBankItems().add(new Item(6685, 1000));
-		bank.getBankItems().add(new Item(3024, 1000));
-		bank.getBankItems().add(new Item(2440, 1000));
-		bank.getBankItems().add(new Item(2436, 1000));
-		bank.getBankItems().add(new Item(11726, 1000));
-		bank.getBankItems().add(new Item(11722, 1000));
-		bank.getBankItems().add(new Item(397, 1028));
-		bank.getBankItems().add(new Item(555, 1020000));
-		bank.getBankItems().add(new Item(565, 1020000));
-		bank.getBankItems().add(new Item(560, 1020000));
-		bank.getBankItems().add(new Item(9075, 1000000));
-		bank.getBankItems().add(new Item(557, 1000000));
-		bank.getBankItems().add(new Item(385, 1000));
-		bank.getBankItems().add(new Item(2448, 1000));
-		bank.getBankItems().add(new Item(157, 1));
-		bank.getBankItems().add(new Item(163, 1));
-		bank.getBankItems().add(new Item(145, 1));
-		bank.getBankItems().add(new Item(2412, 1));
-		bank.getBankItems().add(new Item(11773, 1));
+		bank.add(new Item(4708, 1000));
+		bank.add(new Item(4712, 1001));
+		bank.add(new Item(6920, 1001));
+		bank.add(new Item(4714, 1001));
+		bank.add(new Item(6585, 1001));
+		bank.add(new Item(7462, 41));
+		bank.add(new Item(6914, 1000));
+		bank.add(new Item(6889, 1001));
+		bank.add(new Item(2414, 20));
+		bank.add(new Item(4736, 1002));
+		bank.add(new Item(12006, 22));
+		bank.add(new Item(6570, 22));
+		bank.add(new Item(12954, 22));
+		bank.add(new Item(11840, 1002));
+		bank.add(new Item(11832, 20));
+		bank.add(new Item(11834, 1000));
+		bank.add(new Item(11802, 20));
+		bank.add(new Item(10828, 21));
+		bank.add(new Item(6737, 1000));
+		bank.add(new Item(5698, 1003));
+		bank.add(new Item(4753, 1000));
+		bank.add(new Item(10370, 1000));
+		bank.add(new Item(10372, 1000));
+		bank.add(new Item(4759, 1000));
+		bank.add(new Item(2577, 20));
+		bank.add(new Item(6733, 20));
+		bank.add(new Item(11785, 20));
+		bank.add(new Item(9244, 1000000));
+		bank.add(new Item(11284, 20));
+		bank.add(new Item(10499, 20));
+		bank.add(new Item(4716, 1000));
+		bank.add(new Item(4720, 1000));
+		bank.add(new Item(4722, 1002));
+		bank.add(new Item(4718, 1000));
+		bank.add(new Item(4153, 1001));
+		bank.add(new Item(4675, 1001));
+		bank.add(new Item(6918, 1000));
+		bank.add(new Item(6916, 1000));
+		bank.add(new Item(6924, 1000));
+		bank.add(new Item(10551, 22));
+		bank.add(new Item(2617, 1000));
+		bank.add(new Item(8850, 20));
+		bank.add(new Item(3105, 1000));
+		bank.add(new Item(2503, 1000));
+		bank.add(new Item(12695, 1000));
+		bank.add(new Item(6685, 1000));
+		bank.add(new Item(3024, 1000));
+		bank.add(new Item(2440, 1000));
+		bank.add(new Item(2436, 1000));
+		bank.add(new Item(11726, 1000));
+		bank.add(new Item(11722, 1000));
+		bank.add(new Item(397, 1028));
+		bank.add(new Item(555, 1020000));
+		bank.add(new Item(565, 1020000));
+		bank.add(new Item(560, 1020000));
+		bank.add(new Item(9075, 1000000));
+		bank.add(new Item(557, 1000000));
+		bank.add(new Item(385, 1000));
+		bank.add(new Item(2448, 1000));
+		bank.add(new Item(157, 1));
+		bank.add(new Item(163, 1));
+		bank.add(new Item(145, 1));
+		bank.add(new Item(2412, 1));
+		bank.add(new Item(11773, 1));
 	}
 
 	public void resetSpecialEnergy() {
@@ -560,19 +559,6 @@ public class Player extends Entity {
 			giveStarterPack();
 
 		onLogin();
-		// new Panel(this);
-		
-		//if (getLastNurseUsed() == 0) {
-		//	setLastNurseUsed(System.currentTimeMillis());
-		//}
-		
-		//if (this.getLastDfsUsed() == 0) {
-		//	this.setLastDfsUsed(System.currentTimeMillis());
-		//}
-		
-		//if (this.getLastVengeanceUsed() == 0) {
-		//	this.setLastVengeanceUsed(System.currentTimeMillis());
-		//}
 	}
 
 	public void event(Event event) {
@@ -582,15 +568,6 @@ public class Player extends Entity {
 	public void event(Event event, int ticks) {
 		world.getEventHandler().addEvent(this, ticks, event);
 	}
-
-	/*public void updatePrivileges() {
-		for (StaffData staff : StaffData.values()) {
-			if (staff == null)
-				continue;
-			if (username.equalsIgnoreCase(staff.name()))
-				privilege(staff.getPrivilege());
-		}
-	}*/
 
 	public String name() {
 		return WordUtils.capitalize(displayName);
@@ -603,7 +580,7 @@ public class Player extends Entity {
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -619,7 +596,7 @@ public class Player extends Entity {
 	public void message(String format, Object... params) {
 		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format));
 	}
-	
+
 	public void stopActionsWithoutRemovingMainInterface(boolean cancelMoving) {
 		stopActionsWithoutRemovingMainInterface(cancelMoving, false);
 	}
@@ -644,7 +621,7 @@ public class Player extends Entity {
 	@Override
 	public void stopActions(boolean cancelMoving) {
 		super.stopActions(cancelMoving);
-		
+
 		// Make input dialog null
 		setInputDialog(null);
 
@@ -665,8 +642,7 @@ public class Player extends Entity {
 	}
 
 	public void filterableMessage(String format, Object... params) {
-		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format,
-				AddMessage.Type.GAME_FILTER));
+		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format, AddMessage.Type.GAME_FILTER));
 	}
 
 	public void id(Object id) {
@@ -844,7 +820,7 @@ public class Player extends Entity {
 		// Then nicely unregister the player from the game.
 		unregister();
 	}
-	
+
 	public void setMasterNoReqs() {
 		getPrayer().deactivateAllPrayers();
 
@@ -911,7 +887,7 @@ public class Player extends Entity {
 		super.cycle();
 
 		playTime.incrementTick();
-		
+
 		// Are we requested to be logged out?
 		if ((boolean) attribute(AttributeKey.LOGOUT, false)) {
 			putAttribute(AttributeKey.LOGOUT, false);
@@ -1034,7 +1010,9 @@ public class Player extends Entity {
 
 		// Sync bank if dirty
 		if (bank.isDirty()) {
-			write(new SetItems(95, bank.getBankItems()));
+			List<Item> bankItems = bank.getBankItems();
+			if (bankItems.size() <= 800)
+				write(new SetItems(95, bankItems));
 			bank.clean();
 		}
 	}
@@ -1085,7 +1063,7 @@ public class Player extends Entity {
 	public boolean inCombat() {
 		return timers.has(TimerKey.IN_COMBAT);
 	}
-	
+
 	public boolean inCombat = false;
 
 	public boolean canBeAttackInSafeArea() {
@@ -1094,8 +1072,7 @@ public class Player extends Entity {
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this).add("id", id).add("username", username).add("displayName", displayName)
-				.add("tile", tile).add("privilege", privilege).toString();
+		return MoreObjects.toStringHelper(this).add("id", id).add("username", username).add("displayName", displayName).add("tile", tile).add("privilege", privilege).toString();
 	}
 
 	//////////////////
@@ -1123,8 +1100,7 @@ public class Player extends Entity {
 		if (item == null) {
 			return soundId;
 		}
-		if (StringUtils.containsIgnoreCase(item.definition(world).name, "shortbow")
-				|| StringUtils.containsIgnoreCase(item.definition(world).name, "longbow")) {
+		if (StringUtils.containsIgnoreCase(item.definition(world).name, "shortbow") || StringUtils.containsIgnoreCase(item.definition(world).name, "longbow")) {
 			soundId = 2693;
 		}
 		if (StringUtils.containsIgnoreCase(item.definition(world).name, "crossbow")) {
@@ -1210,8 +1186,7 @@ public class Player extends Entity {
 	}
 
 	public void messageFilterable(String format, Object... params) {
-		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format,
-				AddMessage.Type.GAME_FILTER));
+		write(new AddMessage(params.length > 0 ? String.format(format, (Object[]) params) : format, AddMessage.Type.GAME_FILTER));
 	}
 
 	public void messageDebug(String format, Object... params) {
@@ -1262,7 +1237,7 @@ public class Player extends Entity {
 
 		getInventory().add(4153); // gmaul
 		getInventory().add(11802); // ags
-		
+
 		getInventory().add(391, 3); // mantas
 
 		// veng
@@ -1288,20 +1263,20 @@ public class Player extends Entity {
 
 	public void spawnMelee() {
 		getInventory().empty();
-		
+
 		getInventory().add(11802);
 		getInventory().add(12695);
 
 		getInventory().add(3024, 2);
 		getInventory().add(6685);
-		
+
 		// veng
 		getInventory().add(557, 1000); // earth
 		getInventory().add(9075, 1000); // astral
 		getInventory().add(560, 1000); // death
 
 		getInventory().add(new Item(3144, 4));
-		
+
 		getInventory().add(new Item(391, 16));
 
 		getEquipment().set(EquipSlot.HEAD, new Item(10828));
@@ -1320,7 +1295,7 @@ public class Player extends Entity {
 		getVarps().setVarbit(Varbit.SPELLBOOK, 2); // lunar
 		skills().recalculateCombat();
 	}
-	
+
 	public void startUpGear() {
 		getInventory().empty();
 		getInventory().add(5698);
@@ -1380,65 +1355,60 @@ public class Player extends Entity {
 
 	public void spawnHybrid() {
 		getInventory().empty();
-		/*getInventory().add(5698);
-		getInventory().add(157);
-		getInventory().add(163);
-		getInventory().add(145);
-		getInventory().add(6570);
-		getInventory().add(12006);
-		getInventory().add(12954);
-		getInventory().add(10551);
-		getInventory().add(4722);
-		getInventory().add(11840);
-		getInventory().add(4736);
-		getInventory().add(new Item(560, 10000));
-		getInventory().add(new Item(565, 10000));
-		getInventory().add(new Item(555, 10000));
-		getInventory().add(new Item(397, 14));
+		/*
+		 * getInventory().add(5698); getInventory().add(157);
+		 * getInventory().add(163); getInventory().add(145);
+		 * getInventory().add(6570); getInventory().add(12006);
+		 * getInventory().add(12954); getInventory().add(10551);
+		 * getInventory().add(4722); getInventory().add(11840);
+		 * getInventory().add(4736); getInventory().add(new Item(560, 10000));
+		 * getInventory().add(new Item(565, 10000)); getInventory().add(new
+		 * Item(555, 10000)); getInventory().add(new Item(397, 14));
+		 * 
+		 * getEquipment().set(EquipSlot.HEAD, new Item(10828));
+		 * getEquipment().set(EquipSlot.CAPE, new Item(2412));
+		 * getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		 * getEquipment().set(EquipSlot.WEAPON, new Item(4675));
+		 * getEquipment().set(EquipSlot.BODY, new Item(4712));
+		 * getEquipment().set(EquipSlot.SHIELD, new Item(6889));
+		 * getEquipment().set(EquipSlot.LEGS, new Item(4714));
+		 * getEquipment().set(EquipSlot.HANDS, new Item(7462));
+		 * getEquipment().set(EquipSlot.FEET, new Item(6920));
+		 * getEquipment().set(EquipSlot.RING, new Item(11773));
+		 */
 
-		getEquipment().set(EquipSlot.HEAD, new Item(10828));
+		getInventory().add(12006);
+		getInventory().add(13239);
+		getInventory().add(6570);
+		getInventory().add(11832);
+
+		getInventory().add(12954);
+		getInventory().add(4736);
+		getInventory().add(6585);
+		getInventory().add(11834);
+
+		getInventory().add(5698);
+		getInventory().add(6685);
+		getInventory().add(new Item(3024, 2));
+
+		getInventory().add(12695);
+		getInventory().add(new Item(3144, 2));
+		getInventory().add(new Item(391, 10));
+		getInventory().add(new Item(555, 1000));
+		getInventory().add(new Item(560, 1000));
+		getInventory().add(new Item(565, 1000));
+
+		getEquipment().set(EquipSlot.HEAD, new Item(13197));
 		getEquipment().set(EquipSlot.CAPE, new Item(2412));
-		getEquipment().set(EquipSlot.AMULET, new Item(6585));
+		getEquipment().set(EquipSlot.AMULET, new Item(12002));
 		getEquipment().set(EquipSlot.WEAPON, new Item(4675));
 		getEquipment().set(EquipSlot.BODY, new Item(4712));
-		getEquipment().set(EquipSlot.SHIELD, new Item(6889));
+		getEquipment().set(EquipSlot.SHIELD, new Item(12825));
 		getEquipment().set(EquipSlot.LEGS, new Item(4714));
 		getEquipment().set(EquipSlot.HANDS, new Item(7462));
-		getEquipment().set(EquipSlot.FEET, new Item(6920));
-		getEquipment().set(EquipSlot.RING, new Item(11773));*/
-		
-		getInventory().add(12006);
-        getInventory().add(13239);
-        getInventory().add(6570);
-        getInventory().add(11832);
-        
-        getInventory().add(12954);
-        getInventory().add(4736);
-        getInventory().add(6585);
-        getInventory().add(11834);
-        
-        getInventory().add(5698);
-        getInventory().add(6685);
-        getInventory().add(new Item(3024, 2));
-        
-        getInventory().add(12695);
-        getInventory().add(new Item(3144, 2));
-        getInventory().add(new Item(391, 10));    
-        getInventory().add(new Item(555, 1000));
-        getInventory().add(new Item(560, 1000));
-        getInventory().add(new Item(565, 1000));
-        
-        getEquipment().set(EquipSlot.HEAD, new Item(13197));
-        getEquipment().set(EquipSlot.CAPE, new Item(2412));
-        getEquipment().set(EquipSlot.AMULET, new Item(12002));
-        getEquipment().set(EquipSlot.WEAPON, new Item(4675));
-        getEquipment().set(EquipSlot.BODY, new Item(4712));
-        getEquipment().set(EquipSlot.SHIELD, new Item(12825));
-        getEquipment().set(EquipSlot.LEGS, new Item(4714));
-        getEquipment().set(EquipSlot.HANDS, new Item(7462));
-        getEquipment().set(EquipSlot.FEET, new Item(13235));
-        getEquipment().set(EquipSlot.RING, new Item(11773));
-        
+		getEquipment().set(EquipSlot.FEET, new Item(13235));
+		getEquipment().set(EquipSlot.RING, new Item(11773));
+
 		setMaster();
 		getVarps().setVarbit(Varbit.SPELLBOOK, 1); // Ancients
 		skills().recalculateCombat();
@@ -1539,7 +1509,7 @@ public class Player extends Entity {
 	public void setAmountLastKilled(int amountLastKilled) {
 		this.amountLastKilled = amountLastKilled;
 	}
-	
+
 	public void incrementAmountLastKilled() {
 		this.amountLastKilled++;
 	}

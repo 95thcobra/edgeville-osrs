@@ -31,8 +31,14 @@ public class Bank {
 	}
 
 	public void add(Item item) {
-		if (bankItems.size() == 800) {
+		if (bankItems.size() >= 800) {
 			player.message("Bank is full!");
+			return;
+		}
+		if (contains(item.getId())) {
+			int currentSlot = getSlotForItem(item.getId());
+			Item itemInBank = bankItems.get(currentSlot);
+			bankItems.set(currentSlot, new Item(itemInBank.getId(), itemInBank.getAmount() + item.getAmount()));
 			return;
 		}
 		bankItems.add(item);
@@ -101,6 +107,19 @@ public class Bank {
 		return -1;
 	}
 
+	/**
+	 * Can item be banked?
+	 * @param item
+	 * @return
+	 */
+	private boolean bankFull(int id) {
+		if (bankItems.size() == 800&&!contains(id)) {
+			player.message("Bank is full!");
+			return true;
+		}
+		return false;
+	}
+	
 	private boolean bankFull() {
 		if (bankItems.size() == 800) {
 			player.message("Bank is full!");
@@ -503,6 +522,9 @@ public class Bank {
 	}
 
 	private void moveItemFromEquipmentToBank(int id, int amount) {
+		if (bankFull(id)) {
+			return;
+		}
 		if (player.getEquipment().remove(id, amount).success()) {
 			add(id, amount);
 		}
@@ -535,7 +557,7 @@ public class Bank {
 	}
 
 	private void moveItemFromInventoryToBank(int id, int amount) {
-		if (bankFull()) {
+		if (bankFull(id)) {
 			return;
 		}
 		if (player.getInventory().remove(id, amount).success()) {

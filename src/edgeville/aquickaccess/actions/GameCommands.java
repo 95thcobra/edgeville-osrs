@@ -41,10 +41,6 @@ public final class GameCommands {
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
 		
-		
-		
-		
-		
 		put(Privilege.DEVELOPER, "loopvarbit", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 20000; i++) {
