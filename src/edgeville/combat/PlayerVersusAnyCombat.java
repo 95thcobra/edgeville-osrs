@@ -1,6 +1,7 @@
 package edgeville.combat;
 
 import edgeville.Constants;
+import edgeville.combat.ranged.BoltEffects;
 import edgeville.event.Event;
 import edgeville.event.EventContainer;
 import edgeville.model.AttributeKey;
@@ -66,26 +67,25 @@ public class PlayerVersusAnyCombat extends Combat {
 			if (!((Player) target).inSafeArea()) {
 				target.timers().register(TimerKey.AFTER_COMBAT, 5);
 			}
-			
-			/*if (((Player) target).isAutoRetaliateEnabled()) {
-				target.face(player);
-				new PvPCombat((Player)target, player).start();
-			}*/
-			
+
+			/*
+			 * if (((Player) target).isAutoRetaliateEnabled()) {
+			 * target.face(player); new PvPCombat((Player)target,
+			 * player).start(); }
+			 */
+
 			// auto retaliate
-			/*if (target instanceof Player) {
-				Player targetP = (Player) target;
-				if (targetP.isAutoRetaliateEnabled() && !targetP.currentlyAttacking) {
-					targetP.face(player);
-					new PvPCombat(targetP, player).start();
-				}
-			}*/
+			/*
+			 * if (target instanceof Player) { Player targetP = (Player) target;
+			 * if (targetP.isAutoRetaliateEnabled() &&
+			 * !targetP.currentlyAttacking) { targetP.face(player); new
+			 * PvPCombat(targetP, player).start(); } }
+			 */
 			///
 		}
 
 		// Combat type?
-		if (weaponType == WeaponType.BOW || weaponType == WeaponType.CROSSBOW || weaponType == WeaponType.THROWN
-				|| weaponType == WeaponType.CHINCHOMPA) {
+		if (weaponType == WeaponType.BOW || weaponType == WeaponType.CROSSBOW || weaponType == WeaponType.THROWN || weaponType == WeaponType.CHINCHOMPA) {
 			handleRangeCombat(weaponId, ammoName, weaponType, container);
 		} else {
 			handleMeleeCombat(weaponId);
@@ -161,15 +161,14 @@ public class PlayerVersusAnyCombat extends Combat {
 			if (hit > 0) {
 				triggerVeng(hit);
 			}
-			
+
 			//guthan effect
 			if (CombatFormula.fullGuthan(player) && player.world().random(4) == 0) {
 				handleGuthan(player, target, hit);
 			}
 
 			getEntity().animate(EquipmentInfo.attackAnimationFor(((Player) getEntity())));
-			getEntity().timers().register(TimerKey.COMBAT_ATTACK,
-					getEntity().world().equipmentInfo().weaponSpeed(weaponId));
+			getEntity().timers().register(TimerKey.COMBAT_ATTACK, getEntity().world().equipmentInfo().weaponSpeed(weaponId));
 		}
 	}
 
@@ -206,7 +205,7 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		double max = CombatFormula.maximumMeleeHit(player) * specialAttack.getMaxHitMultiplier();
-		player.getQuestTab().updateMaxHit((int)Math.round(max));
+		player.getQuestTab().updateMaxHit((int) Math.round(max));
 		// int hit = player.world().random().nextInt((int) Math.round(max));
 		int hit;
 
@@ -223,7 +222,7 @@ public class PlayerVersusAnyCombat extends Combat {
 			// double max = CombatFormula.maximumMeleeHit(player) *
 			// specialAttack.getMaxHitMultiplier();
 			// int hit = player.world().random().nextInt((int) Math.round(max));
-			
+
 			target.hit(player, hit, CombatStyle.MELEE);
 			triggerVeng(hit);
 
@@ -297,16 +296,14 @@ public class PlayerVersusAnyCombat extends Combat {
 		}
 
 		// Do we have ammo?
-		if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA && ammoName.equals("")
-				&& weaponId != 4212) {
+		if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA && ammoName.equals("") && weaponId != 4212) {
 			player.message("There's no ammo left in your quiver.");
 			container.stop();
 			return;
 		}
 
 		// Check if ammo is of right type
-		if (weaponType == WeaponType.CROSSBOW && !ammoName.contains(" bolts") && !ammoName.contains("Bolt rack")
-				&& weaponId != 4212) {
+		if (weaponType == WeaponType.CROSSBOW && !ammoName.contains(" bolts") && !ammoName.contains("Bolt rack") && weaponId != 4212) {
 			player.message("You can't use that ammo with your crossbow.");
 			container.stop();
 			return;
@@ -320,11 +317,13 @@ public class PlayerVersusAnyCombat extends Combat {
 		// Remove the ammo
 		Projectile projectile = null;
 
+		Item ammo = player.getEquipment().get(EquipSlot.AMMO);
+
 		// crystal bow doesnt use ammo
 		if (weaponId != CRYSTAL_BOW_ID && weaponId != BLOWPIPE_ID) {
 
 			if (weaponType != WeaponType.THROWN && weaponType != WeaponType.CHINCHOMPA) {
-				Item ammo = player.getEquipment().get(EquipSlot.AMMO);
+				//Item ammo = player.getEquipment().get(EquipSlot.AMMO);
 				projectile = Projectile.getProjectileForAmmoName(ammo.definition(player.world()).name);
 				player.getEquipment().set(EquipSlot.AMMO, new Item(ammo.getId(), ammo.getAmount() - 1));
 
@@ -427,13 +426,11 @@ public class PlayerVersusAnyCombat extends Combat {
 			player.world().spawnProjectile(player.getTile(), target, 249, 50, 36, 30, 5 * tileDist, 15, 105);
 			player.graphic(new Graphic(256, 92, 10));
 		} else {
-			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay,
-					cyclesPerTile * distance, curve, 105);
+			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay, cyclesPerTile * distance, curve, 105);
 		}
 		// if dark bow then another spawnprojec
 		if (weaponId == 11235) {
-			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay + 7,
-					cyclesPerTile * distance, curve, 105);
+			player.world().spawnProjectile(player.getTile(), target, graphic, startHeight, endHeight, baseDelay + 7, cyclesPerTile * distance, curve, 105);
 		}
 
 		long delay = Math.round(Math.floor(baseDelay / 30.0) + (distance * (cyclesPerTile * 0.020) / 0.6));
@@ -468,6 +465,23 @@ public class PlayerVersusAnyCombat extends Combat {
 			target.graphic(new Graphic(157, 92, 50));
 		}
 
+		// Crossbow
+		if (weaponType == WeaponType.CROSSBOW) {
+			for (BoltEffects boltEffect : BoltEffects.values()) {
+				if (boltEffect.getBoltId() == ammo.getId()) {
+
+					// random(3) = 25% chance (0,1,2,3)
+					int randomNumber = player.world().random(3);
+					player.messageDebug("Bolt special roll: %d", randomNumber);
+					if (randomNumber == 1) {
+						boltEffect.doSpecialAction();
+						target.graphic(boltEffect.getEnemyGraphic());
+					}
+					
+				}
+			}
+		}
+
 		// Timer is downtime.
 		int weaponSpeed = player.world().equipmentInfo().weaponSpeed(weaponId);
 		if (player.world().equipmentInfo().rapid(player))
@@ -497,12 +511,10 @@ public class PlayerVersusAnyCombat extends Combat {
 
 		int tileDist = player.getTile().distance(target.getTile());
 		if (specialAttack.getProjectileId() != -1) {
-			player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 32,
-					5 * tileDist, 15, 105);
+			player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 32, 5 * tileDist, 15, 105);
 
 			if (specialAttack.isDoubleProjectile()) {
-				player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 52,
-						5 * tileDist, 15, 105);
+				player.world().spawnProjectile(player.getTile(), target, specialAttack.getProjectileId(), 40, 36, 52, 5 * tileDist, 15, 105);
 			}
 		}
 
@@ -531,10 +543,10 @@ public class PlayerVersusAnyCombat extends Combat {
 	}
 
 	public static void handleGraniteMaul(Player player, Entity target) {
-		/*if (player.dead() || target.dead()) {
-			return;
-		}*/
-		
+		/*
+		 * if (player.dead() || target.dead()) { return; }
+		 */
+
 		if (!CombatUtil.canAttack(player, target)) {
 			return;
 		}

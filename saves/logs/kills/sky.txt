@@ -162,3 +162,6 @@
 [Wed Jul 20 12:35:31 CEST 2016]:killed test(id:0)
 [Wed Jul 20 12:36:41 CEST 2016]:killed test(id:0)
 [Thu Jul 21 19:25:01 CEST 2016]:killed by test(id:0)
+[Mon Jul 25 18:35:58 CEST 2016]:killed test(id:0)
+[Mon Jul 25 18:37:14 CEST 2016]:killed test(id:0)
+[Mon Jul 25 18:38:49 CEST 2016]:killed test(id:0)

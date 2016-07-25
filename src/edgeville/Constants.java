@@ -13,7 +13,7 @@ import edgeville.services.serializers.PlayerSerializer;
 public class Constants {
 	
 	// Crucial settings
-	public static final boolean MYSQL_ENABLED = true;
+	public static final boolean MYSQL_ENABLED = false;
 	public static final boolean SAVE_PLAYERS = true;
 	
 	// Settings

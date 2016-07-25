@@ -634,3 +634,9 @@
 [Thu Jul 21 22:57:30 CEST 2016]:item 4724 1
 [Thu Jul 21 22:57:35 CEST 2016]:item 4728 1
 [Thu Jul 21 22:57:57 CEST 2016]:anim 1146
+[Mon Jul 25 18:34:05 CEST 2016]:find sapphire b
+[Mon Jul 25 18:34:09 CEST 2016]:item 9240 21451223
+[Mon Jul 25 18:35:09 CEST 2016]:find sapphire bolt
+[Mon Jul 25 18:35:15 CEST 2016]:gfx 750
+[Mon Jul 25 18:35:25 CEST 2016]:update 0
+[Mon Jul 25 18:37:40 CEST 2016]:update 0
