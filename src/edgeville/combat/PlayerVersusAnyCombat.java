@@ -281,18 +281,19 @@ public class PlayerVersusAnyCombat extends Combat {
 		if (player.timers().has(TimerKey.COMBAT_ATTACK)) {
 			return;
 		}
-
-		final int DARK_BOW = 11235;
-		if (weaponId != DARK_BOW && ammoName.contains("Dragon arrow")) {
-			player.message("You can only use dragon arrows with dark bow.");
-			container.stop();
-			return;
-		}
-
+		
 		final int BLOWPIPE_ID = 12926;
 		final int CRYSTAL_BOW_ID = 4212;
 		if (weaponId == BLOWPIPE_ID && player.getBlowpipeAmmo() == null) {
 			player.message("You need to load the blowpipe with darts!");
+			container.stop();
+			return;
+		}
+
+		// Check if player tries to use dragon arrows with any other bow than dark bow.
+		final int DARK_BOW = 11235;
+		if (weaponType == WeaponType.BOW && weaponId != DARK_BOW && ammoName.contains("Dragon arrow") && weaponId != CRYSTAL_BOW_ID) {
+			player.message("You can only use dragon arrows with dark bow.");
 			container.stop();
 			return;
 		}

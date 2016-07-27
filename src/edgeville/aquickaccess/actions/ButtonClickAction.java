@@ -108,6 +108,10 @@ public class ButtonClickAction {
 		// Logout
 		case 182:
 			if (buttonId == 6) {
+				if (player.inCombat()) {
+					player.message("You cannot logout in combat!");
+					return;
+				}
 				player.logout();
 			}
 			break;

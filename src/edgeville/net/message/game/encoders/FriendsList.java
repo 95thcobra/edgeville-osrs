@@ -8,21 +8,26 @@ import io.netty.buffer.Unpooled;
 /**
  * @author Simon
  */
-public class RunEnergy implements Command {
+public class FriendsList implements Command {
 
-	private int value;
 	
-	public RunEnergy(int value) {
-		this.value = value;;
+	public FriendsList() {
 	}
 
 	@Override
 	public RSBuffer encode(Player player) {
 		RSBuffer buffer = new RSBuffer(Unpooled.buffer());
 
-		buffer.packet(115);
-		buffer.writeByte(value);
-
+		buffer.packet(195);
+		
+		buffer.writeByte(1);
+		buffer.writeString("Test1");
+		buffer.writeString("Test2");
+		buffer.writeShort(0);
+		buffer.writeByte(1);
+		buffer.writeByte(1);
+		
+		buffer.writeString("Test3");
 		return buffer;
 	}
 

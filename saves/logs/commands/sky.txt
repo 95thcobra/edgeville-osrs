@@ -665,3 +665,44 @@
 [Mon Jul 25 22:20:16 CEST 2016]:find emerald b
 [Mon Jul 25 22:20:20 CEST 2016]:item 9241 5345
 [Mon Jul 25 22:21:44 CEST 2016]:teletome test
+[Tue Jul 26 10:36:34 CEST 2016]:item 11212 1241235
+[Tue Jul 26 10:36:36 CEST 2016]:find blowp
+[Tue Jul 26 10:36:39 CEST 2016]:item 12926 1
+[Tue Jul 26 10:41:14 CEST 2016]:update 0
+[Tue Jul 26 12:55:31 CEST 2016]:item 11230 123532
+[Tue Jul 26 12:56:14 CEST 2016]:find crystal b
+[Tue Jul 26 12:56:17 CEST 2016]:item 4212 1
+[Tue Jul 26 12:57:41 CEST 2016]:update 0
+[Tue Jul 26 12:57:56 CEST 2016]:item 11212 1
+[Tue Jul 26 12:58:01 CEST 2016]:item 11212 1
+[Tue Jul 26 14:40:53 CEST 2016]:update 0
+[Tue Jul 26 14:41:04 CEST 2016]:trypm 1
+[Tue Jul 26 14:41:07 CEST 2016]:trypm 0
+[Tue Jul 26 14:41:09 CEST 2016]:trypm 2
+[Tue Jul 26 14:41:11 CEST 2016]:trypm 1
+[Tue Jul 26 14:41:13 CEST 2016]:trypm 0
+[Tue Jul 26 14:41:15 CEST 2016]:trypm 3
+[Tue Jul 26 14:41:17 CEST 2016]:trypm 4
+[Tue Jul 26 14:41:18 CEST 2016]:trypm 5
+[Tue Jul 26 14:41:21 CEST 2016]:trypm 6
+[Tue Jul 26 14:41:22 CEST 2016]:trypm 7
+[Tue Jul 26 14:41:25 CEST 2016]:trypm 8
+[Tue Jul 26 14:42:20 CEST 2016]:update 0
+[Tue Jul 26 14:42:25 CEST 2016]:trypm 1
+[Tue Jul 26 14:42:31 CEST 2016]:trypm 2
+[Tue Jul 26 14:42:32 CEST 2016]:trypm 3
+[Tue Jul 26 14:42:34 CEST 2016]:trypm 4
+[Tue Jul 26 14:42:37 CEST 2016]:trypm 0
+[Tue Jul 26 19:03:03 CEST 2016]:trypm 2
+[Tue Jul 26 19:03:14 CEST 2016]:trypm 2
+[Tue Jul 26 19:04:00 CEST 2016]:trypm 2
+[Tue Jul 26 19:07:58 CEST 2016]:trypm 2
+[Tue Jul 26 19:07:59 CEST 2016]:trypm 2
+[Wed Jul 27 08:18:49 CEST 2016]:invokescript 3321 50
+[Wed Jul 27 08:19:21 CEST 2016]:update 0
+[Wed Jul 27 08:19:29 CEST 2016]:invokescript 3321 50
+[Wed Jul 27 08:19:46 CEST 2016]:invokescript 3321
+[Wed Jul 27 08:19:56 CEST 2016]:invokescript 3321 50
+[Wed Jul 27 08:22:34 CEST 2016]:invokescript 3321 50
+[Wed Jul 27 08:38:27 CEST 2016]:trypm 
+[Wed Jul 27 08:38:44 CEST 2016]:trypm 

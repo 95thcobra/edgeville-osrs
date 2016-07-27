@@ -40,11 +40,16 @@ public final class GameCommands {
 
 	private static Map<String, Command> setup() {
 		commands = new HashMap<>();
-		
+
+		put(Privilege.DEVELOPER, "trypm", (p, args) -> {
+			p.write(new FriendsList());
+			p.message("wlp i tried.");
+		});
+
 		put(Privilege.DEVELOPER, "loopvarbit", (p, args) -> {
 			new Thread(() -> {
 				for (int i = 0; i < 20000; i++) {
-					if (i==542)
+					if (i == 542)
 						continue;
 					p.getVarps().setVarbit(i, Integer.parseInt(args[0]));
 				}
@@ -76,11 +81,6 @@ public final class GameCommands {
 				}
 			}).start();
 		});
-		
-		
-		
-		
-		
 
 		put(Privilege.DEVELOPER, "test", (p, args) -> {
 			new Thread(() -> {
@@ -346,8 +346,7 @@ public final class GameCommands {
 		put(Privilege.PLAYER, "empty", (p, args) -> p.getInventory().empty());
 
 		put(Privilege.MODERATOR, "teleto", (p, args) -> p.move(p.world().getPlayerByName(glue(args)).get().getTile()));
-		put(Privilege.MODERATOR, "teletome",
-				(p, args) -> p.world().getPlayerByName(glue(args)).get().move(p.getTile()));
+		put(Privilege.MODERATOR, "teletome", (p, args) -> p.world().getPlayerByName(glue(args)).get().move(p.getTile()));
 
 		put(Privilege.ADMINISTRATOR, "damageon", (p, args) -> {
 			p.setDamageOn(true);
@@ -366,12 +365,10 @@ public final class GameCommands {
 			int endHeight = 36;
 			int curve = 15;
 			int graphic = 228;
-			p.world().spawnProjectile(p.getTile(), p.getAttribute(AttributeKey.LAST_ATTACKED_BY),
-					Integer.parseInt(args[0]), startHeight, endHeight, baseDelay, 10000, curve, 105);
+			p.world().spawnProjectile(p.getTile(), p.getAttribute(AttributeKey.LAST_ATTACKED_BY), Integer.parseInt(args[0]), startHeight, endHeight, baseDelay, 10000, curve, 105);
 		});
 
-		put(Privilege.DEVELOPER, "invokescript", (p, args) -> p.write(
-				new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
+		put(Privilege.DEVELOPER, "invokescript", (p, args) -> p.write(new InvokeScript(Integer.parseInt(args[0]), (Object[]) Arrays.copyOfRange(args, 1, args.length))));
 
 		put(Privilege.ADMINISTRATOR, "update", (p, args) -> {
 			int ticks = Integer.parseInt(args[0]);
@@ -380,7 +377,7 @@ public final class GameCommands {
 			});
 			p.world().getEventHandler().addEvent(p, false, new UpdateGameEvent(p, ticks));
 		});
-		
+
 		put(Privilege.PLAYER, "mypos", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.getTile().x, p.getTile().z, p.getTile().region()));
 		put(Privilege.PLAYER, "pos", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.getTile().x, p.getTile().z, p.getTile().region()));
 		put(Privilege.PLAYER, "coords", (p, args) -> p.message("Your coordinates are [%d, %d]. Region %d.", p.getTile().x, p.getTile().z, p.getTile().region()));
@@ -392,25 +389,23 @@ public final class GameCommands {
 
 			//p.interfaces().sendMain(227);
 			//p.write(new InterfaceText(227, 2, "Players online"));
-			
-			/*for (int i = 0; i < p.world().players().size(); i++) {
-				if (i+3 == 4)
-					continue;
-				p.shout("..."+i);
-				p.shout(p.world().players().get(i).getUsername());
-			}*/
-			
-			/*for (int i = 0; i < p.world().players().size(); i++) {
-				if (i+3 == 4)
-					continue;
-				p.write(new InterfaceText(227, i+3, p.world().players().get(i).getUsername()));
-			}*/
-			
-			/*for (int i = 0; i < 5; i++) {
-				if (i+3 == 4)
-					continue;
-				p.write(new InterfaceText(227, i+3, "yo:"+i+3));
-			}*/
+
+			/*
+			 * for (int i = 0; i < p.world().players().size(); i++) { if (i+3 ==
+			 * 4) continue; p.shout("..."+i);
+			 * p.shout(p.world().players().get(i).getUsername()); }
+			 */
+
+			/*
+			 * for (int i = 0; i < p.world().players().size(); i++) { if (i+3 ==
+			 * 4) continue; p.write(new InterfaceText(227, i+3,
+			 * p.world().players().get(i).getUsername())); }
+			 */
+
+			/*
+			 * for (int i = 0; i < 5; i++) { if (i+3 == 4) continue; p.write(new
+			 * InterfaceText(227, i+3, "yo:"+i+3)); }
+			 */
 
 		});
 
@@ -424,12 +419,10 @@ public final class GameCommands {
 				int lz = Integer.parseInt(params[4]);
 				p.move(rx * 64 + lx, rz * 64 + lz, level);
 			} else {
-				p.move(Integer.parseInt(args[0]), Integer.parseInt(args[1]),
-						args.length > 2 ? Integer.parseInt(args[2]) : 0);
+				p.move(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args.length > 2 ? Integer.parseInt(args[2]) : 0);
 			}
 		});
-		put(Privilege.ADMINISTRATOR, "interface",
-				(p, args) -> p.interfaces().sendMain(Integer.parseInt(args[0]), false));
+		put(Privilege.ADMINISTRATOR, "interface", (p, args) -> p.interfaces().sendMain(Integer.parseInt(args[0]), false));
 
 		put(Privilege.DEVELOPER, "cinterface", (p, args) -> {
 			p.interfaces().send(Integer.parseInt(args[0]), 162, 546, false);
@@ -451,10 +444,8 @@ public final class GameCommands {
 			int amount = args.length > 1 ? Integer.parseInt(args[1]) : 1;
 			p.getInventory().add(new Item(itemId, amount), true);
 		});
-		put(Privilege.ADMINISTRATOR, "varp",
-				(p, args) -> p.getVarps().setVarp(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
-		put(Privilege.ADMINISTRATOR, "varbit",
-				(p, args) -> p.getVarps().setVarbit(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+		put(Privilege.ADMINISTRATOR, "varp", (p, args) -> p.getVarps().setVarp(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+		put(Privilege.ADMINISTRATOR, "varbit", (p, args) -> p.getVarps().setVarbit(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
 
 		put(Privilege.ADMINISTRATOR, "npc", (p, args) -> {
 			p.world().registerNpc(new Npc(Integer.parseInt(args[0]), p.world(), p.getTile(), false));
@@ -537,8 +528,7 @@ public final class GameCommands {
 				c.handler.accept(player, parameters);
 
 				String log = command.toLowerCase() + " " + glue(parameters);
-				player.world().getLogsHandler().appendLog(Constants.COMMAND_LOG_DIR + player.getUsername() + ".txt",
-						log);
+				player.world().getLogsHandler().appendLog(Constants.COMMAND_LOG_DIR + player.getUsername() + ".txt", log);
 
 				return;
 			}

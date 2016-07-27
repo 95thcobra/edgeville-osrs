@@ -379,6 +379,8 @@ public class Player extends Entity {
 		clanChat = new ClanChat(this, username + "'s clanchat", new ArrayList<Player>());
 
 		getVarps().presave();
+		
+		write(new RunEnergy(100));
 	}
 
 	public void giveStarterPack() {

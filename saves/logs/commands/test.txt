@@ -89,3 +89,41 @@
 [Mon Jul 25 22:11:06 CEST 2016]:update 0
 [Mon Jul 25 22:12:15 CEST 2016]:update 0
 [Mon Jul 25 22:14:19 CEST 2016]:update 0
+[Tue Jul 26 10:42:06 CEST 2016]:update 0
+[Tue Jul 26 12:57:19 CEST 2016]:update 0
+[Tue Jul 26 15:47:46 CEST 2016]:varp 287 1
+[Tue Jul 26 15:48:12 CEST 2016]:varp 26 1
+[Tue Jul 26 15:48:14 CEST 2016]:varp 26 0
+[Tue Jul 26 15:48:17 CEST 2016]:varp 287 0
+[Tue Jul 26 15:48:19 CEST 2016]:varp 287 1
+[Tue Jul 26 15:48:21 CEST 2016]:varp 287 2
+[Tue Jul 26 15:48:23 CEST 2016]:loopvarp 1
+[Tue Jul 26 15:48:26 CEST 2016]:loopvarp 2
+[Tue Jul 26 15:48:28 CEST 2016]:loopvarp 3
+[Tue Jul 26 15:48:30 CEST 2016]:loopvarp 4
+[Tue Jul 26 15:48:32 CEST 2016]:loopvarp 5
+[Tue Jul 26 15:48:34 CEST 2016]:loopvarp 6
+[Tue Jul 26 15:48:37 CEST 2016]:loopvarbit 0
+[Tue Jul 26 15:48:39 CEST 2016]:loopvarbit 1
+[Tue Jul 26 15:48:42 CEST 2016]:loopvarbit 2
+[Tue Jul 26 15:48:44 CEST 2016]:loopvarbit 3
+[Tue Jul 26 15:48:46 CEST 2016]:loopvarbit 4
+[Tue Jul 26 18:37:27 CEST 2016]:varbit 26 1
+[Tue Jul 26 18:37:29 CEST 2016]:varbit 26 0
+[Tue Jul 26 18:38:33 CEST 2016]:update 0
+[Tue Jul 26 19:05:19 CEST 2016]:update 0
+[Tue Jul 26 19:05:27 CEST 2016]:trypm 2
+[Tue Jul 26 19:05:31 CEST 2016]:trypm 2
+[Tue Jul 26 19:05:34 CEST 2016]:trypm 0
+[Tue Jul 26 19:05:35 CEST 2016]:trypm 1
+[Tue Jul 26 19:05:37 CEST 2016]:trypm 2
+[Tue Jul 26 19:07:27 CEST 2016]:update 0
+[Tue Jul 26 19:07:32 CEST 2016]:trypm 2
+[Tue Jul 26 19:07:37 CEST 2016]:trypm 1
+[Tue Jul 26 19:07:38 CEST 2016]:trypm 2
+[Wed Jul 27 08:31:20 CEST 2016]:trypm 50
+[Wed Jul 27 08:31:25 CEST 2016]:trypm 100
+[Wed Jul 27 08:31:27 CEST 2016]:trypm 50
+[Wed Jul 27 08:31:29 CEST 2016]:trypm 0
+[Wed Jul 27 08:31:31 CEST 2016]:trypm 100
+[Wed Jul 27 08:33:44 CEST 2016]:update 0

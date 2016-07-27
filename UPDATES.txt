@@ -1,3 +1,18 @@
+- Fixed dc bug.
+- Updated start gear.
+- Fixed the bug where you can't shoot with blowpipe/crystal bow when dragon arrows are equipped.
+- Run energy value packet found and implemented.
+
+
+
+
+
+
+
+
+
+
+
 [25-7-2016]
 Enchanted bolt effects!
 
@@ -29,8 +44,7 @@ Dragon: 45% extra damage.
 
 
 
-- Fixed dc bug.
-- Better start gear.
+
 
 
 
