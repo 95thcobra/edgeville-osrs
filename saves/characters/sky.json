@@ -5,15 +5,15 @@
   "password": "test",
   "receivedStarter": true,
   "tile": {
-    "x": 3093,
-    "z": 3492,
+    "x": 3085,
+    "z": 3496,
     "level": 0
   },
   "playTime": {
-    "hours": 19,
-    "minutes": 35,
-    "seconds": 7,
-    "milliseconds": 200,
+    "hours": 20,
+    "minutes": 24,
+    "seconds": 39,
+    "milliseconds": 600,
     "color": "\u003ccol\u003dffffff\u003e"
   },
   "privilege": "DEVELOPER",

@@ -1,0 +1,7 @@
+[2016-07-28T17:46:30,209 FATAL] edgeville.GameServer - Server has died unexpectedly
+java.lang.ArrayIndexOutOfBoundsException: 13221
+	at edgeville.util.EquipmentInfo.loadSlotsAndTypes(EquipmentInfo.java:85) ~[bin/:?]
+	at edgeville.util.EquipmentInfo.<init>(EquipmentInfo.java:69) ~[bin/:?]
+	at edgeville.model.World.<init>(World.java:75) ~[bin/:?]
+	at edgeville.GameServer.<init>(GameServer.java:95) ~[bin/:?]
+	at edgeville.GameServer.main(GameServer.java:290) [bin/:?]
